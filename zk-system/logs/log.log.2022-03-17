@@ -1,0 +1,102 @@
+INFO  -> 2022-03-17 09:53:01.002[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]========================================
+INFO  -> 2022-03-17 09:53:01.005[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]=== zk system  启动 ... ... 
+INFO  -> 2022-03-17 09:53:01.005[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]========================================
+INFO  -> 2022-03-17 09:53:01.450[background-preinit][org.hibernate.validator.internal.util.Version] - HV000001: Hibernate Validator 6.0.14.Final
+INFO  -> 2022-03-17 09:53:02.667[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$59e02054] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-03-17 09:53:03.132[main][com.zk.sys.ZKSysSpringBootMain] - No active profile set, falling back to default profiles: default
+INFO  -> 2022-03-17 09:53:04.648[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  -> 2022-03-17 09:53:04.656[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+INFO  -> 2022-03-17 09:53:04.720[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 49ms. Found 0 repository interfaces.
+INFO  -> 2022-03-17 09:53:04.754[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  -> 2022-03-17 09:53:04.760[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+INFO  -> 2022-03-17 09:53:04.790[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 9ms. Found 0 repository interfaces.
+INFO  -> 2022-03-17 09:53:05.303[main][org.springframework.cloud.context.scope.GenericScope] - BeanFactory id=aba32f15-d402-3595-83bc-be72878eaf77
+INFO  -> 2022-03-17 09:53:05.520[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3dc61d57] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-03-17 09:53:05.572[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$59e02054] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-03-17 09:53:06.650[main][org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 9092 (http)
+INFO  -> 2022-03-17 09:53:07.235[main][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 4063 ms
+INFO  -> 2022-03-17 09:53:07.984[main][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+WARN  -> 2022-03-17 09:53:09.358[main][org.apache.ibatis.io.ResolverUtil] - Could not examine class 'com/zk/base/mongo/repository/support/ZKMongoRepositoryImpl.class' due to a java.lang.NoClassDefFoundError with message: org/springframework/data/mongodb/repository/MongoRepository
+WARN  -> 2022-03-17 09:53:09.364[main][org.apache.ibatis.io.ResolverUtil] - Could not examine class 'com/zk/base/mongo/repository/ZKBaseMongoRepository.class' due to a java.lang.NoClassDefFoundError with message: org/springframework/data/mongodb/repository/MongoRepository
+WARN  -> 2022-03-17 09:53:11.846[main][com.netflix.config.sources.URLConfigurationSource] - No URLs will be polled as dynamic configuration sources.
+INFO  -> 2022-03-17 09:53:11.846[main][com.netflix.config.sources.URLConfigurationSource] - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+WARN  -> 2022-03-17 09:53:11.863[main][com.netflix.config.sources.URLConfigurationSource] - No URLs will be polled as dynamic configuration sources.
+INFO  -> 2022-03-17 09:53:11.863[main][com.netflix.config.sources.URLConfigurationSource] - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+TRACE -> 2022-03-17 09:53:12.067[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.c.ZKSysIndexController:
+	{ /zk/sys/v1.0/index/anon}: welcome()
+TRACE -> 2022-03-17 09:53:12.076[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysMenuController:
+	{POST /zk/sys/v1.0/res/menu/sysMenu}: editSys(ZKSysMenu)
+	{DELETE /zk/sys/v1.0/res/menu/sysMenu}: deleteSysMenu(String[])
+	{GET /zk/sys/v1.0/res/menu/sysMenu}: getSysMenu(String)
+	{GET /zk/sys/v1.0/res/menu/sysMenusTree}: pageSysMenusTree(ZKSysMenu,HttpServletRequest)
+TRACE -> 2022-03-17 09:53:12.089[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysNavController:
+	{POST /zk/sys/v1.0/res/nav/sysNav}: editSysNav(ZKSysNav)
+	{DELETE /zk/sys/v1.0/res/nav/sysNav}: deleteSysNav(String[])
+	{GET /zk/sys/v1.0/res/nav/sysNav}: getSysNav(String)
+	{GET /zk/sys/v1.0/res/nav/sysNavs}: pageSysNav(ZKSysNav,HttpServletRequest)
+TRACE -> 2022-03-17 09:53:12.093[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResApplicationSystemController:
+	{POST /zk/sys/v1.0/res/sysResApplicationSystem/sysResApplicationSystem}: sysResApplicationSystemPost(ZKSysResApplicationSystem)
+	{GET /zk/sys/v1.0/res/sysResApplicationSystem/sysResApplicationSystem}: sysResApplicationSystemGet(String)
+	{GET /zk/sys/v1.0/res/sysResApplicationSystem/sysResApplicationSystemsPage}: sysResApplicationSystemsPageGet(ZKSysResApplicationSystem,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/res/sysResApplicationSystem/sysResApplicationSystem}: sysResApplicationSystemDel(String[])
+TRACE -> 2022-03-17 09:53:12.098[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResController:
+	{GET /zk/sys/v1.0/res/getNavItems}: getNavItems(ZKSysNav)
+	{GET /zk/sys/v1.0/res/getNavMenus/{navCode}}: getNavMenus(String,ZKSysMenu)
+TRACE -> 2022-03-17 09:53:12.111[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResDictController:
+	{POST /zk/sys/v1.0/res/sysResDict/sysResDict}: sysResDictPost(ZKSysResDict)
+	{GET /zk/sys/v1.0/res/sysResDict/sysResDict}: sysResDictGet(String)
+	{DELETE /zk/sys/v1.0/res/sysResDict/sysResDict}: sysResDictDel(String[])
+	{GET /zk/sys/v1.0/res/sysResDict/sysResDictsTree}: sysResDictsTree(ZKSysResDict,HttpServletRequest)
+TRACE -> 2022-03-17 09:53:12.136[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResDictTypeController:
+	{POST /zk/sys/v1.0/res/sysResDictType/sysResDictType}: sysResDictTypePost(ZKSysResDictType)
+	{GET /zk/sys/v1.0/res/sysResDictType/sysResDictType}: sysResDictTypeGet(String)
+	{GET /zk/sys/v1.0/res/sysResDictType/sysResDictTypesPage}: sysResDictTypesPageGet(ZKSysResDictType,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/res/sysResDictType/sysResDictType}: sysResDictTypeDel(String[])
+	{GET /zk/sys/v1.0/res/sysResDictType/getByTypeCode}: getByTypeCode(String)
+TRACE -> 2022-03-17 09:53:12.141[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResFuncApiController:
+	{POST /zk/sys/v1.0/res/sysResFuncApi/sysResFuncApi}: sysResFuncApiPost(ZKSysResFuncApi)
+	{GET /zk/sys/v1.0/res/sysResFuncApi/sysResFuncApi}: sysResFuncApiGet(String)
+	{GET /zk/sys/v1.0/res/sysResFuncApi/sysResFuncApisPage}: sysResFuncApisPageGet(ZKSysResFuncApi,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/res/sysResFuncApi/sysResFuncApi}: sysResFuncApiDel(String[])
+TRACE -> 2022-03-17 09:53:12.149[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResRequestChannelController:
+	{POST /zk/sys/v1.0/res/sysResRequestChannel/sysResRequestChannel}: sysResRequestChannelPost(ZKSysResRequestChannel)
+	{GET /zk/sys/v1.0/res/sysResRequestChannel/sysResRequestChannel}: sysResRequestChannelGet(String)
+	{DELETE /zk/sys/v1.0/res/sysResRequestChannel/sysResRequestChannel}: sysResRequestChannelDel(String[])
+	{GET /zk/sys/v1.0/res/sysResRequestChannel/sysResRequestChannelsPage}: sysResRequestChannelsPageGet(ZKSysResRequestChannel,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-03-17 09:53:12.153[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.s.c.ZKSysSetItemController:
+	{POST /zk/sys/v1.0/set/sysSetItem/sysSetItem}: sysSetItemPost(ZKSysSetItem)
+	{GET /zk/sys/v1.0/set/sysSetItem/sysSetItem}: sysSetItemGet(String)
+	{GET /zk/sys/v1.0/set/sysSetItem/sysSetItemsPage}: sysSetItemsPageGet(ZKSysSetItem,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/set/sysSetItem/sysSetItem}: sysSetItemDel(String[])
+TRACE -> 2022-03-17 09:53:12.166[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ /error, produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+	{ /error}: error(HttpServletRequest)
+DEBUG -> 2022-03-17 09:53:12.213[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 38 mappings in 'requestMappingHandlerMapping'
+WARN  -> 2022-03-17 09:53:14.247[main][org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration] - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+INFO  -> 2022-03-17 09:53:14.971[main][org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 9092 (http) with context path ''
+INFO  -> 2022-03-17 09:53:14.989[main][com.zk.sys.ZKSysSpringBootMain] - Started ZKSysSpringBootMain in 13.784 seconds (JVM running for 20.874)
+INFO  -> 2022-03-17 09:53:14.998[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]----------------------------------------
+INFO  -> 2022-03-17 16:14:55.790[http-nio-9092-exec-1][org.springframework.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+INFO  -> 2022-03-17 16:14:55.812[http-nio-9092-exec-1][org.springframework.web.servlet.DispatcherServlet] - Completed initialization in 21 ms
+TRACE -> 2022-03-17 16:14:55.889[http-nio-9092-exec-1][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2022-03-17 16:14:56.092[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-03-17 16:14:58.776[http-nio-9092-exec-1][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+INFO  -> 2022-03-17 16:14:59.395[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：3303 毫秒; 起始/结束时间(毫秒)：1647504896092/1647504899395；
+TRACE -> 2022-03-17 16:15:01.054[http-nio-9092-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2022-03-17 16:15:01.092[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-03-17 16:15:01.694[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：600 毫秒; 起始/结束时间(毫秒)：1647504901092/1647504901692；
+TRACE -> 2022-03-17 16:21:34.190[http-nio-9092-exec-3][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResFuncApiController.sysResFuncApisPageGet(com.zk.sys.res.entity.ZKSysResFuncApi,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+INFO  -> 2022-03-17 16:21:34.211[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-03-17 16:21:34.272[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlPage] - [^_^:2180109-0149-001] pageSql->SELECT sysResFuncApi.c_name AS "name", sysResFuncApi.c_req_desc AS "reqDesc", sysResFuncApi.c_version AS "version", sysResFuncApi.c_res_content_type AS "resContentType", sysResFuncApi.c_agent_uri AS "agentUri", sysResFuncApi.c_p_desc AS "pDesc", sysResFuncApi.c_del_flag AS "delFlag", sysResFuncApi.c_pk_id AS "pkId", sysResFuncApi.c_create_date AS "createDate", sysResFuncApi.c_create_user_id AS "createUserId", sysResFuncApi.c_req_content_type AS "reqContentType", sysResFuncApi.c_req_params_desc AS "reqParamsDesc", sysResFuncApi.c_req_methods AS "reqMethods", sysResFuncApi.c_spare2 AS "spare2", sysResFuncApi.c_spare1 AS "spare1", sysResFuncApi.c_update_date AS "updateDate", sysResFuncApi.c_remarks AS "remarks", sysResFuncApi.c_system_code AS "systemCode", sysResFuncApi.c_res_data_desc AS "resDataDesc", sysResFuncApi.c_spare3 AS "spare3", sysResFuncApi.c_spare_json AS "spareJson", sysResFuncApi.c_use_context AS "useContext", sysResFuncApi.c_original_uri AS "originalUri", sysResFuncApi.c_update_user_id AS "updateUserId", sysResFuncApi.c_code AS "code" FROM t_sys_res_func_api sysResFuncApi WHERE sysResFuncApi.c_del_flag = ? ORDER BY sysResFuncApi.c_create_date ASC limit 10
+INFO  -> 2022-03-17 16:21:34.609[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：398 毫秒; 起始/结束时间(毫秒)：1647505294211/1647505294609；

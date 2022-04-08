@@ -85,8 +85,8 @@ class CInit${zkTableInfo.funcName}Edit extends Component {
         this.props.dispatch({
             type: 'm${zkTableInfo.funcName}/edit${zkTableInfo.funcName}', 
             payload: values, 
-            callback: (!errors) => {
-                if(errors){
+            callback: (errors) => {
+                if(!errors){
                     this.setState({loading: true});
                 }
                 callbackFunc(errors);

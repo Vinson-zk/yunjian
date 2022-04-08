@@ -1,0 +1,228 @@
+INFO  -> 2021-11-23 08:54:41.920[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]========================================
+INFO  -> 2021-11-23 08:54:41.926[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]=== zk system  启动 ... ... 
+INFO  -> 2021-11-23 08:54:41.926[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]========================================
+INFO  -> 2021-11-23 08:54:43.506[background-preinit][org.hibernate.validator.internal.util.Version] - HV000001: Hibernate Validator 6.0.14.Final
+INFO  -> 2021-11-23 08:54:47.390[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$d949bb9f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2021-11-23 08:54:48.775[main][com.zk.sys.ZKSysSpringBootMain] - No active profile set, falling back to default profiles: default
+INFO  -> 2021-11-23 08:54:52.977[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  -> 2021-11-23 08:54:52.991[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+INFO  -> 2021-11-23 08:54:53.145[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 78ms. Found 0 repository interfaces.
+INFO  -> 2021-11-23 08:54:53.186[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  -> 2021-11-23 08:54:53.189[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+INFO  -> 2021-11-23 08:54:53.285[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 18ms. Found 0 repository interfaces.
+INFO  -> 2021-11-23 08:54:54.806[main][org.springframework.cloud.context.scope.GenericScope] - BeanFactory id=8f986883-bea7-3e1a-9daa-01ab5838599f
+INFO  -> 2021-11-23 08:54:55.394[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$bd2fb8a2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2021-11-23 08:54:55.531[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$d949bb9f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2021-11-23 08:54:57.222[main][org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 9092 (http)
+INFO  -> 2021-11-23 08:54:58.805[main][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 9804 ms
+INFO  -> 2021-11-23 08:55:00.478[main][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+WARN  -> 2021-11-23 08:55:03.507[main][org.apache.ibatis.io.ResolverUtil] - Could not examine class 'com/zk/base/mongo/repository/support/ZKMongoRepositoryImpl.class' due to a java.lang.NoClassDefFoundError with message: org/springframework/data/mongodb/repository/MongoRepository
+WARN  -> 2021-11-23 08:55:03.511[main][org.apache.ibatis.io.ResolverUtil] - Could not examine class 'com/zk/base/mongo/repository/ZKBaseMongoRepository.class' due to a java.lang.NoClassDefFoundError with message: org/springframework/data/mongodb/repository/MongoRepository
+WARN  -> 2021-11-23 08:55:05.254[main][com.netflix.config.sources.URLConfigurationSource] - No URLs will be polled as dynamic configuration sources.
+INFO  -> 2021-11-23 08:55:05.254[main][com.netflix.config.sources.URLConfigurationSource] - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+WARN  -> 2021-11-23 08:55:05.281[main][com.netflix.config.sources.URLConfigurationSource] - No URLs will be polled as dynamic configuration sources.
+INFO  -> 2021-11-23 08:55:05.281[main][com.netflix.config.sources.URLConfigurationSource] - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+TRACE -> 2021-11-23 08:55:05.615[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.c.ZKSysIndexController:
+	{ /zk/v1.0/sys/index/anon}: welcome()
+TRACE -> 2021-11-23 08:55:05.630[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysMenuController:
+	{POST /zk/v1.0/sys/res/menu/sysMenu}: editSys(ZKSysMenu)
+	{DELETE /zk/v1.0/sys/res/menu/sysMenu}: deleteSysMenu(String[])
+	{GET /zk/v1.0/sys/res/menu/sysMenu}: getSysMenu(String)
+	{GET /zk/v1.0/sys/res/menu/sysMenusTree}: pageSysMenusTree(ZKSysMenu,HttpServletRequest)
+TRACE -> 2021-11-23 08:55:05.641[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysNavController:
+	{POST /zk/v1.0/sys/res/nav/sysNav}: editSysNav(ZKSysNav)
+	{DELETE /zk/v1.0/sys/res/nav/sysNav}: deleteSysNav(String[])
+	{GET /zk/v1.0/sys/res/nav/sysNav}: getSysNav(String)
+	{GET /zk/v1.0/sys/res/nav/sysNavs}: pageSysNav(ZKSysNav,HttpServletRequest)
+TRACE -> 2021-11-23 08:55:05.649[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResApplicationSystemController:
+	{DELETE /zk/v1.0/sys/res/sysResApplicationSystem/sysResApplicationSystem}: sysResApplicationSystemDel(String[])
+	{GET /zk/v1.0/sys/res/sysResApplicationSystem/sysResApplicationSystem}: sysResApplicationSystemGet(String)
+	{GET /zk/v1.0/sys/res/sysResApplicationSystem/sysResApplicationSystemsPage}: sysResApplicationSystemsPageGet(ZKSysResApplicationSystem,HttpServletRequest,HttpServletResponse)
+	{POST /zk/v1.0/sys/res/sysResApplicationSystem/sysResApplicationSystem}: sysResApplicationSystemPost(ZKSysResApplicationSystem)
+TRACE -> 2021-11-23 08:55:05.652[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResController:
+	{GET /zk/v1.0/sys/res/getNavItems}: getNavItems(ZKSysNav)
+	{GET /zk/v1.0/sys/res/getNavMenus/{navCode}}: getNavMenus(String,ZKSysMenu)
+TRACE -> 2021-11-23 08:55:05.665[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResDictController:
+	{POST /zk/v1.0/sys/res/sysResDict/sysResDict}: sysResDictPost(ZKSysResDict)
+	{GET /zk/v1.0/sys/res/sysResDict/sysResDict}: sysResDictGet(String)
+	{DELETE /zk/v1.0/sys/res/sysResDict/sysResDict}: sysResDictDel(String[])
+	{GET /zk/v1.0/sys/res/sysResDict/sysResDictsTree}: sysResDictsTree(ZKSysResDict,HttpServletRequest)
+TRACE -> 2021-11-23 08:55:05.685[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResDictTypeController:
+	{POST /zk/v1.0/sys/res/sysResDictType/sysResDictType}: sysResDictTypePost(ZKSysResDictType)
+	{GET /zk/v1.0/sys/res/sysResDictType/sysResDictType}: sysResDictTypeGet(String)
+	{GET /zk/v1.0/sys/res/sysResDictType/sysResDictTypesPage}: sysResDictTypesPageGet(ZKSysResDictType,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/v1.0/sys/res/sysResDictType/sysResDictType}: sysResDictTypeDel(String[])
+	{GET /zk/v1.0/sys/res/sysResDictType/getByTypeCode}: getByTypeCode(String)
+TRACE -> 2021-11-23 08:55:05.709[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResRequestChannelController:
+	{POST /zk/v1.0/sys/res/sysResRequestChannel/sysResRequestChannel}: sysResRequestChannelPost(ZKSysResRequestChannel)
+	{GET /zk/v1.0/sys/res/sysResRequestChannel/sysResRequestChannel}: sysResRequestChannelGet(String)
+	{GET /zk/v1.0/sys/res/sysResRequestChannel/sysResRequestChannelsPage}: sysResRequestChannelsPageGet(ZKSysResRequestChannel,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/v1.0/sys/res/sysResRequestChannel/sysResRequestChannel}: sysResRequestChannelDel(String[])
+TRACE -> 2021-11-23 08:55:05.716[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.s.c.ZKSysSetItemController:
+	{GET /zk/v1.0/sys/settings/sysSetItem/sysSetItem}: sysSetItemGet(String)
+	{GET /zk/v1.0/sys/settings/sysSetItem/sysSetItemsPage}: sysSetItemsPageGet(ZKSysSetItem,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/v1.0/sys/settings/sysSetItem/sysSetItem}: sysSetItemDel(String[])
+	{POST /zk/v1.0/sys/settings/sysSetItem/sysSetItem}: sysSetItemPost(ZKSysSetItem)
+TRACE -> 2021-11-23 08:55:05.723[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ /error}: error(HttpServletRequest)
+	{ /error, produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+DEBUG -> 2021-11-23 08:55:05.755[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 34 mappings in 'requestMappingHandlerMapping'
+WARN  -> 2021-11-23 08:55:11.174[main][org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration] - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+INFO  -> 2021-11-23 08:55:15.388[main][org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 9092 (http) with context path ''
+INFO  -> 2021-11-23 08:55:15.446[main][com.zk.sys.ZKSysSpringBootMain] - Started ZKSysSpringBootMain in 32.648 seconds (JVM running for 36.174)
+INFO  -> 2021-11-23 08:55:15.471[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]----------------------------------------
+INFO  -> 2021-11-23 09:08:48.011[http-nio-9092-exec-1][org.springframework.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+INFO  -> 2021-11-23 09:08:48.029[http-nio-9092-exec-1][org.springframework.web.servlet.DispatcherServlet] - Completed initialization in 16 ms
+TRACE -> 2021-11-23 09:08:48.081[http-nio-9092-exec-1][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 09:08:48.361[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 09:08:50.184[http-nio-9092-exec-1][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+INFO  -> 2021-11-23 09:08:50.752[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：2391 毫秒; 起始/结束时间(毫秒)：1637629728361/1637629730752；
+TRACE -> 2021-11-23 09:08:51.013[http-nio-9092-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 09:08:51.046[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 09:08:51.246[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：200 毫秒; 起始/结束时间(毫秒)：1637629731046/1637629731246；
+TRACE -> 2021-11-23 09:08:51.414[http-nio-9092-exec-3][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.settings.controller.ZKSysSetItemController.sysSetItemsPageGet(com.zk.sys.settings.entity.ZKSysSetItem,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+INFO  -> 2021-11-23 09:08:51.432[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 09:08:51.469[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlPage] - [^_^:2180109-0149-001] pageSql->SELECT sysSetItem.c_spare1 AS "spare1", sysSetItem.c_create_date AS "createDate", sysSetItem.c_compamy_code AS "compamyCode", sysSetItem.c_set_desc AS "setDesc", sysSetItem.c_update_date AS "updateDate", sysSetItem.c_code AS "code", sysSetItem.c_remarks AS "remarks", sysSetItem.c_version AS "version", sysSetItem.c_spare2 AS "spare2", sysSetItem.c_type AS "type", sysSetItem.c_spare3 AS "spare3", sysSetItem.c_del_flag AS "delFlag", sysSetItem.c_spare_json AS "spareJson", sysSetItem.c_group_code AS "groupCode", sysSetItem.c_pk_id AS "pkId", sysSetItem.c_p_desc AS "pDesc", sysSetItem.c_value AS "value", sysSetItem.c_name AS "name", sysSetItem.c_update_user_id AS "updateUserId", sysSetItem.c_create_user_id AS "createUserId" FROM t_sys_set_item sysSetItem WHERE sysSetItem.c_del_flag = ? ORDER BY sysSetItem.c_create_date ASC limit 10
+INFO  -> 2021-11-23 09:08:51.500[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：68 毫秒; 起始/结束时间(毫秒)：1637629731432/1637629731500；
+TRACE -> 2021-11-23 10:36:00.668[http-nio-9092-exec-4][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 10:36:00.674[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 10:36:00.731[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：57 毫秒; 起始/结束时间(毫秒)：1637634960674/1637634960731；
+TRACE -> 2021-11-23 10:36:00.810[http-nio-9092-exec-5][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 10:36:00.811[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 10:36:00.964[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：153 毫秒; 起始/结束时间(毫秒)：1637634960811/1637634960964；
+TRACE -> 2021-11-23 10:36:46.878[http-nio-9092-exec-6][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 10:36:46.880[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 10:36:46.919[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：39 毫秒; 起始/结束时间(毫秒)：1637635006880/1637635006919；
+TRACE -> 2021-11-23 10:36:46.961[http-nio-9092-exec-7][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 10:36:46.962[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 10:36:47.119[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：157 毫秒; 起始/结束时间(毫秒)：1637635006962/1637635007119；
+TRACE -> 2021-11-23 10:37:16.898[http-nio-9092-exec-8][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 10:37:16.900[http-nio-9092-exec-8][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 10:37:16.967[http-nio-9092-exec-8][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：67 毫秒; 起始/结束时间(毫秒)：1637635036900/1637635036967；
+TRACE -> 2021-11-23 10:37:17.075[http-nio-9092-exec-9][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 10:37:17.076[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 10:37:17.243[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：166 毫秒; 起始/结束时间(毫秒)：1637635037076/1637635037242；
+TRACE -> 2021-11-23 10:46:26.614[http-nio-9092-exec-10][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 10:46:26.616[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 10:46:26.681[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：65 毫秒; 起始/结束时间(毫秒)：1637635586616/1637635586681；
+TRACE -> 2021-11-23 10:46:26.729[http-nio-9092-exec-1][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 10:46:26.730[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 10:46:26.985[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：255 毫秒; 起始/结束时间(毫秒)：1637635586730/1637635586985；
+TRACE -> 2021-11-23 10:47:10.375[http-nio-9092-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 10:47:10.376[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 10:47:10.409[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：33 毫秒; 起始/结束时间(毫秒)：1637635630376/1637635630409；
+TRACE -> 2021-11-23 10:47:10.486[http-nio-9092-exec-3][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 10:47:10.487[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 10:47:10.746[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：259 毫秒; 起始/结束时间(毫秒)：1637635630487/1637635630746；
+TRACE -> 2021-11-23 11:10:27.551[http-nio-9092-exec-4][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:10:27.554[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:10:27.588[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：34 毫秒; 起始/结束时间(毫秒)：1637637027554/1637637027588；
+TRACE -> 2021-11-23 11:10:27.660[http-nio-9092-exec-5][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:10:27.661[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:10:27.936[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：275 毫秒; 起始/结束时间(毫秒)：1637637027661/1637637027936；
+TRACE -> 2021-11-23 11:14:33.256[http-nio-9092-exec-6][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:14:33.260[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:14:33.289[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：29 毫秒; 起始/结束时间(毫秒)：1637637273260/1637637273289；
+TRACE -> 2021-11-23 11:14:33.373[http-nio-9092-exec-7][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:14:33.374[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:14:33.493[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：119 毫秒; 起始/结束时间(毫秒)：1637637273374/1637637273493；
+TRACE -> 2021-11-23 11:29:33.474[http-nio-9092-exec-8][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:29:33.476[http-nio-9092-exec-8][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:29:33.546[http-nio-9092-exec-8][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：70 毫秒; 起始/结束时间(毫秒)：1637638173476/1637638173546；
+TRACE -> 2021-11-23 11:29:33.600[http-nio-9092-exec-9][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:29:33.603[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:29:33.941[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：338 毫秒; 起始/结束时间(毫秒)：1637638173603/1637638173941；
+TRACE -> 2021-11-23 11:31:06.975[http-nio-9092-exec-10][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:31:06.976[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:31:06.994[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：18 毫秒; 起始/结束时间(毫秒)：1637638266976/1637638266994；
+TRACE -> 2021-11-23 11:31:07.065[http-nio-9092-exec-1][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:31:07.066[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:31:07.227[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：161 毫秒; 起始/结束时间(毫秒)：1637638267066/1637638267227；
+TRACE -> 2021-11-23 11:36:43.169[http-nio-9092-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:36:43.178[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:36:43.252[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：74 毫秒; 起始/结束时间(毫秒)：1637638603178/1637638603252；
+TRACE -> 2021-11-23 11:36:43.354[http-nio-9092-exec-3][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:36:43.355[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:36:43.458[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：103 毫秒; 起始/结束时间(毫秒)：1637638603355/1637638603458；
+TRACE -> 2021-11-23 11:37:34.283[http-nio-9092-exec-4][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:37:34.284[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:37:34.307[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：23 毫秒; 起始/结束时间(毫秒)：1637638654284/1637638654307；
+TRACE -> 2021-11-23 11:37:34.365[http-nio-9092-exec-5][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:37:34.366[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:37:34.472[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：106 毫秒; 起始/结束时间(毫秒)：1637638654366/1637638654472；
+TRACE -> 2021-11-23 11:39:03.055[http-nio-9092-exec-6][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:39:03.056[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:39:03.085[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：29 毫秒; 起始/结束时间(毫秒)：1637638743056/1637638743085；
+TRACE -> 2021-11-23 11:39:03.149[http-nio-9092-exec-7][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:39:03.150[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:39:03.325[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：175 毫秒; 起始/结束时间(毫秒)：1637638743150/1637638743325；
+TRACE -> 2021-11-23 11:44:05.778[http-nio-9092-exec-8][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:44:05.782[http-nio-9092-exec-8][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:44:05.800[http-nio-9092-exec-8][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：18 毫秒; 起始/结束时间(毫秒)：1637639045782/1637639045800；
+TRACE -> 2021-11-23 11:44:05.859[http-nio-9092-exec-9][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:44:05.860[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:44:06.017[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：157 毫秒; 起始/结束时间(毫秒)：1637639045860/1637639046017；
+TRACE -> 2021-11-23 11:44:51.780[http-nio-9092-exec-10][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:44:51.781[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:44:51.796[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：15 毫秒; 起始/结束时间(毫秒)：1637639091781/1637639091796；
+TRACE -> 2021-11-23 11:44:51.892[http-nio-9092-exec-1][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:44:51.897[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:44:52.056[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：159 毫秒; 起始/结束时间(毫秒)：1637639091897/1637639092056；
+TRACE -> 2021-11-23 11:53:41.250[http-nio-9092-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:53:41.253[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:53:41.281[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：28 毫秒; 起始/结束时间(毫秒)：1637639621253/1637639621281；
+TRACE -> 2021-11-23 11:53:41.390[http-nio-9092-exec-3][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:53:41.396[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:53:41.639[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：243 毫秒; 起始/结束时间(毫秒)：1637639621396/1637639621639；
+TRACE -> 2021-11-23 11:58:35.505[http-nio-9092-exec-4][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:58:35.511[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:58:35.554[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：43 毫秒; 起始/结束时间(毫秒)：1637639915511/1637639915554；
+TRACE -> 2021-11-23 11:58:35.627[http-nio-9092-exec-5][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:58:35.630[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:58:35.890[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：260 毫秒; 起始/结束时间(毫秒)：1637639915630/1637639915890；
+TRACE -> 2021-11-23 11:58:56.798[http-nio-9092-exec-6][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:58:56.799[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:58:56.815[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：16 毫秒; 起始/结束时间(毫秒)：1637639936799/1637639936815；
+TRACE -> 2021-11-23 11:58:56.866[http-nio-9092-exec-7][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:58:56.867[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:58:56.981[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：114 毫秒; 起始/结束时间(毫秒)：1637639936867/1637639936981；
+TRACE -> 2021-11-23 11:59:21.686[http-nio-9092-exec-8][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 11:59:21.688[http-nio-9092-exec-8][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:59:21.701[http-nio-9092-exec-8][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：13 毫秒; 起始/结束时间(毫秒)：1637639961688/1637639961701；
+TRACE -> 2021-11-23 11:59:21.765[http-nio-9092-exec-9][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 11:59:21.766[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 11:59:21.872[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：106 毫秒; 起始/结束时间(毫秒)：1637639961766/1637639961872；
+TRACE -> 2021-11-23 12:02:54.041[http-nio-9092-exec-10][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 12:02:54.043[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 12:02:54.059[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：16 毫秒; 起始/结束时间(毫秒)：1637640174043/1637640174059；
+TRACE -> 2021-11-23 12:02:54.115[http-nio-9092-exec-1][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 12:02:54.116[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 12:02:54.278[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：162 毫秒; 起始/结束时间(毫秒)：1637640174116/1637640174278；
+TRACE -> 2021-11-23 12:03:34.424[http-nio-9092-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 12:03:34.425[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 12:03:34.441[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：16 毫秒; 起始/结束时间(毫秒)：1637640214425/1637640214441；
+TRACE -> 2021-11-23 12:03:34.516[http-nio-9092-exec-3][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 12:03:34.518[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 12:03:34.623[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：105 毫秒; 起始/结束时间(毫秒)：1637640214518/1637640214623；
+TRACE -> 2021-11-23 12:46:14.799[http-nio-9092-exec-4][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 12:46:14.800[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 12:46:14.829[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：29 毫秒; 起始/结束时间(毫秒)：1637642774800/1637642774829；
+TRACE -> 2021-11-23 12:46:14.907[http-nio-9092-exec-5][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 12:46:14.910[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 12:46:15.083[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：174 毫秒; 起始/结束时间(毫秒)：1637642774909/1637642775083；
+TRACE -> 2021-11-23 12:48:20.608[http-nio-9092-exec-6][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2021-11-23 12:48:20.610[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 12:48:20.630[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：20 毫秒; 起始/结束时间(毫秒)：1637642900610/1637642900630；
+TRACE -> 2021-11-23 12:48:20.730[http-nio-9092-exec-7][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2021-11-23 12:48:20.732[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-23 12:48:20.878[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：146 毫秒; 起始/结束时间(毫秒)：1637642900732/1637642900878；

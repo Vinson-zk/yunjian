@@ -1,0 +1,176 @@
+INFO  -> 2021-11-17 20:53:58.552[background-preinit][org.hibernate.validator.internal.util.Version] - HV000001: Hibernate Validator 6.0.14.Final
+INFO  -> 2021-11-17 20:53:59.657[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$a49fba73] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2021-11-17 20:54:00.086[main][com.zk.server.central.ZKSerCenSpringBootMain] - No active profile set, falling back to default profiles: default
+INFO  -> 2021-11-17 20:54:02.729[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  -> 2021-11-17 20:54:02.737[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+INFO  -> 2021-11-17 20:54:02.821[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 67ms. Found 0 repository interfaces.
+INFO  -> 2021-11-17 20:54:02.832[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  -> 2021-11-17 20:54:02.832[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+INFO  -> 2021-11-17 20:54:02.844[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 12ms. Found 0 repository interfaces.
+INFO  -> 2021-11-17 20:54:02.860[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  -> 2021-11-17 20:54:02.862[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+INFO  -> 2021-11-17 20:54:02.883[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 12ms. Found 0 repository interfaces.
+WARN  -> 2021-11-17 20:54:03.169[main][org.springframework.boot.actuate.endpoint.EndpointId] - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+INFO  -> 2021-11-17 20:54:04.081[main][org.springframework.cloud.context.scope.GenericScope] - BeanFactory id=e93d2d05-f32b-39e4-8e2f-7de3cce7b035
+INFO  -> 2021-11-17 20:54:04.356[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8885b776] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2021-11-17 20:54:05.012[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'zkSerCenUserSampleRealm' of type [com.zk.server.central.security.ZKSerCenUserSampleRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2021-11-17 20:54:05.051[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2021-11-17 20:54:05.084[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'zkSerCenAuthenticationFilter' of type [com.zk.server.central.security.ZKSerCenAuthenticationFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2021-11-17 20:54:05.138[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$a49fba73] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2021-11-17 20:54:06.210[main][org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 10081 (http)
+INFO  -> 2021-11-17 20:54:07.193[main][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 7062 ms
+WARN  -> 2021-11-17 20:54:07.582[main][com.netflix.config.sources.URLConfigurationSource] - No URLs will be polled as dynamic configuration sources.
+INFO  -> 2021-11-17 20:54:07.582[main][com.netflix.config.sources.URLConfigurationSource] - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+INFO  -> 2021-11-17 20:54:07.618[main][com.netflix.config.DynamicPropertyFactory] - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@2b80e5a9
+INFO  -> 2021-11-17 20:54:08.652[main][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+INFO  -> 2021-11-17 20:54:09.655[main][org.mongodb.driver.cluster] - Cluster created with settings {hosts=[10.211.55.10:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+INFO  -> 2021-11-17 20:54:09.655[main][org.mongodb.driver.cluster] - Adding discovered server 10.211.55.10:27017 to client view of cluster
+INFO  -> 2021-11-17 20:54:10.754[cluster-ClusterId{value='6194fb71e990da66c94b67b7', description='null'}-10.211.55.10:27017][org.mongodb.driver.cluster] - Exception in monitor thread while connecting to server 10.211.55.10:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:67)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:126)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.ConnectException: Connection refused (Connection refused)
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:64)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:62)
+	... 3 more
+INFO  -> 2021-11-17 20:54:12.412[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using JSON encoding codec LegacyJacksonJson
+INFO  -> 2021-11-17 20:54:12.413[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using JSON decoding codec LegacyJacksonJson
+INFO  -> 2021-11-17 20:54:12.840[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using XML encoding codec XStreamXml
+INFO  -> 2021-11-17 20:54:12.840[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using XML decoding codec XStreamXml
+WARN  -> 2021-11-17 20:54:14.039[main][com.netflix.config.sources.URLConfigurationSource] - No URLs will be polled as dynamic configuration sources.
+INFO  -> 2021-11-17 20:54:14.039[main][com.netflix.config.sources.URLConfigurationSource] - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+TRACE -> 2021-11-17 20:54:14.212[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.c.c.ZKSerCenCertificateController:
+	{POST /zk/v1.0/serCen/cer/sc}: serviceCertificatePost(ZKSerCenCertificate)
+	{GET /zk/v1.0/serCen/cer/sc}: serviceCertificateGet(String)
+	{DELETE /zk/v1.0/serCen/cer/sc}: serviceCertificateDelete(List)
+	{GET /zk/v1.0/serCen/cer/scs}: serviceCertificateList(ZKSerCenCertificate,HttpServletRequest)
+	{GET /zk/v1.0/serCen/cer/scPage}: serviceCertificatePage(ZKSerCenCertificate,HttpServletRequest)
+	{POST /zk/v1.0/serCen/cer/scStatus}: scStatus(List,int)
+	{GET /zk/v1.0/serCen/cer/download}: download(String,HttpServletRequest,HttpServletResponse)
+	{ /zk/v1.0/serCen/cer/view/index}: vIndex(HttpServletRequest)
+	{GET /zk/v1.0/serCen/cer/view/edit}: vEdit(String,HttpServletRequest)
+TRACE -> 2021-11-17 20:54:14.219[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.c.c.ZKSerCenHomeController:
+	{ /zk/v1.0/serCen/home/serCenIndex}: scIndex()
+	{ /zk/v1.0/serCen/home/scGuide}: scGuide()
+TRACE -> 2021-11-17 20:54:14.224[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.c.c.ZKSerCenIndexController:
+	{ /zk/v1.0/serCen/data}: data(HttpServletRequest)
+	{ /zk/v1.0/serCen}: index(String,HttpServletRequest,Model)
+	{ /zk/v1.0/serCen/locale}: locale(String,HttpServletRequest,HttpServletResponse)
+	{ /zk/v1.0/serCen/anon}: welcome()
+TRACE -> 2021-11-17 20:54:14.225[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.c.c.ZKSerCenInfoController:
+	{ /zk/v1.0/serCen/info/serCenInfo}: serCenInfo()
+TRACE -> 2021-11-17 20:54:14.228[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.c.c.ZKSerCenLoginController:
+	{POST /zk/v1.0/serCen/l/login}: loginPost(HttpServletRequest,HttpServletResponse,Model,RedirectAttributes)
+	{GET /zk/v1.0/serCen/l/captcha}: validateCode(HttpServletRequest,HttpServletResponse)
+	{GET /zk/v1.0/serCen/l/login}: login(HttpServletRequest,HttpServletResponse,Model)
+	{ /zk/v1.0/serCen/l/doingCaptcha}: doingCaptcha(HttpServletRequest,HttpServletResponse)
+TRACE -> 2021-11-17 20:54:14.233[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.c.c.ZKSerCenTestController:
+	{ /zk/v1.0/serCen/test/e}: e(HttpServletRequest)
+	{ /zk/v1.0/serCen/test}: test(HttpServletRequest,Model)
+	{ /zk/v1.0/serCen/test/testFreeMarker}: testFreeMarker(HttpServletRequest,ModelMap)
+TRACE -> 2021-11-17 20:54:14.240[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ /error}: error(HttpServletRequest)
+	{ /error, produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+TRACE -> 2021-11-17 20:54:14.251[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	o.s.c.n.e.s.EurekaController:
+	{GET /zk/v1.0/serCen/zkEureka}: status(HttpServletRequest,Map)
+	{GET /zk/v1.0/serCen/zkEureka/lastn}: lastn(HttpServletRequest,Map)
+DEBUG -> 2021-11-17 20:54:14.253[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 27 mappings in 'requestMappingHandlerMapping'
+INFO  -> 2021-11-17 20:54:14.424[main][org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping] - Adding welcome page template: index
+INFO  -> 2021-11-17 20:54:16.132[main][org.springframework.cloud.netflix.eureka.InstanceInfoFactory] - Setting initial instance status as: STARTING
+INFO  -> 2021-11-17 20:54:16.252[main][com.netflix.discovery.DiscoveryClient] - Initializing Eureka in region us-east-1
+INFO  -> 2021-11-17 20:54:16.252[main][com.netflix.discovery.DiscoveryClient] - Client configured to neither register nor query for data.
+INFO  -> 2021-11-17 20:54:16.277[main][com.netflix.discovery.DiscoveryClient] - Discovery Client initialized at timestamp 1637153656274 with initial instances count: 0
+INFO  -> 2021-11-17 20:54:16.433[main][com.netflix.eureka.DefaultEurekaServerContext] - Initializing ...
+INFO  -> 2021-11-17 20:54:16.439[main][com.netflix.eureka.cluster.PeerEurekaNodes] - Adding new peer nodes [http://localhost:10081/eureka/]
+INFO  -> 2021-11-17 20:54:16.621[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using JSON encoding codec LegacyJacksonJson
+INFO  -> 2021-11-17 20:54:16.627[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using JSON decoding codec LegacyJacksonJson
+INFO  -> 2021-11-17 20:54:16.627[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using XML encoding codec XStreamXml
+INFO  -> 2021-11-17 20:54:16.627[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using XML decoding codec XStreamXml
+INFO  -> 2021-11-17 20:54:16.896[main][com.netflix.eureka.cluster.PeerEurekaNodes] - Replica node URL:  http://localhost:10081/eureka/
+INFO  -> 2021-11-17 20:54:16.911[main][com.netflix.eureka.registry.AbstractInstanceRegistry] - Finished initializing remote region registries. All known remote regions: []
+INFO  -> 2021-11-17 20:54:16.913[main][com.netflix.eureka.DefaultEurekaServerContext] - Initialized
+INFO  -> 2021-11-17 20:54:16.965[main][org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver] - Exposing 2 endpoint(s) beneath base path '/actuator'
+INFO  -> 2021-11-17 20:54:17.288[main][org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry] - Registering application ZKSERVERCENTRAL with eureka with status UP
+INFO  -> 2021-11-17 20:54:17.296[Thread-14][org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap] - Setting the eureka configuration..
+INFO  -> 2021-11-17 20:54:17.297[Thread-14][org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap] - Eureka data center value eureka.datacenter is not set, defaulting to default
+INFO  -> 2021-11-17 20:54:17.298[Thread-14][org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap] - Eureka environment value eureka.environment is not set, defaulting to test
+INFO  -> 2021-11-17 20:54:17.358[Thread-14][org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap] - isAws returned false
+INFO  -> 2021-11-17 20:54:17.362[Thread-14][org.springframework.cloud.netflix.eureka.server.EurekaServerBootstrap] - Initialized server context
+INFO  -> 2021-11-17 20:54:17.362[Thread-14][com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl] - Got 1 instances from neighboring DS node
+INFO  -> 2021-11-17 20:54:17.362[Thread-14][com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl] - Renew threshold is: 1
+INFO  -> 2021-11-17 20:54:17.362[Thread-14][com.netflix.eureka.registry.PeerAwareInstanceRegistryImpl] - Changing status to UP
+INFO  -> 2021-11-17 20:54:17.379[Thread-14][org.springframework.cloud.netflix.eureka.server.EurekaServerInitializerConfiguration] - Started Eureka Server
+INFO  -> 2021-11-17 20:54:17.483[main][org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 10081 (http) with context path ''
+INFO  -> 2021-11-17 20:54:17.484[main][org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration] - Updating port to 10081
+INFO  -> 2021-11-17 20:54:17.488[main][com.zk.server.central.ZKSerCenSpringBootMain] - Started ZKSerCenSpringBootMain in 19.203 seconds (JVM running for 20.18)
+INFO  -> 2021-11-17 20:55:05.198[http-nio-10081-exec-1][org.springframework.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+INFO  -> 2021-11-17 20:55:05.224[http-nio-10081-exec-1][org.springframework.web.servlet.DispatcherServlet] - Completed initialization in 24 ms
+TRACE -> 2021-11-17 20:55:05.685[http-nio-10081-exec-1][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public org.springframework.web.servlet.ModelAndView com.zk.server.central.controller.ZKSerCenLoginController.login(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.Model) throws java.security.NoSuchAlgorithmException
+INFO  -> 2021-11-17 20:55:05.753[http-nio-10081-exec-1][com.zk.server.central.commons.ZKSerCenUtils] - [^_^:20171219-1004-001] get login fail num by num -> null 
+INFO  -> 2021-11-17 20:55:05.772[http-nio-10081-exec-1][com.zk.server.central.controller.ZKSerCenLoginController] - [^_^:20200224-0810-001] AES userSecretKey: 6da2571a4b0d75a5b7e02e3d5b1a9256
+TRACE -> 2021-11-17 20:55:09.305[http-nio-10081-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public void com.zk.server.central.controller.ZKSerCenLoginController.validateCode(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+TRACE -> 2021-11-17 20:55:16.630[http-nio-10081-exec-10][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.server.central.controller.ZKSerCenLoginController.loginPost(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.Model,org.springframework.web.servlet.mvc.support.RedirectAttributes)
+TRACE -> 2021-11-17 20:55:16.957[http-nio-10081-exec-8][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public java.lang.String com.zk.server.central.controller.ZKSerCenIndexController.index(java.lang.String,javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+INFO  -> 2021-11-17 20:55:17.368[Eureka-EvictionTimer][com.netflix.eureka.registry.AbstractInstanceRegistry] - Running the evict task with compensationTime 0ms
+TRACE -> 2021-11-17 20:55:17.908[http-nio-10081-exec-5][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public org.springframework.web.servlet.ModelAndView com.zk.server.central.controller.ZKSerCenHomeController.scIndex()
+TRACE -> 2021-11-17 20:55:29.592[http-nio-10081-exec-6][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public void com.zk.server.central.controller.ZKSerCenIndexController.locale(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+INFO  -> 2021-11-17 20:55:29.593[http-nio-10081-exec-6][com.zk.server.central.controller.ZKSerCenIndexController] - [^_^:20190808-1759-001]{ ZKBaseController class: String-escapeHtml4} -> zh_CN
+TRACE -> 2021-11-17 20:55:29.639[http-nio-10081-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public java.lang.String com.zk.server.central.controller.ZKSerCenIndexController.index(java.lang.String,javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+TRACE -> 2021-11-17 20:55:29.643[http-nio-10081-exec-7][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public org.springframework.web.servlet.ModelAndView com.zk.server.central.controller.ZKSerCenHomeController.scIndex()
+TRACE -> 2021-11-17 20:55:29.932[http-nio-10081-exec-9][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public org.springframework.web.servlet.ModelAndView com.zk.server.central.controller.ZKSerCenHomeController.scIndex()
+TRACE -> 2021-11-17 20:55:39.243[http-nio-10081-exec-4][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public void com.zk.server.central.controller.ZKSerCenIndexController.locale(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+INFO  -> 2021-11-17 20:55:39.244[http-nio-10081-exec-4][com.zk.server.central.controller.ZKSerCenIndexController] - [^_^:20190808-1759-001]{ ZKBaseController class: String-escapeHtml4} -> zh_CN
+TRACE -> 2021-11-17 20:55:39.268[http-nio-10081-exec-1][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public java.lang.String com.zk.server.central.controller.ZKSerCenIndexController.index(java.lang.String,javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+TRACE -> 2021-11-17 20:55:39.489[http-nio-10081-exec-5][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public org.springframework.web.servlet.ModelAndView com.zk.server.central.controller.ZKSerCenHomeController.scIndex()
+TRACE -> 2021-11-17 20:55:41.681[http-nio-10081-exec-3][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public void com.zk.server.central.controller.ZKSerCenIndexController.locale(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+INFO  -> 2021-11-17 20:55:41.682[http-nio-10081-exec-3][com.zk.server.central.controller.ZKSerCenIndexController] - [^_^:20190808-1759-001]{ ZKBaseController class: String-escapeHtml4} -> en_US
+TRACE -> 2021-11-17 20:55:41.705[http-nio-10081-exec-6][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public java.lang.String com.zk.server.central.controller.ZKSerCenIndexController.index(java.lang.String,javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+TRACE -> 2021-11-17 20:55:41.968[http-nio-10081-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public org.springframework.web.servlet.ModelAndView com.zk.server.central.controller.ZKSerCenHomeController.scIndex()
+TRACE -> 2021-11-17 20:55:46.384[http-nio-10081-exec-7][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public void com.zk.server.central.controller.ZKSerCenIndexController.locale(java.lang.String,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+INFO  -> 2021-11-17 20:55:46.385[http-nio-10081-exec-7][com.zk.server.central.controller.ZKSerCenIndexController] - [^_^:20190808-1759-001]{ ZKBaseController class: String-escapeHtml4} -> zh_CN
+TRACE -> 2021-11-17 20:55:46.407[http-nio-10081-exec-10][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public java.lang.String com.zk.server.central.controller.ZKSerCenIndexController.index(java.lang.String,javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+TRACE -> 2021-11-17 20:55:46.643[http-nio-10081-exec-8][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public org.springframework.web.servlet.ModelAndView com.zk.server.central.controller.ZKSerCenHomeController.scIndex()
+TRACE -> 2021-11-17 20:55:48.210[http-nio-10081-exec-4][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public java.lang.String org.springframework.cloud.netflix.eureka.server.EurekaController.status(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.Object>)
+INFO  -> 2021-11-17 20:55:48.799[http-nio-10081-exec-1][com.zk.server.central.filter.ZKSerCenRegisterFilter] - [^_^:20200312-2110-001] ZKSerCenRegisterFilter httpReq -> uri: 127.0.0.1:62888/eureka/css/wro.css
+INFO  -> 2021-11-17 20:55:48.803[http-nio-10081-exec-5][com.zk.server.central.filter.ZKSerCenRegisterFilter] - [^_^:20200312-2110-001] ZKSerCenRegisterFilter httpReq -> uri: 127.0.0.1:62890/eureka/js/wro.js
+TRACE -> 2021-11-17 20:56:07.231[http-nio-10081-exec-3][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public org.springframework.web.servlet.ModelAndView com.zk.server.central.controller.ZKSerCenCertificateController.vIndex(javax.servlet.http.HttpServletRequest)
+TRACE -> 2021-11-17 20:56:08.347[http-nio-10081-exec-5][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.server.central.controller.ZKSerCenCertificateController.serviceCertificatePage(com.zk.server.central.entity.ZKSerCenCertificate,javax.servlet.http.HttpServletRequest)
+INFO  -> 2021-11-17 20:56:08.467[http-nio-10081-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-17 20:56:09.307[http-nio-10081-exec-5][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+INFO  -> 2021-11-17 20:56:09.407[http-nio-10081-exec-5][com.zk.db.mybatis.plugins.ZKSqlPage] - [^_^:2180109-0149-001] pageSql->SELECT t0.c_pk_id AS "pkId", t0.c_valid_end_date AS "validEndDate", t0.c_public_key AS "publicKey", t0.c_spare_json AS "spareJson", t0.c_create_user_id AS "createUserId", t0.c_p_desc AS "pDesc", t0.c_update_user_id AS "updateUserId", t0.c_remarks AS "remarks", t0.c_spare1 AS "spare1", t0.c_server_name AS "serverName", t0.c_spare2 AS "spare2", t0.c_update_date AS "updateDate", t0.c_spare3 AS "spare3", t0.c_valid_start_date AS "validStartDate", t0.c_create_date AS "createDate", t0.c_version AS "version", t0.c_del_flag AS "delFlag", t0.c_status AS "status", t0.c_private_key AS "privateKey" FROM t_sc_server_certificate t0 WHERE t0.c_del_flag = ? ORDER BY t0.c_pk_id ASC limit 10,10
+INFO  -> 2021-11-17 20:56:09.482[http-nio-10081-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：1015 毫秒; 起始/结束时间(毫秒)：1637153768467/1637153769482；
+TRACE -> 2021-11-17 20:56:15.623[http-nio-10081-exec-6][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public java.lang.String com.zk.server.central.controller.ZKSerCenTestController.test(javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+INFO  -> 2021-11-17 20:56:17.373[Eureka-EvictionTimer][com.netflix.eureka.registry.AbstractInstanceRegistry] - Running the evict task with compensationTime 2ms
+TRACE -> 2021-11-17 20:56:23.409[http-nio-10081-exec-8][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public org.springframework.web.servlet.ModelAndView com.zk.server.central.controller.ZKSerCenHomeController.scGuide()
+TRACE -> 2021-11-17 20:56:25.233[http-nio-10081-exec-4][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public org.springframework.web.servlet.ModelAndView com.zk.server.central.controller.ZKSerCenHomeController.scIndex()
+TRACE -> 2021-11-17 20:56:29.204[http-nio-10081-exec-9][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public java.lang.String org.springframework.cloud.netflix.eureka.server.EurekaController.status(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.Object>)
+TRACE -> 2021-11-17 20:56:30.000[http-nio-10081-exec-1][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public java.lang.String org.springframework.cloud.netflix.eureka.server.EurekaController.lastn(javax.servlet.http.HttpServletRequest,java.util.Map<java.lang.String, java.lang.Object>)
+TRACE -> 2021-11-17 20:56:32.149[http-nio-10081-exec-3][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public org.springframework.web.servlet.ModelAndView com.zk.server.central.controller.ZKSerCenCertificateController.vIndex(javax.servlet.http.HttpServletRequest)
+TRACE -> 2021-11-17 20:56:32.638[http-nio-10081-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.server.central.controller.ZKSerCenCertificateController.serviceCertificatePage(com.zk.server.central.entity.ZKSerCenCertificate,javax.servlet.http.HttpServletRequest)
+INFO  -> 2021-11-17 20:56:32.640[http-nio-10081-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2021-11-17 20:56:32.651[http-nio-10081-exec-2][com.zk.db.mybatis.plugins.ZKSqlPage] - [^_^:2180109-0149-001] pageSql->SELECT t0.c_pk_id AS "pkId", t0.c_valid_end_date AS "validEndDate", t0.c_public_key AS "publicKey", t0.c_spare_json AS "spareJson", t0.c_create_user_id AS "createUserId", t0.c_p_desc AS "pDesc", t0.c_update_user_id AS "updateUserId", t0.c_remarks AS "remarks", t0.c_spare1 AS "spare1", t0.c_server_name AS "serverName", t0.c_spare2 AS "spare2", t0.c_update_date AS "updateDate", t0.c_spare3 AS "spare3", t0.c_valid_start_date AS "validStartDate", t0.c_create_date AS "createDate", t0.c_version AS "version", t0.c_del_flag AS "delFlag", t0.c_status AS "status", t0.c_private_key AS "privateKey" FROM t_sc_server_certificate t0 WHERE t0.c_del_flag = ? ORDER BY t0.c_pk_id ASC limit 10,10
+INFO  -> 2021-11-17 20:56:32.663[http-nio-10081-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：23 毫秒; 起始/结束时间(毫秒)：1637153792640/1637153792663；
+INFO  -> 2021-11-17 20:57:17.374[Eureka-EvictionTimer][com.netflix.eureka.registry.AbstractInstanceRegistry] - Running the evict task with compensationTime 0ms
+INFO  -> 2021-11-17 20:58:17.379[Eureka-EvictionTimer][com.netflix.eureka.registry.AbstractInstanceRegistry] - Running the evict task with compensationTime 3ms
+INFO  -> 2021-11-17 20:58:29.878[Thread-16][org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry] - Unregistering application ZKSERVERCENTRAL with eureka with status DOWN
+INFO  -> 2021-11-17 20:58:29.884[Thread-16][com.netflix.eureka.DefaultEurekaServerContext] - Shutting down ...
+INFO  -> 2021-11-17 20:58:29.892[Thread-16][com.netflix.eureka.DefaultEurekaServerContext] - Shut down
+INFO  -> 2021-11-17 20:58:29.962[Thread-16][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
+INFO  -> 2021-11-17 20:58:29.968[Thread-16][com.netflix.discovery.DiscoveryClient] - Shutting down DiscoveryClient ...
+INFO  -> 2021-11-17 20:58:29.975[Thread-16][com.netflix.discovery.DiscoveryClient] - Completed shut down of DiscoveryClient
