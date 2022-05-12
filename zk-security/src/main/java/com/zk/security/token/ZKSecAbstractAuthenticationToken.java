@@ -30,8 +30,8 @@ public abstract class ZKSecAbstractAuthenticationToken implements ZKSecAuthentic
      */
     private static final long serialVersionUID = 1L;
 
-    // 组织代码
-    String groupCode;
+    // 公司代码
+    String companyCode;
 
     /**
      * 终端设备类型
@@ -59,8 +59,8 @@ public abstract class ZKSecAbstractAuthenticationToken implements ZKSecAuthentic
 
     }
 
-    public ZKSecAbstractAuthenticationToken(String groupCode, long osType, String udid, long appType, String appId) {
-        this.groupCode = groupCode;
+    public ZKSecAbstractAuthenticationToken(String companyCode, long osType, String udid, long appType, String appId) {
+        this.companyCode = companyCode;
         this.osType = osType;
         this.udid = udid;
         this.appType = appType;
@@ -70,8 +70,8 @@ public abstract class ZKSecAbstractAuthenticationToken implements ZKSecAuthentic
     /**
      * @return groupCode sa
      */
-    public String getGroupCode() {
-        return groupCode;
+    public String getCompanyCode() {
+        return companyCode;
     }
 
     /**

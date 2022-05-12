@@ -30,23 +30,23 @@ public class ZKSecDefaultAuthcUserToken extends ZKSecAbstractAuthenticationToken
      */
     private static final long serialVersionUID = 2810412149427606436L;
 
-    // 组织代码
-    private String groupCode;
+    // 公司代码
+    private String companyCode;
 
     // 登录名
     private String username;
 
     // 用户密码
-    private char[] pwd;
+    private String pwd;
 
     // 是否记住我，是，token 生成加密字符写入Cookie中
     private boolean rememberMe;
 
-    public ZKSecDefaultAuthcUserToken(String groupCode, String username, char[] pwd, boolean rememberMe, long osType,
+    public ZKSecDefaultAuthcUserToken(String companyCode, String username, String pwd, boolean rememberMe, long osType,
             String udid, long appType, String appId) {
-        super(groupCode, osType, udid, appType, appId);
+        super(companyCode, osType, udid, appType, appId);
 
-        this.groupCode = groupCode;
+        this.companyCode = companyCode;
         this.username = username;
         this.pwd = pwd;
         this.rememberMe = rememberMe;
@@ -56,8 +56,8 @@ public class ZKSecDefaultAuthcUserToken extends ZKSecAbstractAuthenticationToken
      * 组织代码
      */
     @Override
-    public String getGroupCode() {
-        return groupCode;
+    public String getCompanyCode() {
+        return companyCode;
     }
 
     /**
@@ -72,7 +72,7 @@ public class ZKSecDefaultAuthcUserToken extends ZKSecAbstractAuthenticationToken
      * 用户密码
      */
     @Override
-    public char[] getPwd() {
+    public String getPwd() {
         return pwd;
     }
 

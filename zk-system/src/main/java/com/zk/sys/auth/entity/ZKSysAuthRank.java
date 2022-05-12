@@ -13,8 +13,7 @@ import org.hibernate.validator.constraints.Length;
 import com.zk.db.annotation.ZKTable;
 import com.zk.db.annotation.ZKColumn;
 import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
-
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 import com.zk.base.entity.ZKBaseEntity;
 
 /**

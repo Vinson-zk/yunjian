@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zk.base.controller.ZKBaseController;
 import com.zk.core.commons.data.ZKPage;
 import com.zk.core.web.ZKMsgRes;
+import com.zk.security.annotation.ZKSecApiCode;
 import com.zk.sys.res.entity.ZKSysNav;
 import com.zk.sys.res.service.ZKSysNavService;
 
@@ -78,6 +79,7 @@ public class ZKSysNavController extends ZKBaseController {
     }
 
     // 详情查询
+    @ZKSecApiCode("com_zk_sys_res_sysNav_detail")
     @RequestMapping(value = "sysNav", method = RequestMethod.GET)
     public ZKMsgRes getSysNav(@RequestParam("pkId") String pkId) {
         ZKSysNav zkSysNav = this.zkSysNavService.get(new ZKSysNav(pkId));

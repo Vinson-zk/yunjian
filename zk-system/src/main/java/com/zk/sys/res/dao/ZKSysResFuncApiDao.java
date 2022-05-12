@@ -19,7 +19,7 @@ import com.zk.sys.res.entity.ZKSysResFuncApi;
 public interface ZKSysResFuncApiDao extends ZKBaseDao<String, ZKSysResFuncApi> {
 	
     /**
-     * 根据应用项目代码和接口代码取接口
+     * 根据接口代码取接口
      *
      * @Title: getBySysAndCode
      * @Description: TODO(simple description this method what to do.)
@@ -28,13 +28,12 @@ public interface ZKSysResFuncApiDao extends ZKBaseDao<String, ZKSysResFuncApi> {
      * @param tn
      * @param tAlias
      * @param sCols
-     * @param sysCode
      * @param apiCode
      * @return
      * @return ZKSysResFuncApi
      */
-    @Select("SELECT ${sCols} FROM ${tn} ${tAlias} WHERE c_system_code = #{sysCode} and c_code = #{apiCode} ")
+    @Select("SELECT ${sCols} FROM ${tn} ${tAlias} WHERE ${tAlias}.c_code = #{apiCode} ")
     ZKSysResFuncApi getBySysAndCode(@Param("tn") String tn, @Param("tAlias") String tAlias,
-            @Param("sCols") String sCols, @Param("sysCode") String sysCode, @Param("apiCode") String apiCode);
+            @Param("sCols") String sCols, @Param("apiCode") String apiCode);
 
 }

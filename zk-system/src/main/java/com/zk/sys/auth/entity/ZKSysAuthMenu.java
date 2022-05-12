@@ -3,19 +3,17 @@
  */
 package com.zk.sys.auth.entity;
 
-import java.lang.String;
-import com.zk.core.utils.ZKIdUtils;
-import com.zk.db.commons.ZKDBQueryType;
-
 import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Length;
 
-import com.zk.db.annotation.ZKTable;
-import com.zk.db.annotation.ZKColumn;
-import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
-
 import com.zk.base.entity.ZKBaseEntity;
+import com.zk.core.utils.ZKIdUtils;
+import com.zk.db.annotation.ZKColumn;
+import com.zk.db.annotation.ZKTable;
+import com.zk.db.commons.ZKDBQueryType;
+import com.zk.db.commons.ZKSqlConvertDelegating;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /**
  * 权限-菜单资源表
@@ -118,5 +116,5 @@ public class ZKSysAuthMenu extends ZKBaseEntity<String, ZKSysAuthMenu> {
 	protected String genId() {
         return ZKIdUtils.genLongStringId();
     }
-	
 }
+

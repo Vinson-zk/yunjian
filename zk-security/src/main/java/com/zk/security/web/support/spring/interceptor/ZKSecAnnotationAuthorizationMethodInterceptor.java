@@ -41,7 +41,7 @@ import com.zk.security.exception.ZKSecAuthorizationException;
 */
 public class ZKSecAnnotationAuthorizationMethodInterceptor implements MethodInterceptor {
 
-    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
     protected final Set<ZKSecAuthorizingAnnotationHandler> secAuthorizationSet = new HashSet<ZKSecAuthorizingAnnotationHandler>();
 
@@ -70,7 +70,9 @@ public class ZKSecAnnotationAuthorizationMethodInterceptor implements MethodInte
             }
         }
         catch(ZKSecAuthorizationException authE) {
-            throw new ZKCodeException("zk.sec.000003", "您没有操作权限", null, null, authE.getAuthCode());
+            authE.printStackTrace();
+            log.error("[>_<:20220511-1923-001] [zk.sec.000003] 您没有操作权限:[{}]", authE.getAuthCode());
+            throw new ZKCodeException("zk.sec.000003", "您没有操作权限", null, authE.getAuthCode(), authE);
         }
 
         return invocation.proceed();

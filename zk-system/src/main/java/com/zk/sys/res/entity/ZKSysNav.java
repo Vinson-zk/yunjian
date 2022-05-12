@@ -20,18 +20,25 @@ package com.zk.sys.res.entity;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.data.annotation.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zk.base.entity.ZKBaseEntity;
 import com.zk.core.commons.data.ZKJson;
 import com.zk.db.annotation.ZKColumn;
+import com.zk.db.annotation.ZKDBAnnotationProvider;
 import com.zk.db.annotation.ZKTable;
+import com.zk.db.commons.ZKDBQueryConditionWhere;
 import com.zk.db.commons.ZKDBQueryType;
+import com.zk.db.commons.ZKSqlConvert;
 import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionCol;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionIfByClass;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /** 
 * @ClassName: ZKSysNav 
@@ -156,6 +163,12 @@ public class ZKSysNav extends ZKBaseEntity<String, ZKSysNav> {
     @Length(max = 64, message = "{zk.core.data.validation.length.max}")
     @ZKColumn(name = "c_icon", isUpdate = true)
     protected String icon;
+
+    // 查询辅助字段
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    String searchValue;
 
     /**
      * @return name sa
@@ -298,6 +311,35 @@ public class ZKSysNav extends ZKBaseEntity<String, ZKSysNav> {
      */
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    /**
+     * @return searchValue sa
+     */
+    public String getSearchValue() {
+        return searchValue;
+    }
+
+    /**
+     * @param searchValue
+     *            the searchValue to set
+     */
+    public void setSearchValue(String searchValue) {
+        this.searchValue = searchValue;
+    }
+
+    // 取 where 条件；实体定义可以定制；在 生成的 sql；注意：末尾加空格
+    @Override
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    public ZKDBQueryConditionWhere getZKDbWhere(ZKSqlConvert sqlConvert, ZKDBAnnotationProvider annotationProvider) {
+        ZKDBQueryConditionWhere where = super.getZKDbWhere(sqlConvert, annotationProvider);
+        ZKDBQueryConditionWhere sWhere = ZKDBQueryConditionWhere.asOr("(", ")",
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_name", "searchValue", String.class, null, false),
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_code", "searchValue", String.class, null, false));
+        where.put(ZKDBQueryConditionIfByClass.as(sWhere, "searchValue", String.class, false));
+        return where;
     }
 
 }

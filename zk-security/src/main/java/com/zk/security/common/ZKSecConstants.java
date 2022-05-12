@@ -30,9 +30,9 @@ public class ZKSecConstants {
      */
     public static interface PARAM_NAME {
         /**
-         * 请求登录用户所在组代码
+         * 请求登录用户所在公司码
          */
-        public static final String GroupCode = "groupCode";
+        public static final String CompanyCode = "companyCode";
 
         /**
          * 请求登录用户名参数名
@@ -86,7 +86,7 @@ public class ZKSecConstants {
         /**
          * 请求令牌参数名，与响应头相同
          */
-        public static final String TicketId = "tkId";
+        public static final String TicketId = "_tkId";
 
         /**
          * 第三方应用 Id

@@ -32,6 +32,7 @@ import com.zk.core.commons.data.ZKPage;
 import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.db.annotation.ZKDBAnnotationProvider;
 import com.zk.db.annotation.ZKTable;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /** 
 * @ClassName: ZKDBBaseEntity 
@@ -93,87 +94,14 @@ public abstract class ZKDBBaseEntity<E extends ZKDBBaseEntity<E>> implements Ser
         return (T) this.getExtraParams().get(paramName);
     }
 
-//    /**
-//     * 额外参数集合
-//     * 
-//     * @param extraParams
-//     *            the extraParams to set
-//     */
-//    public void setExtraParams(Map<String, Object> extraParams) {
-//        this.extraParams = extraParams;
-//    }
-
     /**
      * 获取数据库名称
      */
-//    @JsonIgnore
-//    public String getDbName() {
-//        return ZKEnvironmentUtils.getString("jdbc.type", "mysql");
-//    }
-
     @Transient
     @XmlTransient
     @JsonIgnore
     public String getJdbcType() {
         return ZKEnvironmentUtils.getString("jdbc.type", "mysql");
-    }
-
-    /********************************************************/
-    /*** 一些 sql 片段，以便定制 ***/
-    /********************************************************/
-
-    /**
-     * 取自定义 逻辑删除语句 中 set 内容；抽象方法；为方便定制
-     * 
-     * 示例：
-     * 
-     * "c_del_flag = #{delFlag}, c_update_user_id = #{updateUserId},
-     * c_update_date = #{updateDate}";
-     *
-     * @Title: getDelSetSql
-     * @Description: TODO(simple description this method what to do.)
-     * @author Vinson
-     * @date Sep 14, 2020 6:50:21 PM
-     * @return
-     * @return String
-     */
-    @Transient
-    @JsonIgnore
-    @XmlTransient
-    public abstract String getZKDbDelSetSql();
-
-    // 取 where 条件；实体定义可以定制；在 生成的 sql；注意：末尾加空格
-    @Transient
-    @JsonIgnore
-    @XmlTransient
-    protected ZKDBQueryConditionWhere getZKDbWhere(ZKSqlConvert sqlConvert, ZKDBAnnotationProvider annotationProvider) {
-        return sqlConvert.getWhere(annotationProvider);
-    }
-
-    // 注意：末尾加空格
-    @Transient
-    @JsonIgnore
-    @XmlTransient
-    protected String getZKDbStrSelCols(ZKSqlConvert sqlConvert, ZKDBAnnotationProvider annotationProvider) {
-        // 示例：alia1.c1 AS 'a1c1', alia2.c1 AS 'a2c1'
-        return sqlConvert.convertSqlSelCols(annotationProvider, annotationProvider.getTable().alias());
-    }
-
-    // 注意 末尾加空格
-    @Transient
-    @JsonIgnore
-    @XmlTransient
-    protected String getZKDbStrSelTable(ZKSqlConvert sqlConvert, ZKDBAnnotationProvider annotationProvider) {
-        // 示例：table1 alia1 或 table1 alia1 left join table2 alia2
-        return sqlConvert.convertSqlSelTable(annotationProvider, annotationProvider.getTable().alias());
-    }
-
-    // 定制默认的排序 sql 片段；带有 ORDER BY
-    @JsonIgnore
-    @XmlTransient
-    protected String getZKDbStrSelOrderBy(ZKSqlConvert sqlConvert, ZKDBAnnotationProvider annotationProvider) {
-        // 示列：ORDER BY alia1.c1 ASC
-        return sqlConvert.convertSqlOrderBy(annotationProvider, null, annotationProvider.getTable().alias(), true);
     }
 
     /********************************************************/
@@ -206,51 +134,45 @@ public abstract class ZKDBBaseEntity<E extends ZKDBBaseEntity<E>> implements Ser
     }
 
     /********************************************************/
-    /*** 供 dao 使用的 sql 片段 ***/
+    /*** 提供的一些 sql 自定义重载函数 **************************/
     /********************************************************/
 
+    /**
+     * 取自定义 逻辑删除语句 中 set 内容；抽象方法；为方便定制
+     * 
+     * 示例："c_del_flag = #{delFlag}, c_update_user_id = #{updateUserId}, c_update_date = #{updateDate}";
+     *
+     * @Title: getDelSetSql
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Sep 14, 2020 6:50:21 PM
+     * @return
+     * @return String
+     */
     @Transient
     @JsonIgnore
     @XmlTransient
-    public String getSqlBlockSelCols() {
-        return this.getSqlProvider().getSqlBlockSelCols();
-    }
+    public abstract String getZKDbDelSetSql();
 
-    // 取表名
+    /**
+     * 取 where 条件；实体定义可以定制；在 生成的 sql；注意：末尾加空格
+     * 
+     * 可能重写来实现自定查询条件组合
+     *
+     * @Title: getZKDbWhere
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Apr 15, 2022 9:46:20 AM
+     * @param sqlConvert
+     * @param annotationProvider
+     * @return
+     * @return ZKDBQueryConditionWhere
+     */
     @Transient
     @JsonIgnore
     @XmlTransient
-    public String getSqlBlockTableName() {
-        return this.getTable().name() + " ";
+    public ZKDBQueryConditionWhere getZKDbWhere(ZKSqlConvert sqlConvert, ZKDBAnnotationProvider annotationProvider) {
+        return sqlConvert.getWhere(annotationProvider);
     }
-
-    // 取表 别名
-    @Transient
-    @JsonIgnore
-    @XmlTransient
-    public String getSqlBlockTableAlias() {
-        return this.getTable().alias() + " ";
-    }
-
-    @Transient
-    @JsonIgnore
-    @XmlTransient
-    public String getSqlBlockOrderBy() {
-        return this.getSqlProvider().convertOrderBySql(this);
-    }
-
-//    @Transient
-//    @JsonIgnore
-//    @XmlTransient
-//    public String getSqlBlockWhere() {
-//        return this.getSqlProvider().getSqlBlockWhere();
-//    }
-//
-//    @Transient
-//    @JsonIgnore
-//    @XmlTransient
-//    public String getSqlBlockPkWhere() {
-//        return this.getSqlProvider().getSqlBlockPkWhere();
-//    }
 
 }

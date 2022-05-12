@@ -3,22 +3,28 @@
  */
 package com.zk.sys.org.entity;
 
-import java.lang.String;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.data.annotation.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.zk.base.entity.ZKBaseEntity;
 import com.zk.core.commons.data.ZKJson;
 import com.zk.core.utils.ZKIdUtils;
-import com.zk.db.commons.ZKDBQueryType;
-
-import org.hibernate.validator.constraints.Range;
-import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
-import javax.validation.constraints.NotEmpty;
-
-import com.zk.db.annotation.ZKTable;
 import com.zk.db.annotation.ZKColumn;
+import com.zk.db.annotation.ZKDBAnnotationProvider;
+import com.zk.db.annotation.ZKTable;
+import com.zk.db.commons.ZKDBQueryConditionWhere;
+import com.zk.db.commons.ZKDBQueryType;
+import com.zk.db.commons.ZKSqlConvert;
 import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
-
-import com.zk.base.entity.ZKBaseEntity;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionCol;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionIfByClass;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /**
  * 职级表
@@ -43,6 +49,21 @@ public class ZKSysOrgRank extends ZKBaseEntity<String, ZKSysOrgRank> {
     }
     
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 职级状态；0-正常；1-禁用；
+     */
+    public static interface KeyStatus {
+        /**
+         * 0-正常
+         */
+        public static final int normal = 0;
+
+        /**
+         * 1-禁用
+         */
+        public static final int disabled = 1;
+    }
 	
 	/**
 	 * 集团代码
@@ -83,9 +104,10 @@ public class ZKSysOrgRank extends ZKBaseEntity<String, ZKSysOrgRank> {
 	 * 职级状态；0-正常；1-禁用；
 	 */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
-	@Range(min = 0, max = 999999999, message = "{zk.core.data.validation.rang.int}")
+    @Range(min = 0, max = 9, message = "{zk.core.data.validation.rang.int}")
 	@ZKColumn(name = "c_status", isInsert = true, isUpdate = true, javaType = Long.class, isQuery = true, queryType = ZKDBQueryType.EQ)
-	Long status;	
+    Integer status;
+
 	/**
 	 *  职级简介
 	 */
@@ -180,14 +202,14 @@ public class ZKSysOrgRank extends ZKBaseEntity<String, ZKSysOrgRank> {
 	/**
 	 * 职级状态；0-正常；1-禁用；	
 	 */	
-	public Long getStatus() {
+    public Integer getStatus() {
 		return status;
 	}
 	
 	/**
 	 * 职级状态；0-正常；1-禁用；
 	 */	
-	public void setStatus(Long status) {
+    public void setStatus(Integer status) {
 		this.status = status;
 	}
 	/**
@@ -238,4 +260,39 @@ public class ZKSysOrgRank extends ZKBaseEntity<String, ZKSysOrgRank> {
         return ZKIdUtils.genLongStringId();
     }
 	
+    // 查询辅助字段
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    String searchValue;
+
+    /**
+     * @return searchValue sa
+     */
+    public String getSearchValue() {
+        return searchValue;
+    }
+
+    /**
+     * @param searchValue
+     *            the searchValue to set
+     */
+    public void setSearchValue(String searchValue) {
+        this.searchValue = searchValue;
+    }
+
+    // 取 where 条件；实体定义可以定制；在 生成的 sql；注意：末尾加空格
+    @Override
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    public ZKDBQueryConditionWhere getZKDbWhere(ZKSqlConvert sqlConvert, ZKDBAnnotationProvider annotationProvider) {
+        ZKDBQueryConditionWhere where = super.getZKDbWhere(sqlConvert, annotationProvider);
+        ZKDBQueryConditionWhere sWhere = ZKDBQueryConditionWhere.asOr("(", ")",
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_name", "searchValue", String.class, null, false),
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_code", "searchValue", String.class, null, false));
+        where.put(ZKDBQueryConditionIfByClass.as(sWhere, "searchValue", String.class, false));
+        return where;
+    }
+
 }

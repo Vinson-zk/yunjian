@@ -15,7 +15,7 @@ import com.zk.db.annotation.ZKColumn;
 import com.zk.db.annotation.ZKTable;
 import com.zk.db.commons.ZKDBQueryType;
 import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /**
  * 字典类型表
@@ -42,7 +42,7 @@ public class ZKSysResDictType extends ZKBaseEntity<String, ZKSysResDictType> {
     private static final long serialVersionUID = 1L;
 	
     /**
-     * 字典类型代码
+     * 字典类型代码；全表唯一
      */
     @NotNull(message = "{zk.core.data.validation.notNull}")
     @Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
@@ -72,15 +72,15 @@ public class ZKSysResDictType extends ZKBaseEntity<String, ZKSysResDictType> {
 	}
 	
 	/**
-	 * 字典类型代码	
-	 */	
+     * 字典类型代码；全表唯一
+     */	
 	public String getTypeCode() {
 		return typeCode;
 	}
 	
 	/**
-	 * 字典类型代码
-	 */	
+     * 字典类型代码；全表唯一
+     */	
 	public void setTypeCode(String typeCode) {
 		this.typeCode = typeCode;
 	}

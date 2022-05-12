@@ -53,13 +53,14 @@ public class ZKSecSecurityUtils {
      * 
      * @return
      */
-    public static ZKSecUserPrincipal<?> getUserPrincipal() {
+    public static <T> ZKSecUserPrincipal<T> getUserPrincipal() {
         return getUserPrincipal(getTikcet());
     }
 
-    public static ZKSecUserPrincipal<?> getUserPrincipal(ZKSecTicket tk) {
+    @SuppressWarnings("unchecked")
+    public static <T> ZKSecUserPrincipal<T> getUserPrincipal(ZKSecTicket tk) {
         if (tk != null) {
-            return (ZKSecUserPrincipal<?>) getPrincipalByType(tk, ZKSecPrincipal.TYPE.User);
+            return (ZKSecUserPrincipal<T>) getPrincipalByType(tk, ZKSecPrincipal.TYPE.User);
         }
         return null;
     }
@@ -107,6 +108,30 @@ public class ZKSecSecurityUtils {
             ZKSecPrincipal<?> userP = tk.getPrincipalCollection().getPrimaryPrincipal();
             if (userP != null) {
                 return (ID) userP.getPkId();
+            }
+        }
+        return null;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <ID> ID getCompanyId() {
+        ZKSecTicket tk = getTikcet();
+        if (tk != null) {
+            ZKSecPrincipal<?> userP = tk.getPrincipalCollection().getPrimaryPrincipal();
+            if (userP != null) {
+                return (ID) userP.getCompanyId();
+            }
+        }
+        return null;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <ID> ID getCompanyCode() {
+        ZKSecTicket tk = getTikcet();
+        if (tk != null) {
+            ZKSecPrincipal<?> userP = tk.getPrincipalCollection().getPrimaryPrincipal();
+            if (userP != null) {
+                return (ID) userP.getCompanyCode();
             }
         }
         return null;

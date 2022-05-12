@@ -30,7 +30,7 @@ import ${zkModule.packagePrefix}<#if zkTableInfo.subModuleName??&zkTableInfo.sub
  * @version 
  */
 @RestController
-@RequestMapping(value = "${"$"}{zk.path.admin}/${"$"}{zk.path.${zkModule.moduleNameUncap}}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">/${zkTableInfo.subModuleName?uncap_first}</#if>/${zkTableInfo.funcName?uncap_first}")
+@RequestMapping(value = "${"$"}{zk.path.admin}/${"$"}{zk.path.${zkModule.moduleNameUncap}}/${"$"}{zk.${zkModule.moduleNameUncap}.version}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">/${zkTableInfo.subModuleName?uncap_first}</#if>/${zkTableInfo.funcName?uncap_first}")
 public class ${zkTableInfo.className}Controller extends ZKBaseController {
 
 	@Autowired
@@ -50,7 +50,7 @@ public class ${zkTableInfo.className}Controller extends ZKBaseController {
         return ZKMsgRes.asOk(${zkTableInfo.funcName?uncap_first});
 	}
 	
-	// 分页查询 
+	// 分页 树形查询 
 	@RequestMapping(value="${zkTableInfo.funcName?uncap_first}sTree", method = RequestMethod.GET)
 	public ZKMsgRes ${zkTableInfo.funcName?uncap_first}sTree(${zkTableInfo.className} ${zkTableInfo.funcName?uncap_first}, HttpServletRequest hReq, HttpServletResponse hRes){
 		ZKPage<${zkTableInfo.className}> resPage = ZKPage.asPage(hReq);
@@ -58,11 +58,18 @@ public class ${zkTableInfo.className}Controller extends ZKBaseController {
         return ZKMsgRes.asOk(resPage);
 	}
 	
+	// 分页 列表查询 
+	@RequestMapping(value="${zkTableInfo.funcName?uncap_first}s", method = RequestMethod.GET)
+	public ZKMsgRes ${zkTableInfo.funcName?uncap_first}s(${zkTableInfo.className} ${zkTableInfo.funcName?uncap_first}, HttpServletRequest hReq, HttpServletResponse hRes){
+		ZKPage<${zkTableInfo.className}> resPage = ZKPage.asPage(hReq);
+        resPage = this.${zkTableInfo.funcName?uncap_first}Service.findPage(resPage, ${zkTableInfo.funcName?uncap_first});
+        return ZKMsgRes.asOk(resPage);
+	}
+	
 	// 批量删除
 	@RequestMapping(value="${zkTableInfo.funcName?uncap_first}", method = RequestMethod.DELETE)
-	@ResponseBody
 	public ZKMsgRes ${zkTableInfo.funcName?uncap_first}Del(@RequestParam("pkId[]") ${zkTableInfo.pkAttrType}[] pkIds){
-		 int count = 0;
+		int count = 0;
         if (pkIds != null && pkIds.length > 0) {
             for (${zkTableInfo.pkAttrType} pkId : pkIds) {
                 count += this.${zkTableInfo.funcName?uncap_first}Service.del(new ${zkTableInfo.className}(pkId));

@@ -15,7 +15,7 @@ import com.zk.db.annotation.ZKColumn;
 import com.zk.db.annotation.ZKTable;
 import com.zk.db.commons.ZKDBQueryType;
 import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /**
  * 微信开放平台中第三方平台的目标授权账号
@@ -178,6 +178,30 @@ public class ZKThirdPartyAuthAccount extends ZKBaseEntity<String, ZKThirdPartyAu
 	@ZKColumn(name = "c_wx_signature", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
 	String wxSignature;	
 	
+    /**
+     * 集团代码
+     */
+    @NotNull(message = "{zk.core.data.validation.notNull}")
+    @Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_group_code", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
+    String groupCode;
+
+    /**
+     * 公司ID
+     */
+    @NotNull(message = "{zk.core.data.validation.notNull}")
+    @Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_company_id", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
+    String companyId;
+
+    /**
+     * 公司代码
+     */
+    @NotNull(message = "{zk.core.data.validation.notNull}")
+    @Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_company_code", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
+    String companyCode;
+
 	public ZKThirdPartyAuthAccount() {
 		super();
 	}
@@ -429,4 +453,62 @@ public class ZKThirdPartyAuthAccount extends ZKBaseEntity<String, ZKThirdPartyAu
         return ZKIdUtils.genLongStringId();
     }
 	
+    /**
+     * 集团代码
+     * 
+     * @return groupCode sa
+     */
+    public String getGroupCode() {
+        return groupCode;
+    }
+
+    /**
+     * 集团代码
+     * 
+     * @param groupCode
+     *            the groupCode to set
+     */
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
+    }
+
+    /**
+     * 公司ID
+     * 
+     * @return companyId sa
+     */
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    /**
+     * 公司ID
+     * 
+     * @param companyId
+     *            the companyId to set
+     */
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
+
+    /**
+     * 公司代码
+     * 
+     * @return companyCode sa
+     */
+    public String getCompanyCode() {
+        return companyCode;
+    }
+
+    /**
+     * 公司代码
+     * 
+     * @param companyCode
+     *            the companyCode to set
+     */
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
+    }
+
+
 }

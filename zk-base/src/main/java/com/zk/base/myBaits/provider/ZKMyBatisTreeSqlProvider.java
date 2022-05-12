@@ -31,10 +31,12 @@ public class ZKMyBatisTreeSqlProvider {
     public String selectTree(ZKBaseTreeEntity<?, ?> entity) {
         StringBuffer sb = new StringBuffer();
         sb.append("<script>SELECT ");
-        sb.append(entity.getSqlBlockSelCols());
+        sb.append(entity.getSqlProvider().getSqlBlockSelCols());
         sb.append(" FROM ");
-        sb.append(entity.getSqlBlockTableName());
-        sb.append(entity.getSqlBlockTableAlias());
+        sb.append(entity.getSqlProvider().getTableName());
+        sb.append(" ");
+        sb.append(entity.getSqlProvider().getTableAlias());
+        sb.append(" ");
         sb.append(entity.getTreeSqlProvider().getSqlBlockWhereTree());
         sb.append(entity.getSqlProvider().convertOrderBySql(entity));
         sb.append("</script>");
@@ -44,10 +46,12 @@ public class ZKMyBatisTreeSqlProvider {
     public String selectTreeNoLevel(ZKBaseTreeEntity<?, ?> entity) {
         StringBuffer sb = new StringBuffer();
         sb.append("<script>SELECT ");
-        sb.append(entity.getSqlBlockSelCols());
+        sb.append(entity.getSqlProvider().getSqlBlockSelCols());
         sb.append(" FROM ");
-        sb.append(entity.getSqlBlockTableName());
-        sb.append(entity.getSqlBlockTableAlias());
+        sb.append(entity.getSqlProvider().getTableName());
+        sb.append(" ");
+        sb.append(entity.getSqlProvider().getTableAlias());
+        sb.append(" ");
         sb.append(entity.getTreeSqlProvider().getSqlBlockWhereTreeNoLevel()).append(" ");
         sb.append(entity.getSqlProvider().convertOrderBySql(entity));
         sb.append("</script>");
@@ -57,10 +61,12 @@ public class ZKMyBatisTreeSqlProvider {
     public String selectTreeDetail(ZKBaseTreeEntity<?, ?> entity) {
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT ");
-        sb.append(entity.getSqlBlockSelCols());
+        sb.append(entity.getSqlProvider().getSqlBlockSelCols());
         sb.append(" FROM ");
-        sb.append(entity.getSqlBlockTableName());
-        sb.append(entity.getSqlBlockTableAlias());
+        sb.append(entity.getSqlProvider().getTableName());
+        sb.append(" ");
+        sb.append(entity.getSqlProvider().getTableAlias());
+        sb.append(" ");
         sb.append(entity.getSqlProvider().getSqlBlockPkWhere());
         return sb.toString();
     }

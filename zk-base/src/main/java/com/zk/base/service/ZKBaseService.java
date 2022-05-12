@@ -19,6 +19,7 @@
 package com.zk.base.service;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.validation.Validator;
@@ -33,6 +34,8 @@ import com.zk.base.dao.ZKBaseDao;
 import com.zk.base.entity.ZKBaseEntity;
 import com.zk.core.commons.data.ZKPage;
 import com.zk.core.exception.ZKValidatorException;
+import com.zk.core.utils.ZKClassUtils;
+import com.zk.core.utils.ZKExceptionsUtils;
 import com.zk.core.utils.ZKValidatorsBeanUtils;
 
 /** 
@@ -178,6 +181,22 @@ public class ZKBaseService<ID extends Serializable, E extends ZKBaseEntity<ID, E
 //    public int diskDelete(ID pkId) {
 //        return dao.diskDelete(pkId);
 //    }
+    
+    private E getEntity(ID pkId) {
+        Class<E> classz = ZKClassUtils.getSuperclassByName(ZKBaseService.class, this.getClass(), "E");
+        try {
+            return ZKClassUtils.newInstance(classz, pkId);
+        }
+        catch(InstantiationException | IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException e) {
+            throw ZKExceptionsUtils.unchecked(e);
+        }
+    }
+
+    public E get(ID pkId) {
+        E entity = this.getEntity(pkId);
+        return dao.get(entity);
+    }
 
     /**
      * 获取单条数据

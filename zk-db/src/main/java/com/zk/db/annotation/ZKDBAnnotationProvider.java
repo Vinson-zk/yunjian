@@ -144,4 +144,32 @@ public class ZKDBAnnotationProvider {
         return null;
     }
 
+    /**
+     * 取表名
+     *
+     * @Title: getTableName
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Apr 15, 2022 9:54:51 AM
+     * @return
+     * @return String
+     */
+    public String getTableName() {
+        return this.getTable().name();
+    }
+
+    /**
+     * 取表别名
+     *
+     * @Title: getAlias
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Apr 15, 2022 9:54:48 AM
+     * @return
+     * @return String
+     */
+    public String getAlias() {
+        return this.getTable().alias();
+    }
+
 }

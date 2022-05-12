@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Maps;
 import com.zk.base.service.ZKBaseTreeService;
-import com.zk.core.commons.data.ZKPage;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.utils.ZKMsgUtils;
 import com.zk.core.utils.ZKStringUtils;
@@ -106,14 +105,8 @@ public class ZKSysResDictService extends ZKBaseTreeService<String, ZKSysResDict,
     /**
      * 树形查询
      */
-    public List<ZKSysResDict> findTree(ZKSysResDict sysResDic) {
+    public List<ZKSysResDict> doFindTree(ZKSysResDict sysResDic) {
         return this.dao.findTree(sysResDic);
-    }
-
-    public ZKPage<ZKSysResDict> findTree(ZKPage<ZKSysResDict> page, ZKSysResDict sysResDic) {
-        sysResDic.setPage(page);
-        page.setResult(dao.findTree(sysResDic));
-        return page;
     }
 
 }

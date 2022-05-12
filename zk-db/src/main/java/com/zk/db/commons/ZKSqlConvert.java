@@ -37,13 +37,13 @@ public interface ZKSqlConvert {
     // insert sql
     public String convertSqlInsert(ZKDBAnnotationProvider annotationProvider);
 
-    // update
+    // update sql
     public String convertSqlUpdate(ZKDBAnnotationProvider annotationProvider);
 
-    // 逻辑删除，逻辑删除语句，实体中定义
+    // 逻辑删除 sql，逻辑删除语句，实体中定义
     public String convertSqlDel(ZKDBAnnotationProvider annotationProvider, String delSetSql);
 
-    // 物理删除
+    // 物理删除 sql
     public String convertSqlDiskDel(ZKDBAnnotationProvider annotationProvider);
 
     /********************************************************/

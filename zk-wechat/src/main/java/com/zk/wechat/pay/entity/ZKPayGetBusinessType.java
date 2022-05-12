@@ -36,7 +36,7 @@ import com.zk.db.annotation.ZKColumn;
 import com.zk.db.annotation.ZKTable;
 import com.zk.db.commons.ZKDBQueryType;
 import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /**
  * 微信支付-收款时，支持收款的业务的类型维护；

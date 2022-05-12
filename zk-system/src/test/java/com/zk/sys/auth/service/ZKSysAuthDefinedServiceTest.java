@@ -8,11 +8,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
-
 import com.zk.base.entity.ZKBaseEntity;
 import com.zk.sys.auth.entity.ZKSysAuthDefined;
 import com.zk.sys.helper.ZKSysTestHelper;
+
+import junit.framework.TestCase;
 
 /**
  * ZKSysAuthDefinedServiceTest
@@ -21,9 +21,9 @@ import com.zk.sys.helper.ZKSysTestHelper;
  */
 public class ZKSysAuthDefinedServiceTest {
 
-	ZKSysAuthDefined makeNew() {
+    public static ZKSysAuthDefined makeNew() {
         ZKSysAuthDefined e = new ZKSysAuthDefined();
-        // e.set
+        e.setCode("test-code");
         return e;
     }
 	
@@ -39,7 +39,7 @@ public class ZKSysAuthDefinedServiceTest {
             int result = 0;
 
             /*** 保存 ***/
-            e = this.makeNew();
+            e = makeNew();
             result = 0;
             result = s.save(e);
             TestCase.assertEquals(1, result);

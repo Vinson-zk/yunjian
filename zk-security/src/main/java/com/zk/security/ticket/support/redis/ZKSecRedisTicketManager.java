@@ -565,8 +565,14 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
     public void stop(Serializable identification) {
         ZKSecRedisTicketBaseInfo tkBaseInfo = this.getJedisOperator().hget(identification.toString(),
                 AttrKeyName.baseInfo);
-        tkBaseInfo.setStatus(ZKSecTicket.STATUS.Stop);
-        this.updateLastTime(tkBaseInfo);
+        if (tkBaseInfo != null) {
+            tkBaseInfo.setStatus(ZKSecTicket.STATUS.Stop);
+            this.updateLastTime(tkBaseInfo);
+        }
+        else {
+            logger.info("[^_^:20220512-0954-001] 令牌[]不存在！", identification);
+        }
+
     }
 
     /**
@@ -722,7 +728,7 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
      */
     @Override
     public <V> boolean put(Serializable identification, String key, V value) {
-        return this.put(identification, AttrKeyName.valueKey_prefix + key, value);
+        return this.putValue(identification, AttrKeyName.valueKey_prefix + key, value);
     }
 
     public <V> boolean putValue(Serializable identification, String key, V value) {

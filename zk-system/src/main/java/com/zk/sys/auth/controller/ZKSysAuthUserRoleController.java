@@ -3,23 +3,24 @@
  */
 package com.zk.sys.auth.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.zk.base.controller.ZKBaseController;
-import com.zk.core.commons.data.ZKPage;
 import com.zk.core.web.ZKMsgRes;
-
-import com.zk.sys.auth.entity.ZKSysAuthUserRole;
-import com.zk.sys.auth.service.ZKSysAuthUserRoleService;       
+import com.zk.sys.auth.service.ZKSysAuthUserRoleService;
+import com.zk.sys.org.entity.ZKSysOrgRole;
+import com.zk.sys.org.entity.ZKSysOrgUser;
+import com.zk.sys.org.service.ZKSysOrgUserService;
 
 /**
  * ZKSysAuthUserRoleController
@@ -27,45 +28,50 @@ import com.zk.sys.auth.service.ZKSysAuthUserRoleService;
  * @version 
  */
 @RestController
-@RequestMapping(value = "${zk.path.admin}/${zk.path.sys}/auth/sysAuthUserRole")
+@RequestMapping(value = "${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/auth/sysAuthUserRole")
 public class ZKSysAuthUserRoleController extends ZKBaseController {
 
 	@Autowired
 	private ZKSysAuthUserRoleService sysAuthUserRoleService;
 	
-	// 编辑
-	@RequestMapping(value="sysAuthUserRole", method = RequestMethod.POST)
-	public ZKMsgRes sysAuthUserRolePost(@RequestBody ZKSysAuthUserRole sysAuthUserRole){
-		this.sysAuthUserRoleService.save(sysAuthUserRole);
-        return ZKMsgRes.asOk(sysAuthUserRole);
-	}
+    @Autowired
+    private ZKSysOrgUserService sysOrgUserService;
 	
-	// 查询详情
-	@RequestMapping(value="sysAuthUserRole", method = RequestMethod.GET)
-	public ZKMsgRes sysAuthUserRoleGet(@RequestParam("pkId") String pkId){
-		ZKSysAuthUserRole sysAuthUserRole = this.sysAuthUserRoleService.get(new ZKSysAuthUserRole(pkId));
-        return ZKMsgRes.asOk(sysAuthUserRole);
-	}
-	
-	// 分页查询 
-	@RequestMapping(value="sysAuthUserRolesPage", method = RequestMethod.GET)
-	public ZKMsgRes sysAuthUserRolesPageGet(ZKSysAuthUserRole sysAuthUserRole, HttpServletRequest hReq, HttpServletResponse hRes){
-		ZKPage<ZKSysAuthUserRole> resPage = ZKPage.asPage(hReq);
-        resPage = this.sysAuthUserRoleService.findPage(resPage, sysAuthUserRole);
-        return ZKMsgRes.asOk(resPage);
-	}
-	
-	// 批量删除
-	@RequestMapping(value="sysAuthUserRole", method = RequestMethod.DELETE)
-	@ResponseBody
-	public ZKMsgRes sysAuthUserRoleDel(@RequestParam("pkId[]") String[] pkIds){
-		 int count = 0;
-        if (pkIds != null && pkIds.length > 0) {
-            for (String pkId : pkIds) {
-                count += this.sysAuthUserRoleService.del(new ZKSysAuthUserRole(pkId));
-            }
-        }
-        return ZKMsgRes.asOk(count);
-	}
+    /**
+     * 给用户分配角色；
+     *
+     * @Title: setRelationByReqChannel
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Apr 7, 2022 5:47:09 PM
+     * @param reqChannelId
+     * @param addFuncApis
+     * @param hReq
+     * @return
+     * @return ZKMsgRes
+     * @throws InterruptedException
+     */
+    @RequestMapping(value = "setRelationByUser/{userId}", method = RequestMethod.POST)
+    public ZKMsgRes setRelationByUser(@PathVariable(value = "userId") String userId,
+            @RequestBody List<ZKSysOrgRole> addRoles, HttpServletRequest hReq) {
+        ZKSysOrgUser user = sysOrgUserService.get(userId);
+        return ZKMsgRes.asOk(this.sysAuthUserRoleService.addRelationByUser(user, addRoles, null));
+    }
+
+    /**
+     * 查询用户拥有的角色ID
+     *
+     * @Title: findRoleIdsByUserId
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 4, 2022 2:37:37 PM
+     * @param userId
+     * @return
+     * @return ZKMsgRes
+     */
+    @RequestMapping(value = "findRoleIdsByUserId", method = RequestMethod.GET)
+    public ZKMsgRes findRoleIdsByUserId(@RequestParam("userId") String userId) {
+        return ZKMsgRes.asOk(this.sysAuthUserRoleService.findRoleIdsByUserId(userId));
+    }
 
 }

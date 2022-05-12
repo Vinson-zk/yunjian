@@ -18,7 +18,6 @@
 */
 package com.zk.wechat.wx.common;
 
-import java.security.MessageDigest;
 import java.util.Map;
 import java.util.UUID;
 
@@ -31,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
 import com.qq.weixin.mp.aes.AesException;
 import com.qq.weixin.mp.aes.WXBizMsgCrypt;
+import com.zk.core.encrypt.utils.ZKEncryptUtils;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.utils.ZKEncodingUtils;
 import com.zk.core.utils.ZKJsonUtils;
@@ -162,8 +162,10 @@ public class ZKWXUtils {
     public static String SHA1Encode(byte[] sources) {
         String resultString = null;
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
-            resultString = ZKEncodingUtils.encodeHex(md.digest(sources));
+//            MessageDigest md = MessageDigest.getInstance("SHA-1");
+//            resultString = ZKEncodingUtils.encodeHex(md.digest(sources));
+            resultString = ZKEncodingUtils
+                    .encodeHex(ZKEncryptUtils.encryptDigest(sources, null, ZKEncryptUtils.DIGEST_MODE.SHA_1));
         }
         catch(Exception ex) {
             ex.printStackTrace();
@@ -185,8 +187,9 @@ public class ZKWXUtils {
     public static String Md5Encode(byte[] sources) {
         String resultString = null;
         try {
-            MessageDigest md5 = MessageDigest.getInstance("MD5");
-            resultString = ZKEncodingUtils.encodeHex(md5.digest(sources));
+//            MessageDigest md5 = MessageDigest.getInstance("MD5");
+//            resultString = ZKEncodingUtils.encodeHex(md5.digest(sources));
+            resultString = ZKEncodingUtils.encodeHex(ZKEncryptUtils.md5Encode(sources));
         }
         catch(Exception ex) {
             ex.printStackTrace();

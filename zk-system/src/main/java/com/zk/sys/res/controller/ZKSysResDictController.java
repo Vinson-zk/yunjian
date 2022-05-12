@@ -58,12 +58,21 @@ public class ZKSysResDictController extends ZKBaseController {
         return ZKMsgRes.as("zk.0", null, count);
 	}
 
-    // 分页列表查询
+    // 分页树形列表查询
     @RequestMapping(value = "sysResDictsTree", method = RequestMethod.GET)
     public ZKMsgRes sysResDictsTree(ZKSysResDict sysResDict, HttpServletRequest hReq) {
 
         ZKPage<ZKSysResDict> resPage = ZKPage.asPage(hReq);
         resPage = this.sysResDictService.findTree(resPage, sysResDict);
+        return ZKMsgRes.asOk(resPage);
+    }
+
+    // 分页列表查询
+    @RequestMapping(value = "sysResDicts", method = RequestMethod.GET)
+    public ZKMsgRes sysResDicts(ZKSysResDict sysResDict, HttpServletRequest hReq) {
+
+        ZKPage<ZKSysResDict> resPage = ZKPage.asPage(hReq);
+        resPage = this.sysResDictService.findPage(resPage, sysResDict);
         return ZKMsgRes.asOk(resPage);
     }
 

@@ -152,7 +152,7 @@ public class ZKShiroRealm extends AuthorizingRealm {
 //                    if (ShiroSecurityUtils.getSubject().isAuthenticated()) {
 //                        // 如果是登录进来的，踢出其他用户
 //                        s.stop();
-//                        s.setAttribute("ERR-CODE", "sec.000012"); // sec.000012=用户已在其他地方登录，请重新登录
+//                        s.setAttribute("ERR-CODE", "zk.sec.000012"); // zk.sec.000012=用户已在其他地方登录，请重新登录
 //                    }
 //                    else {
 //                        // 记住我进来的，并且当前用户已登录，则退出当前用户提示信息。

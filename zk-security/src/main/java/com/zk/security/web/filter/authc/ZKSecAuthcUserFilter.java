@@ -21,7 +21,6 @@ package com.zk.security.web.filter.authc;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-import com.zk.core.utils.ZKStringUtils;
 import com.zk.core.web.utils.ZKWebUtils;
 import com.zk.security.common.ZKSecConstants;
 import com.zk.security.subject.ZKSecSubject;
@@ -48,9 +47,7 @@ public class ZKSecAuthcUserFilter extends ZKSecAuthenticationFilter {
 
         String username = ZKWebUtils.getCleanParam(request, ZKSecConstants.PARAM_NAME.Username);
         boolean rememberMe = ZKWebUtils.isTrue(request, ZKSecConstants.PARAM_NAME.RememberMe);
-        String pwdStr = ZKWebUtils.getCleanParam(request, ZKSecConstants.PARAM_NAME.Pwd);
-        char[] pwd = ZKStringUtils.isEmpty(pwdStr) ? null : pwdStr.toCharArray();
-
+        String pwd = ZKWebUtils.getCleanParam(request, ZKSecConstants.PARAM_NAME.Pwd);
         return new ZKSecDefaultAuthcUserToken(groupCode, username, pwd, rememberMe, osType, udid, appType, appId);
 
     }

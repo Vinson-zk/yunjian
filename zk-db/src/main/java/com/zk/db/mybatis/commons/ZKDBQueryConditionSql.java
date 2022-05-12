@@ -16,20 +16,30 @@
 * @date Apr 15, 2021 8:36:58 AM 
 * @version V1.0 
 */
-package com.zk.db.commons;
+package com.zk.db.mybatis.commons;
 
-/** 
-* @ClassName: ZKDBQueryConditionSql 
-* @Description: TODO(simple description this class what to do. ) 
-* @author Vinson 
-* @version 1.0 
-*/
+import com.zk.db.commons.ZKDBQueryCondition;
+import com.zk.db.commons.ZKDBQueryLogic;
+import com.zk.db.commons.ZKDBQueryType;
+import com.zk.db.commons.ZKSqlConvert;
+
+/**
+ * 直接定义条件 SQL
+ * 
+ * @ClassName: ZKDBQueryConditionSql
+ * @Description: TODO(simple description this class what to do. )
+ * @author Vinson
+ * @version 1.0
+ */
 public class ZKDBQueryConditionSql implements ZKDBQueryCondition {
 
     @Override
-    public void toQueryCondition(ZKSqlConvert convert, StringBuffer sb, String tableAlias,
-            ZKDBConditionLogicDispose funcQueryLogicDispose) {
-        funcQueryLogicDispose.run();
+    public void toQueryCondition(ZKSqlConvert convert, StringBuffer sb, String tableAlias, ZKDBQueryLogic queryLogic,
+            boolean
+            isInserQueryLogic) {
+        if (queryLogic != null && isInserQueryLogic) {
+            sb.append(queryLogic.getEsc());
+        }
         sb.append(tableAlias);
         sb.append(columnName);
         sb.append(queryType.getEsc());

@@ -107,8 +107,9 @@ public class ZKPage<T> {
         return pageSize;
     }
 
+    // 分页限制一页最多查询：9999
     public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+        this.pageSize = pageSize > 9999 ? 9999 : pageSize;
     }
 
     public String getOrderBySql() {

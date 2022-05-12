@@ -24,6 +24,7 @@ import java.util.UUID;
 import org.dom4j.Element;
 import org.junit.Test;
 
+import com.zk.core.encrypt.utils.ZKEncryptUtils;
 import com.zk.core.utils.ZKEncodingUtils;
 import com.zk.core.utils.ZKXmlUtils;
 
@@ -112,6 +113,29 @@ public class ZKWXUtilsTest {
             Element rootE = ZKXmlUtils.getDocument(decStr).getRootElement();
             TestCase.assertEquals(appId, rootE.element("AppId").getStringValue());
 
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            TestCase.assertTrue(false);
+        }
+    }
+
+    @Test
+    public void testMd5Encode() {
+
+        String str, encStr;
+
+        try {
+            str = "JSDF0W95183R7HDSAJFHKASFDJASFW1#$$^$%&";
+            System.out.println("-----------------------------");
+            encStr = ZKWXUtils.Md5Encode(str.getBytes());
+            System.out.println(encStr);
+            encStr = ZKEncodingUtils.encodeHex(ZKEncryptUtils.md5Encode(str.getBytes()));
+            System.out.println(encStr);
+            encStr = ZKEncodingUtils
+                    .encodeHex(ZKEncryptUtils.encryptDigest(str.getBytes(), null, ZKEncryptUtils.DIGEST_MODE.MD5));
+            System.out.println(encStr);
+            System.out.println("-----------------------------");
         }
         catch(Exception e) {
             e.printStackTrace();

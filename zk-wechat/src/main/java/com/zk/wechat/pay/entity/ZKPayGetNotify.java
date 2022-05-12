@@ -31,7 +31,7 @@ import com.zk.core.commons.data.ZKJson;
 import com.zk.db.annotation.ZKColumn;
 import com.zk.db.annotation.ZKTable;
 import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /**
  * 微信支付-收款记录的回调通知

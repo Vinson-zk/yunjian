@@ -66,7 +66,7 @@ class CInit${zkTableInfo.funcName}Edit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-        loading: false,
+        	loading: false,
 <#if zkTableInfo.getIsHasIconEdit() == true >
 			selIconAttrName: "",
 			icon: {
@@ -78,7 +78,7 @@ class CInit${zkTableInfo.funcName}Edit extends Component {
 			}
 </#if>
         }
-    }
+    };
 	
 	/** 保存 */
     f_save = (values, form, callbackFunc) => {
@@ -92,7 +92,7 @@ class CInit${zkTableInfo.funcName}Edit extends Component {
                 callbackFunc(errors);
             }
         });
-    }
+    };
 
     /** 返回 JSX 元素 */
     render() {
@@ -233,8 +233,8 @@ class CInit${zkTableInfo.funcName}Edit extends Component {
             <#else>
                         <ZKSelect disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} >
             </#if>
-                            <ZKSelect.Option value={1}>{zkToolsMsg.msgFormatByIntl(intl, 'global.app.info.yes')}</ZKSelect.Option>
                             <ZKSelect.Option value={0}>{zkToolsMsg.msgFormatByIntl(intl, 'global.app.info.no')}</ZKSelect.Option>
+                            <ZKSelect.Option value={1}>{zkToolsMsg.msgFormatByIntl(intl, 'global.app.info.yes')}</ZKSelect.Option>
                         </ZKSelect>
 		<#elseif zkCol.editStrategy == "EditRadio">
 			<#if zkCol.attrType == "Boolean">
@@ -252,8 +252,8 @@ class CInit${zkTableInfo.funcName}Edit extends Component {
 	            <#else>
                         <ZKRadio.Group disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} >
 	            </#if>
-                            <ZKRadio.Button value={1} >{zkToolsMsg.msgFormatByIntl(intl, 'global.app.info.yes')}</ZKRadio.Button>
                             <ZKRadio.Button value={0} >{zkToolsMsg.msgFormatByIntl(intl, 'global.app.info.no')}</ZKRadio.Button>
+                            <ZKRadio.Button value={1} >{zkToolsMsg.msgFormatByIntl(intl, 'global.app.info.yes')}</ZKRadio.Button>
                         </ZKRadio.Group>
         	</#if>
 		<#elseif zkCol.editStrategy == "EditIcon">
@@ -302,7 +302,7 @@ class CInit${zkTableInfo.funcName}Edit extends Component {
                 }
             }else{
                 // 编辑；则根据 id 取后台数据；
-                dispatch({ type: 'm${zkTableInfo.funcName}/getSysResDict', payload: { pkId: params.pkId } });
+                dispatch({ type: 'm${zkTableInfo.funcName}/get${zkTableInfo.funcName}', payload: { pkId: params.pkId } });
             }
         }
     }

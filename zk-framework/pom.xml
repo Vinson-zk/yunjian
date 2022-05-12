@@ -36,6 +36,26 @@
 			<artifactId>zk-core</artifactId>
 			<version>${version.zk.core}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.zk</groupId>
+			<artifactId>zk-security</artifactId>
+			<version>${version.zk.security}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zk</groupId>
+			<artifactId>zk-cache</artifactId>
+			<version>${version.zk.cache}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.zk</groupId>
+					<artifactId>zk-mongo</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.data</groupId>
+					<artifactId>spring-data-mongodb</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		
 		<!-- ***** spring cloud begin -->
 		<dependency>

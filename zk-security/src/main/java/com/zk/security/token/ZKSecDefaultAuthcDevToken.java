@@ -46,9 +46,9 @@ public class ZKSecDefaultAuthcDevToken extends ZKSecAbstractAuthenticationToken 
      * @param appId
      * @param secretKey
      */
-    public ZKSecDefaultAuthcDevToken(String groupCode, String devId, char[] secretKey, long osType, String udid,
+    public ZKSecDefaultAuthcDevToken(String companyCode, String devId, char[] secretKey, long osType, String udid,
             long appType, String appId) {
-        super(groupCode, osType, udid, appType, appId);
+        super(companyCode, osType, udid, appType, appId);
         this.secretKey = secretKey;
         this.devId = devId;
     }

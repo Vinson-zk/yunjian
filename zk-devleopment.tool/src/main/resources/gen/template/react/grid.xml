@@ -116,7 +116,7 @@ class CInit${zkTableInfo.funcName}Grid extends React.Component {
             _this.props.dispatch({
                 type: "m${zkTableInfo.funcName}/del${zkTableInfo.funcName}", payload: { pkId: pkIds },
                 callback: () => {
-                    _this.props.dispatch({ type: 'm${zkTableInfo.funcName}/find${zkTableInfo.funcName}s', filter: _this.props.m${zkTableInfo.funcName}.filter, callback: e => { } })
+                    _this.props.dispatch({ type: 'm${zkTableInfo.funcName}/find${zkTableInfo.funcName}s', filter: _this.props.m${zkTableInfo.funcName}.filter, pagination: m${zkTableInfo.funcName}.pagination, callback: e => { } })
                 }
             });
 		};
@@ -148,7 +148,7 @@ class CInit${zkTableInfo.funcName}Grid extends React.Component {
         this.props.dispatch({ 
         	type: 'm${zkTableInfo.funcName}/find${zkTableInfo.funcName}s', 
             filter: this.props.m${zkTableInfo.funcName}.filter,
-            page: pagination,
+            pagination: pagination,
             sorter: sorter
         });
     }

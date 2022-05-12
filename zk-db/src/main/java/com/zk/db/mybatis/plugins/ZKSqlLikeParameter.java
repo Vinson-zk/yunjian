@@ -36,12 +36,14 @@ import org.slf4j.LoggerFactory;
 import com.zk.core.utils.ZKStringUtils;
 import com.zk.db.mybatis.ZKMybatisSqlHelper;
 
-/** 
-* @ClassName: ZKSqlLikeParameter 
-* @Description: TODO(simple description this class what to do.) 
-* @author Vinson 
-* @version 1.0 
-*/
+/**
+ * 不建议使用
+ * 
+ * @ClassName: ZKSqlLikeParameter
+ * @Description: TODO(simple description this class what to do.)
+ * @author Vinson
+ * @version 1.0
+ */
 @Deprecated
 @Intercepts({ @Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class,
         RowBounds.class, ResultHandler.class }), })

@@ -8,11 +8,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
-
 import com.zk.base.entity.ZKBaseEntity;
-import com.zk.sys.org.entity.ZKSysOrgUser;
 import com.zk.sys.helper.ZKSysTestHelper;
+import com.zk.sys.org.entity.ZKSysOrgUser;
+
+import junit.framework.TestCase;
 
 /**
  * ZKSysOrgUserServiceTest
@@ -21,9 +21,11 @@ import com.zk.sys.helper.ZKSysTestHelper;
  */
 public class ZKSysOrgUserServiceTest {
 
-	ZKSysOrgUser makeNew() {
+    public static ZKSysOrgUser makeNew() {
         ZKSysOrgUser e = new ZKSysOrgUser();
-        // e.set
+        e.setGroupCode("t-groupCode");
+        e.setCompanyCode("companyCode");
+        e.setCompanyId("1");
         return e;
     }
 	
@@ -39,7 +41,7 @@ public class ZKSysOrgUserServiceTest {
             int result = 0;
 
             /*** 保存 ***/
-            e = this.makeNew();
+            e = makeNew();
             result = 0;
             result = s.save(e);
             TestCase.assertEquals(1, result);

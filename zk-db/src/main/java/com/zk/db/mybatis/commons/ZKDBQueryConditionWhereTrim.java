@@ -32,16 +32,16 @@ import com.zk.db.commons.ZKSqlConvert;
 public class ZKDBQueryConditionWhereTrim extends ZKDBQueryConditionWhere {
 
     @Override
-    public void toQueryCondition(ZKSqlConvert convert, StringBuffer sb, String tableAlias,
-            ZKDBConditionLogicDispose funcQueryLogicDispose) {
+    public void toQueryCondition(ZKSqlConvert convert, StringBuffer sb, String tableAlias, ZKDBQueryLogic queryLogic,
+            boolean isInserQueryLogic) {
         if (!this.getConditions().isEmpty()) {
-            if (funcQueryLogicDispose != null) {
-                funcQueryLogicDispose.run();
+            if (isInserQueryLogic && queryLogic != null) {
+                sb.append(queryLogic.getEsc());
             }
             sb.append(this.getPrefix());
             // (<trim prefix=\"\" prefixOverrides=\"and|or\">
             sb.append("<trim prefixOverrides=\"and|or\">");
-            super.toQueryConditionValue(convert, sb, tableAlias, funcQueryLogicDispose);
+            super.toQueryConditionValue(convert, sb, tableAlias);
             sb.append("</trim>");
             sb.append(this.getSuffix());
         }

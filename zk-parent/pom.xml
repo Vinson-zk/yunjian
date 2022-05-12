@@ -42,6 +42,7 @@
 		<version.zk.devleopment.tool>1.0.0-SNAPSHOT</version.zk.devleopment.tool>
 		<version.zk.server.central>1.0.0-SNAPSHOT</version.zk.server.central>
 		<version.zk.system>1.0.0-SNAPSHOT</version.zk.system>
+		<version.zk.system.api>1.0.0-SNAPSHOT</version.zk.system.api>
 		<version.zk.wechat>1.0.0-SNAPSHOT</version.zk.wechat>
 		<version.zk.test>1.0.0-SNAPSHOT</version.zk.test>
 		<version.zk.demo>1.0.0-SNAPSHOT</version.zk.demo>
@@ -89,6 +90,7 @@
 		<module>../zk-test</module>
 		<module>../zk-system</module>
 		<module>../zk-wechat</module>
+		<module>../zk-system-api</module>
 	</modules> 
 	 
 	<dependencyManagement></dependencyManagement>

@@ -20,7 +20,7 @@ package com.zk.base.commons;
 
 import com.zk.base.entity.ZKBaseTreeEntity;
 import com.zk.db.commons.ZKSqlConvert;
-import com.zk.db.commons.ZKSqlProvider;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /** 
 * @ClassName: ZKTreeSqlProvider 
@@ -39,12 +39,14 @@ public class ZKTreeSqlProvider extends ZKSqlProvider {
      * </p>
      * 
      * @param sqlConvert
+     * 
      * @param entity
      */
     public ZKTreeSqlProvider(ZKSqlConvert sqlConvert, ZKBaseTreeEntity<?, ?> entity) {
         super(sqlConvert, entity); // TODO Auto-generated constructor stub
+        // 目前可以和 list 查询共用
         this.sqlBlockWhereTree = sqlConvert.convertSqlWhere(
-                entity.getZKDbWhereTree(sqlConvert, this.getAnnotationProvider()),
+                entity.getZKDbWhere(sqlConvert, this.getAnnotationProvider()),
                 this.getAnnotationProvider().getTable().alias()) + " ";
         this.sqlBlockWhereTreeNoLevel = sqlConvert.convertSqlWhere(
                 entity.getZKDbWhereTreeNoLevel(sqlConvert, this.getAnnotationProvider()),

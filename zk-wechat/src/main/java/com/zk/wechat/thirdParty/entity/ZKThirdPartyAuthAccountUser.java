@@ -3,20 +3,18 @@
  */
 package com.zk.wechat.thirdParty.entity;
 
-import java.lang.String;
-import com.zk.core.utils.ZKIdUtils;
-import com.zk.db.commons.ZKDBQueryType;
-
-import org.hibernate.validator.constraints.Range;
 import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
 
-import com.zk.db.annotation.ZKTable;
-import com.zk.db.annotation.ZKColumn;
-import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import com.zk.base.entity.ZKBaseEntity;
+import com.zk.core.utils.ZKIdUtils;
+import com.zk.db.annotation.ZKColumn;
+import com.zk.db.annotation.ZKTable;
+import com.zk.db.commons.ZKDBQueryType;
+import com.zk.db.commons.ZKSqlConvertDelegating;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /**
  * 微信开放平台中第三方平台目标授权账号的用户
@@ -81,6 +79,14 @@ public class ZKThirdPartyAuthAccountUser extends ZKBaseEntity<String, ZKThirdPar
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_wx_openid", isInsert = true, isUpdate = false, javaType = String.class, isQuery = false)
 	String wxOpenid;	
+
+    /**
+     * 微信绑定的手机号
+     */
+    @Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_wx_phone_num", isInsert = true, isUpdate = true, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
+    String phoneNum;
+
 	/**
 	 * 用户的昵称: nickname
 	 */
@@ -173,6 +179,30 @@ public class ZKThirdPartyAuthAccountUser extends ZKBaseEntity<String, ZKThirdPar
 	@ZKColumn(name = "c_wx_qr_scene_str", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
 	String wxQrSceneStr;	
 	
+    /**
+     * 集团代码
+     */
+    @NotNull(message = "{zk.core.data.validation.notNull}")
+    @Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_group_code", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
+    String groupCode;
+
+    /**
+     * 公司ID
+     */
+    @NotNull(message = "{zk.core.data.validation.notNull}")
+    @Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_company_id", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
+    String companyId;
+
+    /**
+     * 公司代码
+     */
+    @NotNull(message = "{zk.core.data.validation.notNull}")
+    @Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_company_code", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
+    String companyCode;
+
 	public ZKThirdPartyAuthAccountUser() {
 		super();
 	}
@@ -259,6 +289,26 @@ public class ZKThirdPartyAuthAccountUser extends ZKBaseEntity<String, ZKThirdPar
 	public void setWxOpenid(String wxOpenid) {
 		this.wxOpenid = wxOpenid;
 	}
+
+    /**
+     * 微信绑定的手机号
+     * 
+     * @return phoneNum sa
+     */
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    /**
+     * 微信绑定的手机号
+     * 
+     * @param phoneNum
+     *            the phoneNum to set
+     */
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
 	/**
 	 * 用户的昵称: nickname	
 	 */	
@@ -463,4 +513,61 @@ public class ZKThirdPartyAuthAccountUser extends ZKBaseEntity<String, ZKThirdPar
         return ZKIdUtils.genLongStringId();
     }
 	
+    /**
+     * 集团代码
+     * 
+     * @return groupCode sa
+     */
+    public String getGroupCode() {
+        return groupCode;
+    }
+
+    /**
+     * 集团代码
+     * 
+     * @param groupCode
+     *            the groupCode to set
+     */
+    public void setGroupCode(String groupCode) {
+        this.groupCode = groupCode;
+    }
+
+    /**
+     * 公司ID
+     * 
+     * @return companyId sa
+     */
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    /**
+     * 公司ID
+     * 
+     * @param companyId
+     *            the companyId to set
+     */
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
+
+    /**
+     * 公司代码
+     * 
+     * @return companyCode sa
+     */
+    public String getCompanyCode() {
+        return companyCode;
+    }
+
+    /**
+     * 公司代码
+     * 
+     * @param companyCode
+     *            the companyCode to set
+     */
+    public void setCompanyCode(String companyCode) {
+        this.companyCode = companyCode;
+    }
+
 }

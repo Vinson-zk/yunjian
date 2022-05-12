@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.zk.base.controller.ZKBaseController;
 import com.zk.core.commons.data.ZKPage;
 import com.zk.core.web.ZKMsgRes;
-
+import com.zk.security.utils.ZKSecSecurityUtils;
 import com.zk.sys.org.entity.ZKSysOrgUserType;
 import com.zk.sys.org.service.ZKSysOrgUserTypeService;       
 
@@ -27,15 +27,16 @@ import com.zk.sys.org.service.ZKSysOrgUserTypeService;
  * @version 
  */
 @RestController
-@RequestMapping(value = "${zk.path.admin}/${zk.path.sys}/org/sysOrgUserType")
+@RequestMapping(value = "${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/org/sysOrgUserType")
 public class ZKSysOrgUserTypeController extends ZKBaseController {
 
 	@Autowired
 	private ZKSysOrgUserTypeService sysOrgUserTypeService;
 	
 	// 编辑
-	@RequestMapping(value="sysOrgUserType", method = RequestMethod.POST)
-	public ZKMsgRes sysOrgUserTypePost(@RequestBody ZKSysOrgUserType sysOrgUserType){
+    @RequestMapping(value = "sysOrgUserType", method = RequestMethod.POST)
+    public ZKMsgRes sysOrgUserTypePost(@RequestBody ZKSysOrgUserType sysOrgUserType) {
+        sysOrgUserType.setCompanyId(ZKSecSecurityUtils.getCompanyId());
 		this.sysOrgUserTypeService.save(sysOrgUserType);
         return ZKMsgRes.asOk(sysOrgUserType);
 	}
@@ -48,8 +49,10 @@ public class ZKSysOrgUserTypeController extends ZKBaseController {
 	}
 	
 	// 分页查询 
-	@RequestMapping(value="sysOrgUserTypesPage", method = RequestMethod.GET)
-	public ZKMsgRes sysOrgUserTypesPageGet(ZKSysOrgUserType sysOrgUserType, HttpServletRequest hReq, HttpServletResponse hRes){
+    @RequestMapping(value = "sysOrgUserTypesPage", method = RequestMethod.GET)
+    public ZKMsgRes sysOrgUserTypesPageGet(ZKSysOrgUserType sysOrgUserType,
+            HttpServletRequest hReq, HttpServletResponse hRes) {
+        sysOrgUserType.setCompanyId(ZKSecSecurityUtils.getCompanyId());
 		ZKPage<ZKSysOrgUserType> resPage = ZKPage.asPage(hReq);
         resPage = this.sysOrgUserTypeService.findPage(resPage, sysOrgUserType);
         return ZKMsgRes.asOk(resPage);

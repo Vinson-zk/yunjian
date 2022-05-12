@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.zk.base.controller.ZKBaseController;
 import com.zk.core.commons.data.ZKPage;
 import com.zk.core.web.ZKMsgRes;
-
+import com.zk.security.utils.ZKSecSecurityUtils;
 import com.zk.sys.org.entity.ZKSysOrgRole;
 import com.zk.sys.org.service.ZKSysOrgRoleService;       
 
@@ -27,15 +27,16 @@ import com.zk.sys.org.service.ZKSysOrgRoleService;
  * @version 
  */
 @RestController
-@RequestMapping(value = "${zk.path.admin}/${zk.path.sys}/org/sysOrgRole")
+@RequestMapping(value = "${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/org/sysOrgRole")
 public class ZKSysOrgRoleController extends ZKBaseController {
 
 	@Autowired
 	private ZKSysOrgRoleService sysOrgRoleService;
 	
 	// 编辑
-	@RequestMapping(value="sysOrgRole", method = RequestMethod.POST)
-	public ZKMsgRes sysOrgRolePost(@RequestBody ZKSysOrgRole sysOrgRole){
+    @RequestMapping(value = "sysOrgRole", method = RequestMethod.POST)
+    public ZKMsgRes sysOrgRolePost(@RequestBody ZKSysOrgRole sysOrgRole) {
+        sysOrgRole.setCompanyId(ZKSecSecurityUtils.getCompanyId());
 		this.sysOrgRoleService.save(sysOrgRole);
         return ZKMsgRes.asOk(sysOrgRole);
 	}
@@ -48,9 +49,10 @@ public class ZKSysOrgRoleController extends ZKBaseController {
 	}
 	
 	// 分页查询 
-	@RequestMapping(value="sysOrgRolesPage", method = RequestMethod.GET)
-	public ZKMsgRes sysOrgRolesPageGet(ZKSysOrgRole sysOrgRole, HttpServletRequest hReq, HttpServletResponse hRes){
-		ZKPage<ZKSysOrgRole> resPage = ZKPage.asPage(hReq);
+    @RequestMapping(value = "sysOrgRolesPage", method = RequestMethod.GET)
+    public ZKMsgRes sysOrgRolesPageGet(ZKSysOrgRole sysOrgRole, HttpServletRequest hReq, HttpServletResponse hRes) {
+        sysOrgRole.setCompanyId(ZKSecSecurityUtils.getCompanyId());
+        ZKPage<ZKSysOrgRole> resPage = ZKPage.asPage(hReq);
         resPage = this.sysOrgRoleService.findPage(resPage, sysOrgRole);
         return ZKMsgRes.asOk(resPage);
 	}

@@ -33,6 +33,22 @@ import junit.framework.TestCase;
 * @version 1.0 
 */
 public class ZKClassUtilsTest {
+    
+    @Test
+    public void testGetSuperclassByName() {
+        class Parent<C1, C2> {
+        }
+        class Child extends Parent<ZKClassUtilsTest, Integer> {
+        }
+
+        Class<?> resultClass = ZKClassUtils.getSuperclassByName(Parent.class, Child.class, "C2");
+        System.out.println("[^_^:20220504-1354-001]" + resultClass);
+        TestCase.assertEquals(Integer.class, resultClass);
+        resultClass = ZKClassUtils.getSuperclassByName(Parent.class, Child.class, "C1");
+        System.out.println("[^_^:20220504-1354-002]" + resultClass);
+        TestCase.assertEquals(ZKClassUtilsTest.class, resultClass);
+//        TestCase.assertTrue(fieldNameStr.matches(".*parentAttribute.*"));
+    }
 
     @Test
     public void testGetAllField() {

@@ -25,6 +25,7 @@ package com.zk.core.commons.data;
 */
 
 import com.alibaba.fastjson.JSONArray;
+import com.zk.core.utils.ZKStringUtils;
 
 public class ZKJsonArray extends JSONArray {
 
@@ -32,6 +33,16 @@ public class ZKJsonArray extends JSONArray {
      * @Fields serialVersionUID : TODO(simple description what to do.)
      */
     private static final long serialVersionUID = 1L;
+
+    public ZKJsonArray() {
+
+    }
+
+    public ZKJsonArray(String value) {
+        if (!ZKStringUtils.isEmpty(value)) {
+            this.addAll(JSONArray.parseArray(value));
+        }
+    }
 
     public static ZKJsonArray parse(JSONArray jsonArray) {
         ZKJsonArray zkJsonArray = new ZKJsonArray();

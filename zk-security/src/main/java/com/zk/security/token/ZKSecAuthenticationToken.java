@@ -29,9 +29,9 @@ import java.io.Serializable;
 public interface ZKSecAuthenticationToken extends Serializable {
 
     /**
-     * 组织代码
+     * 公司代码
      */
-    public String getGroupCode();
+    public String getCompanyCode();
 
     /**
      * 终端设备类型

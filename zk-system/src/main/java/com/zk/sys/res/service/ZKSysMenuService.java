@@ -26,10 +26,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zk.base.entity.ZKBaseEntity;
 import com.zk.base.service.ZKBaseTreeService;
-import com.zk.core.commons.data.ZKPage;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.exception.ZKValidatorException;
 import com.zk.core.utils.ZKStringUtils;
+import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.sys.auth.service.ZKSysAuthMenuService;
 import com.zk.sys.res.dao.ZKSysMenuDao;
 import com.zk.sys.res.entity.ZKSysMenu;
 
@@ -45,6 +46,9 @@ public class ZKSysMenuService extends ZKBaseTreeService<String, ZKSysMenu, ZKSys
 
     @Autowired
     ZKSysNavService sysNavService;
+
+    @Autowired
+    ZKSysAuthMenuService sysAuthMenuService;
 
     @Override
     @Transactional(readOnly = false)
@@ -93,14 +97,8 @@ public class ZKSysMenuService extends ZKBaseTreeService<String, ZKSysMenu, ZKSys
     /**
      * 树形查询菜单
      */
-    public List<ZKSysMenu> findTree(ZKSysMenu zkSysMenu) {
+    public List<ZKSysMenu> doFindTree(ZKSysMenu zkSysMenu) {
         return this.dao.findTree(zkSysMenu);
-    }
-
-    public ZKPage<ZKSysMenu> findTree(ZKPage<ZKSysMenu> page, ZKSysMenu zkSysMenu) {
-        zkSysMenu.setPage(page);
-        page.setResult(dao.findTree(zkSysMenu));
-        return page;
     }
 
     public ZKSysMenu getDetail(ZKSysMenu sysMenu) {
@@ -109,6 +107,24 @@ public class ZKSysMenuService extends ZKBaseTreeService<String, ZKSysMenu, ZKSys
             e.setSysNav(sysNavService.getByNavCode(e.getNavCode()));
         }
         return e;
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public int del(ZKSysMenu menu) {
+        sysAuthMenuService.diskDelByMenuId(menu.getPkId());
+        // 清空权限缓存
+        ZKUserCacheUtils.cleanAllAuth();
+        return super.del(menu);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public int diskDel(ZKSysMenu menu) {
+        sysAuthMenuService.diskDelByMenuId(menu.getPkId());
+        // 清空权限缓存
+        ZKUserCacheUtils.cleanAllAuth();
+        return super.diskDel(menu);
     }
 
 }

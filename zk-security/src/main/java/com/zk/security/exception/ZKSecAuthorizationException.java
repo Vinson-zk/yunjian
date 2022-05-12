@@ -74,4 +74,13 @@ public class ZKSecAuthorizationException extends ZKSecUnknownException {
         this.authCode = authCode;
     }
 
+    @Override
+    public String getMessage() {
+        if (this.getType() == 1) {
+            // 没有 api 权限代码
+            return "没有 Api 接口 [" + this.getAuthCode() + "] 权限代码。" + super.getMessage();
+        }
+        return "没有权限 [" + this.getAuthCode() + "] 权限代码。" + super.getMessage();
+    }
+
 }

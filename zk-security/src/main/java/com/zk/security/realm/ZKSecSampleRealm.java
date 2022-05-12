@@ -81,7 +81,7 @@ public class ZKSecSampleRealm extends ZKSecAbstractRealm {
      * 
      * @param token
      * @return
-     * @throws AuthenticationException
+     * @throws com.zk.security.exception.ZKSecCodeException
      * @throws Exception
      */
     @Override
@@ -89,18 +89,19 @@ public class ZKSecSampleRealm extends ZKSecAbstractRealm {
         ZKSecPrincipalCollection pc = new ZKSecDefaultPrincipalCollection();
         ZKSecAuthcUserToken authcUserToken = (ZKSecAuthcUserToken) authcToken;
         if ("admin".equals(authcUserToken.getUsername()) && "admin".equals(new String(authcUserToken.getPwd()))) {
-            ZKSecPrincipal<String> p = new ZKSecDefaultUserPrincipal<String>(authcUserToken.getGroupCode(),
-                    authcUserToken.getUsername(), authcUserToken.getUsername(), "admin 游客",
-                    authcUserToken.getOsType(), authcUserToken.getUdid(), authcUserToken.getAppType(),
+            ZKSecPrincipal<String> p = new ZKSecDefaultUserPrincipal<String>(authcUserToken.getCompanyCode(),
+                    authcUserToken.getCompanyCode(), authcUserToken.getUsername(), authcUserToken.getUsername(),
+                    "admin 游客", authcUserToken.getOsType(), authcUserToken.getUdid(), authcUserToken.getAppType(),
                     authcUserToken.getAppId());
             pc.add(this.getRealmName(), p);
             return pc;
         }
 
         if ("test".equals(authcUserToken.getUsername()) && "test".equals(new String(authcUserToken.getPwd()))) {
-            ZKSecPrincipal<String> p = new ZKSecDefaultUserPrincipal<String>(authcUserToken.getGroupCode(),
-                    authcUserToken.getUsername(), authcUserToken.getUsername(), "test 游客", authcUserToken.getOsType(),
-                    authcUserToken.getUdid(), authcUserToken.getAppType(), authcUserToken.getAppId());
+            ZKSecPrincipal<String> p = new ZKSecDefaultUserPrincipal<String>(authcUserToken.getCompanyCode(),
+                    authcUserToken.getCompanyCode(), authcUserToken.getUsername(), authcUserToken.getUsername(),
+                    "test 游客", authcUserToken.getOsType(), authcUserToken.getUdid(), authcUserToken.getAppType(),
+                    authcUserToken.getAppId());
             pc.add(this.getRealmName(), p);
             return pc;
         }
@@ -120,8 +121,8 @@ public class ZKSecSampleRealm extends ZKSecAbstractRealm {
 
     @Override
     public ZKSecAuthorizationInfo doGetZKSecAuthorizationInfo(ZKSecPrincipalCollection principalCollection) {
-        ZKSecAuthorizationInfo authorizationInfo = new ZKSecSimpleAuthorizationInfo();
-        authorizationInfo.addCompanyApiCode("zkSecApiCode");
+        ZKSecSimpleAuthorizationInfo authorizationInfo = new ZKSecSimpleAuthorizationInfo();
+        authorizationInfo.addApiCode("zkSecApiCode");
         return authorizationInfo;
     }
 
@@ -189,13 +190,15 @@ public class ZKSecSampleRealm extends ZKSecAbstractRealm {
                         // 当前用户是登录认证的在线用户，保留当前用户，踢掉之前的用户；
                         for (ZKSecTicket t : tks) {
                             t.stop();
-                            t.put(ZKSecTicket.TICKET_INFO_KEY.stop_info_code, "sec.000012"); // sec.000012=用户已在其他地方登录，请重新登录
+                            t.put(ZKSecTicket.TICKET_INFO_KEY.stop_info_code, "zk.sec.000012"); // zk.sec.000012=用户已在其他地方登录，请重新登录
+                            log.info("[^_^:20220427-1014-001] 用户已在其他地方登录，请重新登录！");
                         }
                     }
                     else {
                         // 记住我进来的用户，退出当前用户；
+                        log.info("[^_^:20220427-1014-002] 用户已在其他地方登录，请重新登录！");
                         ZKSecSecurityUtils.getSubject().logout();
-                        throw new ZKSecCodeException("sec.000012"); // sec.000012=用户已在其他地方登录，请重新登录
+                        throw new ZKSecCodeException("zk.sec.000012"); // zk.sec.000012=用户已在其他地方登录，请重新登录
                     }
                 }
             }

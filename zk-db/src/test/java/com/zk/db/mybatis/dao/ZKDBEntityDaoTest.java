@@ -74,7 +74,7 @@ public class ZKDBEntityDaoTest {
             dels.add(entity);
 
             /** get 查询 */
-            System.out.println("---- " + entity.getSqlProvider().getSqlGet());
+            System.out.println("[^_^:20220419-1524-001] sqlGet: " + entity.getSqlProvider().getSqlGet());
             tempE = zkDBEntityDao.get(entity);
             TestCase.assertEquals(entity.getId(), tempE.getId());
             TestCase.assertEquals(entity.getmBoolean(), tempE.getmBoolean());
@@ -108,6 +108,7 @@ public class ZKDBEntityDaoTest {
             /** 列表查询 */
             // 1、boolean 查询测试
             entity.setmBoolean(false);
+            System.out.println("====== " + entity.getSqlProvider().getSqlBlockWhere());
             resList = zkDBEntityDao.findList(entity);
             TestCase.assertTrue(resList.isEmpty());
             entity.setmBoolean(true);

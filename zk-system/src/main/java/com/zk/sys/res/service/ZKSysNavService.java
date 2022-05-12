@@ -18,6 +18,7 @@
 */
 package com.zk.sys.res.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,8 @@ import com.zk.base.service.ZKBaseService;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.exception.ZKValidatorException;
 import com.zk.core.utils.ZKStringUtils;
+import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.sys.auth.service.ZKSysAuthNavService;
 import com.zk.sys.res.dao.ZKSysNavDao;
 import com.zk.sys.res.entity.ZKSysNav;
 
@@ -38,6 +41,9 @@ import com.zk.sys.res.entity.ZKSysNav;
 @Service
 @Transactional(readOnly = true)
 public class ZKSysNavService extends ZKBaseService<String, ZKSysNav, ZKSysNavDao> {
+
+    @Autowired
+    ZKSysAuthNavService sysAuthNavService;
 
     @Override
     @Transactional(readOnly = false)
@@ -87,8 +93,25 @@ public class ZKSysNavService extends ZKBaseService<String, ZKSysNav, ZKSysNavDao
             return null;
         }
         return this.dao.getByNavCode(ZKSysNav.sqlProvider().getTableName(),
-                ZKSysNav.sqlProvider().getSqlBlockSelCols(""),
-                navCode);
+                ZKSysNav.sqlProvider().getSqlBlockSelColsNoAlias(), navCode);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public int del(ZKSysNav nav) {
+        sysAuthNavService.diskDelByNavId(nav.getPkId());
+        // 清空权限缓存
+        ZKUserCacheUtils.cleanAllAuth();
+        return super.del(nav);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public int diskDel(ZKSysNav nav) {
+        sysAuthNavService.diskDelByNavId(nav.getPkId());
+        // 清空权限缓存
+        ZKUserCacheUtils.cleanAllAuth();
+        return super.diskDel(nav);
     }
 
 }

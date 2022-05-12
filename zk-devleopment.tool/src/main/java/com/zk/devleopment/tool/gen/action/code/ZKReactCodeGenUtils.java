@@ -269,9 +269,13 @@ public class ZKReactCodeGenUtils {
             throws Exception {
         String filePath = "";
         String fileName = "search.js";
+        String templatName = "react/search.xml";
         try {
             filePath = getReactCodePath(zkModule, zkTableInfo);
-            ZKCodeTemplate template = ZKXmlUtils.xmlToBean(templatePath, "react/search.xml", ZKCodeTemplate.class);
+            if (zkTableInfo.getIsTree()) {
+                templatName = "react/treeSearch.xml";
+            }
+            ZKCodeTemplate template = ZKXmlUtils.xmlToBean(templatePath, templatName, ZKCodeTemplate.class);
             return ZKCodeFileUtils.genCodeFile(rootPath + PathKey.react + File.separator + filePath, fileName,
                     template.getContent(), zkModule, zkTableInfo);
         }

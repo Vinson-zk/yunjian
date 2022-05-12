@@ -29,74 +29,10 @@ import java.util.Collection;
 */
 public interface ZKSecAuthorizationInfo extends Serializable {
 
-    /**
-     * 个人权限
-     */
-    void addPersonalApiCode(String apiCode);
+    // Api 接口代码
+    Collection<String> getApiCodes();
 
-    /**
-     * 个人权限
-     */
-    Collection<String> getPersonalApiCodes();
-
-    /**
-     * 用户类型权限
-     */
-    void addUserTypeApiCode(String apiCode);
-
-    /**
-     * 用户类型权限
-     */
-    Collection<String> getUserTypeApiCodes();
-
-    /**
-     * 用户职级权限
-     */
-    void addUserGradeApiCode(String apiCode);
-
-    /**
-     * 用户职级权限
-     */
-    Collection<String> getUserGradeApiCodes();
-
-    /**
-     * 公司权限
-     */
-    void addCompanyApiCode(String apiCode);
-
-    /**
-     * 公司权限
-     */
-    Collection<String> getCompanyApiCodes();
-
-    /**
-     * 岗位权限
-     */
-    void addPositionApiCode(String apiCode);
-
-    /**
-     * 岗位权限
-     */
-    Collection<String> getPositionApiCodes();
-
-    /**
-     * 部门权限
-     */
-    void addDepartmentApiCode(String apiCode);
-
-    /**
-     * 部门权限
-     */
-    Collection<String> getDepartmentApiCodes();
-
-    /**
-     * 用户组权限
-     */
-    void addUserGroupApiCode(String apiCode);
-
-    /**
-     * 用户组权限
-     */
-    Collection<String> getUserGroupApiCodes();
+    // 权限定义，权限代码
+    Collection<String> getAuthCodes();
 
 }

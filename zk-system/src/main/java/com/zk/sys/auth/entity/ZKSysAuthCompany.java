@@ -3,19 +3,18 @@
  */
 package com.zk.sys.auth.entity;
 
-import java.lang.String;
-import com.zk.core.utils.ZKIdUtils;
-import com.zk.db.commons.ZKDBQueryType;
-
 import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
 
-import com.zk.db.annotation.ZKTable;
-import com.zk.db.annotation.ZKColumn;
-import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import com.zk.base.entity.ZKBaseEntity;
+import com.zk.core.utils.ZKIdUtils;
+import com.zk.db.annotation.ZKColumn;
+import com.zk.db.annotation.ZKTable;
+import com.zk.db.commons.ZKDBQueryType;
+import com.zk.db.commons.ZKSqlConvertDelegating;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /**
  * 公司权限
@@ -40,6 +39,22 @@ public class ZKSysAuthCompany extends ZKBaseEntity<String, ZKSysAuthCompany> {
     }
     
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 拥有方式；0-使用权；1-所有权；
+     */
+    public static interface KeyOwnerType {
+        /**
+         * 0-使用权
+         */
+        public static final int normal = 0;
+
+        /**
+         * 1-所有权
+         */
+        public static final int all = 1;
+
+    }
 	
 	/**
 	 * 集团代码
@@ -80,9 +95,9 @@ public class ZKSysAuthCompany extends ZKBaseEntity<String, ZKSysAuthCompany> {
 	 * 拥有方式；0-使用权；1-所有权； 
 	 */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
-	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
+    @Range(min = 0, max = 9, message = "{zk.core.data.validation.rang.int}")
 	@ZKColumn(name = "c_owner_type", isInsert = true, isUpdate = true, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
-	String ownerType;	
+    Integer ownerType;
 	
 	public ZKSysAuthCompany() {
 		super();
@@ -160,14 +175,14 @@ public class ZKSysAuthCompany extends ZKBaseEntity<String, ZKSysAuthCompany> {
 	/**
 	 * 拥有方式；0-使用权；1-所有权； 	
 	 */	
-	public String getOwnerType() {
+    public Integer getOwnerType() {
 		return ownerType;
 	}
 	
 	/**
 	 * 拥有方式；0-使用权；1-所有权； 
 	 */	
-	public void setOwnerType(String ownerType) {
+    public void setOwnerType(Integer ownerType) {
 		this.ownerType = ownerType;
 	}
 	

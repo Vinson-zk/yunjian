@@ -140,9 +140,14 @@ public interface ZKSecPrincipal<ID> extends Serializable {
     public ID getPkId();
 
     /**
-     * 组织代码
+     * 公司ID
      */
-    public String getGroupCode();
+    public String getCompanyId();
+
+    /**
+     * 公司代码
+     */
+    public String getCompanyCode();
 
     /**
      * 是否为主要的身份

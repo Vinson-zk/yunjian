@@ -67,7 +67,7 @@ public class ZKSecSecurityUtilsTest {
             /*** 用户不存在 ***/
             username = "admin_err";
             pwd = "admin";
-            authenticationToken = new ZKSecDefaultAuthcUserToken("groupCode", username, pwd.toCharArray(), false, 0, "",
+            authenticationToken = new ZKSecDefaultAuthcUserToken("groupCode", username, pwd, false, 0, "",
                     0, "");
             try {
                 subject.login(authenticationToken);
@@ -80,7 +80,7 @@ public class ZKSecSecurityUtilsTest {
             /*** 密码错误 ***/
             username = "admin";
             pwd = "admin_err";
-            authenticationToken = new ZKSecDefaultAuthcUserToken("groupCode", username, pwd.toCharArray(), false, 0, "",
+            authenticationToken = new ZKSecDefaultAuthcUserToken("groupCode", username, pwd, false, 0, "",
                     0, "");
             try {
                 subject.login(authenticationToken);
@@ -93,7 +93,7 @@ public class ZKSecSecurityUtilsTest {
             /*** admin 成功登录 ***/
             username = "admin";
             pwd = "admin";
-            authenticationToken = new ZKSecDefaultAuthcUserToken("groupCode", username, pwd.toCharArray(), false, 0, "",
+            authenticationToken = new ZKSecDefaultAuthcUserToken("groupCode", username, pwd, false, 0, "",
                     0, "");
             subject.login(authenticationToken);
             TestCase.assertEquals(username, ZKSecSecurityUtils.getUserId());
@@ -110,7 +110,7 @@ public class ZKSecSecurityUtilsTest {
             /*** test 成功登录 ***/
             username = "test";
             pwd = "test";
-            authenticationToken = new ZKSecDefaultAuthcUserToken("groupCode", username, pwd.toCharArray(), false, 0, "",
+            authenticationToken = new ZKSecDefaultAuthcUserToken("groupCode", username, pwd, false, 0, "",
                     0, "");
             subject.login(authenticationToken);
             TestCase.assertEquals(username, ZKSecSecurityUtils.getUserId());

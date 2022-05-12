@@ -3,21 +3,29 @@
  */
 package com.zk.sys.auth.entity;
 
-import com.zk.core.commons.data.ZKJson;
-import java.lang.String;
-import com.zk.core.utils.ZKIdUtils;
-import com.zk.db.commons.ZKDBQueryType;
-
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.data.annotation.Transient;
 
-import com.zk.db.annotation.ZKTable;
-import com.zk.db.annotation.ZKColumn;
-import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.zk.base.entity.ZKBaseEntity;
+import com.zk.core.commons.data.ZKJson;
+import com.zk.core.utils.ZKIdUtils;
+import com.zk.db.annotation.ZKColumn;
+import com.zk.db.annotation.ZKDBAnnotationProvider;
+import com.zk.db.annotation.ZKTable;
+import com.zk.db.commons.ZKDBQueryConditionWhere;
+import com.zk.db.commons.ZKDBQueryType;
+import com.zk.db.commons.ZKSqlConvert;
+import com.zk.db.commons.ZKSqlConvertDelegating;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionCol;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionIfByClass;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /**
  * 定义权限
@@ -50,16 +58,26 @@ public class ZKSysAuthDefined extends ZKBaseEntity<String, ZKSysAuthDefined> {
 	@NotEmpty(message = "{zk.core.data.validation.notNull}")
 	@ZKColumn(name = "c_name", isInsert = true, isUpdate = true, javaType = ZKJson.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
 	ZKJson name;	
-	/**
-	 * 权限代码；应用服务项目下唯一；
-	 */
+	
+    /**
+     * 权限代码；全表唯一；
+     */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
-	@ZKColumn(name = "c_code", isInsert = true, isUpdate = true, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
+    @ZKColumn(name = "c_code", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
 	String code;	
-	/**
-	 * 应用系统代码
-	 */
+	
+    /**
+     * 职级状态；0-正常；1-禁用；
+     */
+    @NotNull(message = "{zk.core.data.validation.notNull}")
+    @Range(min = 0, max = 9, message = "{zk.core.data.validation.rang.int}")
+    @ZKColumn(name = "c_status", isInsert = true, isUpdate = true, javaType = Long.class, isQuery = true, queryType = ZKDBQueryType.EQ)
+    Integer status;
+
+    /**
+     * 应用系统代码
+     */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_system_code", isInsert = true, isUpdate = true, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
@@ -70,6 +88,20 @@ public class ZKSysAuthDefined extends ZKBaseEntity<String, ZKSysAuthDefined> {
 	@ZKColumn(name = "c_short_desc", isInsert = true, isUpdate = true, javaType = ZKJson.class, isQuery = false)
 	ZKJson shortDesc;	
 	
+    /**
+     * 来源代码；与来源ID标识唯一；
+     */
+    @Length(min = 0, max = 64, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_source_code", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
+    String sourceCode;
+
+    /**
+     * 来源ID标识，与来源代码唯一
+     */
+    @Length(min = 0, max = 64, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_source_id", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
+    String sourceId;
+
 	public ZKSysAuthDefined() {
 		super();
 	}
@@ -78,6 +110,34 @@ public class ZKSysAuthDefined extends ZKBaseEntity<String, ZKSysAuthDefined> {
 		super(pkId);
 	}
 	
+    /**
+     * 职级状态；0-正常；1-禁用；
+     */
+    public static interface KeyStatus {
+        /**
+         * 0-正常
+         */
+        public static final int normal = 0;
+
+        /**
+         * 1-禁用
+         */
+        public static final int disabled = 1;
+    }
+
+    // 查询辅助字段
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    String searchValue;
+
+    // 分配时，分配方式的过度字段；其他时间无值，不可用；
+    @Transient
+//    @JsonIgnore // 加这个注解，在 requestBody 时，取不到值
+//    @XmlTransient
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
+    Integer allotType;
+
 	/**
 	 * 权限名称	
 	 */	
@@ -104,9 +164,25 @@ public class ZKSysAuthDefined extends ZKBaseEntity<String, ZKSysAuthDefined> {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	/**
-	 * 应用系统代码	
-	 */	
+
+    /**
+     * @return status sa
+     */
+    public Integer getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status
+     *            the status to set
+     */
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    /**
+     * 应用系统代码
+     */	
 	public String getSystemCode() {
 		return systemCode;
 	}
@@ -137,6 +213,80 @@ public class ZKSysAuthDefined extends ZKBaseEntity<String, ZKSysAuthDefined> {
 	@Override
 	protected String genId() {
         return ZKIdUtils.genLongStringId();
+    }
+
+    /**
+     * @return sourceCode sa
+     */
+    public String getSourceCode() {
+        return sourceCode;
+    }
+
+    /**
+     * @return sourceId sa
+     */
+    public String getSourceId() {
+        return sourceId;
+    }
+
+    /**
+     * @param sourceCode
+     *            the sourceCode to set
+     */
+    public void setSourceCode(String sourceCode) {
+        this.sourceCode = sourceCode;
+    }
+
+    /**
+     * @param sourceId
+     *            the sourceId to set
+     */
+    public void setSourceId(String sourceId) {
+        this.sourceId = sourceId;
+    }
+
+    /**
+     * @return searchValue sa
+     */
+    public String getSearchValue() {
+        return searchValue;
+    }
+
+    /**
+     * @param searchValue
+     *            the searchValue to set
+     */
+    public void setSearchValue(String searchValue) {
+        this.searchValue = searchValue;
+    }
+
+    /**
+     * @return allotType sa
+     */
+    public Integer getAllotType() {
+        return allotType;
+    }
+
+    /**
+     * @param allotType
+     *            the allotType to set
+     */
+    public void setAllotType(Integer allotType) {
+        this.allotType = allotType;
+    }
+
+    // 取 where 条件；实体定义可以定制；在 生成的 sql；注意：末尾加空格
+    @Override
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    public ZKDBQueryConditionWhere getZKDbWhere(ZKSqlConvert sqlConvert, ZKDBAnnotationProvider annotationProvider) {
+        ZKDBQueryConditionWhere where = super.getZKDbWhere(sqlConvert, annotationProvider);
+        ZKDBQueryConditionWhere sWhere = ZKDBQueryConditionWhere.asOr("(", ")",
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_name", "searchValue", String.class, null, false),
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_code", "searchValue", String.class, null, false));
+        where.put(ZKDBQueryConditionIfByClass.as(sWhere, "searchValue", String.class, false));
+        return where;
     }
 	
 }

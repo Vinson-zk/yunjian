@@ -19,6 +19,7 @@
 package com.zk.security.authz;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,127 +36,61 @@ public class ZKSecSimpleAuthorizationInfo implements ZKSecAuthorizationInfo {
      */
     private static final long serialVersionUID = 2649735532521497365L;
 
-    private Set<String> personalApiCodes;
+    private Set<String> apiCodes;
 
-    private Set<String> userTypeApiCodes;
+    private Set<String> authCodes;
 
-    private Set<String> userGradeApiCodes;
-
-    private Set<String> companyApiCodes;
-
-    private Set<String> positionApiCodes;
-
-    private Set<String> departmentApiCodes;
-
-    private Set<String> userGroupApiCodes;
-
-    /**
-     * 添加个人用户拥有的 apiCode
-     * 
-     * @param apiCodes
-     * @see com.zk.security.authz.ZKSecAuthorizationInfo#addPersonalApiCode(java.lang.String[])
-     */
-    @Override
-    public void addPersonalApiCode(String apiCode) {
-        if (this.personalApiCodes == null) {
-            this.personalApiCodes = new HashSet<String>();
+    private Collection<String> getApiCodeStore() {
+        if (apiCodes == null) {
+            apiCodes = new HashSet<String>();
         }
-        this.personalApiCodes.add(apiCode);
+        return apiCodes;
     }
 
-    /**
-     * (not Javadoc)
-     * <p>
-     * Title: addUserTypeApiCode
-     * </p>
-     * <p>
-     * Description:
-     * </p>
-     * 
-     * @param apiCodes
-     * @see com.zk.security.authz.ZKSecAuthorizationInfo#addUserTypeApiCode(java.lang.String[])
-     */
+    public void addApiCode(String apiCodes) {
+        this.getApiCodeStore().add(apiCodes);
+    }
+
+    public void addApiCode(Collection<String> apiCodes) {
+        this.getApiCodeStore().addAll(apiCodes);
+    }
+
     @Override
-    public void addUserTypeApiCode(String apiCode) {
-        if (this.userTypeApiCodes == null) {
-            this.userTypeApiCodes = new HashSet<String>();
+    public Collection<String> getApiCodes() {
+        if (apiCodes == null) {
+            return Collections.emptySet();
         }
-        this.userTypeApiCodes.add(apiCode);
-    }
-
-    @Override
-    public void addUserGradeApiCode(String apiCode) {
-        if (this.userGradeApiCodes == null) {
-            this.userGradeApiCodes = new HashSet<String>();
+        else {
+            return Collections.unmodifiableSet(apiCodes);
         }
-        this.userGradeApiCodes.add(apiCode);
     }
 
-    @Override
-    public void addCompanyApiCode(String apiCode) {
-        if (this.companyApiCodes == null) {
-            this.companyApiCodes = new HashSet<String>();
+    /////////////////////////////////////////////////////////////
+
+    private Collection<String> getAuthCodeStore() {
+        if (authCodes == null) {
+            authCodes = new HashSet<String>();
         }
-        this.companyApiCodes.add(apiCode);
+        return authCodes;
+    }
+
+    public void addAuthCode(String authCode) {
+        this.getAuthCodeStore().add(authCode);
+    }
+
+    public void addAuthCode(Collection<String> authCodes) {
+        this.getAuthCodeStore().addAll(authCodes);
     }
 
     @Override
-    public void addPositionApiCode(String apiCode) {
-        if (this.positionApiCodes == null) {
-            this.positionApiCodes = new HashSet<String>();
+    public Collection<String> getAuthCodes() {
+        if (authCodes == null) {
+            return Collections.emptySet();
         }
-        this.positionApiCodes.add(apiCode);
-    }
-
-    @Override
-    public void addDepartmentApiCode(String apiCode) {
-        if (this.departmentApiCodes == null) {
-            this.departmentApiCodes = new HashSet<String>();
+        else {
+            return Collections.unmodifiableSet(authCodes);
         }
-        this.departmentApiCodes.add(apiCode);
     }
 
-    @Override
-    public void addUserGroupApiCode(String apiCode) {
-        if (this.userGroupApiCodes == null) {
-            this.userGroupApiCodes = new HashSet<String>();
-        }
-        this.userGroupApiCodes.add(apiCode);
-    }
-
-    @Override
-    public Collection<String> getPersonalApiCodes() {
-        return personalApiCodes;
-    }
-
-    @Override
-    public Collection<String> getUserTypeApiCodes() {
-        return userTypeApiCodes;
-    }
-
-    @Override
-    public Collection<String> getUserGradeApiCodes() {
-        return userGradeApiCodes;
-    }
-
-    @Override
-    public Collection<String> getCompanyApiCodes() {
-        return companyApiCodes;
-    }
-
-    @Override
-    public Collection<String> getPositionApiCodes() {
-        return positionApiCodes;
-    }
-
-    @Override
-    public Collection<String> getDepartmentApiCodes() {
-        return departmentApiCodes;
-    }
-
-    @Override
-    public Collection<String> getUserGroupApiCodes() {
-        return userGroupApiCodes;
-    }
 
 }

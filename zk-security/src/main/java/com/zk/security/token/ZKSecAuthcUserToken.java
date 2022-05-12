@@ -33,6 +33,6 @@ public interface ZKSecAuthcUserToken extends ZKSecAuthenticationToken, ZKSecReme
     /**
      * 用户密码
      */
-    public char[] getPwd();
+    public String getPwd();
 
 }

@@ -31,7 +31,7 @@ import com.zk.core.commons.data.ZKPage;
 * @author Vinson 
 * @version 1.0 
 */
-public class ZKBaseTreeService<ID extends Serializable, E extends ZKBaseTreeEntity<ID, E>, D extends ZKBaseTreeDao<ID, E>>
+public abstract class ZKBaseTreeService<ID extends Serializable, E extends ZKBaseTreeEntity<ID, E>, D extends ZKBaseTreeDao<ID, E>>
         extends ZKBaseService<ID, E, D> {
 
 //    /**
@@ -50,14 +50,57 @@ public class ZKBaseTreeService<ID extends Serializable, E extends ZKBaseTreeEnti
 //        return res;
 //    }
 
+    /**
+     * 此方法还未达到预期效果
+     *
+     * @Title: findTreeNoLevel
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Apr 29, 2022 8:19:23 AM
+     * @param entity
+     * @return
+     * @return List<E>
+     */
     public List<E> findTreeNoLevel(E entity) {
         return this.dao.findTreeNoLevel(entity);
     }
 
+    /**
+     * 此方法还未达到预期效果
+     *
+     * @Title: findTreeNoLevel
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Apr 29, 2022 8:19:43 AM
+     * @param page
+     * @param entity
+     * @return
+     * @return ZKPage<E>
+     */
     public ZKPage<E> findTreeNoLevel(ZKPage<E> page, E entity) {
         entity.setPage(page);
         page.setResult(dao.findTreeNoLevel(entity));
         return page;
     }
+
+    /**
+     * 树形查询； 不分页
+     */
+    public List<E> findTree(E sysOrgCompany) {
+        sysOrgCompany.setParentIdIsEmpty(true);
+        return this.doFindTree(sysOrgCompany);
+    }
+
+    /**
+     * 树形查询；分页
+     */
+    public ZKPage<E> findTree(ZKPage<E> page, E sysOrgCompany) {
+        sysOrgCompany.setParentIdIsEmpty(true);
+        sysOrgCompany.setPage(page);
+        page.setResult(this.doFindTree(sysOrgCompany));
+        return page;
+    }
+
+    public abstract List<E> doFindTree(E sysOrgCompany);
 
 }

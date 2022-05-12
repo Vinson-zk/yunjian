@@ -52,6 +52,7 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.zk.core.commons.data.ZKPage;
 import com.zk.core.utils.ZKClassUtils;
@@ -69,6 +70,8 @@ import com.zk.db.dynamic.spring.dataSource.ZKDynamicDataSource;
 * @version 1.0 
 */
 public class ZKMybatisSqlHelper {
+
+    private Logger log = LoggerFactory.getLogger(getClass());
 
     /**
      * 环境变量配置的 KEY
@@ -249,6 +252,7 @@ public class ZKMybatisSqlHelper {
             countSql = "select count(1) from (" + removeOrders(sql) + ") tmp_count";
 //          countSql = "select count(1) " + removeSelect(removeOrders(sql));
         }
+        log.info("[^_^:20220418-2349-001] countSql: {}", countSql);
         Connection conn = connection;
         PreparedStatement ps = null;
         ResultSet rs = null;

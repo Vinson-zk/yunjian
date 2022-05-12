@@ -37,7 +37,6 @@ public class ZKSecUserFilter extends ZKSecBaseControlFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
             throws Exception {
-
         ZKSecSubject subject = ZKSecSecurityUtils.getSubject();
         if (subject != null) {
             return subject.isAuthcUser();

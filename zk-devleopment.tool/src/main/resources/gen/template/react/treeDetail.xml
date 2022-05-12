@@ -53,16 +53,16 @@ class CInit${zkTableInfo.funcName}Detail extends Component {
 			<ZKSpin spinning={spinning === true} >
 				<ZKDetailGrid >
 					<ZKDetailGrid.Row>
-						<ZKDetailGrid.ColLeft>{zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.parentName')}:</ZKDetailGrid.ColLeft>
-						<ZKDetailGrid.ColRight>
+						<ZKDetailGrid.ColLabel>{zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.parentName')}:</ZKDetailGrid.ColLabel>
+						<ZKDetailGrid.ColValue>
 							{ optEntity.parent?(optEntity.parent.name?zkToolsMsg.getInternationInfo(optEntity.parent.name):optEntity.parent.pkId):zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}._top') }
-						</ZKDetailGrid.ColRight>
+						</ZKDetailGrid.ColValue>
 					</ZKDetailGrid.Row>
 <#list zkTableInfo.cols as zkCol>
 	<#if zkCol.editStrategy != "noEdit" >
 		            <ZKDetailGrid.Row>
-						<ZKDetailGrid.ColLeft>{zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}')}:</ZKDetailGrid.ColLeft>
-						<ZKDetailGrid.ColRight>
+						<ZKDetailGrid.ColLabel>{zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}')}:</ZKDetailGrid.ColLabel>
+						<ZKDetailGrid.ColValue>
 		<#if zkCol.editStrategy == "EditJson">
 							<ZKInputJson disabled styleType="compact" value={optEntity.${zkCol.attrName?uncap_first}?optEntity.${zkCol.attrName?uncap_first}:{}} primaryAttr={lang} attrs={locales} />
 		<#elseif zkCol.editStrategy == "EditSel" || zkCol.editStrategy == "EditRadio">
@@ -72,7 +72,7 @@ class CInit${zkTableInfo.funcName}Detail extends Component {
 		<#else>
 							{optEntity.${zkCol.attrName?uncap_first}}
 		</#if>
-						</ZKDetailGrid.ColRight>
+						</ZKDetailGrid.ColValue>
 					</ZKDetailGrid.Row>       
 	</#if>
 </#list>

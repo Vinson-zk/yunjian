@@ -24,8 +24,10 @@ import ${zkModule.packagePrefix}.helper.${zkModule.modulePrefix}${zkModule.modul
  */
 public class ${zkTableInfo.className}ServiceTest {
 
-	${zkTableInfo.className} makeNew() {
+	static ${zkTableInfo.className} makeNew() {
         ${zkTableInfo.className} e = new ${zkTableInfo.className}();
+        e.setVersion(-1l);
+        e.setRemarks("zk.test.data");
         // e.set
         return e;
     }
@@ -42,7 +44,7 @@ public class ${zkTableInfo.className}ServiceTest {
             int result = 0;
 
             /*** 保存 ***/
-            e = this.makeNew();
+            e = makeNew();
             result = 0;
             result = s.save(e);
             TestCase.assertEquals(1, result);

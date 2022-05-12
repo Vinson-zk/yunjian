@@ -51,7 +51,7 @@ public interface ZKCache<K, V> {
     public boolean put(K key, V value);
 
     /**
-     * 移除缓存，并返回缓存，缓存不存在时返回 null
+     * 移除缓存
      * 
      * @param key
      * @return

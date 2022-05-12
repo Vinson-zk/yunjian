@@ -30,10 +30,9 @@ public class ZKSecDefaultDevPrincipal<ID> extends ZKSecAbstractPrincipal<ID> imp
      */
     private static final long serialVersionUID = -4602060229158707569L;
 
-    public ZKSecDefaultDevPrincipal(String groupCode, ID pkId, String devId, String thirdPartyId, long osType,
-            String udid, long appType,
-            String appId) {
-        super(groupCode, pkId, ZKSecPrincipal.TYPE.Developer, osType, udid, appType, appId);
+    public ZKSecDefaultDevPrincipal(String companyId, String groupCode, ID pkId, String devId, String thirdPartyId,
+            long osType, String udid, long appType, String appId) {
+        super(companyId, groupCode, pkId, ZKSecPrincipal.TYPE.Developer, osType, udid, appType, appId);
         this.devId = devId;
         this.thirdPartyId = thirdPartyId;
     }

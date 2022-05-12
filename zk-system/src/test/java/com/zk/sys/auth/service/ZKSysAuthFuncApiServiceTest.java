@@ -8,11 +8,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
-
 import com.zk.base.entity.ZKBaseEntity;
 import com.zk.sys.auth.entity.ZKSysAuthFuncApi;
 import com.zk.sys.helper.ZKSysTestHelper;
+
+import junit.framework.TestCase;
 
 /**
  * ZKSysAuthFuncApiServiceTest
@@ -21,9 +21,13 @@ import com.zk.sys.helper.ZKSysTestHelper;
  */
 public class ZKSysAuthFuncApiServiceTest {
 
-	ZKSysAuthFuncApi makeNew() {
+    public static ZKSysAuthFuncApi makeNew() {
         ZKSysAuthFuncApi e = new ZKSysAuthFuncApi();
-        // e.set
+        e.setVersion(-1l);
+        e.setRemarks("testData");
+        e.setAuthId("1");
+        e.setFuncApiId("2");
+        e.setFuncApiCode("funcApiCode");
         return e;
     }
 	
@@ -39,7 +43,7 @@ public class ZKSysAuthFuncApiServiceTest {
             int result = 0;
 
             /*** 保存 ***/
-            e = this.makeNew();
+            e = makeNew();
             result = 0;
             result = s.save(e);
             TestCase.assertEquals(1, result);

@@ -42,7 +42,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.zk.cache.redis.ZKRedisCacheManager;
 import com.zk.core.commons.ZKValidatorMessageInterpolator;
+import com.zk.core.redis.ZKJedisOperatorStringKey;
 import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKLocaleUtils;
 import com.zk.core.web.filter.ZKCrosFilter;
@@ -64,12 +66,13 @@ import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
         "classpath:xmlConfig/spring_ctx_sys_application.xml", "classpath:xmlConfig/spring_ctx_mvc.xml",
         "classpath:xmlConfig/spring_ctx_dynamic_mybatis.xml" })
 //@ImportAutoConfiguration(classes = { ZKMongoAutoConfiguration.class })
-@AutoConfigureBefore(value = { ZKSysMvcConfiguration.class
-        , ZKSysShiroConfiguration.class
-//        , ZKMongoAutoConfiguration.class
-        , EnableWebMvcConfiguration.class
-        , ServletWebServerFactoryAutoConfiguration.class
-        })
+@AutoConfigureBefore(value = { ZKSysMvcConfiguration.class, 
+//        ZKSysSecConfiguration.class, 
+//        ZKMongoAutoConfiguration.class,
+        ZKSysRedisConfiguration.class, 
+        EnableWebMvcConfiguration.class, 
+        ServletWebServerFactoryAutoConfiguration.class
+})
 public class ZKSysConfiguration {
 
     @Value("${zk.sys.db.dynamic.jdbc.username_w}")
@@ -315,6 +318,24 @@ public class ZKSysConfiguration {
     @Bean
     public ZKExceptionHandlerResolver zkExceptionHandlerResolver() {
         return new ZKExceptionHandlerResolver();
+    }
+
+    /**
+     * 缓存管理
+     *
+     * @Title: redisCacheManager
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 11, 2022 7:17:31 PM
+     * @param jedisOperatorStringKey
+     * @return
+     * @return ZKRedisCacheManager
+     */
+    @Bean
+    public ZKRedisCacheManager redisCacheManager(ZKJedisOperatorStringKey jedisOperatorStringKey) {
+        ZKRedisCacheManager cm = new ZKRedisCacheManager();
+        cm.setJedisOperator(jedisOperatorStringKey);
+        return cm;
     }
 
 }

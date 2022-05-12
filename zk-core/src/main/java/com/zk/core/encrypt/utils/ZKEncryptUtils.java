@@ -76,7 +76,10 @@ public class ZKEncryptUtils {
      *
      */
     public static interface DIGEST_MODE {
+
         public static final String SHA = "SHA";
+
+        public static final String SHA_1 = "SHA-1";
 
         public static final String MD5 = "MD5";
     }
@@ -135,9 +138,9 @@ public class ZKEncryptUtils {
         MessageDigest digest = MessageDigest.getInstance(digestMode);
         if (salt != null) {
             digest.update(salt);
-        }
-        else {
-            digest.update(data);
+//        }
+//        else {
+//            digest.update(data);
         }
         return digest.digest(data);
     }
@@ -155,7 +158,7 @@ public class ZKEncryptUtils {
      * @return byte[]
      */
     public static byte[] genSalt(byte[] key) throws NoSuchAlgorithmException {
-        MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+        MessageDigest crypt = MessageDigest.getInstance(DIGEST_MODE.SHA_1);
         crypt.reset();
         crypt.update(key);
         // sha1 = byteToHex(crypt.digest());
@@ -164,7 +167,7 @@ public class ZKEncryptUtils {
 
     public static byte[] md5Encode(byte[] sources) {
         try {
-            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            MessageDigest md5 = MessageDigest.getInstance(DIGEST_MODE.MD5);
             return md5.digest(sources);
         }
         catch(Exception ex) {

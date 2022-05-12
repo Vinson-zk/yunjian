@@ -20,10 +20,14 @@ package com.zk.wechat.thirdParty.service;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zk.base.service.ZKBaseService;
+import com.zk.core.web.ZKMsgRes;
+import com.zk.sys.org.api.ZKSysOrgCompanyApi;
 import com.zk.wechat.thirdParty.dao.ZKThirdPartyDao;
 import com.zk.wechat.thirdParty.entity.ZKThirdParty;
 
@@ -37,6 +41,12 @@ import com.zk.wechat.thirdParty.entity.ZKThirdParty;
 @Transactional(readOnly = true)
 public class ZKThirdPartyService extends ZKBaseService<String, ZKThirdParty, ZKThirdPartyDao> {
 
+//    @Autowired
+//    private ZKSysOrgUserApi sysOrgUserApi;
+
+    @Autowired
+    private ZKSysOrgCompanyApi sysOrgCompanyApi;
+
     public ZKThirdParty get(String thirdPartyAppId) {
         return this.dao.get(new ZKThirdParty(thirdPartyAppId));
     }
@@ -49,6 +59,12 @@ public class ZKThirdPartyService extends ZKBaseService<String, ZKThirdParty, ZKT
     @Transactional(readOnly = false)
     public int updateAccessToken(String appId, String wxAccessToken, Integer expiresIn) {
         return this.dao.updateAccessToken(appId, wxAccessToken, expiresIn, new Date());
+    }
+
+    public JSONObject getCompanyByCode(String companyCode) {
+        ZKMsgRes res = sysOrgCompanyApi.getCompanyByCode(companyCode);
+        JSONObject resJson = res.getData();
+        return resJson;
     }
 
 }

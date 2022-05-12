@@ -30,9 +30,9 @@ public class ZKSecDefaultUserPrincipal<ID> extends ZKSecAbstractPrincipal<ID> im
      */
     private static final long serialVersionUID = 8880963427437366589L;
 
-    public ZKSecDefaultUserPrincipal(String groupCode, ID pkId, String username, String name, long osType, String udid,
-            long appType, String appId) {
-        super(groupCode, pkId, ZKSecPrincipal.TYPE.User, osType, udid, appType, appId);
+    public ZKSecDefaultUserPrincipal(String companyId, String companyCode, ID pkId, String username, String name,
+            long osType, String udid, long appType, String appId) {
+        super(companyId, companyCode, pkId, ZKSecPrincipal.TYPE.User, osType, udid, appType, appId);
         this.username = username;
         this.name = name;
         this.setPrimary(true);

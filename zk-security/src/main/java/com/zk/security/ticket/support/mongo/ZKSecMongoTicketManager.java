@@ -110,7 +110,7 @@ public class ZKSecMongoTicketManager implements ZKSecProxyTickerManager {
 
         public static final String pKey_Type = "pKeyType";
 
-        public static final String pKey_GroupCode = "pKeyGroupCode";
+        public static final String pKey_CompanyCode = "pKeyCompanyCode";
 
         public static final String pKey_AuthorizationInfo = "pKeyAuthorizationInfo";
     }
@@ -593,7 +593,7 @@ public class ZKSecMongoTicketManager implements ZKSecProxyTickerManager {
             pDoc = new Document();
             pDoc.put(AttrKeyName.pKey_pkID, p.getPkId());
             pDoc.put(AttrKeyName.pKey_Type, p.getType());
-            pDoc.put(AttrKeyName.pKey_GroupCode, p.getGroupCode());
+            pDoc.put(AttrKeyName.pKey_CompanyCode, p.getCompanyCode());
 //          pDoc.put(pKey_ZKSecTicketId, p.getZKSecTicketId());
             pDocs.add(pDoc);
         }

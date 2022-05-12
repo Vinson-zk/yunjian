@@ -28,6 +28,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.TypeVariable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,7 +94,7 @@ public class ZKClassUtils extends ClassUtils {
      */
     private static interface ClassLoaderAccessor {
         @SuppressWarnings("rawtypes")
-        Class loadClass(String fqcn);
+        Class loadClass(String classNameStr);
 
         InputStream getResourceStream(String name);
     }
@@ -103,16 +105,17 @@ public class ZKClassUtils extends ClassUtils {
     private static abstract class ExceptionIgnoringAccessor implements ClassLoaderAccessor {
 
         @SuppressWarnings("rawtypes")
-        public Class loadClass(String fqcn) {
+        public Class loadClass(String classNameStr) {
             Class clazz = null;
             ClassLoader cl = getClassLoader();
             if (cl != null) {
                 try {
-                    clazz = cl.loadClass(fqcn);
+                    clazz = cl.loadClass(classNameStr);
                 }
                 catch(ClassNotFoundException e) {
                     if (logger.isTraceEnabled()) {
-                        logger.trace("Unable to load clazz named [" + fqcn + "] from class loader [" + cl + "]");
+                        logger.trace(
+                                "Unable to load clazz named [" + classNameStr + "] from class loader [" + cl + "]");
                     }
                 }
             }
@@ -142,6 +145,10 @@ public class ZKClassUtils extends ClassUtils {
 
         protected abstract ClassLoader doGetClassLoader() throws Throwable;
     }
+
+    /**************************************************** */
+    /*** java class 字段 */
+    /**************************************************** */
 
     /**
      * 获取类所有的定义的字段【取不到只定义 getter 方法的属性】，包括父类的
@@ -182,8 +189,6 @@ public class ZKClassUtils extends ClassUtils {
         }
         return null;
     }
-
-    /**************************************************** */
 
     /**
      * 取 java bean 的属性；这个与 getField 方法不同，这里可以取只定义 getter 方法的属性；
@@ -340,6 +345,10 @@ public class ZKClassUtils extends ClassUtils {
         }
     }
 
+    /**************************************************** */
+    /*** java Bean 对象 反射 */
+    /**************************************************** */
+
     /**
      * 取对象指定字段值
      * 
@@ -413,30 +422,67 @@ public class ZKClassUtils extends ClassUtils {
         return is;
     }
 
+    /**************************************************** */
+    /*** 取类支持的泛弄类名 Class<?> */
+    /**************************************************** */
+    /**
+     * 取泛型类的类
+     *
+     * @Title: getSuperclassByName
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 4, 2022 11:58:59 AM
+     * @param classz
+     *            一定要是实际的类型，不能是父类的类名
+     * @param classTypeName
+     *            要取类的泛型类的名称
+     * @return
+     * @return Class<?>
+     */
+    @SuppressWarnings("unchecked")
+    public static <C> Class<C> getSuperclassByName(Class<?> pClassz, Class<?> classz, String classTypeName) {
+        TypeVariable<?>[] ts = pClassz.getTypeParameters();
+        for (int i = 0; i < ts.length; ++i) {
+            if (classTypeName.equals(ts[i].getName())) {
+                ParameterizedType pt = ((ParameterizedType) classz.getGenericSuperclass());
+//                System.out.println("=== " + i);
+//                for (int ii = 0; ii < pt.getActualTypeArguments().length; ++ii) {
+//                    System.out.println("--- " + ii + ":  " + pt.getActualTypeArguments()[ii].getTypeName());
+//                }
+                return (Class<C>) pt.getActualTypeArguments()[i];
+            }
+        }
+        return null;
+    }
+
+    /**************************************************** */
+    /*** 根据类名实例化 */
+    /**************************************************** */
     /**
      * 根据类名实例化
      * 
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
-    public static Object newInstance(String fqcn) throws InstantiationException, IllegalAccessException {
-        return newInstance(forName(fqcn));
+    public static <E> E newInstance(String classNameStr) throws InstantiationException, IllegalAccessException {
+        return newInstance(forName(classNameStr));
     }
 
-    public static Object newInstance(String fqcn, Object... args)
+    public static <E> E newInstance(String classNameStr, Object... args)
             throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        return newInstance(forName(fqcn), args);
+        return newInstance(forName(classNameStr), args);
     }
 
-    public static Object newInstance(Class<?> clazz) throws InstantiationException, IllegalAccessException {
+    @SuppressWarnings("unchecked")
+    public static <E> E newInstance(Class<?> clazz) throws InstantiationException, IllegalAccessException {
         if (clazz == null) {
             String msg = "Class method parameter cannot be null.";
             throw new IllegalArgumentException(msg);
         }
-        return clazz.newInstance();
+        return (E) clazz.newInstance();
     }
 
-    public static Object newInstance(Class<?> clazz, Object... args)
+    public static <E> E newInstance(Class<?> clazz, Object... args)
             throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         Class<?>[] argTypes = new Class[args.length];
         for (int i = 0; i < args.length; i++) {
@@ -456,33 +502,34 @@ public class ZKClassUtils extends ClassUtils {
 
     }
 
-    public static Object instantiate(Constructor<?> ctor, Object... args)
+    @SuppressWarnings("unchecked")
+    public static <E> E instantiate(Constructor<?> ctor, Object... args)
             throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        return ctor.newInstance(args);
+        return (E) ctor.newInstance(args);
     }
 
-    public static Class<?> forName(String fqcn) {
+    public static Class<?> forName(String classNameStr) {
 
-        Class<?> clazz = THREAD_CL_ACCESSOR.loadClass(fqcn);
+        Class<?> clazz = THREAD_CL_ACCESSOR.loadClass(classNameStr);
 
         if (clazz == null) {
             if (logger.isTraceEnabled()) {
-                logger.trace("Unable to load class named [" + fqcn
+                logger.trace("Unable to load class named [" + classNameStr
                         + "] from the thread context ClassLoader.  Trying the current ClassLoader...");
             }
-            clazz = CLASS_CL_ACCESSOR.loadClass(fqcn);
+            clazz = CLASS_CL_ACCESSOR.loadClass(classNameStr);
         }
 
         if (clazz == null) {
             if (logger.isTraceEnabled()) {
-                logger.trace("Unable to load class named [" + fqcn + "] from the current ClassLoader.  "
+                logger.trace("Unable to load class named [" + classNameStr + "] from the current ClassLoader.  "
                         + "Trying the system/application ClassLoader...");
             }
-            clazz = SYSTEM_CL_ACCESSOR.loadClass(fqcn);
+            clazz = SYSTEM_CL_ACCESSOR.loadClass(classNameStr);
         }
 
         if (clazz == null) {
-            String msg = "Unable to load class named [" + fqcn + "] from the thread context, current, or "
+            String msg = "Unable to load class named [" + classNameStr + "] from the thread context, current, or "
                     + "system/application ClassLoaders.  All heuristics have been exhausted.  Class could not be found.";
             throw new UnableToRegisterMBeanException(msg);
         }

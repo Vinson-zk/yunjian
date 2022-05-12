@@ -26,9 +26,10 @@ package com.zk.db.commons;
 */
 public interface ZKDBQueryCondition {
 
+    // 函数方法，条件处理中的函数方法，一般在处理中需要提前处理或一穿插处理时使用；
     @FunctionalInterface
     public static interface ZKDBConditionLogicDispose {
-        public abstract ZKDBQueryLogic run();
+        public abstract void doing();
     }
 
     /**
@@ -37,20 +38,19 @@ public interface ZKDBQueryCondition {
      * @Title: toQueryCondition
      * @Description: TODO(simple description this method what to do.)
      * @author Vinson
-     * @date Apr 14, 2021 8:57:30 PM
+     * @date Apr 19, 2022 3:11:03 PM
      * @param convert
      * @param sb
      * @param tableAlias
      *            表的别名；这里需要加上 “.”；不会自动添加
      * @param queryLogic
      *            查询关系逻辑，要查询条件中生效；
+     * @param isInserQueryLogic
+     *            是否需要插入 查询逻辑关键字
      * @return void
      */
-
-    ///
-    ///
-    void toQueryCondition(ZKSqlConvert convert, StringBuffer sb, String tableAlias,
-            ZKDBConditionLogicDispose funcQueryLogicDispose);
+    void toQueryCondition(ZKSqlConvert convert, StringBuffer sb, String tableAlias, ZKDBQueryLogic queryLogic,
+            boolean isInserQueryLogic);
 
 
 

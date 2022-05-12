@@ -13,6 +13,8 @@ import com.google.common.collect.Maps;
 import com.zk.base.service.ZKBaseService;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.utils.ZKMsgUtils;
+import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.sys.auth.service.ZKSysAuthFuncApiService;
 import com.zk.sys.res.dao.ZKSysResFuncApiDao;
 import com.zk.sys.res.entity.ZKSysResFuncApi;
 
@@ -28,17 +30,19 @@ public class ZKSysResFuncApiService extends ZKBaseService<String, ZKSysResFuncAp
     @Autowired
     ZKSysResApplicationSystemService sysResApplicationSystemService;
 
+    @Autowired
+    ZKSysAuthFuncApiService sysAuthFuncApiService;
+
     @Override
     @Transactional(readOnly = false)
     public int save(ZKSysResFuncApi sysResFuncApi) {
         if (sysResFuncApi.isNewRecord()) {
             // 新接口，判断 应用项目代码 下 接口代码是否唯一
-            ZKSysResFuncApi old = this.getBySysAndCode(sysResFuncApi.getSystemCode(), sysResFuncApi.getCode());
+            ZKSysResFuncApi old = this.getBySysAndCode(sysResFuncApi.getCode());
             if (old != null) {
                 if (ZKSysResFuncApi.DEL_FLAG.normal == old.getDelFlag().intValue()) {
                     // 接口代码已存在
-                    log.error("[>_<:20211130-1031-001] 应用项目代码:{} 下接口代码:{} 已存在；", sysResFuncApi.getSystemCode(),
-                            sysResFuncApi.getCode());
+                    log.error("[>_<:20211130-1031-001] 接口代码:{} 已存在；", sysResFuncApi.getCode());
                     Map<String, String> validatorMsg = Maps.newHashMap();
                     validatorMsg.put("code", ZKMsgUtils.getMessage("zk.sys.000004", sysResFuncApi.getCode()));
                     throw ZKCodeException.asDataValidator(validatorMsg);
@@ -68,15 +72,31 @@ public class ZKSysResFuncApiService extends ZKBaseService<String, ZKSysResFuncAp
      * @Description: TODO(simple description this method what to do.)
      * @author Vinson
      * @date Nov 30, 2021 10:20:57 AM
-     * @param sysCode
      * @param apiCode
-     * @return
      * @return ZKSysResFuncApi
      */
-    public ZKSysResFuncApi getBySysAndCode(String sysCode, String apiCode) {
+    public ZKSysResFuncApi getBySysAndCode(String apiCode) {
         return this.dao.getBySysAndCode(ZKSysResFuncApi.initSqlProvider().getTableName(),
                 ZKSysResFuncApi.initSqlProvider().getTableAlias(),
-                ZKSysResFuncApi.initSqlProvider().getSqlBlockSelCols(), sysCode, apiCode);
+                ZKSysResFuncApi.initSqlProvider().getSqlBlockSelCols(), apiCode);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public int del(ZKSysResFuncApi sysResFuncApi) {
+        sysAuthFuncApiService.diskDelByApiId(sysResFuncApi.getPkId());
+        // 清空权限缓存
+        ZKUserCacheUtils.cleanAllAuth();
+        return super.del(sysResFuncApi);
+    }
+
+    @Override
+    @Transactional(readOnly = false)
+    public int diskDel(ZKSysResFuncApi sysResFuncApi) {
+        sysAuthFuncApiService.diskDelByApiId(sysResFuncApi.getPkId());
+        // 清空权限缓存
+        ZKUserCacheUtils.cleanAllAuth();
+        return super.diskDel(sysResFuncApi);
     }
 	
 }

@@ -44,7 +44,7 @@ public abstract class ZKSecAuthenticationFilter extends ZKSecAccessControlFilter
             throws Exception;
 
     protected String getGroupCode(ServletRequest request) {
-        return ZKWebUtils.getCleanParam(request, ZKSecConstants.PARAM_NAME.GroupCode);
+        return ZKWebUtils.getCleanParam(request, ZKSecConstants.PARAM_NAME.CompanyCode);
     }
 
     protected long getOsType(ServletRequest request) {

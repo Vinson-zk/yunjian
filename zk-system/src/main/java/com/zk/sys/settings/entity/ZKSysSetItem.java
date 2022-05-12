@@ -5,18 +5,27 @@ package com.zk.sys.settings.entity;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.data.annotation.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zk.base.entity.ZKBaseEntity;
 import com.zk.core.commons.data.ZKJson;
 import com.zk.core.utils.ZKIdUtils;
+import com.zk.core.utils.ZKUtils;
 import com.zk.db.annotation.ZKColumn;
+import com.zk.db.annotation.ZKDBAnnotationProvider;
 import com.zk.db.annotation.ZKTable;
+import com.zk.db.commons.ZKDBQueryConditionWhere;
 import com.zk.db.commons.ZKDBQueryType;
+import com.zk.db.commons.ZKSqlConvert;
 import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionCol;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionIfByClass;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /**
  * 应用系统配置项条目
@@ -41,10 +50,62 @@ public class ZKSysSetItem extends ZKBaseEntity<String, ZKSysSetItem> {
     }
     
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 配置值类型： 0-字符串；1-boolean 布尔值；2-整数；3-字符数组；4-数字数组；
+     * 
+     * @ClassName: Key_ValueType
+     * @Description: TODO(simple description this class what to do. )
+     * @author Vinson
+     * @version 1.0
+     */
+    public static interface Key_ValueType {
+        /**
+         * 0-字符串；
+         */
+        public static final int vString = 0;
+
+        /**
+         * 1-boolean 布尔值；
+         */
+        public static final int vBoolean = 1;
+
+        /**
+         * 2-整数；
+         */
+        public static final int vInt = 2;
+
+        /**
+         * 3-字符数组；暂不支持
+         */
+        public static final int vStringArray = 3;
+
+        /**
+         * 4-数字数组；暂不支持
+         */
+        public static final int vIntArray = 4;
+
+    }
 	
+    /**
+     * 配置项组别ID
+     */
+    @NotNull(message = "{zk.core.data.validation.notNull}")
+    @Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_collection_id", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
+    String collectionId;
+
+    /**
+     * 配置项组别代码
+     */
+    @NotNull(message = "{zk.core.data.validation.notNull}")
+    @Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_collection_code", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
+    String collectionCode;
+
 	/**
-	 * 配置项类型；0-平台配置；1-通用配置；2-公司专属配置；仅在公司专属配置下，才有公司和集团信息；仅通用配置，才会有公司自定义配置值
-	 */
+     * 配置项类型：0-平台配置；1-通用配置；2-公司专属配置；
+     */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Range(min = 0, max = 999999999, message = "{zk.core.data.validation.rang.int}")
 	@ZKColumn(name = "c_type", isInsert = true, isUpdate = true, javaType = Integer.class, isQuery = true, queryType = ZKDBQueryType.EQ)
@@ -56,9 +117,10 @@ public class ZKSysSetItem extends ZKBaseEntity<String, ZKSysSetItem> {
 	@NotEmpty(message = "{zk.core.data.validation.notNull}")
 	@ZKColumn(name = "c_name", isInsert = true, isUpdate = true, javaType = ZKJson.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
 	ZKJson name;	
-	/**
-	 * 配置项代码；全表唯一；
-	 */
+	
+    /**
+     * 配置项代码；组别下全表唯一；
+     */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_code", isInsert = true, isUpdate = true, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
@@ -68,22 +130,33 @@ public class ZKSysSetItem extends ZKBaseEntity<String, ZKSysSetItem> {
 	 */
 	@ZKColumn(name = "c_set_desc", isInsert = true, isUpdate = true, javaType = ZKJson.class, isQuery = false)
 	ZKJson setDesc;	
-	/**
-	 * 系统配置项条目，配置值；
-	 */
+	
+    /**
+     * 配置值类型：0-字符串；1-boolean 布尔值；2-整数；3-字符数组；4-数字数组；
+     */
+    @NotNull(message = "{zk.core.data.validation.notNull}")
+    @Range(min = 0, max = 9, message = "{zk.core.data.validation.rang.int}")
+    @ZKColumn(name = "c_value_type", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
+    Integer valueType;
+
+    /**
+     * 配置值：通用配置类型时，公司可以自定义配置值
+     */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
     @Length(min = 1, max = 256, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_value", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
 	String value;	
-	/**
-	 * 集团代码
-	 */
+	
+    /**
+     * 集团代码：仅公司专属配置类型时，有值
+     */
     @Length(min = 0, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_group_code", isInsert = true, isUpdate = true, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
 	String groupCode;	
-	/**
-	 * 公司代码
-	 */
+	
+    /**
+     * 公司代码：仅公司专属配置类型时，有值
+     */
     @Length(min = 0, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_compamy_code", isInsert = true, isUpdate = true, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
 	String compamyCode;	
@@ -97,15 +170,15 @@ public class ZKSysSetItem extends ZKBaseEntity<String, ZKSysSetItem> {
 	}
 	
 	/**
-	 * 配置项类型；0-平台配置；1-通用配置；2-公司专属配置；仅在公司专属配置下，才有公司和集团信息；仅通用配置，才会有公司自定义配置值	
-	 */	
+     * 配置项类型：0-平台配置；1-通用配置；2-公司专属配置；
+     */	
 	public Integer getType() {
 		return type;
 	}
 	
 	/**
-	 * 配置项类型；0-平台配置；1-通用配置；2-公司专属配置；仅在公司专属配置下，才有公司和集团信息；仅通用配置，才会有公司自定义配置值
-	 */	
+     * 配置项类型：0-平台配置；1-通用配置；2-公司专属配置；
+     */	
 	public void setType(Integer type) {
 		this.type = type;
 	}
@@ -122,16 +195,17 @@ public class ZKSysSetItem extends ZKBaseEntity<String, ZKSysSetItem> {
 	public void setName(ZKJson name) {
 		this.name = name;
 	}
-	/**
-	 * 配置项代码；全表唯一；	
-	 */	
+	
+    /**
+     * 配置项代码；组别下全表唯一；
+     */	
 	public String getCode() {
 		return code;
 	}
 	
 	/**
-	 * 配置项代码；全表唯一；
-	 */	
+     * 配置项代码；组别下全表唯一；
+     */	
 	public void setCode(String code) {
 		this.code = code;
 	}
@@ -148,42 +222,60 @@ public class ZKSysSetItem extends ZKBaseEntity<String, ZKSysSetItem> {
 	public void setSetDesc(ZKJson setDesc) {
 		this.setDesc = setDesc;
 	}
-	/**
-	 * 系统配置项条目，配置值；	
-	 */	
+	
+    /**
+     * @return valueType sa
+     */
+    public Integer getValueType() {
+        return valueType;
+    }
+
+    /**
+     * @param valueType
+     *            the valueType to set
+     */
+    public void setValueType(Integer valueType) {
+        this.valueType = valueType;
+    }
+
+    /**
+     * 配置值：通用配置类型时，公司可以自定义配置值
+     */	
 	public String getValue() {
 		return value;
 	}
 	
 	/**
-	 * 系统配置项条目，配置值；
-	 */	
+     * 配置值：通用配置类型时，公司可以自定义配置值
+     */	
 	public void setValue(String value) {
 		this.value = value;
 	}
-	/**
-	 * 集团代码	
-	 */	
+	
+    /**
+     * 集团代码：仅公司专属配置类型时，有值
+     */	
 	public String getGroupCode() {
 		return groupCode;
 	}
 	
 	/**
-	 * 集团代码
-	 */	
+     * 集团代码：仅公司专属配置类型时，有值
+     */	
 	public void setGroupCode(String groupCode) {
 		this.groupCode = groupCode;
 	}
-	/**
-	 * 公司代码	
-	 */	
+	
+    /**
+     * 公司代码：仅公司专属配置类型时，有值
+     */	
 	public String getCompamyCode() {
 		return compamyCode;
 	}
 	
 	/**
-	 * 公司代码
-	 */	
+     * 公司代码：仅公司专属配置类型时，有值
+     */	
 	public void setCompamyCode(String compamyCode) {
 		this.compamyCode = compamyCode;
 	}
@@ -196,4 +288,100 @@ public class ZKSysSetItem extends ZKBaseEntity<String, ZKSysSetItem> {
         return ZKIdUtils.genLongStringId();
     }
 	
+    /**
+     * 配置项组别ID
+     */
+    public String getCollectionId() {
+        return collectionId;
+    }
+
+    /**
+     * 配置项组别ID
+     */
+    public void setCollectionId(String collectionId) {
+        this.collectionId = collectionId;
+    }
+
+    /**
+     * 配置项组别代码
+     */
+    public String getCollectionCode() {
+        return collectionCode;
+    }
+
+    /**
+     * 配置项组别代码
+     */
+    public void setCollectionCode(String collectionCode) {
+        this.collectionCode = collectionCode;
+    }
+
+    // 查询辅助字段
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    String searchValue;
+
+    /**
+     * @return searchValue sa
+     */
+    public String getSearchValue() {
+        return searchValue;
+    }
+
+    /**
+     * @param searchValue
+     *            the searchValue to set
+     */
+    public void setSearchValue(String searchValue) {
+        this.searchValue = searchValue;
+    }
+
+    // 取 where 条件；实体定义可以定制；在 生成的 sql；注意：末尾加空格
+    @Override
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    public ZKDBQueryConditionWhere getZKDbWhere(ZKSqlConvert sqlConvert, ZKDBAnnotationProvider annotationProvider) {
+        ZKDBQueryConditionWhere where = super.getZKDbWhere(sqlConvert, annotationProvider);
+        ZKDBQueryConditionWhere sWhere = ZKDBQueryConditionWhere.asOr("(", ")",
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_name", "searchValue", String.class, null, false),
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_code", "searchValue", String.class, null, false));
+        where.put(ZKDBQueryConditionIfByClass.as(sWhere, "searchValue", String.class, false));
+        return where;
+    }
+
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    public boolean getBooleanValue() {
+        if (this.getValueType() == Key_ValueType.vBoolean) {
+            return ZKUtils.isTrue(this.getValue());
+        }
+        log.error("[>_<:20220511-1658-001] 配置项目值类型与要求不匹配；要求为：【{}】，实际为：【{}】", Key_ValueType.vInt, this.getValueType());
+        return false;
+    }
+
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    public String getStringValue() {
+        return this.getValue();
+    }
+
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    public int getIntValue() {
+        if (this.getValueType() == Key_ValueType.vInt) {
+            if (this.getValue() == null) {
+                return 0;
+            }
+            else {
+                return Integer.valueOf(this.getValue());
+            }
+        }
+        log.error("[>_<:20220511-1658-002] 配置项目值类型与要求不匹配；要求为：【{}】，实际为：【{}】", Key_ValueType.vInt, this.getValueType());
+        return -1;
+    }
 }

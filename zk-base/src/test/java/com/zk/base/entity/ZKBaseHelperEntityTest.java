@@ -113,4 +113,20 @@ public class ZKBaseHelperEntityTest {
         }
     }
 
+    @Test
+    public void testGetPkIDClass() {
+        try {
+            ZKBaseEntity<?, ?> helperEntityLong = new ZKBaseHelperEntityLong();
+
+            System.out.println("[^_^:20220504-1358-001] pkID class name: " + helperEntityLong.getPkIDClass().getName());
+            TestCase.assertNull(helperEntityLong.getPkId());
+            TestCase.assertTrue(helperEntityLong.getPkIDClass() == Long.class);
+            TestCase.assertFalse(helperEntityLong.getPkIDClass() == String.class);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            TestCase.assertTrue(false);
+        }
+    }
+
 }

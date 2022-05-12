@@ -294,30 +294,29 @@ public class ZKSecTicketManagerTest {
             String groupCode = "groupCode";
             String username = "username";
             String name = "name";
-            ZKSecPrincipal<String> userPrincipal = new ZKSecDefaultUserPrincipal<String>(groupCode, pkId, username,
-                    name, 0, "", 0, "");
+            ZKSecPrincipal<String> userPrincipal = new ZKSecDefaultUserPrincipal<String>(groupCode, groupCode, pkId,
+                    username, name, 0, "", 0, "");
 
             // 创建 appPrincipal 身份
             String devId = "app-2018-0713-0814-001";
             String udid = UUID.randomUUID().toString();
             long osType = ZKSecPrincipal.OS_TYPE.iOS;
-            ZKSecPrincipal<String> appPrincipal = new ZKSecDefaultDevPrincipal<String>(groupCode, pkId, devId, "",
-                    osType, udid, 0, "");
+            ZKSecPrincipal<String> appPrincipal = new ZKSecDefaultDevPrincipal<String>(groupCode, groupCode, pkId,
+                    devId, "", osType, udid, 0, "");
 
             // 创建 userPrincipalOther身份
             String pkIdOther = "pk-2018-0713-0814-001-Other";
             String usernameOther = "usernameOther";
             String nameOther = "nameOther";
-            ZKSecPrincipal<String> userPrincipalOther = new ZKSecDefaultUserPrincipal<String>(groupCode, pkIdOther,
-                    usernameOther, nameOther, 0, "", 0, "");
+            ZKSecPrincipal<String> userPrincipalOther = new ZKSecDefaultUserPrincipal<String>(groupCode, groupCode,
+                    pkIdOther, usernameOther, nameOther, 0, "", 0, "");
 
             // 创建 appPrincipalOther 身份
             String appIdOther = "app-2018-0713-0814-001-Other";
             String udidOther = UUID.randomUUID().toString();
             long osTypeOther = ZKSecPrincipal.OS_TYPE.Android;
-            ZKSecPrincipal<String> appPrincipalOther = new ZKSecDefaultDevPrincipal<String>(pkIdOther, appIdOther,
-                    groupCode,
-                    udidOther, osTypeOther, "", 0, "");
+            ZKSecPrincipal<String> appPrincipalOther = new ZKSecDefaultDevPrincipal<String>(pkIdOther, pkIdOther,
+                    appIdOther, groupCode, udidOther, osTypeOther, "", 0, "");
 
             /*** 创建令牌 */
             // 创建一个拥有 userPrincipal身份 与 appPrincipal身份 的令牌

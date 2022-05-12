@@ -18,6 +18,9 @@
 */
 package com.zk.security.realm;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.zk.security.authz.ZKSecAuthorizationInfo;
 import com.zk.security.authz.ZKSecAuthorizationInfoStore;
 import com.zk.security.authz.support.ticket.ZKSecTicketAuthorizationInfoStore;
@@ -32,6 +35,8 @@ import com.zk.security.utils.ZKSecSecurityUtils;
 * @version 1.0 
 */
 public abstract class ZKSecAbstractRealm extends ZKSecNameRealm {
+
+    protected Logger log = LoggerFactory.getLogger(getClass());
 
     ZKSecAuthorizationInfoStore authorizationInfoStore;
 
@@ -76,7 +81,7 @@ public abstract class ZKSecAbstractRealm extends ZKSecNameRealm {
      * 
      * @param token
      * @return
-     * @throws org.apache.http.auth.AuthenticationException
+     * @throws com.zk.security.exception.ZKSecCodeException
      */
     protected abstract ZKSecPrincipalCollection doAuthentication(ZKSecAuthenticationToken authcToken);
 
@@ -109,7 +114,7 @@ public abstract class ZKSecAbstractRealm extends ZKSecNameRealm {
     public abstract ZKSecAuthorizationInfo doGetZKSecAuthorizationInfo(ZKSecPrincipalCollection principalCollection);
 
     /**
-     * 鉴权，授权
+     * 鉴权，授权; 暂未启用
      * 
      * @param principalCollection
      *            身份
@@ -133,34 +138,13 @@ public abstract class ZKSecAbstractRealm extends ZKSecNameRealm {
         ZKSecAuthorizationInfo authorizationInfo = this.getZKSecAuthorizationInfo(principalCollection);
         boolean b = false;
         if (authorizationInfo != null) {
-            // 个人权限
-            if (!b && authorizationInfo.getPersonalApiCodes() != null) {
-                b = authorizationInfo.getPersonalApiCodes().contains(apiCode);
+            // 鉴定是否拥有权限代码
+            if (!b && authorizationInfo.getApiCodes() != null) {
+                b = authorizationInfo.getApiCodes().contains(apiCode);
             }
-            // 用户职级权限
-            if (!b && authorizationInfo.getUserGradeApiCodes() != null) {
-                b = authorizationInfo.getUserGradeApiCodes().contains(apiCode);
-            }
-            // 用户组权限
-            if (!b && authorizationInfo.getUserGroupApiCodes() != null) {
-                b = authorizationInfo.getUserGroupApiCodes().contains(apiCode);
-            }
-            // 用户类型权限
-            if (!b && authorizationInfo.getUserTypeApiCodes() != null) {
-                b = authorizationInfo.getUserTypeApiCodes().contains(apiCode);
-            }
-            // 岗位权限
-            if (!b && authorizationInfo.getPositionApiCodes() != null) {
-                b = authorizationInfo.getPositionApiCodes().contains(apiCode);
-            }
-            // 部门权限
-            if (!b && authorizationInfo.getDepartmentApiCodes() != null) {
-                b = authorizationInfo.getDepartmentApiCodes().contains(apiCode);
-            }
-            // 公司权限
-            if (!b && authorizationInfo.getCompanyApiCodes() != null) {
-                b = authorizationInfo.getCompanyApiCodes().contains(apiCode);
-            }
+//            if(!b && authorizationInfo.getAuthCodes() != null) {
+//                b = authorizationInfo.getAuthCodes().contains(apiCode);
+//            }
         }
         if (!b) {
             return this.doCheckApiCode(principalCollection, apiCode);

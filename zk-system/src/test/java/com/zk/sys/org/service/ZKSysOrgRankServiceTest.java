@@ -8,11 +8,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import junit.framework.TestCase;
-
 import com.zk.base.entity.ZKBaseEntity;
-import com.zk.sys.org.entity.ZKSysOrgRank;
 import com.zk.sys.helper.ZKSysTestHelper;
+import com.zk.sys.org.entity.ZKSysOrgRank;
+
+import junit.framework.TestCase;
 
 /**
  * ZKSysOrgRankServiceTest
@@ -21,9 +21,12 @@ import com.zk.sys.helper.ZKSysTestHelper;
  */
 public class ZKSysOrgRankServiceTest {
 
-	ZKSysOrgRank makeNew() {
+    public static ZKSysOrgRank makeNew() {
         ZKSysOrgRank e = new ZKSysOrgRank();
-        // e.set
+        e.setCode("t-code");
+        e.setGroupCode("t-groupCode");
+        e.setCompanyId("-1");
+        e.setCompanyCode("t-companyCode");
         return e;
     }
 	
@@ -39,7 +42,7 @@ public class ZKSysOrgRankServiceTest {
             int result = 0;
 
             /*** 保存 ***/
-            e = this.makeNew();
+            e = makeNew();
             result = 0;
             result = s.save(e);
             TestCase.assertEquals(1, result);

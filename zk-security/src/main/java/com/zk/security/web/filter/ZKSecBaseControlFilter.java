@@ -48,16 +48,17 @@ public abstract class ZKSecBaseControlFilter extends ZKSecAccessControlFilter {
         }
         catch(ZKCodeException e) {
             resMsg = ZKMsgRes.as(e);
-
+            e.printStackTrace();
         }
         catch(ZKMsgException e) {
             resMsg = ZKMsgRes.as(e);
-
+            e.printStackTrace();
         }
         catch(Exception e) {
             resMsg = new ZKMsgRes();
             resMsg.setCode("zk.1");
             resMsg.setData(e.getMessage());
+            e.printStackTrace();
         }
         String resStr = ZKJsonUtils.writeObjectJson(resMsg);
         logger.error("[>_<: 20171201-1229-001] err msg:{}", resStr);

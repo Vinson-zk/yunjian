@@ -26,19 +26,10 @@ import ${zkModule.packagePrefix}<#if zkTableInfo.subModuleName??&zkTableInfo.sub
 public class ${zkTableInfo.className}Service extends ZKBaseTreeService<${zkTableInfo.pkAttrType}, ${zkTableInfo.className}, ${zkTableInfo.className}Dao> {
 
 	/**
-     * 树形查询； 不分页
+     * 执行树形查询；
      */
-    public List<${zkTableInfo.className}> findTree(${zkTableInfo.className} ${zkTableInfo.funcName?uncap_first}) {
+    public List<${zkTableInfo.className}> doFindTree(${zkTableInfo.className} ${zkTableInfo.funcName?uncap_first}) {
         return this.dao.findTree(${zkTableInfo.funcName?uncap_first});
-    }
-
-	/**
-     * 树形查询；分页
-     */
-    public ZKPage<${zkTableInfo.className}> findTree(ZKPage<${zkTableInfo.className}> page, ${zkTableInfo.className} ${zkTableInfo.funcName?uncap_first}) {
-        ${zkTableInfo.funcName?uncap_first}.setPage(page);
-        page.setResult(dao.findTree(${zkTableInfo.funcName?uncap_first}));
-        return page;
     }
 
 	/**

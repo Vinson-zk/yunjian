@@ -44,8 +44,10 @@ public abstract class ZKSecAbstractPrincipal<ID> implements ZKSecPrincipal<ID> {
     // 类型
     int type;
 
-    // 组织代码
-    String groupCode;
+    String companyId;
+
+    // 公司代码
+    String companyCode;
 
     /**
      * 终端设备类型
@@ -69,11 +71,13 @@ public abstract class ZKSecAbstractPrincipal<ID> implements ZKSecPrincipal<ID> {
      */
     String appId;
 
-    public ZKSecAbstractPrincipal(String groupCode, ID pkId, int type, long osType, String udid, long appType,
+    public ZKSecAbstractPrincipal(String companyId, String companyCode, ID pkId, int type, long osType, String udid,
+            long appType,
             String appId) {
         this.pkId = pkId;
         this.type = type;
-        this.groupCode = groupCode;
+        this.companyId = companyId;
+        this.companyCode = companyCode;
         this.osType = osType;
         this.udid = udid;
         this.osType = osType;
@@ -110,8 +114,15 @@ public abstract class ZKSecAbstractPrincipal<ID> implements ZKSecPrincipal<ID> {
     /**
      * 组织代码
      */
-    public String getGroupCode() {
-        return groupCode;
+    public String getCompanyCode() {
+        return companyCode;
+    }
+
+    /**
+     * @return 公司ID
+     */
+    public String getCompanyId() {
+        return companyId;
     }
 
     /**

@@ -121,7 +121,7 @@ class CInit${zkTableInfo.funcName}Grid extends React.Component {
             _this.props.dispatch({
                 type: "m${zkTableInfo.funcName}/del${zkTableInfo.funcName}", payload: { pkId: pkIds },
                 callback: () => {
-                    _this.props.dispatch({ type: 'm${zkTableInfo.funcName}/find${zkTableInfo.funcName}s', filter: _this.props.m${zkTableInfo.funcName}.filter, callback: e => { } })
+                    _this.props.dispatch({ type: 'm${zkTableInfo.funcName}/find${zkTableInfo.funcName}sTree', filter: _this.props.m${zkTableInfo.funcName}.filter, pagination: m${zkTableInfo.funcName}.pagination, callback: e => { } })
                 }
             });
 		};
@@ -153,7 +153,7 @@ class CInit${zkTableInfo.funcName}Grid extends React.Component {
         this.props.dispatch({ 
         	type: 'm${zkTableInfo.funcName}/find${zkTableInfo.funcName}s', 
             filter: this.props.m${zkTableInfo.funcName}.filter,
-            page: pagination,
+            pagination: pagination,
             sorter: sorter
         });
     }
@@ -165,7 +165,7 @@ class CInit${zkTableInfo.funcName}Grid extends React.Component {
 
 		let tableColumns = f_getTableColumns(this.f_edit, this.f_detail, this.f_delete, intl, lang);
 
-		let gridLoading = loading.effects['m${zkTableInfo.funcName}/find${zkTableInfo.funcName}s'];
+		let gridLoading = loading.effects['m${zkTableInfo.funcName}/find${zkTableInfo.funcName}sTree'];
 		return (
 			<ZKScrollTable loading = { gridLoading }
 				autoHeight = {true}

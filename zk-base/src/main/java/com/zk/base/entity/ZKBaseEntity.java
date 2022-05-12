@@ -19,14 +19,14 @@
 package com.zk.base.entity;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.TypeVariable;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zk.base.commons.ZKUserUtils;
 import com.zk.core.commons.data.ZKJson;
+import com.zk.core.utils.ZKClassUtils;
 import com.zk.core.utils.ZKDateUtils;
 import com.zk.core.utils.ZKIdUtils;
 import com.zk.db.annotation.ZKColumn;
@@ -51,6 +52,11 @@ public abstract class ZKBaseEntity<ID extends Serializable, E extends ZKBaseEnti
     @Transient
     @XmlTransient
     public static final String timezone = "GMT+8";
+
+    /**
+     * 日志对象
+     */
+    protected Logger log = LoggerFactory.getLogger(getClass());
 
     /**
      * 
@@ -474,7 +480,8 @@ public abstract class ZKBaseEntity<ID extends Serializable, E extends ZKBaseEnti
     @XmlTransient
     @JsonIgnore
     public Class<ID> getPkIDClass() {
-        return (Class<ID>) this.getSuperclassByName("ID");
+        return (Class<ID>) ZKClassUtils.getSuperclassByName(ZKBaseEntity.class, this.getClass(), "ID");
+//        return (Class<ID>) this.getSuperclassByName("ID");
 //        return (Class<ID>) (((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
     }
 
@@ -492,15 +499,26 @@ public abstract class ZKBaseEntity<ID extends Serializable, E extends ZKBaseEnti
         this.createUserId = entity.createUserId;
     }
 
-    public Class<?> getSuperclassByName(String classTypeName) {
-        TypeVariable<?>[] ts = ZKBaseEntity.class.getTypeParameters();
-        for (int i = 0; i < ts.length; ++i) {
-            if (classTypeName.equals(ts[i].getName())) {
-                ParameterizedType pt = ((ParameterizedType) this.getClass().getGenericSuperclass());
-                return (Class<?>) pt.getActualTypeArguments()[0];
-            }
-        }
-        return null;
-    }
+//    /**
+//     * 根据 泛弄 类名取 Class<?>
+//    *
+//    * @Title: getSuperclassByName 
+//    * @Description: TODO(simple description this method what to do.) 
+//    * @author Vinson 
+//    * @date May 4, 2022 11:44:02 AM 
+//    * @param classTypeName
+//    * @return
+//    * @return Class<?>
+//     */
+//    public Class<?> getSuperclassByName(String classTypeName) {
+//        TypeVariable<?>[] ts = ZKBaseEntity.class.getTypeParameters();
+//        for (int i = 0; i < ts.length; ++i) {
+//            if (classTypeName.equals(ts[i].getName())) {
+//                ParameterizedType pt = ((ParameterizedType) this.getClass().getGenericSuperclass());
+//                return (Class<?>) pt.getActualTypeArguments()[0];
+//            }
+//        }
+//        return null;
+//    }
 
 }

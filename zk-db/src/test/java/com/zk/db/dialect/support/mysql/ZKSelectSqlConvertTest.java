@@ -37,7 +37,7 @@ import com.zk.db.commons.ZKDBQueryType;
 import com.zk.db.helper.ZKDBTestConfig;
 import com.zk.db.helper.entity.ZKDBEntity;
 import com.zk.db.mybatis.commons.ZKDBQueryConditionCol;
-import com.zk.db.mybatis.commons.ZKDBQueryConditionIf;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionIfByClass;
 import com.zk.db.mybatis.commons.ZKDBQueryConditionWhereTrim;
 import com.zk.db.mybatis.mysql.ZKMysqlSqlConvert;
 import com.zk.db.mybatis.mysql.ZKSelectSqlConvert;
@@ -177,10 +177,10 @@ public class ZKSelectSqlConvertTest {
 
             System.out.println("===============================================");
             where = ZKDBQueryConditionWhereTrim.asAnd(
-                    ZKDBQueryConditionIf.as(
+                    ZKDBQueryConditionIfByClass.as(
                             ZKDBQueryConditionCol.as(ZKDBQueryType.EQ, "c_id", "id", String.class, null, true), "id",
                             String.class, false),
-                    ZKDBQueryConditionIf.as(
+                    ZKDBQueryConditionIfByClass.as(
                             ZKDBQueryConditionCol.as(ZKDBQueryType.NIN, "c_type", "types", Long[].class, null, true),
                             "types", Long[].class, false));
             where.put(ZKDBQueryConditionWhereTrim.asOr("(", ")", where.getConditions().get(0),

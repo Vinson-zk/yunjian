@@ -120,6 +120,7 @@ public class ZKSysResFuncApiReqChannelService
      *            API功能接口
      * @return int
      */
+    @Transactional(readOnly = false)
     public ZKSysResFuncApiReqChannel save(ZKSysResRequestChannel channel, ZKSysResFuncApi funcApi) {
         ZKSysResFuncApiReqChannel funcApiReqChannel = new ZKSysResFuncApiReqChannel(channel.getPkId(),
                 funcApi.getPkId());
@@ -132,7 +133,7 @@ public class ZKSysResFuncApiReqChannelService
             }
             else {
                 funcApiReqChannel.setPkId(old.getPkId());
-                funcApiReqChannel.setDelFlag(ZKSysResFuncApi.DEL_FLAG.normal);
+                funcApiReqChannel.setDelFlag(ZKSysResFuncApiReqChannel.DEL_FLAG.normal);
             }
         }
         // 保存关系

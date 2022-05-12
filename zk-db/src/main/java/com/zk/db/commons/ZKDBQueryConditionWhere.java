@@ -36,36 +36,30 @@ public class ZKDBQueryConditionWhere implements ZKDBQueryCondition {
         return sb.toString();
     }
     public void toQueryCondition(ZKSqlConvert convert, StringBuffer sb, String tableAlias) {
-        toQueryCondition(convert, sb, tableAlias, null);
+        toQueryCondition(convert, sb, tableAlias, null, false);
     }
 
     @Override
-    public void toQueryCondition(ZKSqlConvert convert, StringBuffer sb, String tableAlias,
-            ZKDBConditionLogicDispose funcQueryLogicDispose) {
+    public void toQueryCondition(ZKSqlConvert convert, StringBuffer sb, String tableAlias, ZKDBQueryLogic queryLogic,
+            boolean isInserQueryLogic) {
         if (!this.getConditions().isEmpty()) {
-            if (funcQueryLogicDispose != null) {
-                funcQueryLogicDispose.run();
+            if (isInserQueryLogic && queryLogic != null) {
+                sb.append(queryLogic.getEsc());
             }
             sb.append(this.getPrefix());
-            this.toQueryConditionValue(convert, sb, tableAlias, funcQueryLogicDispose);
+            this.toQueryConditionValue(convert, sb, tableAlias);
             sb.append(this.getSuffix());
         }
     }
 
-    protected void toQueryConditionValue(ZKSqlConvert convert, StringBuffer sb, String tableAlias,
-            ZKDBConditionLogicDispose funcQueryLogicDispose) {
+    protected void toQueryConditionValue(ZKSqlConvert convert, StringBuffer sb, String tableAlias) {
         if (!this.getConditions().isEmpty()) {
             Iterator<ZKDBQueryCondition> iterator = conditions.iterator();
             ZKDBQueryCondition condition = iterator.next();
-            condition.toQueryCondition(convert, sb, tableAlias, () -> {
-                return this.queryLogic;
-            });
+            condition.toQueryCondition(convert, sb, tableAlias, this.getQueryLogic(), false);
             while (iterator.hasNext()) {
                 condition = iterator.next();
-                condition.toQueryCondition(convert, sb, tableAlias, () -> {
-                    sb.append(queryLogic.getEsc());
-                    return this.queryLogic;
-                });
+                condition.toQueryCondition(convert, sb, tableAlias, this.getQueryLogic(), true);
             }
         }
     }

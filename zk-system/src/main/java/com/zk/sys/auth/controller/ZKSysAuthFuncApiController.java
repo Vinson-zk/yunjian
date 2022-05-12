@@ -3,23 +3,24 @@
  */
 package com.zk.sys.auth.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.zk.base.controller.ZKBaseController;
-import com.zk.core.commons.data.ZKPage;
 import com.zk.core.web.ZKMsgRes;
-
-import com.zk.sys.auth.entity.ZKSysAuthFuncApi;
-import com.zk.sys.auth.service.ZKSysAuthFuncApiService;       
+import com.zk.sys.auth.entity.ZKSysAuthDefined;
+import com.zk.sys.auth.service.ZKSysAuthDefinedService;
+import com.zk.sys.auth.service.ZKSysAuthFuncApiService;
+import com.zk.sys.res.entity.ZKSysResFuncApi;
 
 /**
  * ZKSysAuthFuncApiController
@@ -27,45 +28,33 @@ import com.zk.sys.auth.service.ZKSysAuthFuncApiService;
  * @version 
  */
 @RestController
-@RequestMapping(value = "${zk.path.admin}/${zk.path.sys}/auth/sysAuthFuncApi")
+@RequestMapping(value = "${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/auth/sysAuthFuncApi")
 public class ZKSysAuthFuncApiController extends ZKBaseController {
 
 	@Autowired
 	private ZKSysAuthFuncApiService sysAuthFuncApiService;
 	
-	// 编辑
-	@RequestMapping(value="sysAuthFuncApi", method = RequestMethod.POST)
-	public ZKMsgRes sysAuthFuncApiPost(@RequestBody ZKSysAuthFuncApi sysAuthFuncApi){
-		this.sysAuthFuncApiService.save(sysAuthFuncApi);
-        return ZKMsgRes.asOk(sysAuthFuncApi);
-	}
-	
-	// 查询详情
-	@RequestMapping(value="sysAuthFuncApi", method = RequestMethod.GET)
-	public ZKMsgRes sysAuthFuncApiGet(@RequestParam("pkId") String pkId){
-		ZKSysAuthFuncApi sysAuthFuncApi = this.sysAuthFuncApiService.get(new ZKSysAuthFuncApi(pkId));
-        return ZKMsgRes.asOk(sysAuthFuncApi);
-	}
-	
-	// 分页查询 
-	@RequestMapping(value="sysAuthFuncApisPage", method = RequestMethod.GET)
-	public ZKMsgRes sysAuthFuncApisPageGet(ZKSysAuthFuncApi sysAuthFuncApi, HttpServletRequest hReq, HttpServletResponse hRes){
-		ZKPage<ZKSysAuthFuncApi> resPage = ZKPage.asPage(hReq);
-        resPage = this.sysAuthFuncApiService.findPage(resPage, sysAuthFuncApi);
-        return ZKMsgRes.asOk(resPage);
-	}
-	
-	// 批量删除
-	@RequestMapping(value="sysAuthFuncApi", method = RequestMethod.DELETE)
-	@ResponseBody
-	public ZKMsgRes sysAuthFuncApiDel(@RequestParam("pkId[]") String[] pkIds){
-		 int count = 0;
-        if (pkIds != null && pkIds.length > 0) {
-            for (String pkId : pkIds) {
-                count += this.sysAuthFuncApiService.del(new ZKSysAuthFuncApi(pkId));
-            }
-        }
-        return ZKMsgRes.asOk(count);
-	}
+    @Autowired
+    private ZKSysAuthDefinedService sysAuthDefinedService;
+
+    // 给权限代码分配 Api 接口
+    @RequestMapping(value = "setRelationByAuth/{authId}", method = RequestMethod.POST)
+    public ZKMsgRes setRelationByAuth(@PathVariable(value = "authId") String authId,
+            @RequestBody List<ZKSysResFuncApi> addFuncApis, HttpServletRequest hReq) {
+        ZKSysAuthDefined authDefined = sysAuthDefinedService.get(authId);
+        return ZKMsgRes.asOk(this.sysAuthFuncApiService.addRelationByAuthDefined(authDefined, addFuncApis, null));
+    }
+
+    // 查询权限代码拥有的Api 接口ID
+    @RequestMapping(value = "findApiIdsByAuthId", method = RequestMethod.GET)
+    public ZKMsgRes findApiIdsByAuthId(@RequestParam("authId") String authId) {
+        return ZKMsgRes.asOk(this.sysAuthFuncApiService.findApiIdsByAuthId(authId));
+    }
+
+//    // 查询权限代码拥有的Api 接口Code
+//    @RequestMapping(value = "findApiCodesByAuthId", method = RequestMethod.GET)
+//    public ZKMsgRes findApiCodesByAuthId(@RequestParam("authId") String authId) {
+//        return ZKMsgRes.asOk(this.sysAuthFuncApiService.findApiCodesByAuthId(authId));
+//    }
 
 }

@@ -141,9 +141,19 @@ public class ZKMysqlSqlConvert implements ZKSqlMybatisConvert {
     }
 
     @Override
-    public void appendScriptQueryConditionIf(StringBuffer sb, String attrName, Class<?> javaClassz, boolean isEmpty,
+    public void appendScriptQueryConditionIfByClass(StringBuffer sb, String attrName, Class<?> javaClassz,
+            boolean isEmpty,
             ZKDBConditionLogicDispose funcQueryLogicDispose) {
-        ZKSelectSqlConvert.appendScriptQueryConditionIf(sb, attrName, javaClassz, isEmpty, funcQueryLogicDispose);
+        ZKSelectSqlConvert.appendScriptQueryConditionIfByClass(sb, attrName, javaClassz, isEmpty,
+                funcQueryLogicDispose);
+    }
+
+    @Override
+    public void appendScriptQueryConditionIf(ZKDBQueryLogic logic, ZKDBConditionLogicDispose funcQueryLogicDispose,
+            StringBuffer sb, String attrName, Boolean isNull, Boolean isTrue, Boolean isEmpty, Boolean lengthIs0,
+            Boolean valueIs0) {
+        ZKSelectSqlConvert.appendScriptQueryConditionIf(logic, funcQueryLogicDispose, sb, attrName, isNull, isTrue,
+                isEmpty, lengthIs0, valueIs0);
     }
 
 }

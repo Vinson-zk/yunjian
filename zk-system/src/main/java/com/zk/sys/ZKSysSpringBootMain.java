@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zk.sys.configuration.ZKSysConfiguration;
 import com.zk.sys.configuration.ZKSysMvcConfiguration;
+import com.zk.sys.configuration.ZKSysRedisConfiguration;
+import com.zk.sys.configuration.ZKSysSecConfiguration;
 
 /** 
 * Copyright (c) 2004-2020 ZK-Vinson Technologies, Inc.
@@ -55,10 +57,11 @@ import com.zk.sys.configuration.ZKSysMvcConfiguration;
 //@ComponentScan(basePackages = { "com.zk.server.central.filter" })
 //@ServletComponentScan(basePackages = { "com.zk.server.central.filter" })
 @ImportAutoConfiguration(classes = { 
-        ZKSysConfiguration.class
-//        , ZKMongoAutoConfiguration.class
-        , ZKSysMvcConfiguration.class
-//        , ZKSysShiroConfiguration.class 
+        ZKSysConfiguration.class,
+        ZKSysMvcConfiguration.class, 
+        ZKSysSecConfiguration.class,
+//        ZKMongoAutoConfiguration.class,
+        ZKSysRedisConfiguration.class
 })
 @PropertySource(encoding = "UTF-8", value = { "classpath:zk.sys.jdbc.properties", "classpath:zk.sys.mongo.properties" })
 //@AutoConfigureOrder(value = Ordered.HIGHEST_PRECEDENCE)

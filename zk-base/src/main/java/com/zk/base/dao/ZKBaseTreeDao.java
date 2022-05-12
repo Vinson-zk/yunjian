@@ -34,7 +34,7 @@ import com.zk.base.myBaits.provider.ZKMyBatisTreeSqlProvider;
 */
 public interface ZKBaseTreeDao<ID extends Serializable, E extends ZKBaseTreeEntity<ID, E>> extends ZKBaseDao<ID, E> {
     /**
-     * 不分层级查询
+     * 不分层级查询; 此方法还未达到预期效果
      *
      * @Title: findTreeNoLevel
      * @Description: TODO(simple description this method what to do.)

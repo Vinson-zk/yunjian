@@ -20,7 +20,7 @@ package com.zk.base.helper.entity;
 
 import com.zk.base.entity.ZKBaseEntity;
 import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
 
 /** 
 * @ClassName: ZKBaseHelperEntityLong 

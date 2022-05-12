@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import com.zk.cache.ZKCache;
 import com.zk.cache.ZKCacheManager;
+import com.zk.core.utils.ZKEnvironmentUtils;
 
 /** 
 * @ClassName: ZKCacheUtils 
@@ -33,6 +34,11 @@ import com.zk.cache.ZKCacheManager;
 * @version 1.0 
 */
 public class ZKCacheUtils {
+
+    /**
+     * 日志对象
+     */
+    protected static Logger log = LoggerFactory.getLogger(ZKCacheUtils.class);
 
     private static final Logger logger = LoggerFactory.getLogger(ZKCacheUtils.class);
 
@@ -44,6 +50,16 @@ public class ZKCacheUtils {
      * @return cacheManager
      */
     public static ZKCacheManager<?> getCacheManager() {
+        if (cacheManager == null) {
+            try {
+                cacheManager = ZKEnvironmentUtils.getApplicationContext().getBean(ZKCacheManager.class);
+            }
+            catch(Exception e) {
+                cacheManager = null;
+                log.error("[20220510-0915-001] 设置缓存管理器失败");
+                throw e;
+            }
+        }
         return cacheManager;
     }
 

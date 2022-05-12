@@ -3,21 +3,29 @@
  */
 package com.zk.sys.org.entity;
 
-import java.lang.String;
-import com.zk.core.commons.data.ZKJson;
-import com.zk.core.utils.ZKIdUtils;
-import com.zk.db.commons.ZKDBQueryType;
-
-import org.hibernate.validator.constraints.Range;
-import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.data.annotation.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.zk.base.commons.ZKTreeSqlProvider;
 import com.zk.base.entity.ZKBaseTreeEntity;
-import com.zk.db.annotation.ZKTable;
+import com.zk.core.commons.data.ZKJson;
+import com.zk.core.utils.ZKIdUtils;
 import com.zk.db.annotation.ZKColumn;
+import com.zk.db.annotation.ZKDBAnnotationProvider;
+import com.zk.db.annotation.ZKTable;
+import com.zk.db.commons.ZKDBQueryConditionWhere;
+import com.zk.db.commons.ZKDBQueryType;
+import com.zk.db.commons.ZKSqlConvert;
 import com.zk.db.commons.ZKSqlConvertDelegating;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionCol;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionIfByClass;
 
 /**
  * 部门表
@@ -44,8 +52,24 @@ public class ZKSysOrgDept extends ZKBaseTreeEntity<String, ZKSysOrgDept> {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * 集团代码
-	 */
+     * 部门状态；0-正常；1-撤销；
+     */
+    public static interface KeyStatus {
+        /**
+         * 0-正常
+         */
+        public static final int normal = 0;
+
+        /**
+         * 1-撤销
+         */
+        public static final int revoke = 1;
+
+    }
+
+    /**
+     * 集团代码
+     */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_group_code", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
@@ -107,9 +131,10 @@ public class ZKSysOrgDept extends ZKBaseTreeEntity<String, ZKSysOrgDept> {
 	 * 部门状态；0-正常；1-撤销；
 	 */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
-	@Range(min = 0, max = 999999999, message = "{zk.core.data.validation.rang.int}")
+    @Range(min = 0, max = 9, message = "{zk.core.data.validation.rang.int}")
 	@ZKColumn(name = "c_status", isInsert = true, isUpdate = true, javaType = Long.class, isQuery = true, queryType = ZKDBQueryType.EQ)
-	Long status;	
+    Integer status;
+
 	/**
 	 * 部门地址
 	 */
@@ -120,9 +145,10 @@ public class ZKSysOrgDept extends ZKBaseTreeEntity<String, ZKSysOrgDept> {
 	 */
 	@ZKColumn(name = "c_short_desc", isInsert = true, isUpdate = true, javaType = ZKJson.class, isQuery = false)
 	ZKJson shortDesc;	
-	/**
-	 * 公司来源代码；与来源ID标识唯一；
-	 */
+	
+    /**
+     * 来源代码；与来源ID标识唯一；
+     */
 	@Length(min = 0, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_source_code", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
 	String sourceCode;	
@@ -141,6 +167,11 @@ public class ZKSysOrgDept extends ZKBaseTreeEntity<String, ZKSysOrgDept> {
 		super(pkId);
 	}
 	
+    /////////////////////////////// @XmlTransient
+    @Transient
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
+    protected ZKSysOrgCompany company;
+
 	/**
 	 * 集团代码	
 	 */	
@@ -261,14 +292,14 @@ public class ZKSysOrgDept extends ZKBaseTreeEntity<String, ZKSysOrgDept> {
 	/**
 	 * 部门状态；0-正常；1-撤销；	
 	 */	
-	public Long getStatus() {
+    public Integer getStatus() {
 		return status;
 	}
 	
 	/**
 	 * 部门状态；0-正常；1-撤销；
 	 */	
-	public void setStatus(Long status) {
+    public void setStatus(Integer status) {
 		this.status = status;
 	}
 	/**
@@ -330,6 +361,56 @@ public class ZKSysOrgDept extends ZKBaseTreeEntity<String, ZKSysOrgDept> {
 	@Override
 	protected String genId() {
         return ZKIdUtils.genLongStringId();
+    }
+
+    /**
+     * @return company sa
+     */
+    public ZKSysOrgCompany getCompany() {
+        return company;
+    }
+
+    /**
+     * @param company
+     *            the company to set
+     */
+    public void setCompany(ZKSysOrgCompany company) {
+        this.company = company;
+    }
+
+    // 查询辅助字段
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    String searchValue;
+
+    /**
+     * @return searchValue sa
+     */
+    public String getSearchValue() {
+        return searchValue;
+    }
+
+    /**
+     * @param searchValue
+     *            the searchValue to set
+     */
+    public void setSearchValue(String searchValue) {
+        this.searchValue = searchValue;
+    }
+
+    // 取 where 条件；实体定义可以定制；在 生成的 sql；注意：末尾加空格
+    @Override
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    public ZKDBQueryConditionWhere getZKDbWhere(ZKSqlConvert sqlConvert, ZKDBAnnotationProvider annotationProvider) {
+        ZKDBQueryConditionWhere where = super.getZKDbWhere(sqlConvert, annotationProvider);
+        ZKDBQueryConditionWhere sWhere = ZKDBQueryConditionWhere.asOr("(", ")",
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_name", "searchValue", String.class, null, false),
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_code", "searchValue", String.class, null, false));
+        where.put(ZKDBQueryConditionIfByClass.as(sWhere, "searchValue", String.class, false));
+        return where;
     }
 	
 }

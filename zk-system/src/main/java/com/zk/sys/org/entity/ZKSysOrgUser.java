@@ -3,25 +3,27 @@
  */
 package com.zk.sys.org.entity;
 
-import com.zk.core.utils.ZKDateUtils;
 import java.util.Date;
-import java.lang.String;
-import com.zk.core.commons.data.ZKJson;
-import com.zk.core.utils.ZKIdUtils;
-import com.zk.db.commons.ZKDBQueryType;
 
-import org.hibernate.validator.constraints.Range;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
+
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.data.annotation.Transient;
 
-import com.zk.db.annotation.ZKTable;
-import com.zk.db.annotation.ZKColumn;
-import com.zk.db.commons.ZKSqlConvertDelegating;
-import com.zk.db.commons.ZKSqlProvider;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.zk.base.entity.ZKBaseEntity;
+import com.zk.core.commons.data.ZKJson;
+import com.zk.core.utils.ZKDateUtils;
+import com.zk.core.utils.ZKIdUtils;
+import com.zk.db.annotation.ZKColumn;
+import com.zk.db.annotation.ZKTable;
+import com.zk.db.commons.ZKDBQueryType;
+import com.zk.db.commons.ZKSqlConvertDelegating;
+import com.zk.db.mybatis.commons.ZKSqlProvider;
+import com.zk.framwwork.security.userdetails.ZKUser;
 
 /**
  * 用户表
@@ -29,7 +31,7 @@ import com.zk.base.entity.ZKBaseEntity;
  * @version 
  */
 @ZKTable(name = "t_sys_org_user", alias = "sysOrgUser", orderBy = " c_create_date ASC ")
-public class ZKSysOrgUser extends ZKBaseEntity<String, ZKSysOrgUser> {
+public class ZKSysOrgUser extends ZKBaseEntity<String, ZKSysOrgUser> implements ZKUser<String> {
 	
 	static ZKSqlProvider sqlProvider;
 	
@@ -46,6 +48,46 @@ public class ZKSysOrgUser extends ZKBaseEntity<String, ZKSysOrgUser> {
     }
     
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 用户状态；0-正常; 1-禁用; 2-离职; 3-离职中;
+     */
+    public static interface KeyStatus {
+        /**
+         * 0-正常
+         */
+        public static final int normal = 0;
+
+        /**
+         * 1-撤销
+         */
+        public static final int disabled = 1;
+
+        /**
+         * 2-离职
+         */
+        public static final int exit = 2;
+
+        /**
+         * 3-离职中
+         */
+        public static final int exiting = 3;
+    }
+
+    /**
+     * 密码状态；0-系统密码；1-用户密码；
+     */
+    public static interface KeyPwdStatus {
+        /**
+         * 0-系统密码
+         */
+        public static final int systemPwd = 0;
+
+        /**
+         * 1-用户密码
+         */
+        public static final int userPwd = 1;
+    }
 	
 	/**
 	 * 集团代码
@@ -104,9 +146,10 @@ public class ZKSysOrgUser extends ZKBaseEntity<String, ZKSysOrgUser> {
 	@Length(min = 0, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_dept_code", isInsert = true, isUpdate = true, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.EQ)
 	String deptCode;	
-	/**
-	 * 用户账号
-	 */
+	
+    /**
+     * 用户账号；公司下唯一；以字母开头
+     */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_account", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
@@ -114,17 +157,18 @@ public class ZKSysOrgUser extends ZKBaseEntity<String, ZKSysOrgUser> {
 	/**
 	 * 用户密码
 	 */
-	@NotNull(message = "{zk.core.data.validation.notNull}")
+    @NotNull(message = "{zk.core.data.validation.notNull}")
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
-	@ZKColumn(name = "c_password", isInsert = true, isUpdate = false, javaType = String.class, isQuery = false)
+    @ZKColumn(name = "c_password", isInsert = true, isUpdate = false, javaType = String.class, isQuery = false)
 	String password;	
 	/**
 	 * 密码状态；0-系统密码；1-用户密码；
 	 */
-	@NotNull(message = "{zk.core.data.validation.notNull}")
-	@Range(min = 0, max = 999999999, message = "{zk.core.data.validation.rang.int}")
-	@ZKColumn(name = "c_pwd_status", isInsert = true, isUpdate = false, javaType = Long.class, isQuery = false)
-	Long pwdStatus;	
+    @NotNull(message = "{zk.core.data.validation.notNull}")
+    @Range(min = 0, max = 9, message = "{zk.core.data.validation.rang.int}")
+    @ZKColumn(name = "c_pwd_status", isInsert = true, isUpdate = false, javaType = Long.class, isQuery = false)
+    Integer pwdStatus;
+
 	/**
 	 * 密码最后修改日期
 	 */
@@ -136,9 +180,10 @@ public class ZKSysOrgUser extends ZKBaseEntity<String, ZKSysOrgUser> {
 	 * 用户状态; 0-正常; 1-禁用; 2-离职; 3-离职中; 
 	 */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
-	@Range(min = 0, max = 999999999, message = "{zk.core.data.validation.rang.int}")
+    @Range(min = 0, max = 9, message = "{zk.core.data.validation.rang.int}")
 	@ZKColumn(name = "c_status", isInsert = true, isUpdate = true, javaType = Long.class, isQuery = true, queryType = ZKDBQueryType.EQ)
-	Long status;	
+    Integer status;
+
 	/**
 	 * 姓
 	 */
@@ -185,16 +230,18 @@ public class ZKSysOrgUser extends ZKBaseEntity<String, ZKSysOrgUser> {
 	@Length(min = 0, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_tel_num", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
 	String telNum;	
-	/**
-	 * 手机
-	 */
+	
+    /**
+     * 手机；公司下唯一；
+     */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_phone_num", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
 	String phoneNum;	
-	/**
-	 * 邮箱
-	 */
+	
+    /**
+     * 邮箱；公司下唯一；
+     */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_mail", isInsert = true, isUpdate = false, javaType = String.class, isQuery = false)
@@ -271,6 +318,11 @@ public class ZKSysOrgUser extends ZKBaseEntity<String, ZKSysOrgUser> {
 		super(pkId);
 	}
 	
+    @XmlTransient
+    @Transient
+    @JsonInclude(value = JsonInclude.Include.NON_NULL)
+    ZKSysOrgCompany company;
+
 	/**
 	 * 集团代码	
 	 */	
@@ -417,14 +469,14 @@ public class ZKSysOrgUser extends ZKBaseEntity<String, ZKSysOrgUser> {
 	/**
 	 * 密码状态；0-系统密码；1-用户密码；	
 	 */	
-	public Long getPwdStatus() {
+    public Integer getPwdStatus() {
 		return pwdStatus;
 	}
 	
 	/**
 	 * 密码状态；0-系统密码；1-用户密码；
 	 */	
-	public void setPwdStatus(Long pwdStatus) {
+    public void setPwdStatus(Integer pwdStatus) {
 		this.pwdStatus = pwdStatus;
 	}
 	/**
@@ -445,14 +497,14 @@ public class ZKSysOrgUser extends ZKBaseEntity<String, ZKSysOrgUser> {
 	/**
 	 * 用户状态; 0-正常; 1-禁用; 2-离职; 3-离职中; 	
 	 */	
-	public Long getStatus() {
+    public Integer getStatus() {
 		return status;
 	}
 	
 	/**
 	 * 用户状态; 0-正常; 1-禁用; 2-离职; 3-离职中; 
 	 */	
-	public void setStatus(Long status) {
+    public void setStatus(Integer status) {
 		this.status = status;
 	}
 	/**
@@ -678,9 +730,24 @@ public class ZKSysOrgUser extends ZKBaseEntity<String, ZKSysOrgUser> {
 		return applyLeaveDate;
 	}
 	
-	/**
-	 * 申请离职日期
-	 */	
+    /**
+     * @return company sa
+     */
+    public ZKSysOrgCompany getCompany() {
+        return company;
+    }
+
+    /**
+     * @param company
+     *            the company to set
+     */
+    public void setCompany(ZKSysOrgCompany company) {
+        this.company = company;
+    }
+
+    /**
+     * 申请离职日期
+     */	
 	public void setApplyLeaveDate(Date applyLeaveDate) {
 		this.applyLeaveDate = applyLeaveDate;
 	}

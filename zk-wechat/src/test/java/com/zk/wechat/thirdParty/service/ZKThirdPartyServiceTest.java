@@ -20,6 +20,7 @@ package com.zk.wechat.thirdParty.service;
 
 import org.junit.Test;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zk.wechat.helper.ZKWechatTestHelper;
 import com.zk.wechat.thirdParty.entity.ZKThirdParty;
 
@@ -32,6 +33,23 @@ import junit.framework.TestCase;
 * @version 1.0 
 */
 public class ZKThirdPartyServiceTest {
+
+    @Test
+    public void testGetCompanyByCode() {
+        try {
+            String companyCode = "yunjian";
+            ZKThirdPartyService s = ZKWechatTestHelper.getCtx().getBean(ZKThirdPartyService.class);
+            TestCase.assertNotNull(s);
+            JSONObject json = null;
+
+            json = s.getCompanyByCode(companyCode);
+            TestCase.assertNotNull(json);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            TestCase.assertTrue(false);
+        }
+    }
 
     @Test
     public void testUpdate() {

@@ -35,7 +35,7 @@ import com.zk.db.commons.ZKDBQueryCondition.ZKDBConditionLogicDispose;
 import com.zk.db.commons.ZKDBQueryLogic;
 import com.zk.db.commons.ZKDBQueryType;
 import com.zk.db.mybatis.commons.ZKDBQueryConditionCol;
-import com.zk.db.mybatis.commons.ZKDBQueryConditionIf;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionIfByClass;
 import com.zk.db.mybatis.commons.ZKDBQueryConditionWhereTrim;
 
 /** 
@@ -54,7 +54,7 @@ public class ZKSelectSqlConvert {
 //            alias = tableAlias;
 //        }
 //        sb.append("FROM ");
-//        sb.append(annotationProvider.getTable().name());
+//        sb.append(annotationProvider.getTableName());
 //        sb.append(" ");
 //        sb.append(alias);
 //        sb.append(" ");
@@ -69,7 +69,7 @@ public class ZKSelectSqlConvert {
             alias = tableAlias;
         }
 //        sb.append(" FROM ");
-        sb.append(annotationProvider.getTable().name());
+        sb.append(annotationProvider.getTableName());
         sb.append(" ");
         sb.append(alias);
         return sb.toString();
@@ -129,7 +129,7 @@ public class ZKSelectSqlConvert {
     /**
      * 取查询条件 生成 查询条件 script if sql; 不带 WHERE
      *
-     * @Title: convertSqlQueryCondition
+     * @Title: convertSqlQueryConditionIf
      * @Description: TODO(simple description this method what to do.)
      * @author Vinson
      * @date Apr 15, 2021 7:14:55 AM
@@ -138,18 +138,17 @@ public class ZKSelectSqlConvert {
      *            表的别名；
      * @return void
      */
-    public static String convertSqlQueryCondition(ZKDBAnnotationProvider annotationProvider, String tableAlias) {
+    public static String convertSqlQueryConditionIf(ZKDBAnnotationProvider annotationProvider, String tableAlias) {
         StringBuffer sb = new StringBuffer();
         for (Entry<PropertyDescriptor, ZKColumn> e : annotationProvider.getColumnInfo().entrySet()) {
             if (e.getValue().isQuery()) {
-                appendScriptQueryConditionIf(sb, e.getKey().getName(), e.getValue().javaType(), false, () -> {
+                appendScriptQueryConditionIfByClass(sb, e.getKey().getName(), e.getValue().javaType(), false, () -> {
                     String alias = "";
                     if (!ZKStringUtils.isEmpty(tableAlias)) {
                         alias = tableAlias + ".";
                     }
                     sb.append(ZKDBQueryLogic.AND.getEsc());
                     convertSqlQueryCondition(sb, alias, e.getKey().getName(), e.getValue(), ZKDBQueryLogic.AND);
-                    return ZKDBQueryLogic.AND;
                 });
             }
         }
@@ -228,7 +227,7 @@ public class ZKSelectSqlConvert {
             return conditionCol;
         }
         else {
-            return ZKDBQueryConditionIf.as(conditionCol, pd.getName(), col.javaType(), false);
+            return ZKDBQueryConditionIfByClass.as(conditionCol, pd.getName(), col.javaType(), false);
         }
 
     }
@@ -251,21 +250,135 @@ public class ZKSelectSqlConvert {
      * @param funcAppendScriptQueryCondition
      * @return void
      */
-    public static void appendScriptQueryConditionIf(StringBuffer sb, String attrName, Class<?> javaClassz,
+    public static void appendScriptQueryConditionIfByClass(StringBuffer sb, String attrName, Class<?> javaClassz,
             boolean isEmpty, ZKDBConditionLogicDispose funcQueryLogicDispose) {
         if (isEmpty) {
-            appendScriptQueryConditionIfEmpty(sb, attrName, javaClassz);
+            appendScriptQueryConditionIfByClassEmpty(sb, attrName, javaClassz);
         }
         else {
-            appendScriptQueryConditionIfNotEmpty(sb, attrName, javaClassz);
+            appendScriptQueryConditionIfByClassNotEmpty(sb, attrName, javaClassz);
         }
-        funcQueryLogicDispose.run();
+        funcQueryLogicDispose.doing();
         sb.append("</if>");
     }
 
-    // 包裹 <if>
-    private static void appendScriptQueryConditionIfEmpty(StringBuffer sb, String attrName, Class<?> javaClassz) {
-        // 添加查询条件，判断参数 不为 null 但为 空
+    /**
+     * 添加 if 包裹脚本；
+     *
+     * @Title: appendScriptQueryConditionIf
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Apr 19, 2022 4:15:55 PM
+     * @param logic
+     *            if 逻辑字符 and or 同 sql 逻辑查询字符
+     * @param funcQueryLogicDispose
+     * @param sb
+     * @param attrName
+     * @param isNull
+     *            为null时不做为条件判断；true-添加为 null 判断；false-添加不为 null 判断；
+     * @param isTrue
+     *            为null时不做为条件判断；true-添加为 true 判断；false-添加不为 ture 判断；
+     * @param isEmpty
+     *            为null时不做为条件判断；true-添加为 空 判断；false-添加不为 空 判断；
+     * @param lengthIs0
+     *            为null时不做为条件判断；true-添加为 长度为 0 判断；false-添加不为 长度不为 0 判断；
+     * @param valueIs0
+     *            为null时不做为条件判断；true-添加为 值为0 判断；false-添加不为 值不为 0 判断；
+     * @return void
+     */
+    public static void appendScriptQueryConditionIf(ZKDBQueryLogic logic,
+            ZKDBConditionLogicDispose funcQueryLogicDispose, StringBuffer sb, String attrName, Boolean isNull,
+            Boolean isTrue, Boolean isEmpty, Boolean lengthIs0, Boolean valueIs0) {
+        boolean isInsertLogic = false;
+        sb.append("<if test=\"");
+        if (isNull != null) {
+            if (isNull) {
+                sb.append(attrName);
+                sb.append(" == null ");
+            }
+            else {
+                sb.append(attrName);
+                sb.append(" != null ");
+            }
+            isInsertLogic = true;
+        }
+        if (isTrue != null) {
+            if (isInsertLogic == true) {
+                sb.append(logic.getEsc().toLowerCase());
+                sb.append(" ");
+            }
+            else {
+                isInsertLogic = true;
+            }
+            if (isTrue) {
+                sb.append(attrName);
+                sb.append(" == true ");
+            }
+            else {
+                sb.append(attrName);
+                sb.append(" == false ");
+            }
+        }
+        if (isEmpty != null) {
+            if (isInsertLogic == true) {
+                sb.append(logic.getEsc().toLowerCase());
+                sb.append(" ");
+            }
+            else {
+                isInsertLogic = true;
+            }
+            if (isEmpty) {
+                sb.append(attrName);
+                sb.append(".isEmpty() == true ");
+            }
+            else {
+                sb.append(attrName);
+                sb.append(".isEmpty() == false ");
+            }
+        }
+        if (lengthIs0 != null) {
+            if (isInsertLogic == true) {
+                sb.append(logic.getEsc().toLowerCase());
+                sb.append(" ");
+            }
+            else {
+                isInsertLogic = true;
+            }
+            if (lengthIs0) {
+                sb.append(attrName);
+                sb.append(".length == 0 ");
+            }
+            else {
+                sb.append(attrName);
+                sb.append(".length != 0 ");
+            }
+        }
+        if (valueIs0 != null) {
+            if (isInsertLogic == true) {
+                sb.append(logic.getEsc().toLowerCase());
+                sb.append(" ");
+            }
+            else {
+                isInsertLogic = true;
+            }
+            if (valueIs0) {
+                sb.append(attrName);
+                sb.append(" == 0 ");
+            }
+            else {
+                sb.append(attrName);
+                sb.append(" != 0 ");
+            }
+        }
+        sb.append("\">");
+        funcQueryLogicDispose.doing();
+        sb.append("</if>");
+    }
+
+    // 包裹 <if> 为 null 或 为空
+    private static void appendScriptQueryConditionIfByClassEmpty(StringBuffer sb, String attrName,
+            Class<?> javaClassz) {
+        // 添加查询条件，判断参数 为 null 或 为空；数字类型时 为 null 或为 0 时
         if (javaClassz == String.class) {
             // 字符串
             sb.append("<if test=\"");
@@ -280,7 +393,7 @@ public class ZKSelectSqlConvert {
             sb.append(attrName);
             sb.append(" == null or ");
             sb.append(attrName);
-            sb.append(".isEmpty() = true\">");
+            sb.append(".isEmpty() == true\">");
         }
         else if (javaClassz.isArray()) {
             // 数组
@@ -288,15 +401,15 @@ public class ZKSelectSqlConvert {
             sb.append(attrName);
             sb.append(" == null or ");
             sb.append(attrName);
-            sb.append(".length = 0\">");
+            sb.append(".length == 0\">");
         }
         else if (javaClassz == Integer.class || javaClassz == Long.class) {
             // 数组
             sb.append("<if test=\"");
             sb.append(attrName);
-            sb.append(" != null or ");
+            sb.append(" == null or ");
             sb.append(attrName);
-            sb.append(" = 0\">");
+            sb.append(" == 0\">");
         }
         else {
             // 其他类型
@@ -306,8 +419,9 @@ public class ZKSelectSqlConvert {
         }
     }
 
-    // 包裹 <if>
-    private static void appendScriptQueryConditionIfNotEmpty(StringBuffer sb, String attrName, Class<?> javaClassz) {
+    // 包裹 <if> 不为空
+    private static void appendScriptQueryConditionIfByClassNotEmpty(StringBuffer sb, String attrName,
+            Class<?> javaClassz) {
         // 添加查询条件，判断参数 不为 null 且不为空
         if (javaClassz == String.class) {
             // 字符串
@@ -412,10 +526,6 @@ public class ZKSelectSqlConvert {
                     dateFormatPattern, isCaseSensitive);
         }
     }
-
-    /********************************************************/
-    /***  **/
-    /********************************************************/
 
     /**
      * 添加查询条件值; 没有查询的逻辑关系，即没 AND OR

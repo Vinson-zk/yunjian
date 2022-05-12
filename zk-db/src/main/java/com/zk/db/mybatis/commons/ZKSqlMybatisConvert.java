@@ -54,7 +54,11 @@ public interface ZKSqlMybatisConvert extends ZKSqlConvert {
             ZKDBQueryLogic queryLogic, ZKDBQueryType queryType, Class<?> javaClassz, String[] formats,
             boolean isCaseSensitive);
 
-    void appendScriptQueryConditionIf(StringBuffer sb, String attrName, Class<?> javaClassz,
+    void appendScriptQueryConditionIfByClass(StringBuffer sb, String attrName, Class<?> javaClassz,
             boolean isEmpty, ZKDBConditionLogicDispose funcQueryLogicDispose);
+
+    void appendScriptQueryConditionIf(ZKDBQueryLogic logic, ZKDBConditionLogicDispose funcQueryLogicDispose,
+            StringBuffer sb, String attrName, Boolean isNull, Boolean isTrue, Boolean isEmpty, Boolean lengthIs0,
+            Boolean valueIs0);
 
 }

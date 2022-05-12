@@ -3,25 +3,33 @@
  */
 package com.zk.sys.org.entity;
 
-import com.zk.core.utils.ZKDateUtils;
 import java.util.Date;
-import java.lang.String;
-import com.zk.core.commons.data.ZKJson;
-import com.zk.core.utils.ZKIdUtils;
-import com.zk.db.commons.ZKDBQueryType;
 
-import org.hibernate.validator.constraints.Range;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.data.annotation.Transient;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.zk.base.commons.ZKTreeSqlProvider;
 import com.zk.base.entity.ZKBaseTreeEntity;
-import com.zk.db.annotation.ZKTable;
+import com.zk.core.commons.data.ZKJson;
+import com.zk.core.utils.ZKDateUtils;
+import com.zk.core.utils.ZKIdUtils;
 import com.zk.db.annotation.ZKColumn;
+import com.zk.db.annotation.ZKDBAnnotationProvider;
+import com.zk.db.annotation.ZKTable;
+import com.zk.db.commons.ZKDBQueryConditionWhere;
+import com.zk.db.commons.ZKDBQueryType;
+import com.zk.db.commons.ZKSqlConvert;
 import com.zk.db.commons.ZKSqlConvertDelegating;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionCol;
+import com.zk.db.mybatis.commons.ZKDBQueryConditionIfByClass;
 
 /**
  * 公司表
@@ -46,20 +54,40 @@ public class ZKSysOrgCompany extends ZKBaseTreeEntity<String, ZKSysOrgCompany> {
     }
     
 	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * 集团代码
-	 */
+
+    /**
+     * 公司状态；0-正常；1-禁用；2-审核中；
+     */
+    public static interface KeyStatus {
+        /**
+         * 0-正常
+         */
+        public static final int normal = 0;
+
+        /**
+         * 1-禁用
+         */
+        public static final int disabled = 1;
+
+        /**
+         * 2-审核中
+         */
+        public static final int auditIng = 2;
+    }
+
+    /**
+     * 集团代码
+     */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
-	@ZKColumn(name = "c_group_code", isInsert = true, isUpdate = true, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
+    @ZKColumn(name = "c_group_code", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
 	String groupCode;	
 	/**
 	 * 公司代码；全表唯一
 	 */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
-	@ZKColumn(name = "c_code", isInsert = true, isUpdate = true, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
+    @ZKColumn(name = "c_code", isInsert = true, isUpdate = false, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
 	String code;	
 	/**
 	 * 公司名称
@@ -96,14 +124,14 @@ public class ZKSysOrgCompany extends ZKBaseTreeEntity<String, ZKSysOrgCompany> {
 	 * 公司手机号
 	 */
 	@Length(min = 0, max = 64, message = "{zk.core.data.validation.length.max}")
-	@ZKColumn(name = "c_phone_num", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
+    @ZKColumn(name = "c_phone_num", isInsert = true, isUpdate = false, javaType = String.class, isQuery = false)
 	String phoneNum;	
 	/**
 	 * 公司邮箱
 	 */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Length(min = 1, max = 64, message = "{zk.core.data.validation.length.max}")
-	@ZKColumn(name = "c_mail", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
+    @ZKColumn(name = "c_mail", isInsert = true, isUpdate = false, javaType = String.class, isQuery = false)
 	String mail;	
 	/**
 	 * 公司法人
@@ -111,9 +139,10 @@ public class ZKSysOrgCompany extends ZKBaseTreeEntity<String, ZKSysOrgCompany> {
 	@Length(min = 0, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_legal_person", isInsert = true, isUpdate = true, javaType = String.class, isQuery = true, queryType = ZKDBQueryType.LIKE)
 	String legalPerson;	
-	/**
-	 * 公司法人证件类型; 字典项；
-	 */
+	
+    /**
+     * 公司法人证件类型; 字典项-字典项ID；
+     */
 	@Length(min = 0, max = 64, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_cert_type", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
 	String certType;	
@@ -128,8 +157,9 @@ public class ZKSysOrgCompany extends ZKBaseTreeEntity<String, ZKSysOrgCompany> {
 	 */
 	@NotNull(message = "{zk.core.data.validation.notNull}")
 	@Range(min = 0, max = 999999999, message = "{zk.core.data.validation.rang.int}")
-	@ZKColumn(name = "c_status", isInsert = true, isUpdate = true, javaType = Long.class, isQuery = true, queryType = ZKDBQueryType.EQ)
-	Long status;	
+    @ZKColumn(name = "c_status", isInsert = true, isUpdate = false, javaType = Integer.class, isQuery = true, queryType = ZKDBQueryType.EQ)
+    Integer status;
+
 	/**
 	 * 公司地址
 	 */
@@ -351,14 +381,14 @@ public class ZKSysOrgCompany extends ZKBaseTreeEntity<String, ZKSysOrgCompany> {
 	/**
 	 * 公司状态；0-正常；1-禁用；2-审核中；	
 	 */	
-	public Long getStatus() {
+    public Integer getStatus() {
 		return status;
 	}
 	
 	/**
 	 * 公司状态；0-正常；1-禁用；2-审核中；
 	 */	
-	public void setStatus(Long status) {
+    public void setStatus(Integer status) {
 		this.status = status;
 	}
 	/**
@@ -487,4 +517,39 @@ public class ZKSysOrgCompany extends ZKBaseTreeEntity<String, ZKSysOrgCompany> {
         return ZKIdUtils.genLongStringId();
     }
 	
+    // 查询辅助字段
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    String searchValue;
+
+    /**
+     * @return searchValue sa
+     */
+    public String getSearchValue() {
+        return searchValue;
+    }
+
+    /**
+     * @param searchValue
+     *            the searchValue to set
+     */
+    public void setSearchValue(String searchValue) {
+        this.searchValue = searchValue;
+    }
+
+    // 取 where 条件；实体定义可以定制；在 生成的 sql；注意：末尾加空格
+    @Override
+    @Transient
+    @JsonIgnore
+    @XmlTransient
+    public ZKDBQueryConditionWhere getZKDbWhere(ZKSqlConvert sqlConvert, ZKDBAnnotationProvider annotationProvider) {
+        ZKDBQueryConditionWhere where = super.getZKDbWhere(sqlConvert, annotationProvider);
+        ZKDBQueryConditionWhere sWhere = ZKDBQueryConditionWhere.asOr("(", ")",
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_name", "searchValue", String.class, null, false),
+                ZKDBQueryConditionCol.as(ZKDBQueryType.LIKE, "c_code", "searchValue", String.class, null, false));
+        where.put(ZKDBQueryConditionIfByClass.as(sWhere, "searchValue", String.class, false));
+        return where;
+    }
+
 }

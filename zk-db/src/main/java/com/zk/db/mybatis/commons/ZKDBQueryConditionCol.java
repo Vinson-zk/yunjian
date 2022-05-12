@@ -37,10 +37,12 @@ public class ZKDBQueryConditionCol implements ZKDBQueryCondition {
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @Override
-    public void toQueryCondition(ZKSqlConvert convert, StringBuffer sb, String tableAlias,
-            ZKDBConditionLogicDispose funcQueryLogicDispose) {
+    public void toQueryCondition(ZKSqlConvert convert, StringBuffer sb, String tableAlias, ZKDBQueryLogic queryLogic,
+            boolean isInserQueryLogic) {
         if (convert instanceof ZKSqlMybatisConvert) {
-            ZKDBQueryLogic queryLogic = funcQueryLogicDispose.run();
+            if (queryLogic != null && isInserQueryLogic) {
+                sb.append(queryLogic.getEsc());
+            }
             ((ZKSqlMybatisConvert) convert).appendScriptQueryCondition(sb, tableAlias, this.getColumnName(),
                     this.getAttrName(), queryLogic, this.getQueryType(), this.getJavaClassz(), this.getFormats(),
                     this.isCaseSensitive());
@@ -51,11 +53,48 @@ public class ZKDBQueryConditionCol implements ZKDBQueryCondition {
         }
     }
 
+    /**
+     * 
+     *
+     * @Title: as
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Apr 15, 2022 11:48:38 AM
+     * @param queryType
+     * @param columnName
+     *            表 字段名；包含了表的别名；
+     * @param attrName
+     *            java 属性名; 这里会添加 #{}
+     * @param javaClassz
+     *            查询字段的 java 数据类型
+     * @param formats
+     *            日期格式化参数；不为 null 时，格式化数据库字段；不为 null 且属性 java 数据类型为 Date 时，同时也用他格式化参数；
+     * @param isCaseSensitive
+     *            是否区分大小，注，此参数仅在 javaClassz 为 String.class 类型下有效；true-区分大小；false-不区分大小写；
+     * @return
+     * @return ZKDBQueryConditionCol
+     */
     public static ZKDBQueryConditionCol as(ZKDBQueryType queryType, String columnName, String attrName,
             Class<?> javaClassz, String[] formats, boolean isCaseSensitive) {
         return new ZKDBQueryConditionCol(queryType, columnName, attrName, javaClassz, formats, isCaseSensitive);
     }
 
+    /**
+     * 
+     * <p>
+     * Title:
+     * </p>
+     * <p>
+     * Description:
+     * </p>
+     * 
+     * @param queryType
+     * @param columnName
+     * @param attrName
+     * @param javaClassz
+     * @param formats
+     * @param isCaseSensitive
+     */
     public ZKDBQueryConditionCol(ZKDBQueryType queryType, String columnName, String attrName, Class<?> javaClassz,
             String[] formats, boolean isCaseSensitive) {
         this.columnName = columnName;
