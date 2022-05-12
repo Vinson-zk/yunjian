@@ -3149,3 +3149,4 @@ INFO  -> 2022-04-08 17:09:17.501[http-nio-9093-exec-8][com.zk.db.mybatis.plugins
 INFO  -> 2022-04-08 17:09:17.578[http-nio-9093-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：88 毫秒; 起始/结束时间(毫秒)：1649408957490/1649408957578；
 INFO  -> 2022-04-08 17:09:17.579[http-nio-9093-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
 INFO  -> 2022-04-08 17:09:17.601[http-nio-9093-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：22 毫秒; 起始/结束时间(毫秒)：1649408957579/1649408957601；
+INFO  -> 2022-04-08 17:39:32.230[Thread-8][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor] - Shutting down ExecutorService 'applicationTaskExecutor'
