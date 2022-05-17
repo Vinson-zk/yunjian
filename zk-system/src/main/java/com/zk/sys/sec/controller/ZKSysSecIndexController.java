@@ -78,7 +78,6 @@ public class ZKSysSecIndexController {
      */
     @RequestMapping(value = "loginUserInfo", method = RequestMethod.GET)
     public ZKMsgRes sysOrgUserSelf() {
-
         ZKSysOrgUser sysOrgUser = this.orgUserService.getDetail((String) ZKSecSecurityUtils.getUserId());
         Map<String, Object> resMap = new HashMap<>();
         resMap.put(ZKSysSecConstants.KeyWebLogin.user, sysOrgUser);
