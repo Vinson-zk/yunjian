@@ -43,8 +43,8 @@ import com.zk.security.token.ZKSecAuthcUserToken;
 import com.zk.security.token.ZKSecAuthenticationToken;
 import com.zk.security.utils.ZKSecSecurityUtils;
 import com.zk.sys.org.entity.ZKSysOrgUser;
+import com.zk.sys.sec.service.ZKSysSecAuthService;
 import com.zk.sys.sec.service.ZKSysSecUserService;
-import com.zk.sys.settings.service.ZKSysSetItemService;
 
 /** 
 * @ClassName: ZKSysSecRealm 
@@ -82,7 +82,7 @@ public class ZKSysSecRealm extends ZKSecAbstractRealm {
 
     ZKSysSecUserService secUserService;
 
-    ZKSysSetItemService sysSetItemService;
+    ZKSysSecAuthService sysSecAuthService;
 
     ZKSecTicketManager ticketManager;
 
@@ -114,19 +114,19 @@ public class ZKSysSecRealm extends ZKSecAbstractRealm {
     /**
      * @return sysSetItemService sa
      */
-    public ZKSysSetItemService getSysSetItemService() {
-        if (sysSetItemService == null) {
-            sysSetItemService = ZKEnvironmentUtils.getApplicationContext().getBean(ZKSysSetItemService.class);
+    public ZKSysSecAuthService getSysSecAuthService() {
+        if (sysSecAuthService == null) {
+            sysSecAuthService = ZKEnvironmentUtils.getApplicationContext().getBean(ZKSysSecAuthService.class);
         }
-        return sysSetItemService;
+        return sysSecAuthService;
     }
 
     /**
      * @param sysSetItemService
      *            the sysSetItemService to set
      */
-    public void setSysSetItemService(ZKSysSetItemService sysSetItemService) {
-        this.sysSetItemService = sysSetItemService;
+    public void setSysSecAuthService(ZKSysSecAuthService sysSecAuthService) {
+        this.sysSecAuthService = sysSecAuthService;
     }
 
     /**
@@ -169,10 +169,10 @@ public class ZKSysSecRealm extends ZKSecAbstractRealm {
         ZKSecAuthcUserToken authcUserToken = (ZKSecAuthcUserToken) authcToken;
         ZKSysOrgUser loginUser = this.getSecUserService().login(authcUserToken);
         if (loginUser != null) {
-            ZKSecPrincipal<String> p = new ZKSecDefaultUserPrincipal<String>(loginUser.getCompanyId(),
-                    loginUser.getCompanyCode(), loginUser.getPkId(), loginUser.getAccount(), loginUser.getNickname(),
-                    authcUserToken.getOsType(), authcUserToken.getUdid(), authcUserToken.getAppType(),
-                    authcUserToken.getAppId());
+            ZKSecPrincipal<String> p = new ZKSecDefaultUserPrincipal<String>(loginUser.getPkId(),
+                    loginUser.getAccount(), loginUser.getNickname(), authcUserToken.getOsType(),
+                    authcUserToken.getUdid(), authcUserToken.getAppType(), authcUserToken.getAppId(),
+                    loginUser.getGroupCode(), loginUser.getCompanyId(), loginUser.getCompanyCode());
             pc.add(this.getRealmName(), p);
             return pc;
         }
@@ -185,39 +185,14 @@ public class ZKSysSecRealm extends ZKSecAbstractRealm {
 
     @Override
     public ZKSecAuthorizationInfo doGetZKSecAuthorizationInfo(ZKSecPrincipalCollection principalCollection) {
-        ZKSecSimpleAuthorizationInfo authorizationInfo = new ZKSecSimpleAuthorizationInfo();
+        ZKSecPrincipal<?> pp = principalCollection.getPrimaryPrincipal();
+        if (ZKSecPrincipal.KeyType.Distributed_server == pp.getType()) {
+            // 微服务间请求，不较验权限，返回一个空的权限信息
+            return new ZKSecSimpleAuthorizationInfo();
+        }
         // 设备用户的 API 权限代码
-        ZKAuthPermission p = ZKUserCacheUtils.getAuth(principalCollection.getPrimaryPrincipal().getPkId());
-        // 部门的权限
-        if (this.getSysSetItemService().getByCode(Key_Auth_Strategy.name, Key_Auth_Strategy.Auth_Dept)
-                .getBooleanValue()) {
-            authorizationInfo.addApiCode(p.getApiCodeByDept());
-            authorizationInfo.addAuthCode(p.getAuthCodeByDept());
-        }
-        // 用户直接拥有的权限
-        if (this.getSysSetItemService().getByCode(Key_Auth_Strategy.name, Key_Auth_Strategy.Auth_User)
-                .getBooleanValue()) {
-            authorizationInfo.addApiCode(p.getApiCodeByUser());
-            authorizationInfo.addAuthCode(p.getAuthCodeByUser());
-        }
-        // 角色拥有的权限
-        if (this.getSysSetItemService().getByCode(Key_Auth_Strategy.name, Key_Auth_Strategy.Auth_Role)
-                .getBooleanValue()) {
-            authorizationInfo.addApiCode(p.getApiCodeByRole());
-            authorizationInfo.addAuthCode(p.getAuthCodeByRole());
-        }
-        // 职级的权限
-        if (this.getSysSetItemService().getByCode(Key_Auth_Strategy.name, Key_Auth_Strategy.Auth_Rank)
-                    .getBooleanValue()) {
-            authorizationInfo.addApiCode(p.getApiCodeByRank());
-            authorizationInfo.addAuthCode(p.getAuthCodeByRank());
-        }
-        // 用户类型的权限
-        if (this.getSysSetItemService().getByCode(Key_Auth_Strategy.name, Key_Auth_Strategy.Auth_UserType)
-                .getBooleanValue()) {
-            authorizationInfo.addApiCode(p.getApiCodeByUserType());
-            authorizationInfo.addAuthCode(p.getAuthCodeByUserType());
-        }
+        ZKAuthPermission p = ZKUserCacheUtils.getAuth(ZKUserCacheUtils.getUser(pp.getPkId()));
+        ZKSecAuthorizationInfo authorizationInfo = this.getSysSecAuthService().paseByAuthPermission(p);
         return authorizationInfo;
     }
 
@@ -232,14 +207,10 @@ public class ZKSysSecRealm extends ZKSecAbstractRealm {
      */
     @Override
     protected boolean doCheckPermission(ZKSecPrincipalCollection principalCollection, String permissionCode) {
-        for (ZKSecPrincipal<?> p : principalCollection) {
-            if (p instanceof ZKSecUserPrincipal<?>) {
-//                if ("admin".equals(((ZKSecUserPrincipal<?>) p).getUsername())) {
-//                    if ("secPermissionCode".equals(permissionCode)) {
-//                        return true;
-//                    }
-//                }
-            }
+        ZKSecPrincipal<?> pp = principalCollection.getPrimaryPrincipal();
+        if (ZKSecPrincipal.KeyType.Distributed_server == pp.getType()) {
+            // 微服务单请求，不较验权限
+            return true;
         }
         return false;
     }
@@ -255,7 +226,11 @@ public class ZKSysSecRealm extends ZKSecAbstractRealm {
      */
     @Override
     protected boolean doCheckApiCode(ZKSecPrincipalCollection principalCollection, String apiCode) {
-
+        ZKSecPrincipal<?> pp = principalCollection.getPrimaryPrincipal();
+        if (ZKSecPrincipal.KeyType.Distributed_server == pp.getType()) {
+            // 微服务单请求，不较验权限
+            return true;
+        }
         ZKSecAuthorizationInfo authorizationInfo = this.getZKSecAuthorizationInfo(principalCollection);
         boolean r = false;
         if (authorizationInfo != null) {
@@ -285,7 +260,7 @@ public class ZKSysSecRealm extends ZKSecAbstractRealm {
                         // 当前用户是登录认证的在线用户，保留当前用户，踢掉之前的用户；
                         for (ZKSecTicket t : tks) {
                             t.stop();
-                            t.put(ZKSecTicket.TICKET_INFO_KEY.stop_info_code, "zk.sec.000012"); // zk.sec.000012=用户已在其他地方登录，请重新登录
+                            t.put(ZKSecTicket.KeyTicketInfo.stop_info_code, "zk.sec.000012"); // zk.sec.000012=用户已在其他地方登录，请重新登录
                         }
                     }
                     else {

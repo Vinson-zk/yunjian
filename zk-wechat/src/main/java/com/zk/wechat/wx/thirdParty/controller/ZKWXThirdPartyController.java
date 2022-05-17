@@ -116,11 +116,12 @@ public class ZKWXThirdPartyController {
      */
     @RequestMapping(value = "auth", method = RequestMethod.POST)
     @ResponseBody
-    public ZKMsgRes auth(@RequestParam(value = "bizAppid", required = false)String bizAppid, 
+    public ZKMsgRes auth(@RequestParam(value = "companyCode") String companyCode,
+            @RequestParam(value = "bizAppid", required = false) String bizAppid,
             @RequestParam(value = "byeType", required = false, defaultValue = "0")int byeType, 
             HttpServletRequest req, HttpServletResponse res) {
 
-        String authUrl = this.wxThirdPartyAuthService.genAuthUrl(byeType, bizAppid, "", "");
+        String authUrl = this.wxThirdPartyAuthService.genAuthUrl(companyCode, byeType, bizAppid, "", "");
 
         ZKMsgRes resMsg = ZKMsgRes.asOk(authUrl);
         return resMsg;
@@ -136,13 +137,14 @@ public class ZKWXThirdPartyController {
      * @author Vinson
      * @date Nov 7, 2021 8:51:28 AM
      * @param thirdPartyAppid
+     * @param companyCode
      * @param req
-     * @return
      * @return String
      */
-    @RequestMapping(value = "authCallBack/{thirdPartyAppid}")
+    @RequestMapping(value = "authCallBack/{thirdPartyAppid}/{companyCode}")
     // @ResponseBody
-    public String authCallBack(@PathVariable(name = "thirdPartyAppid") String thirdPartyAppid, HttpServletRequest req) {
+    public String authCallBack(@PathVariable(name = "thirdPartyAppid") String thirdPartyAppid,
+            @PathVariable(name = "companyCode") String companyCode, HttpServletRequest req) {
 
         // 授权码，过期时间就不用取了，取到授权码，马上取已授权的 “目标微信公众号或目标小程序” 的信息
 //        String authCode = WebUtils.getCleanParam(req, WXConstants.WxMsgAttribute.AuthorizationRedirect.auth_code);

@@ -117,6 +117,38 @@ public class ZKSysConfiguration {
         System.out.println("[^_^:20200805-1808-001] ----- ZKSysConfiguration class before ");
     }
 
+    /******************************************************************/
+    /**
+     * 服务注册加解密
+     *
+     * @Title: zkSerCenSampleCipher
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Jul 6, 2020 6:07:27 PM
+     * @return
+     * @return ZKSerCenSampleCipher
+     */
+    @Bean
+    public ZKSerCenEncrypt zkSerCenEncrypt() {
+        return new ZKSerCenSampleCipher();
+    }
+
+//    @Bean
+//    public ZKSerCenDecode zkSerCenDecode() {
+//        return new ZKSerCenSampleCipher();
+//    }
+
+    @Bean
+//    @ConditionalOnBean(name = "eurekaDiscoverClientMarker")
+    @ConditionalOnClass(name = "com.sun.jersey.api.client.filter.ClientFilter")
+//    @ConditionalOnMissingBean(value = AbstractDiscoveryClientOptionalArgs.class, search = SearchStrategy.CURRENT)
+    public MutableDiscoveryClientOptionalArgs discoveryClientOptionalArgs(ZKSerCenEncrypt zkSerCenEncrypt) {
+        MutableDiscoveryClientOptionalArgs ms = new MutableDiscoveryClientOptionalArgs();
+        ms.setTransportClientFactories(new ZKEurekaTransportClientFactories(zkSerCenEncrypt));
+        return ms;
+    }
+    /******************************************************************/
+
     @Bean
     public FilterRegistrationBean<Filter> zkCrosFilterRegistrationBean() {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<Filter>();
@@ -268,36 +300,6 @@ public class ZKSysConfiguration {
 //        requestMappingHandlerAdapter.setMessageConverters(messageConverters.getConverters());
 //        return requestMappingHandlerAdapter;
 //    }
-
-    /**
-     * 服务注册加解密
-     *
-     * @Title: zkSerCenSampleCipher
-     * @Description: TODO(simple description this method what to do.)
-     * @author Vinson
-     * @date Jul 6, 2020 6:07:27 PM
-     * @return
-     * @return ZKSerCenSampleCipher
-     */
-    @Bean
-    public ZKSerCenEncrypt zkSerCenEncrypt() {
-        return new ZKSerCenSampleCipher();
-    }
-
-//    @Bean
-//    public ZKSerCenDecode zkSerCenDecode() {
-//        return new ZKSerCenSampleCipher();
-//    }
-
-    @Bean
-//    @ConditionalOnBean(name = "eurekaDiscoverClientMarker")
-    @ConditionalOnClass(name = "com.sun.jersey.api.client.filter.ClientFilter")
-//    @ConditionalOnMissingBean(value = AbstractDiscoveryClientOptionalArgs.class, search = SearchStrategy.CURRENT)
-    public MutableDiscoveryClientOptionalArgs discoveryClientOptionalArgs(ZKSerCenEncrypt zkSerCenEncrypt) {
-        MutableDiscoveryClientOptionalArgs ms = new MutableDiscoveryClientOptionalArgs();
-        ms.setTransportClientFactories(new ZKEurekaTransportClientFactories(zkSerCenEncrypt));
-        return ms;
-    }
 
     @Bean
     @LoadBalanced

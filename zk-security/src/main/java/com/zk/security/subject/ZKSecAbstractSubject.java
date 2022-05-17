@@ -116,7 +116,8 @@ public abstract class ZKSecAbstractSubject implements ZKSecSubject {
 
     protected void setTicket(ZKSecTicket ticket) {
         this.ticket = ticket;
-        if (ticket == null || !ticket.isValid() || ticket.getType() != ZKSecTicket.TYPE.Sec) {
+        if (ticket == null || !ticket.isValid() || ticket.getType() != ZKSecTicket.KeyType.Security) {
+//            if (ticket == null || !ticket.isValid()) {
             logger.warn("set subject ticket to NULL or is not sec ticket");
         }
         else {
@@ -166,6 +167,24 @@ public abstract class ZKSecAbstractSubject implements ZKSecSubject {
     }
 
     /**
+     * 判断是否是微服务间调用
+     *
+     * @Title: isServer
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 13, 2022 2:33:19 PM
+     * @return
+     * @return boolean
+     */
+    @Override
+    public boolean isAuthcServer() {
+        if (getTicketCheckStatus() != null) {
+            return ZKSecSecurityUtils.getServerPrincipal(ticket) == null ? false : true;
+        }
+        return false;
+    }
+
+    /**
      * 登录
      */
     @Override
@@ -185,9 +204,9 @@ public abstract class ZKSecAbstractSubject implements ZKSecSubject {
 
     private ZKSecTicket getTicketCheckStatus() {
         if (this.ticket != null) {
-            if (this.ticket.getStatus() == ZKSecTicket.STATUS.Stop) {
-                if (this.ticket.get(ZKSecTicket.TICKET_INFO_KEY.stop_info_code) != null) {
-                    throw new ZKMsgException(this.ticket.get(ZKSecTicket.TICKET_INFO_KEY.stop_info_code).toString());
+            if (this.ticket.getStatus() == ZKSecTicket.KeyStatus.Stop) {
+                if (this.ticket.get(ZKSecTicket.KeyTicketInfo.stop_info_code) != null) {
+                    throw new ZKMsgException(this.ticket.get(ZKSecTicket.KeyTicketInfo.stop_info_code).toString());
                 }
                 throw new ZKSecTicketException("zk.sec.000008", "未知原因，令牌禁用", null, null);// 未知的令牌禁用原因
             }

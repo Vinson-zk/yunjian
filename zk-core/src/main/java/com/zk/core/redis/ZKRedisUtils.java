@@ -29,13 +29,6 @@ import com.zk.core.utils.ZKStringUtils;
  */
 public class ZKRedisUtils {
 
-    public static interface ZKRedisKey {
-
-        public static final String Ticket_ID_prefix = "zk_sec_Ticket_ID_prefix_";
-
-        public static final String Ticket_Mapping = "zk_sec_Ticket_mapping";
-    }
-
     public static byte[] toKeyBytes(String key) {
         return key.getBytes();
     }

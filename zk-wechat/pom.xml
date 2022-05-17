@@ -98,6 +98,21 @@
 		</dependency>
 		<dependency>
 			<groupId>com.zk</groupId>
+			<artifactId>zk-security</artifactId>
+			<version>${version.zk.security}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.zk</groupId>
+					<artifactId>zk-mongo</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.data</groupId>
+					<artifactId>spring-data-mongodb</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.zk</groupId>
 			<artifactId>zk-system-api</artifactId>
 			<version>${version.zk.system.api}</version>
 		</dependency>
@@ -268,6 +283,10 @@
 		<!-- ##### fasterxml.jackson end -->
 	
 		<!-- ***** other begin -->
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-httpclient</artifactId>
+		</dependency> 
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>

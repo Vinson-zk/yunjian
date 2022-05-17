@@ -9,6 +9,7 @@ package ${zkModule.packagePrefix}<#if zkTableInfo.subModuleName??&zkTableInfo.su
 <#list zkTableInfo.importList as i>
 import ${i};
 </#list>
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 <#list zkTableInfo.importAnnotationsList as i>
 import ${i};

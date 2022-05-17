@@ -27,6 +27,7 @@ import javax.servlet.ServletException;
 
 import com.zk.core.utils.ZKClassUtils;
 import com.zk.core.utils.ZKExceptionsUtils;
+import com.zk.security.web.filter.ZKSecAbstractFilter;
 
 /** 
 * @ClassName: ZKSecDefaultFilter 
@@ -41,7 +42,10 @@ public enum ZKSecDefaultFilter {
     authcDev(ZKSecAuthcDevFilter.class),
     user(ZKSecUserFilter.class),
     dev(ZKSecDevFilter.class),
-    userDev(ZKSecUserDevFilter.class),
+    server(ZKSecServerFilter.class),
+    serverOrUser(ZKSecServerOrUserFilter.class),
+    serverAndUser(ZKSecServerAndUserFilter.class),
+    userAndDev(ZKSecUserAndDevFilter.class),
     logout(ZKSecLogoutFilter.class);
     
     
@@ -53,7 +57,9 @@ public enum ZKSecDefaultFilter {
     
     public Filter newInstance() {
         try {
-            return (Filter) ZKClassUtils.newInstance(this.filterClass);
+            ZKSecAbstractFilter filter = (ZKSecAbstractFilter) ZKClassUtils.newInstance(this.filterClass);
+            filter.setName(this.name());
+            return filter;
         }
         catch(Exception e) {
             throw ZKExceptionsUtils.unchecked(e);

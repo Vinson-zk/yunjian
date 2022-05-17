@@ -48,7 +48,7 @@ public class ZKWXThirdPartyAuthServiceTest {
             ZKWXThirdPartyAuthService s = ZKWechatTestHelper.getMainCtx().getBean(ZKWXThirdPartyAuthService.class);
 
             System.out.println("-----------------------------");
-            authRul = s.genAuthUrl(0, null, thirdPartyAppid, null);
+            authRul = s.genAuthUrl("companyCode", 0, null, thirdPartyAppid, null);
             TestCase.assertNotNull(authRul);
             System.out.println("[^_^:20211107-1614-001] authRul: " + authRul);
 

@@ -34,7 +34,7 @@ public interface ZKSecPrincipal<ID> extends Serializable {
      * @author bs
      *
      */
-    public static interface TYPE {
+    public static interface KeyType {
         /**
          * 用户
          */
@@ -44,6 +44,11 @@ public interface ZKSecPrincipal<ID> extends Serializable {
          * 第三方开发者应用
          */
         public static final int Developer = 2;
+
+        /**
+         * 分布式微服务
+         */
+        public static final int Distributed_server = 3;
 
     }
 
@@ -126,6 +131,18 @@ public interface ZKSecPrincipal<ID> extends Serializable {
     }
 
     /**
+     * 令牌 ID
+     *
+     * @Title: getTicketId
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 13, 2022 5:34:47 PM
+     * @return
+     * @return Serializable
+     */
+    public Serializable getTicketId();
+
+    /**
      * 类型
      * 
      * @return
@@ -138,16 +155,6 @@ public interface ZKSecPrincipal<ID> extends Serializable {
      * @return
      */
     public ID getPkId();
-
-    /**
-     * 公司ID
-     */
-    public String getCompanyId();
-
-    /**
-     * 公司代码
-     */
-    public String getCompanyCode();
 
     /**
      * 是否为主要的身份
@@ -174,7 +181,7 @@ public interface ZKSecPrincipal<ID> extends Serializable {
     public long getAppType();
 
     /**
-     * 应用标识
+     * 应该唯一标识
      */
     public String getAppId();
 

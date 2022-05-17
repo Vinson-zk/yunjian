@@ -29,6 +29,11 @@ import java.util.Set;
 */
 public class ZKSampleAuthPermission implements ZKAuthPermission {
 
+    /**
+     * @Fields serialVersionUID : TODO(simple description what to do.)
+     */
+    private static final long serialVersionUID = 1L;
+
     /*** Api 接口代码 *****************************************************************/
     Set<String> apiCodeByDept = new HashSet<>();
 

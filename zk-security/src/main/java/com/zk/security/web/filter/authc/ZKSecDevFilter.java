@@ -21,6 +21,7 @@ package com.zk.security.web.filter.authc;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import com.zk.security.exception.ZKSecCodeException;
 import com.zk.security.subject.ZKSecSubject;
 import com.zk.security.utils.ZKSecSecurityUtils;
 import com.zk.security.web.filter.ZKSecBaseControlFilter;
@@ -45,8 +46,8 @@ public class ZKSecDevFilter extends ZKSecBaseControlFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-        // TODO Auto-generated method stub
-        return false;
+        log.error("[>_<:20220514-0916-003] zk.sec.000015 无开发者身份");
+        throw new ZKSecCodeException("zk.sec.000015");
     }
 
 }

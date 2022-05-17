@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zk.core.web.ZKMsgRes;
+import com.zk.sys.common.ZKSysApiConstants;
 
 /** 
 * @ClassName: ZKSysOrgCompanyApi 
@@ -31,11 +32,14 @@ import com.zk.core.web.ZKMsgRes;
 * @author Vinson 
 * @version 1.0 
 */
-@FeignClient(name = "${spring.application.name}")
+//@FeignClient(name = "${spring.application.name}")
+@FeignClient(name = ZKSysApiConstants.YunJian_App_Name, contextId = "com.zk.sys.org.api.ZKSysOrgCompanyApi")
 public interface ZKSysOrgCompanyApi {
 
     // 根据公司代码查公司详情
-    @RequestMapping(path = "${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/org/sysOrgCompany/sysOrgCompanyByCode", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET,
+//            headers = { "_tkID=" + ZKServerApiUtils.s },
+            path = ZKSysApiConstants.YunJian_Api_Prefix + "/org/sysOrgCompany/sysOrgCompanyByCode")
     ZKMsgRes getCompanyByCode(@RequestParam("companyCode") String companyCode);
 
 }

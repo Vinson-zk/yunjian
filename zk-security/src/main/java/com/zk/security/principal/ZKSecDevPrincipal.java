@@ -26,7 +26,7 @@ package com.zk.security.principal;
  * @author Vinson
  * @version 1.0
  */
-public interface ZKSecDevPrincipal<ID> extends ZKSecPrincipal<ID> {
+public interface ZKSecDevPrincipal<ID> extends ZKSecGroupPrincipal<ID> {
 
     /**
      * 应用ID

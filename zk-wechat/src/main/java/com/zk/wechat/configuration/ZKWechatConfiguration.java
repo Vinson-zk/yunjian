@@ -27,9 +27,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.eureka.MutableDiscoveryClientOptionalArgs;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -47,6 +49,9 @@ import com.zk.core.utils.ZKLocaleUtils;
 import com.zk.core.web.filter.ZKCrosFilter;
 import com.zk.core.web.resolver.ZKExceptionHandlerResolver;
 import com.zk.core.web.utils.ZKWebUtils;
+import com.zk.framwwork.serCen.ZKSerCenEncrypt;
+import com.zk.framwwork.serCen.eureka.ZKEurekaTransportClientFactories;
+import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
 
 /** 
 * @ClassName: ZKWechatConfiguration 
@@ -54,12 +59,15 @@ import com.zk.core.web.utils.ZKWebUtils;
 * @author Vinson 
 * @version 1.0 
 */
+@AutoConfigureBefore(value = { 
+        ZKWechatAfterConfiguration.class,
+        ServletWebServerFactoryAutoConfiguration.class
+    })
+@AutoConfigureAfter(value = { ZKWechatRedisConfiguration.class,
+//        ZKWechatSecConfiguration.class,
+        ZKWechatJdbcConfiguration.class })
 @ImportResource(locations = { "classpath:xmlConfig/spring_ctx_application.xml",
         "classpath:xmlConfig/spring_ctx_wechat_application.xml", "classpath:xmlConfig/spring_ctx_mvc.xml" })
-@AutoConfigureBefore(value = { 
-        ServletWebServerFactoryAutoConfiguration.class
-        })
-@AutoConfigureAfter(value = { ZKWechatRedisConfiguration.class, ZKWechatJdbcConfiguration.class })
 public class ZKWechatConfiguration {
     
     protected static Logger log = LoggerFactory.getLogger(ZKWechatConfiguration.class);
@@ -90,6 +98,39 @@ public class ZKWechatConfiguration {
         requestMappingHandlerAdapter.setIgnoreDefaultModelOnRedirect(true);
         log.info("[^_^:20200805-1808-001] ----- ZKWechatConfiguration class before ");
     }
+
+    /******************************************************************/
+    /**
+     * 服务注册加解密
+     *
+     * @Title: zkSerCenSampleCipher
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Jul 6, 2020 6:07:27 PM
+     * @return
+     * @return ZKSerCenSampleCipher
+     */
+    @Bean
+    public ZKSerCenEncrypt zkSerCenEncrypt() {
+        return new ZKSerCenSampleCipher();
+    }
+
+//    @Bean
+//    public ZKSerCenDecode zkSerCenDecode() {
+//        return new ZKSerCenSampleCipher();
+//    }
+
+    @Bean
+//    @ConditionalOnBean(name = "eurekaDiscoverClientMarker")
+    @ConditionalOnClass(name = "com.sun.jersey.api.client.filter.ClientFilter")
+//    @ConditionalOnMissingBean(value = AbstractDiscoveryClientOptionalArgs.class, search = SearchStrategy.CURRENT)
+    public MutableDiscoveryClientOptionalArgs discoveryClientOptionalArgs(ZKSerCenEncrypt zkSerCenEncrypt) {
+        MutableDiscoveryClientOptionalArgs ms = new MutableDiscoveryClientOptionalArgs();
+        ms.setTransportClientFactories(new ZKEurekaTransportClientFactories(zkSerCenEncrypt));
+        return ms;
+    }
+
+    /******************************************************************/
 
     @Bean
     public FilterRegistrationBean<Filter> zkCrosFilterRegistrationBean() {
@@ -180,5 +221,26 @@ public class ZKWechatConfiguration {
         zkCacheManager.setJedisOperator(jedisOperator);
         return zkCacheManager;
     }
+
+//    /**
+//     * 打开feign默认契约后 spring的注解就不起作用咯 要使用它自己的注解 如 RequestLine @RuequestLine("GET /api/server/list")
+//     * 
+//     * 还有feign对于@GetMapping @PostMapping等 是不支持的 支持从requestMapping 对于参数自定义对象也是不支持的 可以使用map 或 注册类型转换器到spring的convert中
+//     *
+//     * @Title: feignContract
+//     * @Description: TODO(simple description this method what to do.)
+//     * @author Vinson
+//     * @date May 12, 2022 4:27:25 PM
+//     * @return
+//     * @return Contract
+//     */
+//    @Bean
+//    public Contract feignContract() {
+//        /**
+//         * Contract feign的默认契约 如果FeignClient想要使用feign自己定义的注解，需要在configuration中配置feign的契约模式，因为其默认采用的时sping的注解方式，所以会不识别feign的注解
+//         * 
+//         */
+//        return new Contract.Default();
+//    }
 
 }

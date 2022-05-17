@@ -64,6 +64,11 @@ public class ZKSecDelegatingTicker extends ZKSecAbstractTicket {
     }
 
     @Override
+    public int getSecurityType() {
+        return this.getTickerManager().getSecurityType(this.getTkId());
+    }
+
+    @Override
     public ZKSecPrincipalCollection getPrincipalCollection() {
         return this.getTickerManager().getPrincipalCollection(this.getTkId());
     }
@@ -132,7 +137,5 @@ public class ZKSecDelegatingTicker extends ZKSecAbstractTicket {
     public boolean remove(String key) {
         return this.getTickerManager().remove(this.getTkId(), key);
     }
-
-
 
 }

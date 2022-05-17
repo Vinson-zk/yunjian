@@ -89,19 +89,19 @@ public class ZKSecSampleRealm extends ZKSecAbstractRealm {
         ZKSecPrincipalCollection pc = new ZKSecDefaultPrincipalCollection();
         ZKSecAuthcUserToken authcUserToken = (ZKSecAuthcUserToken) authcToken;
         if ("admin".equals(authcUserToken.getUsername()) && "admin".equals(new String(authcUserToken.getPwd()))) {
-            ZKSecPrincipal<String> p = new ZKSecDefaultUserPrincipal<String>(authcUserToken.getCompanyCode(),
-                    authcUserToken.getCompanyCode(), authcUserToken.getUsername(), authcUserToken.getUsername(),
-                    "admin 游客", authcUserToken.getOsType(), authcUserToken.getUdid(), authcUserToken.getAppType(),
-                    authcUserToken.getAppId());
+            ZKSecPrincipal<String> p = new ZKSecDefaultUserPrincipal<String>(authcUserToken.getUsername(),
+                    authcUserToken.getUsername(), "admin 游客", authcUserToken.getOsType(), authcUserToken.getUdid(),
+                    authcUserToken.getAppType(), authcUserToken.getAppId(), authcUserToken.getCompanyCode(),
+                    authcUserToken.getCompanyCode(), authcUserToken.getCompanyCode());
             pc.add(this.getRealmName(), p);
             return pc;
         }
 
         if ("test".equals(authcUserToken.getUsername()) && "test".equals(new String(authcUserToken.getPwd()))) {
-            ZKSecPrincipal<String> p = new ZKSecDefaultUserPrincipal<String>(authcUserToken.getCompanyCode(),
-                    authcUserToken.getCompanyCode(), authcUserToken.getUsername(), authcUserToken.getUsername(),
-                    "test 游客", authcUserToken.getOsType(), authcUserToken.getUdid(), authcUserToken.getAppType(),
-                    authcUserToken.getAppId());
+            ZKSecPrincipal<String> p = new ZKSecDefaultUserPrincipal<String>(authcUserToken.getUsername(),
+                    authcUserToken.getUsername(), "test 游客", authcUserToken.getOsType(), authcUserToken.getUdid(),
+                    authcUserToken.getAppType(), authcUserToken.getAppId(), authcUserToken.getCompanyCode(),
+                    authcUserToken.getCompanyCode(), authcUserToken.getCompanyCode());
             pc.add(this.getRealmName(), p);
             return pc;
         }
@@ -190,7 +190,7 @@ public class ZKSecSampleRealm extends ZKSecAbstractRealm {
                         // 当前用户是登录认证的在线用户，保留当前用户，踢掉之前的用户；
                         for (ZKSecTicket t : tks) {
                             t.stop();
-                            t.put(ZKSecTicket.TICKET_INFO_KEY.stop_info_code, "zk.sec.000012"); // zk.sec.000012=用户已在其他地方登录，请重新登录
+                            t.put(ZKSecTicket.KeyTicketInfo.stop_info_code, "zk.sec.000012"); // zk.sec.000012=用户已在其他地方登录，请重新登录
                             log.info("[^_^:20220427-1014-001] 用户已在其他地方登录，请重新登录！");
                         }
                     }

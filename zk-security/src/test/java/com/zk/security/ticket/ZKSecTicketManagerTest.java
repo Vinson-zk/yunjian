@@ -53,8 +53,8 @@ public class ZKSecTicketManagerTest {
     public void testCreateSecTicket() {
         try {
             ZKSecTicket tk = ticketManager.createSecTicket(ticketManager.generateTkId());
-            TestCase.assertEquals(ZKSecTicket.TYPE.Sec, tk.getType());
-            TestCase.assertEquals(ZKSecTicket.STATUS.Start, tk.getStatus());
+            TestCase.assertEquals(ZKSecTicket.KeyType.Security, tk.getType());
+            TestCase.assertEquals(ZKSecTicket.KeyStatus.Start, tk.getStatus());
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -68,8 +68,8 @@ public class ZKSecTicketManagerTest {
     public void testCreateTicket() {
         try {
             ZKSecTicket tk = ticketManager.createTicket(ticketManager.generateTkId());
-            TestCase.assertEquals(ZKSecTicket.TYPE.General, tk.getType());
-            TestCase.assertEquals(ZKSecTicket.STATUS.Start, tk.getStatus());
+            TestCase.assertEquals(ZKSecTicket.KeyType.General, tk.getType());
+            TestCase.assertEquals(ZKSecTicket.KeyStatus.Start, tk.getStatus());
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -109,14 +109,14 @@ public class ZKSecTicketManagerTest {
             ticketManager.createSecTicket(secTkId2);
             Serializable tkId = ticketManager.generateTkId();
             ticketManager.createTicket(tkId);
-            ticketManager.dropTicketByType(ZKSecTicket.TYPE.Sec);
+            ticketManager.dropTicketByType(ZKSecTicket.KeyType.Security);
             ZKSecTicket tk = ticketManager.getTicket(secTkId1);
             TestCase.assertNull(tk);
             tk = ticketManager.getTicket(secTkId2);
             TestCase.assertNull(tk);
             tk = ticketManager.getTicket(tkId);
             TestCase.assertNotNull(tk);
-            ticketManager.dropTicketByType(ZKSecTicket.TYPE.General);
+            ticketManager.dropTicketByType(ZKSecTicket.KeyType.General);
             tk = ticketManager.getTicket(tkId);
             TestCase.assertNull(tk);
 
@@ -193,11 +193,11 @@ public class ZKSecTicketManagerTest {
         try {
             Serializable tkId = ticketManager.generateTkId();
             ZKSecTicket tk = ticketManager.createTicket(tkId);
-            TestCase.assertEquals(ZKSecTicket.STATUS.Start, tk.getStatus());
+            TestCase.assertEquals(ZKSecTicket.KeyStatus.Start, tk.getStatus());
             tk.stop();
-            TestCase.assertEquals(ZKSecTicket.STATUS.Stop, tk.getStatus());
+            TestCase.assertEquals(ZKSecTicket.KeyStatus.Stop, tk.getStatus());
             tk.start();
-            TestCase.assertEquals(ZKSecTicket.STATUS.Start, tk.getStatus());
+            TestCase.assertEquals(ZKSecTicket.KeyStatus.Start, tk.getStatus());
             tk.drop();
         }
         catch(Exception e) {
@@ -294,29 +294,29 @@ public class ZKSecTicketManagerTest {
             String groupCode = "groupCode";
             String username = "username";
             String name = "name";
-            ZKSecPrincipal<String> userPrincipal = new ZKSecDefaultUserPrincipal<String>(groupCode, groupCode, pkId,
-                    username, name, 0, "", 0, "");
+            ZKSecPrincipal<String> userPrincipal = new ZKSecDefaultUserPrincipal<String>(pkId, username, name, 0, "", 0,
+                    groupCode, groupCode, groupCode, groupCode);
 
             // 创建 appPrincipal 身份
             String devId = "app-2018-0713-0814-001";
             String udid = UUID.randomUUID().toString();
             long osType = ZKSecPrincipal.OS_TYPE.iOS;
-            ZKSecPrincipal<String> appPrincipal = new ZKSecDefaultDevPrincipal<String>(groupCode, groupCode, pkId,
-                    devId, "", osType, udid, 0, "");
+            ZKSecPrincipal<String> appPrincipal = new ZKSecDefaultDevPrincipal<String>(pkId, devId, "", osType, udid, 0,
+                    groupCode, groupCode, groupCode, groupCode);
 
             // 创建 userPrincipalOther身份
             String pkIdOther = "pk-2018-0713-0814-001-Other";
             String usernameOther = "usernameOther";
             String nameOther = "nameOther";
-            ZKSecPrincipal<String> userPrincipalOther = new ZKSecDefaultUserPrincipal<String>(groupCode, groupCode,
-                    pkIdOther, usernameOther, nameOther, 0, "", 0, "");
+            ZKSecPrincipal<String> userPrincipalOther = new ZKSecDefaultUserPrincipal<String>(pkIdOther, usernameOther,
+                    nameOther, 0, "", 0, groupCode, groupCode, groupCode, groupCode);
 
             // 创建 appPrincipalOther 身份
             String appIdOther = "app-2018-0713-0814-001-Other";
             String udidOther = UUID.randomUUID().toString();
             long osTypeOther = ZKSecPrincipal.OS_TYPE.Android;
-            ZKSecPrincipal<String> appPrincipalOther = new ZKSecDefaultDevPrincipal<String>(pkIdOther, pkIdOther,
-                    appIdOther, groupCode, udidOther, osTypeOther, "", 0, "");
+            ZKSecPrincipal<String> appPrincipalOther = new ZKSecDefaultDevPrincipal<String>(appIdOther, groupCode,
+                    udidOther, osTypeOther, "", 0, groupCode, groupCode, groupCode, groupCode);
 
             /*** 创建令牌 */
             // 创建一个拥有 userPrincipal身份 与 appPrincipal身份 的令牌
@@ -325,7 +325,7 @@ public class ZKSecTicketManagerTest {
             pcUserAndApp.add("realmNameApp", appPrincipal);
             Serializable tkIdUserAndApp = ticketManager.generateTkId();
             tk = ticketManager.createSecTicket(tkIdUserAndApp);
-            TestCase.assertEquals(ZKSecTicket.STATUS.Start, tk.getStatus());
+            TestCase.assertEquals(ZKSecTicket.KeyStatus.Start, tk.getStatus());
             tk.setPrincipalCollection(pcUserAndApp);
             TestCase.assertEquals(2, tk.getPrincipalCollection().size());
 
@@ -334,7 +334,7 @@ public class ZKSecTicketManagerTest {
             pcUser.add("realmNameUser", userPrincipal);
             Serializable tkIdUser = ticketManager.generateTkId();
             tk = ticketManager.createSecTicket(tkIdUser);
-            TestCase.assertEquals(ZKSecTicket.STATUS.Start, tk.getStatus());
+            TestCase.assertEquals(ZKSecTicket.KeyStatus.Start, tk.getStatus());
             tk.setPrincipalCollection(pcUser);
             TestCase.assertEquals(1, tk.getPrincipalCollection().size());
 
@@ -343,7 +343,7 @@ public class ZKSecTicketManagerTest {
             pcApp.add("realmNameApp", appPrincipal);
             Serializable tkIdApp = ticketManager.generateTkId();
             tk = ticketManager.createSecTicket(tkIdApp);
-            TestCase.assertEquals(ZKSecTicket.STATUS.Start, tk.getStatus());
+            TestCase.assertEquals(ZKSecTicket.KeyStatus.Start, tk.getStatus());
             tk.setPrincipalCollection(pcApp);
             TestCase.assertEquals(1, tk.getPrincipalCollection().size());
 
@@ -353,7 +353,7 @@ public class ZKSecTicketManagerTest {
 //            pcUserAndAppOther.add("realmNameApp", appPrincipalOther);
 //            Serializable tkIdUserAndAppOther = ticketManager.generateTkId();
 //            tk = ticketManager.createSecTicket(tkIdUserAndAppOther);
-//            TestCase.assertEquals(ZKSecTicket.STATUS.Start, tk.getStatus());
+//            TestCase.assertEquals(ZKSecTicket.KeyStatus.Start, tk.getStatus());
 //            tk.setPrincipalCollection(pcUserAndAppOther);
 //            TestCase.assertEquals(2, tk.getPrincipalCollection().size());
 
@@ -362,7 +362,7 @@ public class ZKSecTicketManagerTest {
             pcUserOther.add("realmNameApp", userPrincipalOther);
             Serializable tkIdUserOther = ticketManager.generateTkId();
             tk = ticketManager.createSecTicket(tkIdUserOther);
-            TestCase.assertEquals(ZKSecTicket.STATUS.Start, tk.getStatus());
+            TestCase.assertEquals(ZKSecTicket.KeyStatus.Start, tk.getStatus());
             tk.setPrincipalCollection(pcUserOther);
             TestCase.assertEquals(1, tk.getPrincipalCollection().size());
 
@@ -371,7 +371,7 @@ public class ZKSecTicketManagerTest {
             pcAppOther.add("realmNameApp", appPrincipalOther);
             Serializable tkIdAppOther = ticketManager.generateTkId();
             tk = ticketManager.createSecTicket(tkIdAppOther);
-            TestCase.assertEquals(ZKSecTicket.STATUS.Start, tk.getStatus());
+            TestCase.assertEquals(ZKSecTicket.KeyStatus.Start, tk.getStatus());
             tk.setPrincipalCollection(pcAppOther);
             TestCase.assertEquals(1, tk.getPrincipalCollection().size());
 

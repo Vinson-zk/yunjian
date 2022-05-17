@@ -87,7 +87,7 @@ public class ZKSerCenRegisterFilter extends ZKOncePerFilter {
             Pattern.compile("^/eureka/instances/(.*)", Pattern.CASE_INSENSITIVE) };
 
     /**
-     * 仅拦截处理，客户端注册，下线等相关请求；而服务器之前的请求，如服务同步等请求跳过不处理
+     * 仅拦截处理，客户端注册，下线等相关请求；而服务器之间的请求，如服务同步等请求跳过不处理
      *
      * @Title: isDoingFilter
      * @Description: TODO(simple description this method what to do.)

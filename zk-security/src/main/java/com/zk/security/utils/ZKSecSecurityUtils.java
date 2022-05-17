@@ -18,6 +18,9 @@
 */
 package com.zk.security.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.zk.security.exception.ZKSecUnknownException;
 import com.zk.security.mgt.ZKSecSecurityManager;
 import com.zk.security.principal.ZKSecDevPrincipal;
@@ -35,6 +38,8 @@ import com.zk.security.ticket.ZKSecTicket;
 * @version 1.0 
 */
 public class ZKSecSecurityUtils {
+
+    protected static Logger log = LoggerFactory.getLogger(ZKSecSecurityUtils.class);
 
     private static ZKSecSecurityManager securityManager;
 
@@ -60,7 +65,7 @@ public class ZKSecSecurityUtils {
     @SuppressWarnings("unchecked")
     public static <T> ZKSecUserPrincipal<T> getUserPrincipal(ZKSecTicket tk) {
         if (tk != null) {
-            return (ZKSecUserPrincipal<T>) getPrincipalByType(tk, ZKSecPrincipal.TYPE.User);
+            return (ZKSecUserPrincipal<T>) getPrincipalByType(tk, ZKSecPrincipal.KeyType.User);
         }
         return null;
     }
@@ -76,7 +81,25 @@ public class ZKSecSecurityUtils {
 
     public static ZKSecDevPrincipal<?> getDevPrincipal(ZKSecTicket tk) {
         if (tk != null) {
-            return (ZKSecDevPrincipal<?>) getPrincipalByType(tk, ZKSecPrincipal.TYPE.Developer);
+            return (ZKSecDevPrincipal<?>) getPrincipalByType(tk, ZKSecPrincipal.KeyType.Developer);
+        }
+        return null;
+    }
+
+    /**
+     * 取微服务身份
+     *
+     * @Title: getServerPrincipal
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 14, 2022 8:47:00 AM
+     * @param tk
+     * @return
+     * @return ZKSecDevPrincipal<?>
+     */
+    public static ZKSecPrincipal<?> getServerPrincipal(ZKSecTicket tk) {
+        if (tk != null) {
+            return getPrincipalByType(tk, ZKSecPrincipal.KeyType.Distributed_server);
         }
         return null;
     }
@@ -101,38 +124,34 @@ public class ZKSecSecurityUtils {
         return null;
     }
 
-    @SuppressWarnings("unchecked")
     public static <ID> ID getUserId() {
-        ZKSecTicket tk = getTikcet();
-        if (tk != null) {
-            ZKSecPrincipal<?> userP = tk.getPrincipalCollection().getPrimaryPrincipal();
-            if (userP != null) {
-                return (ID) userP.getPkId();
-            }
+        ZKSecUserPrincipal<ID> u = getUserPrincipal();
+        if (u != null) {
+            return u.getPkId();
         }
         return null;
     }
 
-    @SuppressWarnings("unchecked")
     public static <ID> ID getCompanyId() {
-        ZKSecTicket tk = getTikcet();
-        if (tk != null) {
-            ZKSecPrincipal<?> userP = tk.getPrincipalCollection().getPrimaryPrincipal();
-            if (userP != null) {
-                return (ID) userP.getCompanyId();
-            }
+        ZKSecUserPrincipal<ID> u = getUserPrincipal();
+        if (u != null) {
+            return u.getCompanyId();
         }
         return null;
     }
 
-    @SuppressWarnings("unchecked")
-    public static <ID> ID getCompanyCode() {
-        ZKSecTicket tk = getTikcet();
-        if (tk != null) {
-            ZKSecPrincipal<?> userP = tk.getPrincipalCollection().getPrimaryPrincipal();
-            if (userP != null) {
-                return (ID) userP.getCompanyCode();
-            }
+    public static String getCompanyCode() {
+        ZKSecUserPrincipal<?> u = getUserPrincipal();
+        if (u != null) {
+            return u.getCompanyCode();
+        }
+        return null;
+    }
+
+    public static String getGroupCode() {
+        ZKSecUserPrincipal<?> u = getUserPrincipal();
+        if (u != null) {
+            return u.getGroupCode();
         }
         return null;
     }
@@ -149,7 +168,12 @@ public class ZKSecSecurityUtils {
         ZKSecSubject subject = ZKSecThreadContext.getSubject();
         if (subject == null) {
             subject = getSecurityManager().createSubject();
-            ZKSecThreadContext.bind(subject);
+            if (subject != null) {
+                ZKSecThreadContext.bind(subject);
+            }
+            else {
+                log.error("[>_<: 20220516-1420-001] 无会话 subject，创建 subject 类型与环境不匹配！");
+            }
         }
         return subject;
     }

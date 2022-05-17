@@ -58,7 +58,7 @@ public class ZKSysSecConfiguration {
     }
 
     @Bean
-    public ZKSysSecRealm zkSecTestRealm(ZKSecRedisTicketManager secRedisTicketManager) {
+    public ZKSysSecRealm secRealm(ZKSecRedisTicketManager secRedisTicketManager) {
         ZKSysSecRealm realm = new ZKSysSecRealm();
 //        realm.setSecUserService(secUserService);
         realm.setTicketManager(secRedisTicketManager);
@@ -84,11 +84,11 @@ public class ZKSysSecConfiguration {
 
     @Bean
     public ZKSecWebSecurityManager zkSecWebSecurityManager(ZKSecCookieRememberMemanager rememberMeManager,
-            ZKSecTicketManager zkSecTicketManager, ZKSysSecRealm realm) {
+            ZKSecTicketManager zkSecTicketManager, ZKSysSecRealm secRealm) {
         ZKSecWebSecurityManager sm = new ZKSecWebSecurityManager();
         sm.setTicketManager(zkSecTicketManager);
         sm.setRememberMeManager(rememberMeManager);
-        sm.setRealm(realm);
+        sm.setRealm(secRealm);
         return sm;
     }
 

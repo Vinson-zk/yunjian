@@ -90,7 +90,7 @@ public class ZKEurekaHttpClient implements EurekaHttpClient {
             webResource.header(key, value);
         });
 
-        System.out.println("[^_^:20200701-1048-001] 添加 zk 请求头: " + ZKJsonUtils.writeObjectJson(headers));
+        log.info("[^_^:20200701-1048-001] 添加 zk 请求头: {}", ZKJsonUtils.writeObjectJson(headers));
     }
 
     protected void preClientResponse(ClientResponse res) {

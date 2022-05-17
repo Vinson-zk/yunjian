@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Maps;
-import com.zk.base.commons.ZKUserUtils;
 import com.zk.base.service.ZKBaseTreeService;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.utils.ZKDateUtils;
 import com.zk.core.utils.ZKMsgUtils;
 import com.zk.core.utils.ZKStringUtils;
+import com.zk.security.utils.ZKSecSecurityUtils;
 import com.zk.sys.auth.service.ZKSysAuthCompanyService;
 import com.zk.sys.org.dao.ZKSysOrgCompanyDao;
 import com.zk.sys.org.entity.ZKSysOrgCompany;
@@ -135,7 +135,7 @@ public class ZKSysOrgCompanyService extends ZKBaseTreeService<String, ZKSysOrgCo
         this.checkLicence();
         // 修改公司状态为通过
         return this.dao.approveCompany(ZKSysOrgCompany.initSqlProvider().getTableName(), entity.getPkId(),
-                ZKSysOrgCompany.KeyStatus.normal, ZKUserUtils.getPrincipalId(), ZKDateUtils.getToday());
+                ZKSysOrgCompany.KeyStatus.normal, ZKSecSecurityUtils.getUserId(), ZKDateUtils.getToday());
     }
 
     /**
@@ -155,7 +155,7 @@ public class ZKSysOrgCompanyService extends ZKBaseTreeService<String, ZKSysOrgCo
         this.checkLicence();
         // 修改公司状态为通过
         return this.dao.approveCompany(ZKSysOrgCompany.initSqlProvider().getTableName(), entity.getPkId(),
-                ZKSysOrgCompany.KeyStatus.disabled, ZKUserUtils.getPrincipalId(), ZKDateUtils.getToday());
+                ZKSysOrgCompany.KeyStatus.disabled, ZKSecSecurityUtils.getUserId(), ZKDateUtils.getToday());
     }
 
     /**

@@ -39,6 +39,11 @@ public interface ZKSecProxyTickerManager extends ZKSecTicketManager {
     public int getType(Serializable identification);
 
     /**
+     * 取令牌的权限类型，0-用户权限类型；1-微服务权限类型；
+     */
+    public int getSecurityType(Serializable identification);
+
+    /**
      * 取拥有的身分
      * 
      * @return

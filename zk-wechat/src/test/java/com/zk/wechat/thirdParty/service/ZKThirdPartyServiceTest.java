@@ -20,7 +20,10 @@ package com.zk.wechat.thirdParty.service;
 
 import org.junit.Test;
 
-import com.alibaba.fastjson.JSONObject;
+import com.zk.core.utils.ZKJsonUtils;
+import com.zk.security.mgt.ZKSecSecurityManager;
+import com.zk.security.utils.ZKSecSecurityUtils;
+import com.zk.sys.org.entity.ZKSysOrgCompany;
 import com.zk.wechat.helper.ZKWechatTestHelper;
 import com.zk.wechat.thirdParty.entity.ZKThirdParty;
 
@@ -40,10 +43,16 @@ public class ZKThirdPartyServiceTest {
             String companyCode = "yunjian";
             ZKThirdPartyService s = ZKWechatTestHelper.getCtx().getBean(ZKThirdPartyService.class);
             TestCase.assertNotNull(s);
-            JSONObject json = null;
+            ZKSysOrgCompany company = null;
 
-            json = s.getCompanyByCode(companyCode);
-            TestCase.assertNotNull(json);
+            ZKSecSecurityManager sm = ZKWechatTestHelper.getCtx().getBean(ZKSecSecurityManager.class);
+            TestCase.assertNotNull(sm);
+            ZKSecSecurityUtils.setSecurityManager(sm);
+
+            company = s.getCompanyByCode(companyCode);
+            System.out.println("[^_^:20220518-0034-001] getCompanyByCode:{" + companyCode + "}, company: "
+                    + ZKJsonUtils.writeObjectJson(company));
+            TestCase.assertNotNull(company);
         }
         catch(Exception e) {
             e.printStackTrace();

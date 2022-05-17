@@ -32,6 +32,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.zk</groupId>
+			<artifactId>zk-system-api</artifactId>
+			<version>${version.zk.system.api}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zk</groupId>
 			<artifactId>zk-core</artifactId>
 			<version>${version.zk.core}</version>
 		</dependency>

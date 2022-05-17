@@ -49,7 +49,7 @@ public class ZKMsgRes {
     protected static Logger log = LoggerFactory.getLogger(ZKMsgUtils.class);
 
     /**
-     * 响应错误码，0 成功
+     * 响应错误码，zk.0 成功
      */
     private String code;
 
@@ -235,7 +235,7 @@ public class ZKMsgRes {
         PrintWriter pw = null;
         try {
             pw = res.getWriter();
-            pw.write(ZKJsonUtils.writeObjectJson(this));
+            pw.write(this.toString());
         }
         catch(IOException e) {
             log.error("[>_<:20190902-1556-001] Response 通信异常！");
@@ -252,6 +252,10 @@ public class ZKMsgRes {
     @Override
     public String toString() {
         return ZKJsonUtils.writeObjectJson(this);
+    }
+
+    public boolean isOk() {
+        return "zk.0".equals(this.getCode());
     }
 
 }

@@ -96,6 +96,18 @@ public interface ZKSecSubject {
      */
     boolean isAuthcDev();
 
+    /**
+     * 判断是不是微服务身份
+     *
+     * @Title: isAuthcServer
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 14, 2022 8:46:10 AM
+     * @return
+     * @return boolean
+     */
+    boolean isAuthcServer();
+
 //  /**
 //   * 设置令牌，传入令牌
 //   * @param identification

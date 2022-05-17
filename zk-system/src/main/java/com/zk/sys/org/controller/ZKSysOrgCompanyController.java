@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zk.base.controller.ZKBaseController;
 import com.zk.core.commons.data.ZKPage;
 import com.zk.core.web.ZKMsgRes;
+import com.zk.security.annotation.ZKSecApiCode;
 import com.zk.sys.org.entity.ZKSysOrgCompany;
 import com.zk.sys.org.service.ZKSysOrgCompanyOptService;
 import com.zk.sys.org.service.ZKSysOrgCompanyService;       
@@ -38,9 +39,11 @@ public class ZKSysOrgCompanyController extends ZKBaseController {
 
     // 查询详情
     @RequestMapping(value = "sysOrgCompanyByCode", method = RequestMethod.GET)
+    @ZKSecApiCode("com_zk_sys_org_sysOrgCompany_sysOrgCompanyByCode")
     public ZKMsgRes sysOrgCompanyByCode(@RequestParam("companyCode") String companyCode) {
         ZKSysOrgCompany sysOrgCompany = this.sysOrgCompanyService.getByCode(companyCode);
         return ZKMsgRes.asOk(sysOrgCompany);
+//        return sysOrgCompany;
     }
 
 	// 编辑

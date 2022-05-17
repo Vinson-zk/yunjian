@@ -24,24 +24,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zk.core.web.ZKMsgRes;
-import com.zk.framwwork.common.ZKOpenFeignConstant;
+import com.zk.sys.common.ZKSysApiConstants;
 
-/** 
-* @ClassName: ZKSysOrgUserApi 
-* @Description: TODO(simple description this class what to do. ) 
-* @author Vinson 
-* @version 1.0 
-*/
-@FeignClient(name = ZKOpenFeignConstant.YunJian_App_Name.zkSys)
+/**
+ * @ClassName: ZKSysOrgUserApi
+ * @Description: TODO(simple description this class what to do. )
+ * @author Vinson
+ * @version 1.0
+ */
+@FeignClient(name = ZKSysApiConstants.YunJian_App_Name, contextId = "com.zk.sys.org.api.ZKSysOrgUserApi")
 public interface ZKSysOrgUserApi {
 
-
     // 根据用户ID查询用户详情
-    @RequestMapping(path = "${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/org/sysOrgUser/sysOrgUser", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET,
+            path = ZKSysApiConstants.YunJian_Api_Prefix + "/org/sysOrgUser/sysOrgUser")
     ZKMsgRes getUserByPkId(@RequestParam("pkId") String pkId);
 
     // 根据用户公司代码和手机号友查询用户详情
-    @RequestMapping(path = "${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/org/sysOrgUser/sysOrgUserByPhoneNum", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, 
+            path = ZKSysApiConstants.YunJian_Api_Prefix + "/org/sysOrgUser/sysOrgUserByPhoneNum")
     ZKMsgRes getUserByPhnoeNum(@RequestParam("companyId") String companyId, @RequestParam("phoneNum") String phoneNum);
 
 }

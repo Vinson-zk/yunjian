@@ -28,14 +28,17 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.zk.wechat.configuration.ZKWechatAfterConfiguration;
 import com.zk.wechat.configuration.ZKWechatConfiguration;
 import com.zk.wechat.configuration.ZKWechatJdbcConfiguration;
 import com.zk.wechat.configuration.ZKWechatRedisConfiguration;
+import com.zk.wechat.configuration.ZKWechatSecConfiguration;
 
 /** 
 * @ClassName: ZKWechatSpringBootMain 
@@ -55,14 +58,22 @@ import com.zk.wechat.configuration.ZKWechatRedisConfiguration;
 //@ComponentScan(basePackages = { "com.zk.server.central.filter" })
 //@ServletComponentScan(basePackages = { "com.zk.server.central.filter" })
 @ImportAutoConfiguration(classes = { 
+        ZKWechatAfterConfiguration.class,
         ZKWechatConfiguration.class, 
         ZKWechatRedisConfiguration.class,
-        ZKWechatJdbcConfiguration.class
+        ZKWechatJdbcConfiguration.class,
+        ZKWechatSecConfiguration.class
+        /*** openfeign ***/
+//        FeignRibbonClientAutoConfiguration.class,
+//        FeignAutoConfiguration.class,
+//        FeignAcceptGzipEncodingAutoConfiguration.class,
+//        FeignContentGzipEncodingAutoConfiguration.class
 })
 @PropertySource(encoding = "UTF-8", value = { "classpath:zk.wechat.jdbc.properties",
         "classpath:zk.wechat.wx.thirdParty.properties", "classpath:zk.wechat.wx.pay.properties" })
 //@AutoConfigureOrder(value = Ordered.HIGHEST_PRECEDENCE)
 @ComponentScan(basePackages = { "com.zk.wechat.*" })
+@EnableFeignClients(basePackages = { "com.zk.**.api" })
 public class ZKWechatSpringBootMain {
     
     protected static Logger log = LoggerFactory.getLogger(ZKWechatSpringBootMain.class);

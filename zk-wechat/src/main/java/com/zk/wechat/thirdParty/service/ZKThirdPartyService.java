@@ -24,10 +24,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.alibaba.fastjson.JSONObject;
 import com.zk.base.service.ZKBaseService;
 import com.zk.core.web.ZKMsgRes;
 import com.zk.sys.org.api.ZKSysOrgCompanyApi;
+import com.zk.sys.org.entity.ZKSysOrgCompany;
 import com.zk.wechat.thirdParty.dao.ZKThirdPartyDao;
 import com.zk.wechat.thirdParty.entity.ZKThirdParty;
 
@@ -61,10 +61,25 @@ public class ZKThirdPartyService extends ZKBaseService<String, ZKThirdParty, ZKT
         return this.dao.updateAccessToken(appId, wxAccessToken, expiresIn, new Date());
     }
 
-    public JSONObject getCompanyByCode(String companyCode) {
+    /**
+     * 根据公司代码取公司实体
+     *
+     * @Title: getCompanyByCode
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 18, 2022 12:17:25 AM
+     * @param companyCode
+     * @return
+     * @return ZKSysOrgCompany
+     */
+    public ZKSysOrgCompany getCompanyByCode(String companyCode) {
         ZKMsgRes res = sysOrgCompanyApi.getCompanyByCode(companyCode);
-        JSONObject resJson = res.getData();
-        return resJson;
+        if (res.isOk()) {
+            ZKSysOrgCompany c = res.getDataByClass(ZKSysOrgCompany.class);
+            return c;
+        }
+        log.error("[>_<:20220513-1351-001] 根据公司代码取公司详情失败:{}", res.toString());
+        return null;
     }
 
 }

@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 import org.bson.Document;
 import org.bson.types.Binary;
@@ -50,6 +49,7 @@ import com.zk.mongo.utils.ZKMongoUtils;
 import com.zk.security.exception.ZKSecTicketException;
 import com.zk.security.principal.ZKSecPrincipal;
 import com.zk.security.principal.pc.ZKSecPrincipalCollection;
+import com.zk.security.ticket.ZKSecAbstractTicketManager;
 import com.zk.security.ticket.ZKSecDelegatingTicker;
 import com.zk.security.ticket.ZKSecProxyTickerManager;
 import com.zk.security.ticket.ZKSecTicket;
@@ -60,7 +60,7 @@ import com.zk.security.ticket.ZKSecTicket;
 * @author Vinson 
 * @version 1.0 
 */
-public class ZKSecMongoTicketManager implements ZKSecProxyTickerManager {
+public class ZKSecMongoTicketManager extends ZKSecAbstractTicketManager implements ZKSecProxyTickerManager {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -93,6 +93,8 @@ public class ZKSecMongoTicketManager implements ZKSecProxyTickerManager {
 
         public static final String type = "type";
 
+        public static final String securityType = "securityType";
+
         public static final String status = "status";
 
         public static final String validTime = "validTime";
@@ -110,7 +112,7 @@ public class ZKSecMongoTicketManager implements ZKSecProxyTickerManager {
 
         public static final String pKey_Type = "pKeyType";
 
-        public static final String pKey_CompanyCode = "pKeyCompanyCode";
+//        public static final String pKey_CompanyCode = "pKeyCompanyCode";
 
         public static final String pKey_AuthorizationInfo = "pKeyAuthorizationInfo";
     }
@@ -182,31 +184,35 @@ public class ZKSecMongoTicketManager implements ZKSecProxyTickerManager {
     private final MongoTemplate mongoTemplate;
 
     @Override
-    public Serializable generateTkId() {
-        return UUID.randomUUID().toString().replaceAll("-", "");
-    }
-
-    @Override
     public ZKSecTicket createTicket(Serializable identification) {
         return createTicket(identification, defaultValidTime);
     }
 
     @Override
     public ZKSecTicket createTicket(Serializable identification, long validTime) {
-        return this.createTicket(identification, validTime, ZKSecTicket.TYPE.General, ZKSecTicket.STATUS.Start);
+        return this.createTicket(identification, validTime, ZKSecTicket.KeyType.General, -1,
+                ZKSecTicket.KeyStatus.Start);
     }
 
     @Override
     public ZKSecTicket createSecTicket(Serializable identification) {
-        return createSecTicket(identification, defaultValidTime);
+        return createSecTicket(identification, ZKSecTicket.KeySecurityType.User);
     }
 
     @Override
-    public ZKSecTicket createSecTicket(Serializable identification, long validTime) {
-        return this.createTicket(identification, validTime, ZKSecTicket.TYPE.Sec, ZKSecTicket.STATUS.Start);
+    public ZKSecTicket createSecTicket(Serializable identification, int securityType) {
+        return createSecTicket(identification, securityType, defaultValidTime);
     }
 
-    private ZKSecTicket createTicket(Serializable identification, long validTime, int type, int status) {
+    @Override
+    public ZKSecTicket createSecTicket(Serializable identification, int securityType, long validTime) {
+        return this.createTicket(identification, validTime, ZKSecTicket.KeyType.Security, securityType,
+                ZKSecTicket.KeyStatus.Start);
+    }
+
+    //
+    private ZKSecTicket createTicket(Serializable identification, long validTime, int type, int securityType,
+            int status) {
         ZKSecTicket t = new ZKSecDelegatingTicker(this, identification);
 
         Document resDoc;
@@ -219,6 +225,7 @@ public class ZKSecMongoTicketManager implements ZKSecProxyTickerManager {
         doc.put(AttrKeyName.lastTime, new Date());
         doc.put(AttrKeyName.status, status);
         doc.put(AttrKeyName.type, type);
+        doc.put(AttrKeyName.securityType, securityType);
         doc.put(AttrKeyName.validTime, validTime);
         insert.addDoc(doc);
         resDoc = getMongoTemplate().executeCommand(insert);
@@ -237,7 +244,7 @@ public class ZKSecMongoTicketManager implements ZKSecProxyTickerManager {
 //      ZKFindAndModify.setUpsert(true);
 //      ZKFindAndModify.setQuery(ZKQueryOpt.where(ZKMongoUtils.autoIndexIdName).eq(this.getTkId().toString()));
 //      ZKUpdateOpt ZKUpdateOpt = new ZKUpdateOpt();
-//      // 仅在插入时有效ZKSecTicket.STATUS.Start
+//      // 仅在插入时有效ZKSecTicket.KeyStatus.Start
 //      ZKUpdateOpt.setOnInsert(keyName_lastTime, new Date());
 //      ZKUpdateOpt.setOnInsert(keyName_status, status);
 //      ZKUpdateOpt.setOnInsert(keyName_type, type);
@@ -312,7 +319,7 @@ public class ZKSecMongoTicketManager implements ZKSecProxyTickerManager {
         List<ZKSecTicket> tks = new ArrayList<>();
         ZKFind find = new ZKFind(ZKSecTicket_collection_name);
         List<ZKQueryOpt> queryOpts = new ArrayList<>();
-        queryOpts.add(ZKQueryOpt.where(AttrKeyName.type).eq(ZKSecTicket.TYPE.Sec));
+        queryOpts.add(ZKQueryOpt.where(AttrKeyName.type).eq(ZKSecTicket.KeyType.Security));
         queryOpts.add(ZKQueryOpt.where(AttrKeyName.principalCollection + "." + AttrKeyName.pcKey_PS)
                 .elemMatch(ZKQueryOpt.where(AttrKeyName.pKey_pkID).eq(principal.getPkId())));
         queryOpts.add(ZKQueryOpt.where(AttrKeyName.principalCollection + "." + AttrKeyName.pcKey_PS)
@@ -364,28 +371,37 @@ public class ZKSecMongoTicketManager implements ZKSecProxyTickerManager {
     public int getType(Serializable identification) {
         Document doc = getAttr(identification, AttrKeyName.type);
         if (doc != null) {
-            return doc.getInteger(AttrKeyName.type, ZKSecTicket.TYPE.General);
+            return doc.getInteger(AttrKeyName.type, ZKSecTicket.KeyType.General);
         }
-        return ZKSecTicket.TYPE.General;
+        return ZKSecTicket.KeyType.General;
+    }
+
+    @Override
+    public int getSecurityType(Serializable identification) {
+        Document doc = getAttr(identification, AttrKeyName.securityType);
+        if (doc != null) {
+            return doc.getInteger(AttrKeyName.securityType, -1);
+        }
+        return -1;
     }
 
     @Override
     public int getStatus(Serializable identification) {
         Document doc = getAttr(identification, AttrKeyName.status);
         if (doc != null) {
-            return doc.getInteger(AttrKeyName.status, ZKSecTicket.STATUS.Stop);
+            return doc.getInteger(AttrKeyName.status, ZKSecTicket.KeyStatus.Stop);
         }
-        return ZKSecTicket.STATUS.Stop;
+        return ZKSecTicket.KeyStatus.Stop;
     }
 
     @Override
     public void start(Serializable identification) {
-        this.putAttr(identification, AttrKeyName.status, ZKSecTicket.STATUS.Start);
+        this.putAttr(identification, AttrKeyName.status, ZKSecTicket.KeyStatus.Start);
     }
 
     @Override
     public void stop(Serializable identification) {
-        this.putAttr(identification, AttrKeyName.status, ZKSecTicket.STATUS.Stop);
+        this.putAttr(identification, AttrKeyName.status, ZKSecTicket.KeyStatus.Stop);
     }
 
     @Override
@@ -593,7 +609,7 @@ public class ZKSecMongoTicketManager implements ZKSecProxyTickerManager {
             pDoc = new Document();
             pDoc.put(AttrKeyName.pKey_pkID, p.getPkId());
             pDoc.put(AttrKeyName.pKey_Type, p.getType());
-            pDoc.put(AttrKeyName.pKey_CompanyCode, p.getCompanyCode());
+//            pDoc.put(AttrKeyName.pKey_CompanyCode, p.getCompanyCode());
 //          pDoc.put(pKey_ZKSecTicketId, p.getZKSecTicketId());
             pDocs.add(pDoc);
         }

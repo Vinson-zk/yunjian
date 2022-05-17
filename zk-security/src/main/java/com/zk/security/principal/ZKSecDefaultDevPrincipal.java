@@ -23,16 +23,16 @@ package com.zk.security.principal;
 * @author Vinson 
 * @version 1.0 
 */
-public class ZKSecDefaultDevPrincipal<ID> extends ZKSecAbstractPrincipal<ID> implements ZKSecDevPrincipal<ID> {
+public class ZKSecDefaultDevPrincipal<ID> extends ZKSecGroupAbstractPrincipal<ID> implements ZKSecDevPrincipal<ID> {
 
     /**
      * @Fields serialVersionUID : TODO(simple description what to do.)
      */
     private static final long serialVersionUID = -4602060229158707569L;
 
-    public ZKSecDefaultDevPrincipal(String companyId, String groupCode, ID pkId, String devId, String thirdPartyId,
-            long osType, String udid, long appType, String appId) {
-        super(companyId, groupCode, pkId, ZKSecPrincipal.TYPE.Developer, osType, udid, appType, appId);
+    public ZKSecDefaultDevPrincipal(ID pkId, String devId, String thirdPartyId, long osType, String udid, long appType,
+            String appId, String groupCode, ID companyId, String companyCode) {
+        super(pkId, ZKSecPrincipal.KeyType.Developer, osType, udid, appType, appId, groupCode, companyId, companyCode);
         this.devId = devId;
         this.thirdPartyId = thirdPartyId;
     }

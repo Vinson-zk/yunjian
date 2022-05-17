@@ -102,10 +102,15 @@ public abstract class ZKSecAbstractRealm extends ZKSecNameRealm {
         }
         if (authorizationInfo == null) {
             authorizationInfo = doGetZKSecAuthorizationInfo(principalCollection);
-            if (this.getAuthorizationInfoStore() != null) {
-                // 写入 权限存储
-                this.getAuthorizationInfoStore().setZKSecAuthorizationInfo(ZKSecSecurityUtils.getTikcet(),
-                        this.getRealmName(), authorizationInfo);
+            if (authorizationInfo == null) {
+                log.error("[>_<:20220517-1143-001] 取认证域权限信息为 null ");
+            }
+            else {
+                if (this.getAuthorizationInfoStore() != null) {
+                    // 写入 权限存储
+                    this.getAuthorizationInfoStore().setZKSecAuthorizationInfo(ZKSecSecurityUtils.getTikcet(),
+                            this.getRealmName(), authorizationInfo);
+                }
             }
         }
         return authorizationInfo;

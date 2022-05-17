@@ -36,7 +36,8 @@ public interface ZKSecTicket extends Serializable {
     /**
      * 令牌信息 KEY
      */
-    public static interface TICKET_INFO_KEY {
+//    public static interface TICKET_INFO_KEY {
+    public static interface KeyTicketInfo {
         /**
          * 令牌停止原因代码
          */
@@ -46,7 +47,8 @@ public interface ZKSecTicket extends Serializable {
     /**
      * 令牌状态
      */
-    public static interface STATUS {
+//    public static interface STATUS {
+    public static interface KeyStatus {
         /**
          * 令牌状态为启用
          */
@@ -61,16 +63,39 @@ public interface ZKSecTicket extends Serializable {
     /**
      * 令牌类型
      */
-    public static interface TYPE {
+//    public static interface TYPE {
+    public static interface KeyType {
         /**
          * 令牌类型：普通令牌
          */
         public static final int General = 0;
 
         /**
-         * 令牌类型：security令牌
+         * 令牌类型：security 权限令牌
          */
-        public static final int Sec = 1;
+        public static final int Security = 1;
+
+    }
+
+    /**
+     * 令牌的权限类型；0-用户权限；1-服务器权限令牌，微服务器间的访问时使用；
+     * 
+     * @ClassName: KeySecurityType
+     * @Description: TODO(simple description this class what to do. )
+     * @author Vinson
+     * @version 1.0
+     */
+    public static interface KeySecurityType {
+
+        /**
+         * 令牌类型：用户权限令牌
+         */
+        public static final int User = 0;
+
+        /**
+         * 令牌类型：服务器权限令牌
+         */
+        public static final int Server = 1;
     }
 
     /**
@@ -98,6 +123,18 @@ public interface ZKSecTicket extends Serializable {
      * @return
      */
     public int getType();
+
+    /**
+     * 权限令牌
+     *
+     * @Title: getSecType
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 16, 2022 3:34:42 PM
+     * @return
+     * @return int
+     */
+    public int getSecurityType();
 
     /**
      * 取令牌状态 0-正常 1-未启用

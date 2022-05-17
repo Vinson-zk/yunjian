@@ -41,6 +41,8 @@ public class ZKSecRedisTicketBaseInfo implements Serializable {
 
     int type;
 
+    int securityType;
+
     int status;
 
     long validTime;
@@ -52,9 +54,10 @@ public class ZKSecRedisTicketBaseInfo implements Serializable {
     public ZKSecRedisTicketBaseInfo() {
     }
 
-    public ZKSecRedisTicketBaseInfo(String tkId, int type, int status, long validTime) {
+    public ZKSecRedisTicketBaseInfo(String tkId, int type, int securityType, int status, long validTime) {
         this.tkId = tkId;
         this.type = type;
+        this.securityType = securityType;
         this.status = status;
         this.validTime = validTime;
         this.lastTime = ZKDateUtils.getToday();
@@ -80,6 +83,13 @@ public class ZKSecRedisTicketBaseInfo implements Serializable {
      */
     public int getType() {
         return type;
+    }
+
+    /**
+     * @return securityType sa
+     */
+    public int getSecurityType() {
+        return securityType;
     }
 
     /**
@@ -109,6 +119,14 @@ public class ZKSecRedisTicketBaseInfo implements Serializable {
      */
     public void setType(int type) {
         this.type = type;
+    }
+
+    /**
+     * @param securityType
+     *            the securityType to set
+     */
+    public void setSecurityType(int securityType) {
+        this.securityType = securityType;
     }
 
     /**

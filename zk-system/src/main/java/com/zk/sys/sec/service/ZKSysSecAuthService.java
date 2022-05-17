@@ -28,6 +28,8 @@ import com.zk.framwwork.security.ZKAuthPermission;
 import com.zk.framwwork.security.ZKSampleAuthPermission;
 import com.zk.framwwork.security.service.ZKSecAuthService;
 import com.zk.framwwork.security.userdetails.ZKUser;
+import com.zk.security.authz.ZKSecAuthorizationInfo;
+import com.zk.security.authz.ZKSecSimpleAuthorizationInfo;
 import com.zk.sys.auth.service.ZKSysAuthDeptService;
 import com.zk.sys.auth.service.ZKSysAuthFuncApiService;
 import com.zk.sys.auth.service.ZKSysAuthRankService;
@@ -36,6 +38,8 @@ import com.zk.sys.auth.service.ZKSysAuthUserRoleService;
 import com.zk.sys.auth.service.ZKSysAuthUserService;
 import com.zk.sys.auth.service.ZKSysAuthUserTypeService;
 import com.zk.sys.org.service.ZKSysOrgUserService;
+import com.zk.sys.sec.realm.ZKSysSecRealm.Key_Auth_Strategy;
+import com.zk.sys.settings.service.ZKSysSetItemService;
 
 /** 
 * @ClassName: ZKSysSecAuthService 
@@ -70,6 +74,9 @@ public class ZKSysSecAuthService implements ZKSecAuthService<String> {
 
     @Autowired
     ZKSysAuthFuncApiService sysAuthFuncApiService;
+
+    @Autowired
+    ZKSysSetItemService sysSetItemService;
 
     /**
      * (not Javadoc)
@@ -227,6 +234,42 @@ public class ZKSysSecAuthService implements ZKSecAuthService<String> {
     protected void setRoleAuthCode(ZKUser<String> user, ZKAuthPermission authPermission) {
         authPermission.getAuthCodeByRole()
                 .addAll(this.sysAuthUserRoleService.findAuthCodesByUserId(user.getPkId()));
+    }
+
+    // 将权限 ZKAuthPermission 转为 ZKSecSimpleAuthorizationInfo
+    public ZKSecAuthorizationInfo paseByAuthPermission(ZKAuthPermission ap) {
+        ZKSecSimpleAuthorizationInfo authorizationInfo = new ZKSecSimpleAuthorizationInfo();
+        // 部门的权限
+        if (this.sysSetItemService.getByCode(Key_Auth_Strategy.name, Key_Auth_Strategy.Auth_Dept)
+                .getBooleanValue()) {
+            authorizationInfo.addApiCode(ap.getApiCodeByDept());
+            authorizationInfo.addAuthCode(ap.getAuthCodeByDept());
+        }
+        // 用户直接拥有的权限
+        if (this.sysSetItemService.getByCode(Key_Auth_Strategy.name, Key_Auth_Strategy.Auth_User)
+                .getBooleanValue()) {
+            authorizationInfo.addApiCode(ap.getApiCodeByUser());
+            authorizationInfo.addAuthCode(ap.getAuthCodeByUser());
+        }
+        // 角色拥有的权限
+        if (this.sysSetItemService.getByCode(Key_Auth_Strategy.name, Key_Auth_Strategy.Auth_Role)
+                .getBooleanValue()) {
+            authorizationInfo.addApiCode(ap.getApiCodeByRole());
+            authorizationInfo.addAuthCode(ap.getAuthCodeByRole());
+        }
+        // 职级的权限
+        if (this.sysSetItemService.getByCode(Key_Auth_Strategy.name, Key_Auth_Strategy.Auth_Rank)
+                .getBooleanValue()) {
+            authorizationInfo.addApiCode(ap.getApiCodeByRank());
+            authorizationInfo.addAuthCode(ap.getAuthCodeByRank());
+        }
+        // 用户类型的权限
+        if (this.sysSetItemService.getByCode(Key_Auth_Strategy.name, Key_Auth_Strategy.Auth_UserType)
+                .getBooleanValue()) {
+            authorizationInfo.addApiCode(ap.getApiCodeByUserType());
+            authorizationInfo.addAuthCode(ap.getAuthCodeByUserType());
+        }
+        return authorizationInfo;
     }
 
 }

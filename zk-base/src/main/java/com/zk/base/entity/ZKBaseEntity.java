@@ -33,13 +33,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.zk.base.commons.ZKUserUtils;
 import com.zk.core.commons.data.ZKJson;
 import com.zk.core.utils.ZKClassUtils;
 import com.zk.core.utils.ZKDateUtils;
 import com.zk.core.utils.ZKIdUtils;
 import com.zk.db.annotation.ZKColumn;
 import com.zk.db.commons.ZKDBBaseEntity;
+import com.zk.security.utils.ZKSecSecurityUtils;
 
 /** 
 * @ClassName: ZKBaseEntity 
@@ -428,7 +428,7 @@ public abstract class ZKBaseEntity<ID extends Serializable, E extends ZKBaseEnti
         if (this.getPkId() == null || "".equals(pkId.toString())) {
             this.setPkId(this.genId());
         }
-        this.createUserId = ZKUserUtils.getPrincipalId();
+        this.createUserId = ZKSecSecurityUtils.getUserId();
         this.updateUserId = this.createUserId;
         this.createDate = new Date();
         this.updateDate = this.createDate;
@@ -444,7 +444,7 @@ public abstract class ZKBaseEntity<ID extends Serializable, E extends ZKBaseEnti
      * 更新之前执行方法，子类实现
      */
     public void preUpdate() {
-        this.updateUserId = ZKUserUtils.getPrincipalId();
+        this.updateUserId = ZKSecSecurityUtils.getUserId();
         this.updateDate = new Date();
     }
 
@@ -475,12 +475,12 @@ public abstract class ZKBaseEntity<ID extends Serializable, E extends ZKBaseEnti
         return ReflectionToStringBuilder.toString(this);
     }
 
-    @SuppressWarnings("unchecked")
     @Transient
     @XmlTransient
     @JsonIgnore
     public Class<ID> getPkIDClass() {
-        return (Class<ID>) ZKClassUtils.getSuperclassByName(ZKBaseEntity.class, this.getClass(), "ID");
+        Class<ID> cz = ZKClassUtils.getSuperclassByName(ZKBaseEntity.class, this.getClass(), "ID");
+        return cz;
 //        return (Class<ID>) this.getSuperclassByName("ID");
 //        return (Class<ID>) (((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
     }

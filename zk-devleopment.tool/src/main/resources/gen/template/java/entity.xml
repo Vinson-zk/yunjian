@@ -13,6 +13,7 @@ import ${i};
 <#list zkTableInfo.importAnnotationsList as i>
 import ${i};
 </#list>
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import com.zk.db.annotation.ZKTable;
 import com.zk.db.annotation.ZKColumn;
@@ -26,6 +27,7 @@ import com.zk.base.entity.ZKBaseEntity;
  * @author 
  * @version 
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 @ZKTable(name = "${zkTableInfo.tableName}", alias = "${zkTableInfo.funcName?uncap_first}"<#if zkTableInfo.colIsExists('c_create_date') == true >, orderBy = " c_create_date ASC "</#if>)
 public class ${zkTableInfo.className} extends ZKBaseEntity<${zkTableInfo.pkAttrType}, ${zkTableInfo.className}> {
 	

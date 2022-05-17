@@ -7,7 +7,7 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>zk-system-api</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <!-- <version>1.0.0-SNAPSHOT</version> -->
   <name>zk-system-api</name>
   <description>zk system api</description>
   
@@ -35,8 +35,34 @@
 		</dependency>
 		<dependency>
 			<groupId>com.zk</groupId>
-			<artifactId>zk-framework</artifactId>
-			<version>${version.zk.framework}</version>
+			<artifactId>zk-db</artifactId>
+			<version>${version.zk.db}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zk</groupId>
+			<artifactId>zk-base</artifactId>
+			<version>${version.zk.base}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.zk</groupId>
+					<artifactId>zk-mongo</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.zk</groupId>
+			<artifactId>zk-security</artifactId>
+			<version>${version.zk.security}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.zk</groupId>
+					<artifactId>zk-mongo</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.data</groupId>
+					<artifactId>spring-data-mongodb</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

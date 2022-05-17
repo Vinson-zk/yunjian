@@ -49,6 +49,11 @@ public abstract class ZKSecAdviceFilter extends ZKSecAbstractFilter {
             if (continueChain) {
                 executeChain(request, response, chain);
             }
+            else {
+                // zk.sec.000017=未通过身份鉴定拦截
+                logger.info("[>_<:20220514-1036-001] {} zksec 身份拦截未通过；", this.getName());
+                logger.info("[>_<:20220514-1036-002] {}-{} zksec 身份拦截未通过；", this.getClass(), chain.getClass());
+            }
 
             postHandle(request, response);
             if (logger.isTraceEnabled()) {

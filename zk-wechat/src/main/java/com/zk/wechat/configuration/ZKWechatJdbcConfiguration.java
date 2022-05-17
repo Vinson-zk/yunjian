@@ -22,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +39,7 @@ import com.zk.db.dynamic.spring.transaction.ZKDynamicTransactionManager;
 * @author Vinson 
 * @version 1.0 
 */
+@AutoConfigureBefore(value = { ZKWechatAfterConfiguration.class })
 @ImportResource(locations = { "classpath:xmlConfig/spring_ctx_dynamic_mybatis.xml" })
 @PropertySource(encoding = "UTF-8", value = { "classpath:zk.wechat.jdbc.properties" })
 public class ZKWechatJdbcConfiguration {

@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKStringUtils;
+import com.zk.sys.org.entity.ZKSysOrgCompany;
 import com.zk.wechat.common.ZKWechatCacheUtils;
 import com.zk.wechat.thirdParty.entity.ZKThirdParty;
 import com.zk.wechat.thirdParty.entity.ZKThirdPartyAuthAccount;
@@ -73,7 +74,13 @@ public class ZKWXThirdPartyAuthService {
      *            表示公众号和小程序都展示。如果为未指定，则默认小程序和公众号都展示。第三方平台开发者可以使用本字段来控制授权的帐号类型
      * @return
      */
-    public String genAuthUrl(int byeType, String bizAppId, String thirdPartyAppid, String authType) {
+    public String genAuthUrl(String companyCode, int byeType, String bizAppId, String thirdPartyAppid,
+            String authType) {
+        ZKSysOrgCompany company = this.thirdPartyService.getCompanyByCode(companyCode);
+        if (company == null) {
+            log.error("[>_<:20220518-0020-001] 目标公司[]不存在", companyCode);
+            throw new ZKCodeException("zk.wechat.010013", "目标公司[{0}]不存在", companyCode);
+        }
 
         if (ZKStringUtils.isEmpty(thirdPartyAppid)) {
             thirdPartyAppid = ZKEnvironmentUtils.getString(ConfigKey.thirdPartyDefaultAppid);
@@ -89,8 +96,13 @@ public class ZKWXThirdPartyAuthService {
         /** 1、取第三接口调用凭证 */
         ZKWXTPComponentAccessToken componentAccessToken = this.getComponentAccessToken(thirdPartyAppid);
         /** 2、申请预授权码 */
-        ZKWXTPPreAuthCode preAuthCode = apiThirdPartyService.api_create_preauthcode(thirdPartyAppid,
+        ZKWXTPPreAuthCode preAuthCode = apiThirdPartyService.api_create_preauthcode(company, thirdPartyAppid,
                 componentAccessToken.getAccessToken());
+//        if (preAuthCode == null) {
+//            // 这里不需要判断了，在 apiThirdPartyService.api_create_preauthcode 如果返回取预授权码异常，会抛出异常
+//        }
+        // 保存预授权码到缓存
+        ZKWechatCacheUtils.putWXTPPreAuthCode(preAuthCode);
         /** 3、生成授权 url */
         if (ZKStringUtils.isEmpty(authType) || (!"1".equals(authType) && !"2".equals(authType))) {
             authType = "3";
@@ -104,6 +116,8 @@ public class ZKWXThirdPartyAuthService {
         redirectUriSB.append("/");
         redirectUriSB.append(ZKEnvironmentUtils.getString(ConfigKey.thirdPartyAuthCallback));
         redirectUriSB.append(thirdPartyAppid);
+        redirectUriSB.append("/");
+        redirectUriSB.append(companyCode);
 
         String authUrl = null;
         if (byeType == 0) {
@@ -256,7 +270,22 @@ public class ZKWXThirdPartyAuthService {
             }
         }
         
-        /** 2、取目标授权账号的 accessToken */
+        /** 2、根据授权码设置目标授权账号的公司信息 */
+        // 取缓存中的预授权码实体
+        ZKWXTPPreAuthCode zkPreAuthCode = ZKWechatCacheUtils
+                .getWXTPPreAuthCode(ZKWXTPPreAuthCode.makeIdentification(thirdPartyAppid, preAuthCode));
+        if (zkPreAuthCode == null) {
+            log.error("[>_<:20220518-0047-001] zk.wechat.010014=预授权码已过期或不存在");
+            throw new ZKCodeException("zk.wechat.010014", "预授权码已过期或不存在");
+        }
+        else {
+            // 设置公司信息
+            thirdPartyAuthAccount.setGroupCode(zkPreAuthCode.getCompany().getGroupCode());
+            thirdPartyAuthAccount.setCompanyId(zkPreAuthCode.getCompany().getPkId());
+            thirdPartyAuthAccount.setCompanyCode(zkPreAuthCode.getCompany().getCode());
+        }
+
+        /** 3、取目标授权账号的 accessToken */
         ZKWXTPComponentAccessToken componentAccessToken = this.getComponentAccessToken(thirdPartyAppid);
         ZKWXTPAuthAccountAccessToken authAccountAccessToken = this.apiThirdPartyService.api_query_auth(
                 thirdPartyAuthAccount, thirdPartyAppid, componentAccessToken.getAccessToken(), authorizationCode);
@@ -264,7 +293,7 @@ public class ZKWXThirdPartyAuthService {
         // 保存目标授权账号 accessToken 到 缓存
         ZKWechatCacheUtils.putWXTPAuthAccountAccessToken(authAccountAccessToken);
         
-        /** 3、取目标授权账号的信息 */
+        /** 4、取目标授权账号的信息 */
         apiThirdPartyService.api_get_authorizer_info(thirdPartyAuthAccount, thirdPartyAppid,
                 componentAccessToken.getAccessToken());
         

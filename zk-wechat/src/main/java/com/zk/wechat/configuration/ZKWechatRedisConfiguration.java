@@ -21,6 +21,7 @@ package com.zk.wechat.configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -39,6 +40,7 @@ import redis.clients.jedis.JedisPoolConfig;
 * @author Vinson 
 * @version 1.0 
 */
+@AutoConfigureBefore(value = { ZKWechatAfterConfiguration.class })
 @PropertySource(encoding = "UTF-8", value = { "classpath:zk.wechat.redis.properties" })
 public class ZKWechatRedisConfiguration {
 
@@ -67,8 +69,13 @@ public class ZKWechatRedisConfiguration {
     @Bean
     @ConditionalOnBean(name = "jedisPoolConfig")
     public JedisPool jedisPool(JedisPoolConfig jedisPoolConfig) {
+
+        logger.info("[^_^:20210809-1255-001] ====================================================");
+        logger.info("[^_^:20210809-1255-001] === Redis 连接信息 =======================================");
+        logger.info("[^_^:20210809-1255-001] ====================================================");
         logger.info("[^_^:20210809-1255-001] hosr:{}, port:{}, password:{}", host, port, password);
         logger.info("[^_^:20210809-1255-001] JedisPoolConfig:{}", ZKJsonUtils.writeObjectJson(jedisPoolConfig));
+        logger.info("[^_^:20210809-1255-001] ====================================================");
 
         /** 单机模式 */
         JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password);

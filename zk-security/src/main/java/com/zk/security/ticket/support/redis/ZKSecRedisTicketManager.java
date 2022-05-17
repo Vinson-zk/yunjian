@@ -23,7 +23,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +30,10 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.google.common.collect.Lists;
 import com.zk.core.redis.ZKJedisOperatorStringKey;
-import com.zk.core.redis.ZKRedisUtils.ZKRedisKey;
 import com.zk.security.exception.ZKSecTicketException;
 import com.zk.security.principal.ZKSecPrincipal;
 import com.zk.security.principal.pc.ZKSecPrincipalCollection;
+import com.zk.security.ticket.ZKSecAbstractTicketManager;
 import com.zk.security.ticket.ZKSecDelegatingTicker;
 import com.zk.security.ticket.ZKSecProxyTickerManager;
 import com.zk.security.ticket.ZKSecTicket;
@@ -45,9 +44,13 @@ import com.zk.security.ticket.ZKSecTicket;
 * @author Vinson 
 * @version 1.0 
 */
-public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
+public class ZKSecRedisTicketManager extends ZKSecAbstractTicketManager implements ZKSecProxyTickerManager {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    public static interface ZKRedisKey {
+        public static final String Ticket_Mapping = "zk_sec_Ticket_mapping";
+    }
 
     public static interface AttrKeyName {
         /**
@@ -118,14 +121,16 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
      * @return
      * @return ZKSecTicket
      */
-    private ZKSecTicket createTicket(Serializable identification, long validTime, int type, int status) {
+    private ZKSecTicket createTicket(Serializable identification, long validTime, int type, int securityType,
+            int status) {
         String tkId = identification.toString();
         if (validTime < 1) {
             validTime = defaultValidTime;
         }
 
         Long res = 0l;
-        ZKSecRedisTicketBaseInfo ticketBaseInfo = new ZKSecRedisTicketBaseInfo(tkId, type, status, validTime);
+        ZKSecRedisTicketBaseInfo ticketBaseInfo = new ZKSecRedisTicketBaseInfo(tkId, type, securityType, status,
+                validTime);
 
         this.getJedisOperator().hset(ZKRedisKey.Ticket_Mapping, tkId, ticketBaseInfo);
         res = this.getJedisOperator().hset(tkId, AttrKeyName.baseInfo, ticketBaseInfo);
@@ -149,23 +154,6 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
     /*******************************************************************************/
     /*******************************************************************************/
     /*******************************************************************************/
-
-    /**
-     * (not Javadoc)
-     * <p>
-     * Title: generateTkId
-     * </p>
-     * <p>
-     * Description:
-     * </p>
-     * 
-     * @return
-     * @see com.zk.security.ticket.ZKSecTicketManager#generateTkId()
-     */
-    @Override
-    public String generateTkId() {
-        return ZKRedisKey.Ticket_ID_prefix + UUID.randomUUID().toString().replaceAll("-", "");
-    }
 
     /**
      * (not Javadoc)
@@ -200,7 +188,8 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
      */
     @Override
     public ZKSecTicket createTicket(Serializable identification, long validTime) {
-        return this.createTicket(identification, validTime, ZKSecTicket.TYPE.General, ZKSecTicket.STATUS.Start);
+        return this.createTicket(identification, validTime, ZKSecTicket.KeyType.General, 0,
+                ZKSecTicket.KeyStatus.Start);
     }
 
     /**
@@ -217,7 +206,7 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
      */
     @Override
     public ZKSecTicket createSecTicket(Serializable identification) {
-        return createSecTicket(identification, defaultValidTime);
+        return createSecTicket(identification, ZKSecTicket.KeySecurityType.User, defaultValidTime);
     }
 
     /**
@@ -236,8 +225,14 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
      *      long)
      */
     @Override
-    public ZKSecTicket createSecTicket(Serializable identification, long validTime) {
-        return this.createTicket(identification, validTime, ZKSecTicket.TYPE.Sec, ZKSecTicket.STATUS.Start);
+    public ZKSecTicket createSecTicket(Serializable identification, int securityType) {
+        return createSecTicket(identification, securityType, defaultValidTime);
+    }
+
+    @Override
+    public ZKSecTicket createSecTicket(Serializable identification, int securityType, long validTime) {
+        return this.createTicket(identification, validTime, ZKSecTicket.KeyType.Security,
+                securityType, ZKSecTicket.KeyStatus.Start);
     }
 
     /**
@@ -408,7 +403,7 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
         List<ZKSecRedisTicketBaseInfo> resTks = Lists.newArrayList();
         for (ZKSecRedisTicketBaseInfo tk : tks) {
             if (tk.isValid()) {
-                if (tk.getType() == ZKSecTicket.TYPE.Sec && tk.getPrincipalCollection() != null) {
+                if (tk.getType() == ZKSecTicket.KeyType.Security && tk.getPrincipalCollection() != null) {
                     for (ZKSecPrincipal<?> p : tk.getPrincipalCollection()) {
                         if (p.getPkId().equals(principal.getPkId()) && (p.getType() == principal.getType())) {
                             resTks.add(tk);
@@ -447,24 +442,18 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
         return res;
     }
 
-    /**
-     * (not Javadoc)
-     * <p>
-     * Title: getType
-     * </p>
-     * <p>
-     * Description:
-     * </p>
-     * 
-     * @param identification
-     * @return
-     * @see com.zk.security.ticket.ZKSecProxyTickerManager#getType(java.lang.String)
-     */
     @Override
     public int getType(Serializable identification) {
         ZKSecRedisTicketBaseInfo tkBaseInfo = this.getJedisOperator().hget(identification.toString(),
                 AttrKeyName.baseInfo);
         return tkBaseInfo.getType();
+    }
+
+    @Override
+    public int getSecurityType(Serializable identification) {
+        ZKSecRedisTicketBaseInfo tkBaseInfo = this.getJedisOperator().hget(identification.toString(),
+                AttrKeyName.baseInfo);
+        return tkBaseInfo.getSecurityType();
     }
 
     /**
@@ -545,7 +534,7 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
     public void start(Serializable identification) {
         ZKSecRedisTicketBaseInfo tkBaseInfo = this.getJedisOperator().hget(identification.toString(),
                 AttrKeyName.baseInfo);
-        tkBaseInfo.setStatus(ZKSecTicket.STATUS.Start);
+        tkBaseInfo.setStatus(ZKSecTicket.KeyStatus.Start);
         this.updateLastTime(tkBaseInfo);
     }
 
@@ -566,7 +555,7 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
         ZKSecRedisTicketBaseInfo tkBaseInfo = this.getJedisOperator().hget(identification.toString(),
                 AttrKeyName.baseInfo);
         if (tkBaseInfo != null) {
-            tkBaseInfo.setStatus(ZKSecTicket.STATUS.Stop);
+            tkBaseInfo.setStatus(ZKSecTicket.KeyStatus.Stop);
             this.updateLastTime(tkBaseInfo);
         }
         else {
@@ -733,7 +722,13 @@ public class ZKSecRedisTicketManager implements ZKSecProxyTickerManager {
 
     public <V> boolean putValue(Serializable identification, String key, V value) {
         boolean res = this.getJedisOperator().hset(identification.toString(), key, value) != null;
-        this.updateLastTime(identification);
+        if (res) {
+            this.updateLastTime(identification);
+        }
+        else {
+            logger.error("[>_<:20220517-1130-001] Redis 令牌管理，put value 时，失败！identification:{}, key:{}, value:{} ",
+                    identification, key, value);
+        }
         return res;
     }
 

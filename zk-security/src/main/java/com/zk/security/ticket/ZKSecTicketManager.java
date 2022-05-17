@@ -40,6 +40,8 @@ public interface ZKSecTicketManager extends ZKDestroyable {
      */
     public Serializable generateTkId();
 
+    public Serializable generateTkId(Serializable tkId);
+
     /**
      * 生成一个普通令牌
      */
@@ -61,24 +63,39 @@ public interface ZKSecTicketManager extends ZKDestroyable {
     public ZKSecTicket createTicket(Serializable identification, long validTime);
 
     /**
-     * 生成一个权限令牌
+     * 生成一个权限令牌；默认用户权限令牌
      */
     public ZKSecTicket createSecTicket(Serializable identification);
 
     /**
-     * 生成一个权限令牌
+     * 生成一个权限令牌；默认用户权限令牌
      *
      * @Title: createSecTicket
      * @Description: TODO(simple description this method what to do.)
      * @author Vinson
      * @date Jul 25, 2021 11:50:05 PM
      * @param identification
-     * @param validTime
-     *            有效时长，毫秒
-     * @return
+     * @param securityType
+     *            权限类型，默认是用户类型
      * @return ZKSecTicket
      */
-    public ZKSecTicket createSecTicket(Serializable identification, long validTime);
+    public ZKSecTicket createSecTicket(Serializable identification, int securityType);
+
+    /**
+     * 创建一个权限令牌；默认用户权限令牌
+     *
+     * @Title: createSecTicket
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 16, 2022 5:49:00 PM
+     * @param identification
+     * @param securityType
+     *            权限类型，默认是用户类型
+     * @param validTime
+     *            有效时长，毫秒
+     * @return ZKSecTicket
+     */
+    public ZKSecTicket createSecTicket(Serializable identification, int securityType, long validTime);
 
     /**
      * 销毁指定类型令牌

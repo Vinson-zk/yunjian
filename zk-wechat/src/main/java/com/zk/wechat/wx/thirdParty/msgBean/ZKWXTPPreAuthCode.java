@@ -21,6 +21,7 @@ package com.zk.wechat.wx.thirdParty.msgBean;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.zk.sys.org.entity.ZKSysOrgCompany;
 import com.zk.wechat.wx.common.ZKWXConstants;
 
 /** 
@@ -36,8 +37,9 @@ public class ZKWXTPPreAuthCode implements Serializable {
      */
     private static final long serialVersionUID = 5922134691555810909L;
 
-    public ZKWXTPPreAuthCode(String thirdPartyAppid, String preAuthCode, int expiresIn) {
+    public ZKWXTPPreAuthCode(ZKSysOrgCompany company, String thirdPartyAppid, String preAuthCode, int expiresIn) {
         this.identification = makeIdentification(thirdPartyAppid, preAuthCode);
+        this.company = company;
         this.thirdPartyAppid = thirdPartyAppid;
         this.preAuthCode = preAuthCode;
         this.expiresIn = expiresIn;
@@ -68,6 +70,18 @@ public class ZKWXTPPreAuthCode implements Serializable {
      * 更新时间
      */
     private Date updateDate;
+
+    /**
+     * 公司信息
+     */
+    private ZKSysOrgCompany company;
+
+    /**
+     * @return company sa
+     */
+    public ZKSysOrgCompany getCompany() {
+        return company;
+    }
 
     /**
      * @return identification sa

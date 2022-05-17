@@ -37,6 +37,8 @@
         		<!-- /static/** = anon -->
         		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/sec/login = login
         		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/sec/logout = logout
+        		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/org/sysOrgCompany/sysOrgCompanyByCode = serverOrUser
+        		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/sec/authc/getUserAuthc = serverAndUser
                 /** = user
     		</value>
         </property>

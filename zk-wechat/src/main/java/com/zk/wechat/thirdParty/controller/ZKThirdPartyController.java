@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zk.base.controller.ZKBaseController;
 import com.zk.core.commons.data.ZKPage;
 import com.zk.core.web.ZKMsgRes;
+import com.zk.security.annotation.ZKSecApiCode;
+import com.zk.security.utils.ZKSecSecurityUtils;
 import com.zk.wechat.thirdParty.entity.ZKThirdParty;
 import com.zk.wechat.thirdParty.service.ZKThirdPartyService;       
 
@@ -35,12 +37,16 @@ public class ZKThirdPartyController extends ZKBaseController {
 	// 编辑
 	@RequestMapping(value="thirdParty", method = RequestMethod.POST)
 	public ZKMsgRes thirdPartyPost(@RequestBody ZKThirdParty thirdParty){
+        thirdParty.setGroupCode(ZKSecSecurityUtils.getGroupCode());
+        thirdParty.setCompanyId(ZKSecSecurityUtils.getCompanyId());
+        thirdParty.setCompanyCode(ZKSecSecurityUtils.getCompanyCode());
 		this.thirdPartyService.save(thirdParty);
         return ZKMsgRes.as("zk.0", null, thirdParty);
 	}
 	
 	// 查询详情
 	@RequestMapping(value="thirdParty", method = RequestMethod.GET)
+    @ZKSecApiCode("com_zk_wechat_thirdParty_detail")
 	public ZKMsgRes thirdPartyGet(@RequestParam("pkId") String pkId){
 		ZKThirdParty thirdParty = this.thirdPartyService.get(new ZKThirdParty(pkId));
         return ZKMsgRes.as("zk.0", null, thirdParty);

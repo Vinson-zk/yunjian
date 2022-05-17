@@ -188,15 +188,10 @@ public abstract class ZKBaseTreeEntity<ID extends Serializable, E extends ZKBase
      * @Description: TODO(simple description this method what to do.)
      * @author Vinson
      * @date Apr 18, 2022 11:40:24 PM
-     * @return
      * @return boolean
      */
-    public boolean isLeaf() {
-        return this.getChildren() == null || this.getChildren().isEmpty();
-    }
-
     public boolean getIsLeaf() {
-        return this.isLeaf();
+        return this.getChildren() == null || this.getChildren().isEmpty();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////

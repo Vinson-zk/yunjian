@@ -23,19 +23,19 @@ package com.zk.security.principal;
 * @author Vinson 
 * @version 1.0 
 */
-public class ZKSecDefaultUserPrincipal<ID> extends ZKSecAbstractPrincipal<ID> implements ZKSecUserPrincipal<ID> {
+public class ZKSecDefaultUserPrincipal<ID> extends ZKSecGroupAbstractPrincipal<ID> implements ZKSecUserPrincipal<ID> {
 
     /**
      * @Fields serialVersionUID : TODO(simple description what to do.)
      */
     private static final long serialVersionUID = 8880963427437366589L;
 
-    public ZKSecDefaultUserPrincipal(String companyId, String companyCode, ID pkId, String username, String name,
-            long osType, String udid, long appType, String appId) {
-        super(companyId, companyCode, pkId, ZKSecPrincipal.TYPE.User, osType, udid, appType, appId);
+    public ZKSecDefaultUserPrincipal(ID pkId, String username, String name, long osType, String udid, long appType,
+            String appId, String groupCode, ID companyId, String companyCode) {
+        super(pkId, ZKSecPrincipal.KeyType.User, osType, udid, appType, appId, groupCode, companyId, companyCode);
+        this.setPrimary(true);
         this.username = username;
         this.name = name;
-        this.setPrimary(true);
     }
 
     // 登录名

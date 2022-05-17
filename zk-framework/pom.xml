@@ -43,6 +43,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.zk</groupId>
+			<artifactId>zk-system-api</artifactId>
+			<version>${version.zk.system.api}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zk</groupId>
 			<artifactId>zk-cache</artifactId>
 			<version>${version.zk.cache}</version>
 			<exclusions>
@@ -62,6 +67,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency> 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		
 		<!-- ##### spring cloud end -->
 		
 		<!-- ***** eureka other begin -->

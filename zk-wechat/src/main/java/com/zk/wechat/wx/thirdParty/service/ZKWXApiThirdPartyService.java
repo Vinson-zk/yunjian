@@ -27,6 +27,7 @@ import com.zk.core.commons.data.ZKJson;
 import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKStringUtils;
 import com.zk.core.web.utils.ZKHttpApiUtils;
+import com.zk.sys.org.entity.ZKSysOrgCompany;
 import com.zk.wechat.thirdParty.entity.ZKThirdPartyAuthAccount;
 import com.zk.wechat.wx.common.ZKWXUtils;
 import com.zk.wechat.wx.thirdParty.ZKWXThirdPartyConstants.ConfigKey;
@@ -111,7 +112,8 @@ public class ZKWXApiThirdPartyService {
      *            第三方有效的接口调用凭证
      * @return ZKWXTPPreAuthCode
      */
-    public ZKWXTPPreAuthCode api_create_preauthcode(String thirdPartyAppid, String componentAccessToken) {
+    public ZKWXTPPreAuthCode api_create_preauthcode(ZKSysOrgCompany company, String thirdPartyAppid,
+            String componentAccessToken) {
         String url = ZKEnvironmentUtils.getString(ConfigKey.api_create_preauthcode);
         url = ZKStringUtils.replaceByPoint(url, componentAccessToken);
         StringBuilder params = new StringBuilder();
@@ -134,7 +136,7 @@ public class ZKWXApiThirdPartyService {
                 ? resJson.getIntValue(MsgAttr.PreAuthCode.expires_in)
                 : 0;
         
-        ZKWXTPPreAuthCode preAuthCode = new ZKWXTPPreAuthCode(thirdPartyAppid, preAuthCodeStr,
+        ZKWXTPPreAuthCode preAuthCode = new ZKWXTPPreAuthCode(company, thirdPartyAppid, preAuthCodeStr,
                 expiresIn);
 
         return preAuthCode;
