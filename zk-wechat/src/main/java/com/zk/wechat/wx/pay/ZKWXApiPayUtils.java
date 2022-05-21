@@ -37,8 +37,8 @@ import com.zk.core.utils.ZKJsonUtils;
 import com.zk.core.utils.ZKStringUtils;
 import com.zk.core.web.utils.ZKHttpApiUtils;
 import com.zk.wechat.wx.common.ZKWXConstants;
-import com.zk.wechat.wx.common.ZKWXUtils;
 import com.zk.wechat.wx.pay.entity.ZKWXGetOrder;
+import com.zk.wechat.wx.utils.ZKWXUtils;
 
 /** 
 * @ClassName: ZKWXApiPayUtils 

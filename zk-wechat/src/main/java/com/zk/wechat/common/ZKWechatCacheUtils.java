@@ -25,7 +25,8 @@ import com.zk.cache.ZKCache;
 import com.zk.cache.ZKCacheManager;
 import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKJsonUtils;
-import com.zk.wechat.wx.thirdParty.msgBean.ZKWXTPAuthAccountAccessToken;
+import com.zk.wechat.wx.officialAccounts.msgBean.ZKWXAccountAuthAccessToken;
+import com.zk.wechat.wx.officialAccounts.msgBean.ZKWXUserAuthAccessToken;
 import com.zk.wechat.wx.thirdParty.msgBean.ZKWXTPComponentAccessToken;
 import com.zk.wechat.wx.thirdParty.msgBean.ZKWXTPPreAuthCode;
 
@@ -73,12 +74,12 @@ public class ZKWechatCacheUtils {
         /**
          * 目标授权账号 AccessToken 缓存名称
          */
-        public static final String ZKWXTPAuthAccountAccessToken = "_wx_third_party_auth_account_AccessToken_";
+        public static final String ZKWXAccountAuthAccessToken = "_wx_account_auth_AccessToken_";
 
-//        /**
-//         * 用户授权 Token 缓存名称
-//         */
-//        public static final String UserAuthAccessToken = "_wx_user_auth_AccessToken_";
+        /**
+         * 用户授权 Token 缓存名称
+         */
+        public static final String ZKWXUserAuthAccessToken = "_wx_user_auth_AccessToken_";
 
 //        /**
 //         * 授权方 JS 令牌
@@ -91,21 +92,28 @@ public class ZKWechatCacheUtils {
      * 取微信开放平台，第三方平台 ComponentAccessToken 存放的缓存
      */
     private static ZKCache<String, ZKWXTPComponentAccessToken> getCacheWXTPComponentAccessToken() {
-        return getCacheManager().getCache(Cache_Name.ZKWXTPComponentAccessToken, 7200);
+        return getCacheManager().getCache(Cache_Name.ZKWXTPComponentAccessToken, 7200000); // 两小时
     }
 
     /**
      * 取预授权码存放的缓存
      */
     private static ZKCache<String, ZKWXTPPreAuthCode> getCacheWXTPPreAuthCode() {
-        return getCacheManager().getCache(Cache_Name.ZKWXTPPreAuthCode, 1800 * 2);
+        return getCacheManager().getCache(Cache_Name.ZKWXTPPreAuthCode, 3600000); // 1 小时
     }
 
     /**
      * 取授权方 Token 缓存
      */
-    private static ZKCache<String, ZKWXTPAuthAccountAccessToken> getCacheWXTPAuthAccountAccessToken() {
-        return getCacheManager().getCache(Cache_Name.ZKWXTPAuthAccountAccessToken, 7200);
+    private static ZKCache<String, ZKWXAccountAuthAccessToken> getCacheWXAccountAuthAccessToken() {
+        return getCacheManager().getCache(Cache_Name.ZKWXAccountAuthAccessToken, 7200000); // 两小时
+    }
+
+    /**
+     * 取 微信用户 ZKWXUserAccessToken 缓存
+     */
+    private static ZKCache<String, ZKWXUserAuthAccessToken> getCacheWXUserAccessToken() {
+        return getCacheManager().getCache(Cache_Name.ZKWXUserAuthAccessToken, 7200000); // 两小时
     }
 
     /*******************************************************/
@@ -282,16 +290,16 @@ public class ZKWechatCacheUtils {
     /**
      * 存 目标授权账号 AccessToken 缓存
      *
-     * @Title: putWXTPAuthAccountAccessToken
+     * @Title: putWXAccountAuthAccessToken
      * @Description: TODO(simple description this method what to do.)
      * @author Vinson
      * @date Nov 7, 2021 3:47:52 PM
      * @param authAccountAccessToken
      * @return void
      */
-    public static void putWXTPAuthAccountAccessToken(ZKWXTPAuthAccountAccessToken authAccountAccessToken) {
+    public static void putWXAccountAuthAccessToken(ZKWXAccountAuthAccessToken authAccountAccessToken) {
         try {
-            getCacheWXTPAuthAccountAccessToken().put(authAccountAccessToken.getIdentification(),
+            getCacheWXAccountAuthAccessToken().put(authAccountAccessToken.getIdentification(),
                     authAccountAccessToken);
         }
         catch(Exception e) {
@@ -304,16 +312,16 @@ public class ZKWechatCacheUtils {
     /**
      * 取 目标授权账号 AccessToken 缓存
      *
-     * @Title: getWXTPAuthAccountAccessToken
+     * @Title: getWXAccountAuthAccessToken
      * @Description: TODO(simple description this method what to do.)
      * @author Vinson
      * @date Nov 7, 2021 3:47:59 PM
      * @param identification
      * @return ZKWXTPPreAuthCode
      */
-    public static ZKWXTPAuthAccountAccessToken getWXTPAuthAccountAccessToken(String identification) {
+    public static ZKWXAccountAuthAccessToken getWXAccountAuthAccessToken(String identification) {
         try {
-            return getCacheWXTPAuthAccountAccessToken().get(identification);
+            return getCacheWXAccountAuthAccessToken().get(identification);
         }
         catch(Exception e) {
             logger.error("[>_<:20211107-1432-002] 取 目标授权账号 AccessToken 缓存失败。identification:{}", identification);
@@ -325,16 +333,16 @@ public class ZKWechatCacheUtils {
     /**
      * 删 目标授权账号 AccessToken 缓存
      *
-     * @Title: removeWXTPAuthAccountAccessToken
+     * @Title: removeWXAccountAuthAccessToken
      * @Description: TODO(simple description this method what to do.)
      * @author Vinson
      * @date Nov 7, 2021 3:48:05 PM
      * @param identification
      * @return void
      */
-    public static void removeWXTPAuthAccountAccessToken(String identification) {
+    public static void removeWXAccountAuthAccessToken(String identification) {
         try {
-            getCacheWXTPAuthAccountAccessToken().remove(identification);
+            getCacheWXAccountAuthAccessToken().remove(identification);
         }
         catch(Exception e) {
             logger.error("[>_<:20211108-1432-003] 删 目标授权账号 AccessToken 缓存失败。identification:{}", identification);
@@ -345,18 +353,102 @@ public class ZKWechatCacheUtils {
     /**
      * 清空 目标授权账号 AccessToken 缓存
      *
-     * @Title: clearWXTPAuthAccountAccessToken
+     * @Title: clearWXAccountAuthAccessToken
      * @Description: TODO(simple description this method what to do.)
      * @author Vinson
      * @date Nov 7, 2021 3:48:11 PM
      * @return void
      */
-    public static void clearWXTPAuthAccountAccessToken() {
+    public static void clearWXAccountAuthAccessToken() {
         try {
-            getCacheWXTPAuthAccountAccessToken().clear();
+            getCacheWXAccountAuthAccessToken().clear();
         }
         catch(Exception e) {
             logger.error("[>_<:20211108-1432-004] 清空 目标授权账号 AccessToken 缓存失败。");
+            e.printStackTrace();
+        }
+    }
+
+    /*******************************************************/
+    /*** 微信用户授权 缓存 */
+    /**
+     * 存 用户 ZKWXUserAccessToken 缓存
+     *
+     * @Title: putWXUserAccessToken
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 19, 2022 11:25:26 AM
+     * @param userAuthAccessToken
+     * @return void
+     */
+    public static void putWXUserAccessToken(ZKWXUserAuthAccessToken userAuthAccessToken) {
+        try {
+            getCacheWXUserAccessToken().put(userAuthAccessToken.getIdentification(), userAuthAccessToken);
+        }
+        catch(Exception e) {
+            logger.error("[>_<:20220519-1432-001] 存 预授权码 缓存失败。 preAuthCode：{}",
+                    ZKJsonUtils.writeObjectJson(userAuthAccessToken));
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 取 用户 ZKWXUserAccessToken 缓存
+     *
+     * @Title: getWXUserAccessToken
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 19, 2022 11:29:10 AM
+     * @param identification
+     * @return
+     * @return ZKWXUserAuthAccessToken
+     */
+    public static ZKWXUserAuthAccessToken getWXUserAccessToken(String identification) {
+        try {
+            return getCacheWXUserAccessToken().get(identification);
+        }
+        catch(Exception e) {
+            logger.error("[>_<:20220519-1432-002] 取 用户 ZKWXUserAccessToken 缓存失败。identification:{}", identification);
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 删 用户 ZKWXUserAccessToken 缓存
+     *
+     * @Title: removeWXUserAccessToken
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 19, 2022 11:28:45 AM
+     * @param identification
+     * @return void
+     */
+    public static void removeWXUserAccessToken(String identification) {
+        try {
+            getCacheWXUserAccessToken().remove(identification);
+        }
+        catch(Exception e) {
+            logger.error("[>_<:20220519-1432-003] 删 用户 ZKWXUserAccessToken 缓存失败。identification:{}", identification);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 清空 用户 ZKWXUserAccessToken 缓存
+     *
+     * @Title: clearWXUserAccessToken
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 19, 2022 11:28:33 AM
+     * @return void
+     */
+    public static void clearWXUserAccessToken() {
+        try {
+            getCacheWXUserAccessToken().clear();
+        }
+        catch(Exception e) {
+            logger.error("[>_<:20220519-1432-004] 清空 用户 ZKWXUserAccessToken 缓存失败。");
             e.printStackTrace();
         }
     }

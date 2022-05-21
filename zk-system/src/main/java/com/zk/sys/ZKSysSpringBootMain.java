@@ -94,7 +94,7 @@ public class ZKSysSpringBootMain {
         springApplicationBuilder = springApplicationBuilder.properties("spring.config.location=classpath:/");
         // 定义配置文件名；默认：applicaiton；添加下面这一行后，不会读取 properties/yml 配置文件；多个时用英文逗号","
         // 隔；
-        springApplicationBuilder = springApplicationBuilder.properties("spring.config.name=zk,zk.sys");
+        springApplicationBuilder = springApplicationBuilder.properties("spring.config.name=zk,zk.sys,zk.sys.env");
 
         SpringApplication springApplication = springApplicationBuilder.build();
         springApplication.setWebApplicationType(WebApplicationType.SERVLET);

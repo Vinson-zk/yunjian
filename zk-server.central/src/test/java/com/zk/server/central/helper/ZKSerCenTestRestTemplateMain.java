@@ -34,7 +34,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.zk.mongo.configuration.ZKMongoAutoConfiguration;
 import com.zk.server.central.configuration.ZKSerCenConfiguration;
 import com.zk.server.central.configuration.ZKSerCenMvcConfiguration;
 
@@ -57,7 +56,7 @@ import com.zk.server.central.configuration.ZKSerCenMvcConfiguration;
 //@ServletComponentScan(basePackages = { "com.zk.server.central.filter" })
 @ImportAutoConfiguration(classes = { 
       ZKSerCenConfiguration.class
-      , ZKMongoAutoConfiguration.class
+//      , ZKMongoAutoConfiguration.class
         , ZKSerCenMvcConfiguration.class
 //      , ZKSerCenShiroConfiguration.class
       })

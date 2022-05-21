@@ -21,12 +21,7 @@ package com.zk.wechat.wx.thirdParty;
 import java.util.List;
 import java.util.Map;
 
-import org.dom4j.Document;
-
 import com.zk.core.utils.ZKStringUtils;
-import com.zk.core.utils.ZKXmlUtils;
-import com.zk.wechat.wx.aes.ZKAesException;
-import com.zk.wechat.wx.common.ZKWXUtils;
 
 /** 
 * @ClassName: ZKWXThirdPartyMsgUtils 
@@ -65,54 +60,4 @@ public class ZKWXThirdPartyMsgUtils {
 
         return ZKStringUtils.isEmpty(func) ? null : func.substring(0, func.length() - 1);
     }
-
-    /**
-     * 从消息 xml 密文中取出消息的解密结果字条串
-     *
-     * @Title: getStringMsg
-     * @Description: TODO(simple description this method what to do.)
-     * @author Vinson
-     * @date Feb 18, 2021 3:37:15 PM
-     * @param token
-     *            微信平台配置的消息校验 token
-     * @param aesKey
-     *            微信消息加解密 key
-     * @param appId
-     *            微信第三方平台账号的 app id
-     * @param msgXmlEncStr
-     *            xml 密文
-     * @throws ZKAesException
-     * @return String
-     */
-    public static String getStringMsg(String token, String aesKey, String appId,
-            String msgXmlEncStr) throws ZKAesException {
-        // 解密
-        return ZKWXUtils.decryptXml(token, aesKey, appId, msgXmlEncStr);
-
-    }
-
-    /**
-     * 从消息 xml 密文中取出消息的解密结果 xml Document
-     *
-     * @Title: getDocumentMsg
-     * @Description: TODO(simple description this method what to do.)
-     * @author Vinson
-     * @date Feb 18, 2021 3:35:17 PM
-     * @param token
-     *            微信平台配置的消息校验 token
-     * @param aesKey
-     *            微信消息加解密 key
-     * @param appId
-     *            微信第三方平台账号的 app id
-     * @param msgXmlEncStr
-     *            xml 密文
-     * @throws ZKAesException
-     * @return Document
-     */
-    public static Document getDocumentMsg(String token, String aesKey, String appId,
-            String msgXmlEncStr) throws ZKAesException {
-        // 转化为 Document
-        return ZKXmlUtils.getDocument(getStringMsg(token, aesKey, appId, msgXmlEncStr));
-    }
-
 }

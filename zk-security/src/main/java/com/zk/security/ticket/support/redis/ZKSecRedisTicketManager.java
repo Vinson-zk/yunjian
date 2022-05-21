@@ -559,7 +559,7 @@ public class ZKSecRedisTicketManager extends ZKSecAbstractTicketManager implemen
             this.updateLastTime(tkBaseInfo);
         }
         else {
-            logger.info("[^_^:20220512-0954-001] 令牌[]不存在！", identification);
+            logger.info("[^_^:20220512-0954-001] 令牌[{}]不存在！", identification);
         }
 
     }

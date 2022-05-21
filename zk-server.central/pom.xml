@@ -19,6 +19,36 @@
 		<!-- 可以从 parent 中继承 -->
 	</properties>
 	
+	<!-- <profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<package.env>dev</package.env>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>zkdev</id>
+			<properties>
+				<package.env>zkdev</package.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>gf</id>
+			<properties>
+				<package.env>gf</package.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>gfdev</id>
+			<properties>
+				<package.env>gfdev</package.env>
+			</properties>
+		</profile>
+	</profiles> -->
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -37,11 +67,11 @@
 			<artifactId>zk-core</artifactId>
 			<version>${version.zk.core}</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.zk</groupId>
 			<artifactId>zk-mongo</artifactId>
 			<version>${version.zk.mongo}</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>com.zk</groupId>
 			<artifactId>zk-db</artifactId>
@@ -51,11 +81,27 @@
 			<groupId>com.zk</groupId>
 			<artifactId>zk-base</artifactId>
 			<version>${version.zk.base}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.zk</groupId>
+					<artifactId>zk-mongo</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.zk</groupId>
 			<artifactId>zk-cache</artifactId>
 			<version>${version.zk.cache}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.zk</groupId>
+					<artifactId>zk-mongo</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.data</groupId>
+					<artifactId>spring-data-mongodb</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.zk</groupId>
@@ -302,6 +348,11 @@
 							<includes>  
 			                    <include>**/**</include>  
 			                </includes>  
+						</resource>
+						<resource>
+							<filtering>true</filtering>
+							<directory>${basedir}/src/env/${package.env}</directory>
+							<targetPath>${project.build.directory}/classes</targetPath>
 						</resource>
 					</resources>
 				</configuration>

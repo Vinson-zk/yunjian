@@ -23,7 +23,7 @@ package com.zk.wechat.wx.common;
 * @author Vinson 
 * @version 1.0 
 */
-public class ZKWXConstants {
+public interface ZKWXConstants {
     
     /**
      * 缓存 KEY 组合时 分隔符
@@ -34,5 +34,35 @@ public class ZKWXConstants {
      * 错误码 转换前缀
      */
     public static final String errCodePrefix = "wx";
+
+    /**
+     * 没有第三方平台时，填充第三方平台账号；一般公众号自己后台实现时，用到
+     */
+    public static final String noThirdParty = "";
+
+    /**
+     * 语言标识，国家地区语言版本，zh_CN 简体，zh_TW 繁体，en 英语，默认为zh-CN
+     * 
+     * @ClassName: KeyLocale
+     * @Description: TODO(simple description this class what to do. )
+     * @author Vinson
+     * @version 1.0
+     */
+    public static interface KeyLocale {
+        /**
+         * zh_CN 简体
+         */
+        public static final String zh_CN = "zh_CN";
+
+        /**
+         * zh_TW 繁体
+         */
+        public static final String zh_TW = "zh_TW";
+
+        /**
+         * en 英语
+         */
+        public static final String en = "en";
+    }
 
 }

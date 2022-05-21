@@ -19,6 +19,36 @@
 	${project.packaging} 打包类型，缺省为jar
 	${project.xxx} 当前pom文件的任意节点的内容
 	 -->
+	 
+	 <profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<package.env>dev</package.env>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>zkdev</id>
+			<properties>
+				<package.env>zkdev</package.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>gf</id>
+			<properties>
+				<package.env>gf</package.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>gfdev</id>
+			<properties>
+				<package.env>gfdev</package.env>
+			</properties>
+		</profile>
+	</profiles>
 
 	<properties>
 		

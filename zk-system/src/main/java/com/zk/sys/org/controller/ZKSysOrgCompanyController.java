@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zk.base.controller.ZKBaseController;
 import com.zk.core.commons.data.ZKPage;
+import com.zk.core.exception.ZKCodeException;
 import com.zk.core.web.ZKMsgRes;
 import com.zk.security.annotation.ZKSecApiCode;
 import com.zk.sys.org.entity.ZKSysOrgCompany;
@@ -42,8 +43,11 @@ public class ZKSysOrgCompanyController extends ZKBaseController {
     @ZKSecApiCode("com_zk_sys_org_sysOrgCompany_sysOrgCompanyByCode")
     public ZKMsgRes sysOrgCompanyByCode(@RequestParam("companyCode") String companyCode) {
         ZKSysOrgCompany sysOrgCompany = this.sysOrgCompanyService.getByCode(companyCode);
+        if (sysOrgCompany == null) {
+            log.error("[^_^:20220018-1411-001] 公司[{}]不存在;", companyCode);
+            throw new ZKCodeException("zk.sys.010003", "公司不存在");
+        }
         return ZKMsgRes.asOk(sysOrgCompany);
-//        return sysOrgCompany;
     }
 
 	// 编辑

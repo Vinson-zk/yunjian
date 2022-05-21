@@ -45,6 +45,9 @@ public class ZKJsonArray extends JSONArray {
     }
 
     public static ZKJsonArray parse(JSONArray jsonArray) {
+        if (jsonArray == null) {
+            return null;
+        }
         ZKJsonArray zkJsonArray = new ZKJsonArray();
         zkJsonArray.addAll(jsonArray);
         return zkJsonArray;

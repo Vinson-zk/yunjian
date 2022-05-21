@@ -259,8 +259,13 @@ public class ZKSysSecRealm extends ZKSecAbstractRealm {
                     if (ZKSecSecurityUtils.getSubject().isAuthenticated()) {
                         // 当前用户是登录认证的在线用户，保留当前用户，踢掉之前的用户；
                         for (ZKSecTicket t : tks) {
-                            t.stop();
-                            t.put(ZKSecTicket.KeyTicketInfo.stop_info_code, "zk.sec.000012"); // zk.sec.000012=用户已在其他地方登录，请重新登录
+                            if (t.isValid()) {
+                                t.stop();
+                                t.put(ZKSecTicket.KeyTicketInfo.stop_info_code, "zk.sec.000012"); // zk.sec.000012=用户已在其他地方登录，请重新登录
+                            }
+                            else {
+                                log.info("[^_^:20220518-0906-001] 令牌 [{}] 失效！", t.getTkId());
+                            }
                         }
                     }
                     else {

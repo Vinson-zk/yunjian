@@ -22,6 +22,8 @@ import javax.annotation.PostConstruct;
 import javax.servlet.Filter;
 import javax.validation.Validator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -74,6 +76,8 @@ import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
         ServletWebServerFactoryAutoConfiguration.class
 })
 public class ZKSysConfiguration {
+
+    protected static Logger log = LoggerFactory.getLogger(ZKSysConfiguration.class);
 
     @Value("${zk.sys.db.dynamic.jdbc.username_w}")
     private String dbUserName_w;
@@ -215,6 +219,12 @@ public class ZKSysConfiguration {
 
         dds_r.setUsername(this.dbUserName_r);
         dds_r.setPassword(dbPwd_r);
+
+        log.info("[^_^:20220521-1147-001] ====================================================");
+        log.info("[^_^:20220521-1147-001] === 数据库信息 =======================================");
+        log.info("[^_^:20220521-1147-001] ====================================================");
+        log.info("[^_^:20220521-1147-001] 数据库：" + dds_w.getUrl());
+        log.info("[^_^:20220521-1147-001] ====================================================");
 
         zkDynamicDataSource.setWriteDataSource(dds_w);
         zkDynamicDataSource.setReadDataSource(dds_r);

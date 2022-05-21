@@ -17,6 +17,36 @@
 		<!-- 可以从 parent 中继承 -->
 	</properties>
 	
+	<!-- <profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<package.env>dev</package.env>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>zkdev</id>
+			<properties>
+				<package.env>zkdev</package.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>gf</id>
+			<properties>
+				<package.env>gf</package.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>gfdev</id>
+			<properties>
+				<package.env>gfdev</package.env>
+			</properties>
+		</profile>
+	</profiles> -->
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -305,7 +335,7 @@
 			    </configuration>
             </plugin>
             <!-- 打包项目外部配置文件； 虽然直接在 resources 下也可实现，但在 Maven update project 时， 会报错误：mvn 
-			update Could not update project xxx configuration java.lang.NullPointerE -->
+			update Could not update project xxx configuration java.lang.NullPointerE 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -341,6 +371,28 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
+			<!-- plugin 资源配置文件处理 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<useDefaultDelimiters>true</useDefaultDelimiters>
+					<resources>
+						<resource>
+							<filtering>true</filtering>
+							<directory>${basedir}/src/main/resources</directory>
+							<targetPath>${project.build.directory}/classes</targetPath>
+						</resource>
+						<resource>
+							<filtering>true</filtering>
+							<directory>${basedir}/src/env/${package.env}</directory>
+							<targetPath>${project.build.directory}/classes</targetPath>
+						</resource>
+					</resources>
+				</configuration>
+ 			</plugin>
         </plugins>
 		
 	</build>

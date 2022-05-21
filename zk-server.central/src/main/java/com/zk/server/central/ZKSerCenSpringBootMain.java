@@ -34,7 +34,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.zk.mongo.configuration.ZKMongoAutoConfiguration;
 import com.zk.server.central.configuration.ZKSerCenConfiguration;
 import com.zk.server.central.configuration.ZKSerCenMvcConfiguration;
 import com.zk.server.central.configuration.ZKSerCenShiroConfiguration;
@@ -60,7 +59,7 @@ import com.zk.server.central.configuration.ZKSerCenShiroConfiguration;
 //@ServletComponentScan(basePackages = { "com.zk.server.central.filter" })
 @ImportAutoConfiguration(classes = { 
         ZKSerCenConfiguration.class
-        , ZKMongoAutoConfiguration.class
+//        , ZKMongoAutoConfiguration.class
         , ZKSerCenMvcConfiguration.class
         , ZKSerCenShiroConfiguration.class })
 @PropertySource(encoding = "UTF-8", value = { "classpath:zk.ser.cen.jdbc.properties",
@@ -117,7 +116,8 @@ public class ZKSerCenSpringBootMain {
             // 配置文件路径；默认：[file:./config/, file:./, classpath:/config/, classpath:/]
             springApplicationBuilder = springApplicationBuilder.properties("spring.config.location=classpath:/");
             // 定义配置文件名；默认：applicaiton；添加下面这一行后，不会读取 properties/yml 配置文件；多个时用英文逗号"," 隔；
-            springApplicationBuilder = springApplicationBuilder.properties("spring.config.name=zk,zk.ser.cen");
+            springApplicationBuilder = springApplicationBuilder
+                    .properties("spring.config.name=zk,zk.ser.cen,zk.ser.cen.env");
 
             SpringApplication springApplication = springApplicationBuilder.build();
             springApplication.setWebApplicationType(WebApplicationType.SERVLET);

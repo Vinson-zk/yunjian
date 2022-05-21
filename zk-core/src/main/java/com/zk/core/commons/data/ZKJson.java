@@ -167,6 +167,10 @@ public class ZKJson extends JSONObject {
 //      return super.put(EncodesUtils.encodeBase64(key), v);
     }
 
+    public <C> C format(Class<C> classz) {
+        return ZKJsonUtils.jsonStrToObject(this.toJSONString(), classz);
+    }
+
     /**
      * 根据 JSONObject 转 ZKJson
      *

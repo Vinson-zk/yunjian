@@ -90,7 +90,7 @@ public abstract class ZKWXAbstractAccessToken implements Serializable {
     public boolean isExpires() {
         if (this.updateDate == null || System.currentTimeMillis()
                 - this.updateDate.getTime() > ((this.getExpiresIn() - getOffsetExpiresTime()) * 1000)) {
-            // 过期了，过期难测偏移量为 100 秒
+            // 过期了，过期可自定义测偏移量，单位为秒
             return true;
         }
         return false;

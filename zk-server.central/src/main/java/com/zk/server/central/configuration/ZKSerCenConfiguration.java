@@ -24,6 +24,8 @@ import javax.annotation.PostConstruct;
 import javax.servlet.Filter;
 import javax.validation.Validator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -55,8 +57,6 @@ import com.zk.framwwork.serCen.ZKSerCenDecode;
 import com.zk.framwwork.serCen.ZKSerCenEncrypt;
 import com.zk.framwwork.serCen.eureka.ZKEurekaTransportClientFactories;
 import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
-import com.zk.mongo.configuration.ZKMongoAutoConfiguration;
-import com.zk.mongo.configuration.ZKMongoProperties;
 import com.zk.server.central.commons.ZKSerCenCerCipherManager;
 import com.zk.server.central.commons.support.ZKSerCenCerCipherManagerImpl;
 import com.zk.server.central.filter.ZKSerCenRegisterFilter;
@@ -71,16 +71,20 @@ import com.zk.server.central.interceptor.ZKViewVariateInterceptor;
 @ImportResource(locations = { "classpath:xmlConfig/spring_ctx_sc_application.xml",
         "classpath:xmlConfig/spring_ctx_sc_mvc.xml", "classpath:xmlConfig/spring_ctx_sc_dynamic_mybatis.xml" })
 //@ImportAutoConfiguration(classes = { ZKMongoAutoConfiguration.class })
-@AutoConfigureBefore(value = { ZKMongoAutoConfiguration.class
-        , ZKSerCenShiroConfiguration.class
-        , ZKSerCenMvcConfiguration.class
-        , EnableWebMvcConfiguration.class
-        , ServletWebServerFactoryAutoConfiguration.class
+@AutoConfigureBefore(value = { 
+//        ZKMongoAutoConfiguration.class,
+//        ZKSerCenRedisConfiguration.class,
+        ZKSerCenShiroConfiguration.class,
+        ZKSerCenMvcConfiguration.class,
+        EnableWebMvcConfiguration.class,
+        ServletWebServerFactoryAutoConfiguration.class
         })
 //@AutoConfigureAfter(value = { ServletWebServerFactoryAutoConfiguration.class })
 //@AutoConfigureOrder(value = Ordered.HIGHEST_PRECEDENCE)
 //@ImportAutoConfiguration(classes = { DispatcherServletAutoConfiguration.class })
 public class ZKSerCenConfiguration extends ZKCoreConfiguration {
+
+    protected static Logger log = LoggerFactory.getLogger(ZKSerCenConfiguration.class);
 
     @Value("${zk.ser.cen.db.dynamic.jdbc.username_w}")
     private String dbUserName_w;
@@ -141,11 +145,11 @@ public class ZKSerCenConfiguration extends ZKCoreConfiguration {
      * @return
      * @return ZKMongoProperties
      */
-    @Bean
-    @ConfigurationProperties(prefix = "zk.ser.cen.mongodb")
-    public ZKMongoProperties zkMongoProperties() {
-        return new ZKMongoProperties();
-    }
+//    @Bean
+//    @ConfigurationProperties(prefix = "zk.ser.cen.mongodb")
+//    public ZKMongoProperties zkMongoProperties() {
+//        return new ZKMongoProperties();
+//    }
 
     /**
      * 数据源
@@ -181,6 +185,12 @@ public class ZKSerCenConfiguration extends ZKCoreConfiguration {
 
         dds_r.setUsername(this.dbUserName_r);
         dds_r.setPassword(dbPwd_r);
+
+        log.info("[^_^:20220521-1030-001] ====================================================");
+        log.info("[^_^:20220521-1030-001] === 数据库信息 =======================================");
+        log.info("[^_^:20220521-1030-001] ====================================================");
+        log.info("[^_^:20220521-1030-001] 数据库：" + dds_w.getUrl());
+        log.info("[^_^:20220521-1030-001] ====================================================");
 
         zkDynamicDataSource.setWriteDataSource(dds_w);
         zkDynamicDataSource.setReadDataSource(dds_r);
@@ -338,5 +348,23 @@ public class ZKSerCenConfiguration extends ZKCoreConfiguration {
 
         return ms;
     }
+
+//    /**
+//     * 缓存管理
+//     *
+//     * @Title: redisCacheManager
+//     * @Description: TODO(simple description this method what to do.)
+//     * @author Vinson
+//     * @date May 11, 2022 7:17:31 PM
+//     * @param jedisOperatorStringKey
+//     * @return
+//     * @return ZKRedisCacheManager
+//     */
+//    @Bean
+//    public ZKRedisCacheManager redisCacheManager(ZKJedisOperatorStringKey jedisOperatorStringKey) {
+//        ZKRedisCacheManager cm = new ZKRedisCacheManager();
+//        cm.setJedisOperator(jedisOperatorStringKey);
+//        return cm;
+//    }
 
 }

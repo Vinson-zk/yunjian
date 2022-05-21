@@ -70,6 +70,7 @@ import com.zk.wechat.configuration.ZKWechatSecConfiguration;
 //        FeignContentGzipEncodingAutoConfiguration.class
 })
 @PropertySource(encoding = "UTF-8", value = { "classpath:zk.wechat.jdbc.properties",
+        "classpath:zk.wechat.wx.officialAccounts.properties",
         "classpath:zk.wechat.wx.thirdParty.properties", "classpath:zk.wechat.wx.pay.properties" })
 //@AutoConfigureOrder(value = Ordered.HIGHEST_PRECEDENCE)
 @ComponentScan(basePackages = { "com.zk.wechat.*" })

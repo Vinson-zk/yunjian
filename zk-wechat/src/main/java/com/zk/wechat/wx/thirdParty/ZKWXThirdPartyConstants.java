@@ -24,7 +24,7 @@ package com.zk.wechat.wx.thirdParty;
 * @author Vinson 
 * @version 1.0 
 */
-public class ZKWXThirdPartyConstants {
+public interface ZKWXThirdPartyConstants {
     
     /**
      * 一些配置的 key
@@ -47,9 +47,16 @@ public class ZKWXThirdPartyConstants {
         public static final String thirdPartyAuthCallback = "zk.wechat.wx.thirdParty.auth.callback";
 
         /**
+         * 第三方授权回调后转发的路径
+         */
+        public static final String thirdPartyAuthCallbackRedirect = "zk.wechat.wx.thirdParty.auth.callback.redirect";
+
+        /**
          * 平台默认的第三方平台账号 appid
          */
         public static final String thirdPartyDefaultAppid = "zk.wechat.wx.thirdParty.default.appid";
+
+        // ===== # ----- 第三方平台 配置
 
         /**
          * 授权链接构建的方法；1、构建PC端授权链接的方法
@@ -90,6 +97,28 @@ public class ZKWXThirdPartyConstants {
          * 获取授权方的帐号基本信息
          */
         public static final String api_get_authorizer_info = "zk.wechat.wx.thirdParty.api.api_get_authorizer_info";
+
+
+        // ===== # ----- 第三方平台替，微信用户授权
+        /**
+         * # 请求 CODE
+         */
+        public static final String api_user_auth_authorize = "zk.wechat.wx.thirdParty.api.user.auth.authorize";
+
+        /**
+         * # 通过 code 换取 access_token
+         */
+        public static final String api_user_auth_access_token = "zk.wechat.wx.thirdParty.api.user.auth.access_token";
+
+        /**
+         * # 刷新 access_token（如果需要）
+         */
+        public static final String api_user_auth_refresh_token = "zk.wechat.wx.thirdParty.api.user.auth.refresh_token";
+
+        /**
+         * # 通过网页授权 access_token 获取用户基本信息（需授权作用域为 snsapi_userinfo）
+         */
+        public static final String api_user_auth_userinfo = "zk.wechat.wx.thirdParty.api.user.auth.userinfo";
 
     }
 

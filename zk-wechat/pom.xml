@@ -19,7 +19,7 @@
 		<!-- 可以从 parent 中继承 -->
 	</properties>
 	
-	<profiles>
+	<!-- <profiles>
 		<profile>
 			<id>dev</id>
 			<properties>
@@ -30,12 +30,24 @@
 			</activation>
 		</profile>
 		<profile>
+			<id>zkdev</id>
+			<properties>
+				<package.env>zkdev</package.env>
+			</properties>
+		</profile>
+		<profile>
 			<id>gf</id>
 			<properties>
 				<package.env>gf</package.env>
 			</properties>
 		</profile>
-	</profiles>
+		<profile>
+			<id>gfdev</id>
+			<properties>
+				<package.env>gfdev</package.env>
+			</properties>
+		</profile>
+	</profiles> -->
 	
 	<dependencyManagement>
 		<dependencies>

@@ -18,7 +18,6 @@
 */
 package com.zk.wechat.wx.thirdParty.service;
 
-import org.dom4j.Document;
 import org.dom4j.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +26,11 @@ import org.springframework.stereotype.Service;
 
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.utils.ZKStringUtils;
-import com.zk.wechat.thirdParty.entity.ZKThirdParty;
 import com.zk.wechat.thirdParty.service.ZKThirdPartyService;
 import com.zk.wechat.wx.aes.ZKAesException;
 import com.zk.wechat.wx.thirdParty.ZKWXThirdPartyConstants;
 import com.zk.wechat.wx.thirdParty.ZKWXThirdPartyConstants.MsgAttr;
 import com.zk.wechat.wx.thirdParty.ZKWXThirdPartyInfoType;
-import com.zk.wechat.wx.thirdParty.ZKWXThirdPartyMsgUtils;
 
 /** 
 * @ClassName: ZKWXThirdPartyMsgService 
@@ -51,10 +48,10 @@ public class ZKWXThirdPartyMsgService {
     protected Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    ZKThirdPartyService thirdPartyService;
+    ZKWXThirdPartyAuthService wxThirdPartyAuthService;
 
     @Autowired
-    ZKWXThirdPartyAuthService thirdPartyAuthService;
+    ZKThirdPartyService thirdPartyService;
 
     /**
      * 授权消息
@@ -64,41 +61,32 @@ public class ZKWXThirdPartyMsgService {
      * @author Vinson
      * @date Nov 7, 2021 8:58:50 AM
      * @param thirdPartyAppId
-     * @param encStr
+     * @param rootElement
      * @throws ZKAesException
      * @return void
      */
-    public void authMsgNotification(String thirdPartyAppId, String encStr) throws ZKAesException {
-        ZKThirdParty wxThirdPart = thirdPartyService.get(thirdPartyAppId);
-        if (wxThirdPart == null) {
-            log.error("[>_<:20210218-1025-001] 此微信第三方平台 thirdPartyAppId:{} ; 尚未与系统对接。", thirdPartyAppId);
-            throw new ZKCodeException("zk.wechat.010001", "未对接第三方微信平台");
-        }
+    public void authMsgNotification(String thirdPartyAppId, Element rootElement) throws ZKAesException {
 
-        // 解密 xml 密文
-        Document notificationDoc = ZKWXThirdPartyMsgUtils.getDocumentMsg(wxThirdPart.getWxToken(),
-                wxThirdPart.getWxAesKey(), wxThirdPart.getPkId(), encStr);
-
-        String infoTypeStr = notificationDoc.getRootElement().element(ZKWXThirdPartyConstants.MsgAttr.info_type)
+        String infoTypeStr = rootElement.element(ZKWXThirdPartyConstants.MsgAttr.info_type)
                 .getStringValue();
 
         ZKWXThirdPartyInfoType infoType = ZKWXThirdPartyInfoType.valueOf(infoTypeStr);
         switch (infoType) {
             case component_verify_ticket:
                 // 收到微信平台推送过来的令牌；
-                verifyTicketDispose(notificationDoc.getRootElement());
+                verifyTicketDispose(rootElement);
                 break;
             case authorized:
                 // 授权成功
-                authorizedDispose(notificationDoc.getRootElement());
+                authorizedDispose(rootElement);
                 break;
             case unauthorized:
                 // 授权取消
-                unauthorizedDispose(notificationDoc.getRootElement());
+                unauthorizedDispose(rootElement);
                 break;
             case updateauthorized:
                 // 授权变更
-                updateauthorizedDispose(notificationDoc.getRootElement());
+                updateauthorizedDispose(rootElement);
                 break;
             default:
                 log.error("[>_<:20180906-2025-001] 授权通知中，未知的消息类型！thirdPartyAppId:{}, infoType:{}", thirdPartyAppId,
@@ -162,7 +150,7 @@ public class ZKWXThirdPartyMsgService {
             String authorizationCode = rootElement.element(MsgAttr.AuthorizedInfo.AuthorizationCode).getStringValue();
             String preAuthCode = rootElement.element(MsgAttr.AuthorizedInfo.PreAuthCode).getStringValue();
 
-            this.thirdPartyAuthService.authAuthorizedAndUpdateauthorized(thirdPartyAppid, authorizerAppid,
+            this.wxThirdPartyAuthService.authAuthorizedAndUpdateauthorized(thirdPartyAppid, authorizerAppid,
                     authorizationCode, preAuthCode);
         }
         catch(Exception e) {
@@ -195,7 +183,7 @@ public class ZKWXThirdPartyMsgService {
 
             String thirdPartyAppid = rootElement.element(MsgAttr.AuthorizedInfo.AppId).getStringValue();
             String authorizerAppid = rootElement.element(MsgAttr.AuthorizedInfo.AuthorizerAppid).getStringValue();
-            this.thirdPartyAuthService.authUnauthorized(thirdPartyAppid, authorizerAppid);
+            this.wxThirdPartyAuthService.authUnauthorized(thirdPartyAppid, authorizerAppid);
 
         }
         catch(Exception e) {
@@ -233,7 +221,7 @@ public class ZKWXThirdPartyMsgService {
             String authorizationCode = rootElement.element(MsgAttr.AuthorizedInfo.AuthorizationCode).getStringValue();
             String preAuthCode = rootElement.element(MsgAttr.AuthorizedInfo.PreAuthCode).getStringValue();
 
-            this.thirdPartyAuthService.authAuthorizedAndUpdateauthorized(thirdPartyAppid, authorizerAppid,
+            this.wxThirdPartyAuthService.authAuthorizedAndUpdateauthorized(thirdPartyAppid, authorizerAppid,
                     authorizationCode, preAuthCode);
         }
         catch(Exception e) {

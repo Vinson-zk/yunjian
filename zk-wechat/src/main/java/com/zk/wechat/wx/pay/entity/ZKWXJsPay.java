@@ -22,9 +22,9 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
 
-import com.zk.wechat.wx.common.ZKWXUtils;
 import com.zk.wechat.wx.pay.ZKWXPayConstants;
 import com.zk.wechat.wx.pay.ZKWXPayUtils;
+import com.zk.wechat.wx.utils.ZKWXUtils;
 
 /**
  * jsapi 调起支付的参数对象

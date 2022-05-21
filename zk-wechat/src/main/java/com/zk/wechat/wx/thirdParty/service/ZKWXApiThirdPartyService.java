@@ -28,14 +28,16 @@ import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKStringUtils;
 import com.zk.core.web.utils.ZKHttpApiUtils;
 import com.zk.sys.org.entity.ZKSysOrgCompany;
-import com.zk.wechat.thirdParty.entity.ZKThirdPartyAuthAccount;
-import com.zk.wechat.wx.common.ZKWXUtils;
+import com.zk.wechat.officialAccounts.entity.ZKOfficialAccounts;
+import com.zk.wechat.wx.officialAccounts.ZKWXOfficialAccountsConstants;
+import com.zk.wechat.wx.officialAccounts.msgBean.ZKWXAccountAuthAccessToken;
+import com.zk.wechat.wx.officialAccounts.msgBean.ZKWXUserAuthAccessToken;
 import com.zk.wechat.wx.thirdParty.ZKWXThirdPartyConstants.ConfigKey;
 import com.zk.wechat.wx.thirdParty.ZKWXThirdPartyConstants.MsgAttr;
 import com.zk.wechat.wx.thirdParty.ZKWXThirdPartyConstants.ParamName;
-import com.zk.wechat.wx.thirdParty.msgBean.ZKWXTPAuthAccountAccessToken;
 import com.zk.wechat.wx.thirdParty.msgBean.ZKWXTPComponentAccessToken;
 import com.zk.wechat.wx.thirdParty.msgBean.ZKWXTPPreAuthCode;
+import com.zk.wechat.wx.utils.ZKWXUtils;
 
 /** 
 * @ClassName: ZKWXApiThirdPartyService 
@@ -157,9 +159,9 @@ public class ZKWXApiThirdPartyService {
      *            第三方有效的接口调用凭证
      * @param authorizationCode
      *            授权码
-     * @return ZKWXTPAuthAccountAccessToken
+     * @return ZKWXAccountAuthAccessToken
      */
-    public ZKWXTPAuthAccountAccessToken api_query_auth(ZKThirdPartyAuthAccount outThirdPartyAuthAccount,
+    public ZKWXAccountAuthAccessToken api_query_auth(ZKOfficialAccounts outThirdPartyAuthAccount,
             String thirdPartyAppid, String componentAccessToken, String authorizationCode) {
 
         String url = ZKEnvironmentUtils.getString(ConfigKey.api_query_auth);
@@ -185,7 +187,7 @@ public class ZKWXApiThirdPartyService {
 
         String authorizerAppid = authorizationInfoJson.getString(MsgAttr.AuthorizationInfo.authorizer_appid);
 
-        ZKWXTPAuthAccountAccessToken authAccountAccessToken = new ZKWXTPAuthAccountAccessToken(thirdPartyAppid,
+        ZKWXAccountAuthAccessToken authAccountAccessToken = new ZKWXAccountAuthAccessToken(thirdPartyAppid,
                 authorizerAppid);
         authAccountAccessToken.setAuthorizerRefreshToken(
                 authorizationInfoJson.getString(MsgAttr.AuthorizationInfo.authorizer_refresh_token));
@@ -199,8 +201,10 @@ public class ZKWXApiThirdPartyService {
         ZKJson funcJson = new ZKJson();
         funcJson.put("_v", authorizationInfoJson.getJSONArray(MsgAttr.AuthorizationInfo.FuncInfo._name));
         outThirdPartyAuthAccount.setWxFuncInfo(funcJson);
-
-        outThirdPartyAuthAccount.setWxAuthAccountType(ZKThirdPartyAuthAccount.AuthAccountType.official);
+        // 这个类型设置还有待商榷，目前无法区分是公众号还是小程序授权
+        outThirdPartyAuthAccount.setWxAuthAccountType(ZKOfficialAccounts.KeyAuthAccountType.official);
+        // 第三方平台授权
+        outThirdPartyAuthAccount.setAddType(ZKOfficialAccounts.KeyAddType.thridPartyAuth);
 
         return authAccountAccessToken;
     }
@@ -221,9 +225,9 @@ public class ZKWXApiThirdPartyService {
      * @param authorizerRefreshToken
      *            目标授权方 刷新 Token
      * @return
-     * @return ZKWXTPAuthAccountAccessToken
+     * @return ZKWXAccountAuthAccessToken
      */
-    public ZKWXTPAuthAccountAccessToken api_authorizer_token(String thirdPartyAppid, String componentAccessToken,
+    public ZKWXAccountAuthAccessToken api_authorizer_token(String thirdPartyAppid, String componentAccessToken,
             String authorizerAppid, String authorizerRefreshToken) {
 
         String url = ZKEnvironmentUtils.getString(ConfigKey.api_authorizer_token);
@@ -249,7 +253,7 @@ public class ZKWXApiThirdPartyService {
 
         JSONObject authorizationInfoJson = resJson.getJSONObject(MsgAttr.AuthorizationInfo._name);
 
-        ZKWXTPAuthAccountAccessToken authAccountAccessToken = new ZKWXTPAuthAccountAccessToken(thirdPartyAppid,
+        ZKWXAccountAuthAccessToken authAccountAccessToken = new ZKWXAccountAuthAccessToken(thirdPartyAppid,
                 authorizerAppid);
         authAccountAccessToken.setAuthorizerRefreshToken(
                 authorizationInfoJson.getString(MsgAttr.AuthorizationInfo.authorizer_refresh_token));
@@ -278,7 +282,7 @@ public class ZKWXApiThirdPartyService {
      * @param authorizationAppid
      *            授权公众号的授权APPID，注意不是授权公众号的原始 ID
      */
-    public void api_get_authorizer_info(ZKThirdPartyAuthAccount thirdPartyAuthAccount, String thirdPartyAppid,
+    public void api_get_authorizer_info(ZKOfficialAccounts thirdPartyAuthAccount, String thirdPartyAppid,
             String componentAccessToken) {
         String url = ZKEnvironmentUtils.getString(ConfigKey.api_get_authorizer_info);
         url = ZKStringUtils.replaceByPoint(url, componentAccessToken);
@@ -287,7 +291,7 @@ public class ZKWXApiThirdPartyService {
         params.append(ParamName.AuthorizerInfo.component_appid).append("\":\"");
         params.append(thirdPartyAppid).append("\",\"");
         params.append(ParamName.AuthorizerInfo.authorizer_appid).append("\":\"");
-        params.append(thirdPartyAuthAccount.getWxAuthorizerAppid());
+        params.append(thirdPartyAuthAccount.getWxAccountAppid());
         params.append("\"}");
 
         StringBuffer outStringBuffer = new StringBuffer();
@@ -341,6 +345,88 @@ public class ZKWXApiThirdPartyService {
         // { "funcscope_category": { "id": 3 } }]
         // }
         // }
+    }
+
+    /**
+     * 通过授权 code 获取用户 AccessToken
+     *
+     * @Title: api_user_auth_access_token
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 19, 2022 12:03:07 PM
+     * @param thirdAppId
+     * @param componentAccessToken
+     * @param authAppId
+     * @param code
+     * @return
+     * @return ZKWXUserAuthAccessToken
+     */
+    public ZKWXUserAuthAccessToken api_user_auth_access_token(String thirdPartyAppid, String componentAccessToken,
+            String authAppId, String code) {
+        // https://api.weixin.qq.com/sns/oauth2/component/access_token?appid={0}&code={1}&grant_type=authorization_code&component_appid={2}&component_access_token={3}
+        String url = ZKEnvironmentUtils.getString(ConfigKey.api_user_auth_access_token);
+        url = ZKStringUtils.replaceByPoint(url, authAppId, code, thirdPartyAppid, componentAccessToken);
+
+        StringBuffer outStringBuffer = new StringBuffer();
+        int resStatusCode = ZKHttpApiUtils.get(url, null, outStringBuffer);
+        // 检验请求响应码
+        ZKWXUtils.checkResStatusCode(resStatusCode);
+        String resStr = outStringBuffer.toString();
+        JSONObject resJson = JSONObject.parseObject(resStr);
+        // 检验请求响应结果
+        ZKWXUtils.checkJsonMsg(resJson);
+
+        String openid = resJson.getString(ZKWXOfficialAccountsConstants.MsgAttr.access_tokenInfo.openid);
+        ZKWXUserAuthAccessToken userAuthAccessToken = new ZKWXUserAuthAccessToken(thirdPartyAppid, authAppId, openid);
+        userAuthAccessToken
+                .setAccessToken(resJson.getString(ZKWXOfficialAccountsConstants.MsgAttr.access_tokenInfo.access_token));
+        userAuthAccessToken.setRefreshToken(
+                resJson.getString(ZKWXOfficialAccountsConstants.MsgAttr.access_tokenInfo.refresh_token));
+        userAuthAccessToken
+                .setExpiresIn(resJson.getIntValue(ZKWXOfficialAccountsConstants.MsgAttr.access_tokenInfo.expires_in));
+        userAuthAccessToken.setScope(resJson.getString(ZKWXOfficialAccountsConstants.MsgAttr.access_tokenInfo.scope));
+        return userAuthAccessToken;
+    }
+
+    /**
+     * 刷新 用户授权 token
+     *
+     * @Title: api_user_auth_refresh_token
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 19, 2022 12:59:55 PM
+     * @param thirdAppId
+     * @param componentAccessToken
+     * @param authAppId
+     * @param refreshToken
+     * @return
+     * @return ZKWXUserAuthAccessToken
+     */
+    public ZKWXUserAuthAccessToken api_user_auth_refresh_token(String thirdPartyAppid, String componentAccessToken,
+            String authAppId, String refreshToken) {
+        // https://api.weixin.qq.com/sns/oauth2/component/refresh_token?appid={0}&grant_type=refresh_token&component_appid={1}&component_access_token={2}&refresh_token={3}
+        String url = ZKEnvironmentUtils.getString(ConfigKey.api_user_auth_refresh_token);
+        url = ZKStringUtils.replaceByPoint(url, authAppId, thirdPartyAppid, componentAccessToken, refreshToken);
+
+        StringBuffer outStringBuffer = new StringBuffer();
+        int resStatusCode = ZKHttpApiUtils.get(url, null, outStringBuffer);
+        // 检验请求响应码
+        ZKWXUtils.checkResStatusCode(resStatusCode);
+        String resStr = outStringBuffer.toString();
+        JSONObject resJson = JSONObject.parseObject(resStr);
+        // 检验请求响应结果
+        ZKWXUtils.checkJsonMsg(resJson);
+
+        String openid = resJson.getString(ZKWXOfficialAccountsConstants.MsgAttr.access_tokenInfo.openid);
+        ZKWXUserAuthAccessToken userAuthAccessToken = new ZKWXUserAuthAccessToken(thirdPartyAppid, authAppId, openid);
+        userAuthAccessToken
+                .setAccessToken(resJson.getString(ZKWXOfficialAccountsConstants.MsgAttr.access_tokenInfo.access_token));
+        userAuthAccessToken.setRefreshToken(
+                resJson.getString(ZKWXOfficialAccountsConstants.MsgAttr.access_tokenInfo.refresh_token));
+        userAuthAccessToken
+                .setExpiresIn(resJson.getIntValue(ZKWXOfficialAccountsConstants.MsgAttr.access_tokenInfo.expires_in));
+        userAuthAccessToken.setScope(resJson.getString(ZKWXOfficialAccountsConstants.MsgAttr.access_tokenInfo.scope));
+        return userAuthAccessToken;
     }
 
 }

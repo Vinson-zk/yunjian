@@ -27,6 +27,7 @@ import org.junit.Test;
 import com.zk.core.encrypt.utils.ZKEncryptUtils;
 import com.zk.core.utils.ZKEncodingUtils;
 import com.zk.core.utils.ZKXmlUtils;
+import com.zk.wechat.wx.utils.ZKWXUtils;
 
 import junit.framework.TestCase;
 
