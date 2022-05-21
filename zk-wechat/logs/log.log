@@ -9383,3 +9383,160 @@ INFO  -> 2022-05-21 10:41:09.486[main][org.springframework.data.repository.confi
 INFO  -> 2022-05-21 10:41:09.541[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
 INFO  -> 2022-05-21 10:41:09.551[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
 INFO  -> 2022-05-21 10:41:09.689[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 91ms. Found 0 repository interfaces.
+INFO  -> 2022-05-21 11:06:09.648[main][com.zk.wechat.ZKWechatSpringBootMain] - [^_^:20190628-1708-001]========================================
+INFO  -> 2022-05-21 11:06:09.649[main][com.zk.wechat.ZKWechatSpringBootMain] - [^_^:20190628-1708-001]=== zk wechat  启动 ... ... 
+INFO  -> 2022-05-21 11:06:09.650[main][com.zk.wechat.ZKWechatSpringBootMain] - [^_^:20190628-1708-001]========================================
+INFO  -> 2022-05-21 11:06:10.538[background-preinit][org.hibernate.validator.internal.util.Version] - HV000001: Hibernate Validator 6.0.14.Final
+INFO  -> 2022-05-21 11:06:12.879[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$9a184cbf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:13.460[main][com.zk.wechat.ZKWechatSpringBootMain] - No active profile set, falling back to default profiles: default
+INFO  -> 2022-05-21 11:06:15.620[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  -> 2022-05-21 11:06:15.627[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+INFO  -> 2022-05-21 11:06:15.727[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 79ms. Found 0 repository interfaces.
+INFO  -> 2022-05-21 11:06:15.768[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  -> 2022-05-21 11:06:15.771[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+INFO  -> 2022-05-21 11:06:15.826[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 28ms. Found 0 repository interfaces.
+INFO  -> 2022-05-21 11:06:16.917[main][org.springframework.cloud.context.scope.GenericScope] - BeanFactory id=cf63924c-f51c-3302-8016-c671a93e5db2
+INFO  -> 2022-05-21 11:06:17.174[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'com.zk.sys.org.api.ZKSysOrgCompanyApi' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.187[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'com.zk.sys.org.api.ZKSysOrgUserApi' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.207[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'com.zk.sys.sec.api.ZKSysSecAuthcApi' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.375[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'com.zk.wechat.configuration.ZKWechatSecConfiguration' of type [com.zk.wechat.configuration.ZKWechatSecConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.388[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'zkSecStaticMethodMatcherPointcutAdvisor' of type [com.zk.security.web.support.spring.ZKSecStaticMethodMatcherPointcutAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.410[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7dfe49c2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.475[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'secCookieRememberMemanager' of type [com.zk.security.web.rememberMe.ZKSecCookieRememberMemanager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.491[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'com.zk.wechat.configuration.ZKWechatRedisConfiguration' of type [com.zk.wechat.configuration.ZKWechatRedisConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.516[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'jedisPoolConfig' of type [redis.clients.jedis.JedisPoolConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.522[main][com.zk.wechat.configuration.ZKWechatRedisConfiguration] - [^_^:20210809-1255-001] ====================================================
+INFO  -> 2022-05-21 11:06:17.522[main][com.zk.wechat.configuration.ZKWechatRedisConfiguration] - [^_^:20210809-1255-001] === Redis 连接信息 =======================================
+INFO  -> 2022-05-21 11:06:17.522[main][com.zk.wechat.configuration.ZKWechatRedisConfiguration] - [^_^:20210809-1255-001] ====================================================
+INFO  -> 2022-05-21 11:06:17.522[main][com.zk.wechat.configuration.ZKWechatRedisConfiguration] - [^_^:20210809-1255-001] hosr:10.211.55.10, port:6379, password:root
+INFO  -> 2022-05-21 11:06:17.804[main][com.zk.wechat.configuration.ZKWechatRedisConfiguration] - [^_^:20210809-1255-001] JedisPoolConfig:{"lifo":true,"fairness":false,"maxWaitMillis":-1,"minEvictableIdleTimeMillis":60000,"softMinEvictableIdleTimeMillis":1800000,"numTestsPerEvictionRun":-1,"evictionPolicyClassName":"org.apache.commons.pool2.impl.DefaultEvictionPolicy","testOnCreate":false,"testOnBorrow":false,"testOnReturn":false,"testWhileIdle":true,"timeBetweenEvictionRunsMillis":30000,"blockWhenExhausted":true,"jmxEnabled":true,"jmxNamePrefix":"pool","jmxNameBase":null,"maxTotal":8,"maxIdle":8,"minIdle":0}
+INFO  -> 2022-05-21 11:06:17.808[main][com.zk.wechat.configuration.ZKWechatRedisConfiguration] - [^_^:20210809-1255-001] ====================================================
+INFO  -> 2022-05-21 11:06:17.842[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'jedisPool' of type [redis.clients.jedis.JedisPool] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.853[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'jedisOperatorByte' of type [com.zk.core.redis.ZKJedisOperatorByte] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.859[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'jedisOperatorStringKey' of type [com.zk.core.redis.ZKJedisOperatorStringKey] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.876[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'redisTicketManager' of type [com.zk.security.ticket.support.redis.ZKSecRedisTicketManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.899[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'secRealm' of type [com.zk.framwwork.security.realm.ZKDistributedRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.909[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'zkSecWebSecurityManager' of type [com.zk.security.web.mgt.ZKSecWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:17.962[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'com.zk.security.web.filter.authc.ZKSecUserFilter#64984b0f' of type [com.zk.security.web.filter.authc.ZKSecUserFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:18.015[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$9a184cbf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 11:06:18.881[main][org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 9094 (http)
+INFO  -> 2022-05-21 11:06:19.769[main][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 6242 ms
+INFO  -> 2022-05-21 11:06:20.594[main][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+INFO  -> 2022-05-21 11:06:20.722[main][com.zk.wechat.configuration.ZKWechatConfiguration] - [^_^:20200805-1808-001] ===== ZKSysConfiguration class before 
+INFO  -> 2022-05-21 11:06:20.755[main][com.zk.wechat.configuration.ZKWechatConfiguration] - [^_^:20200805-1808-001] ----- ZKWechatConfiguration class before 
+INFO  -> 2022-05-21 11:06:21.266[main][com.zk.wechat.configuration.ZKWechatJdbcConfiguration] - [^_^:20210225-1147-001] ====================================================
+INFO  -> 2022-05-21 11:06:21.266[main][com.zk.wechat.configuration.ZKWechatJdbcConfiguration] - [^_^:20210225-1147-001] === 数据库信息 =======================================
+INFO  -> 2022-05-21 11:06:21.267[main][com.zk.wechat.configuration.ZKWechatJdbcConfiguration] - [^_^:20210225-1147-001] ====================================================
+INFO  -> 2022-05-21 11:06:21.267[main][com.zk.wechat.configuration.ZKWechatJdbcConfiguration] - [^_^:20210225-1147-001] 数据库：jdbc:mysql://10.211.55.10:3306/zk-wechat?useUnicode=true&characterEncoding=utf8&useTimezone=true&serverTimezone=GMT%2B8
+INFO  -> 2022-05-21 11:06:21.267[main][com.zk.wechat.configuration.ZKWechatJdbcConfiguration] - [^_^:20210225-1147-001] ====================================================
+WARN  -> 2022-05-21 11:06:22.533[main][org.apache.ibatis.io.ResolverUtil] - Could not examine class 'com/zk/base/mongo/repository/support/ZKMongoRepositoryImpl.class' due to a java.lang.NoClassDefFoundError with message: org/springframework/data/mongodb/repository/MongoRepository
+WARN  -> 2022-05-21 11:06:22.547[main][org.apache.ibatis.io.ResolverUtil] - Could not examine class 'com/zk/base/mongo/repository/ZKBaseMongoRepository.class' due to a java.lang.NoClassDefFoundError with message: org/springframework/data/mongodb/repository/MongoRepository
+WARN  -> 2022-05-21 11:06:24.786[main][com.netflix.config.sources.URLConfigurationSource] - No URLs will be polled as dynamic configuration sources.
+INFO  -> 2022-05-21 11:06:24.786[main][com.netflix.config.sources.URLConfigurationSource] - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+WARN  -> 2022-05-21 11:06:24.805[main][com.netflix.config.sources.URLConfigurationSource] - No URLs will be polled as dynamic configuration sources.
+INFO  -> 2022-05-21 11:06:24.805[main][com.netflix.config.sources.URLConfigurationSource] - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+TRACE -> 2022-05-21 11:06:25.044[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.c.ZKWechatIndexController:
+	{ /zk/wechat/v1.0}: index()
+TRACE -> 2022-05-21 11:06:25.051[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.o.c.ZKOfficialAccountsController:
+	{GET /zk/wechat/v1.0/officialAccounts/accounts/accounts}: accountsGet(String)
+	{GET /zk/wechat/v1.0/officialAccounts/accounts/accountsPage}: accountsPageGet(ZKOfficialAccounts,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 11:06:25.056[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.o.c.ZKOfficialAccountsUserController:
+	{GET /zk/wechat/v1.0/officialAccounts/officialAccountsUser/officialAccountsUser}: officialAccountsUserGet(String)
+	{GET /zk/wechat/v1.0/officialAccounts/officialAccountsUser/officialAccountsUsersPage}: officialAccountsUsersPageGet(ZKOfficialAccountsUser,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 11:06:25.063[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.o.c.ZKOfficialAccountsUserGpsController:
+	{GET /zk/wechat/v1.0/officialAccounts/officialAccountsUserGps/officialAccountsUserGps}: officialAccountsUserGpsGet(String)
+	{GET /zk/wechat/v1.0/officialAccounts/officialAccountsUserGps/officialAccountsUserGpssPage}: officialAccountsUserGpssPageGet(ZKOfficialAccountsUserGps,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 11:06:25.079[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.p.c.ZKPayGetBusinessTypeController:
+	{POST /zk/wechat/v1.0/pay/payGetBusinessType/payGetBusinessType}: payGetBusinessTypePost(ZKPayGetBusinessType)
+	{GET /zk/wechat/v1.0/pay/payGetBusinessType/payGetBusinessType}: payGetBusinessTypeGet(String)
+	{DELETE /zk/wechat/v1.0/pay/payGetBusinessType/payGetBusinessType}: payGetBusinessTypeDel(String[])
+	{GET /zk/wechat/v1.0/pay/payGetBusinessType/payGetBusinessTypesPage}: payGetBusinessTypesPageGet(ZKPayGetBusinessType,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 11:06:25.088[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.p.c.ZKPayGetNotifyController:
+	{GET /zk/wechat/v1.0/pay/payGetNotify/payGetNotify}: payGetNotifyGet(String)
+	{GET /zk/wechat/v1.0/pay/payGetNotify/payGetNotifysPage}: payGetNotifysPageGet(ZKPayGetNotify,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 11:06:25.094[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.p.c.ZKPayGetOrderController:
+	{GET /zk/wechat/v1.0/pay/payGetOrder/payGetOrder}: payGetOrderGet(String)
+	{GET /zk/wechat/v1.0/pay/payGetOrder/payGetOrdersPage}: payGetOrdersPageGet(ZKPayGetOrder,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 11:06:25.103[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.p.c.ZKPayGroupController:
+	{POST /zk/wechat/v1.0/pay/payGroup/payGroup}: payGroupPost(ZKPayGroup)
+	{GET /zk/wechat/v1.0/pay/payGroup/payGroup}: payGroupGet(String)
+	{GET /zk/wechat/v1.0/pay/payGroup/payGroupsPage}: payGroupsPageGet(ZKPayGroup,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/wechat/v1.0/pay/payGroup/payGroup}: payGroupDel(String[])
+TRACE -> 2022-05-21 11:06:25.109[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.p.c.ZKPayMerchantController:
+	{POST /zk/wechat/v1.0/pay/payMerchant/payMerchant}: payMerchantPost(ZKPayMerchant)
+	{GET /zk/wechat/v1.0/pay/payMerchant/payMerchant}: payMerchantGet(String)
+	{GET /zk/wechat/v1.0/pay/payMerchant/payMerchantsPage}: payMerchantsPageGet(ZKPayMerchant,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/wechat/v1.0/pay/payMerchant/payMerchant}: payMerchantDel(String[])
+TRACE -> 2022-05-21 11:06:25.120[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.t.c.ZKThirdPartyController:
+	{POST /zk/wechat/v1.0/thirdParty/thirdParty/thirdParty}: thirdPartyPost(ZKThirdParty)
+	{GET /zk/wechat/v1.0/thirdParty/thirdParty/thirdParty}: thirdPartyGet(String)
+	{GET /zk/wechat/v1.0/thirdParty/thirdParty/thirdPartysPage}: thirdPartysPageGet(ZKThirdParty,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/wechat/v1.0/thirdParty/thirdParty/thirdParty}: thirdPartyDel(String[])
+TRACE -> 2022-05-21 11:06:25.122[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.w.o.c.ZKWXIndexController:
+	{ /zk/wechat/v1.0/wx/officialAccounts/token}: weixin(HttpServletRequest,HttpServletResponse,HttpSession)
+TRACE -> 2022-05-21 11:06:25.128[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.w.p.c.ZKWXPayJsApiController:
+	{POST /zk/wechat/v1.0/wx/pay/jsapi/putAgain}: putAgain(String)
+	{POST /zk/wechat/v1.0/wx/pay/jsapi/put/{payGroupCode}/{businessCode}}: put(String,String,String,String,String,String,String,int,String)
+	{POST /zk/wechat/v1.0/wx/pay/jsapi/close}: close(String)
+TRACE -> 2022-05-21 11:06:25.135[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.w.p.c.ZKWXPayNotifyController:
+	{ /zk/wechat/v1.0/wx/pay/notify/payNotify/{payGetOrderId}}: authNotification(String,HttpServletRequest)
+TRACE -> 2022-05-21 11:06:25.145[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.w.w.t.c.ZKWXThirdPartyController:
+	{ /zk/wechat/v1.0/wx/thirdParty/authReceive/{thirdPartyAppId}}: authNotification(String,HttpServletRequest)
+	{ /zk/wechat/v1.0/wx/thirdParty/authCallBack/{thirdPartyAppid}/{companyCode}}: authCallBack(String,String,HttpServletRequest)
+	{ /zk/wechat/v1.0/wx/thirdParty/event/{thirdPartyAppId}/{appId}}: eventNotification(String,String,HttpServletRequest)
+	{ /zk/wechat/v1.0/wx/thirdParty/authUserReceive/{thirdPartyAppId}/{funcKey}}: authUserReceive(String,String,String,String,String,HttpServletRequest)
+	{POST /zk/wechat/v1.0/wx/thirdParty/auth}: auth(String,int,String,String,String,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 11:06:25.151[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ /error, produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+	{ /error}: error(HttpServletRequest)
+DEBUG -> 2022-05-21 11:06:25.185[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 39 mappings in 'requestMappingHandlerMapping'
+WARN  -> 2022-05-21 11:06:27.149[main][org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration] - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+INFO  -> 2022-05-21 11:06:27.851[main][org.springframework.cloud.netflix.eureka.InstanceInfoFactory] - Setting initial instance status as: STARTING
+INFO  -> 2022-05-21 11:06:27.952[main][com.netflix.discovery.DiscoveryClient] - Initializing Eureka in region us-east-1
+INFO  -> 2022-05-21 11:06:28.074[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using JSON encoding codec LegacyJacksonJson
+INFO  -> 2022-05-21 11:06:28.074[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using JSON decoding codec LegacyJacksonJson
+INFO  -> 2022-05-21 11:06:28.428[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using XML encoding codec XStreamXml
+INFO  -> 2022-05-21 11:06:28.429[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using XML decoding codec XStreamXml
+INFO  -> 2022-05-21 11:06:29.244[main][com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver] - Resolving eureka endpoints via configuration
+INFO  -> 2022-05-21 11:06:29.305[main][com.netflix.discovery.DiscoveryClient] - Disable delta property : false
+INFO  -> 2022-05-21 11:06:29.306[main][com.netflix.discovery.DiscoveryClient] - Single vip registry refresh property : null
+INFO  -> 2022-05-21 11:06:29.308[main][com.netflix.discovery.DiscoveryClient] - Force full registry fetch : false
+INFO  -> 2022-05-21 11:06:29.308[main][com.netflix.discovery.DiscoveryClient] - Application is null : false
+INFO  -> 2022-05-21 11:06:29.311[main][com.netflix.discovery.DiscoveryClient] - Registered Applications size is zero : true
+INFO  -> 2022-05-21 11:06:29.311[main][com.netflix.discovery.DiscoveryClient] - Application version is -1: true
+INFO  -> 2022-05-21 11:06:29.321[main][com.netflix.discovery.DiscoveryClient] - Getting all instance registry info from the eureka server
+INFO  -> 2022-05-21 11:06:29.410[main][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.WECHAT","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM4OTM3Nywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuV0VDSEFUIn0="}
+INFO  -> 2022-05-21 11:06:29.802[main][com.netflix.discovery.DiscoveryClient] - The response status is 200
+INFO  -> 2022-05-21 11:06:29.808[main][com.netflix.discovery.DiscoveryClient] - Starting heartbeat executor: renew interval is: 6
+INFO  -> 2022-05-21 11:06:29.817[main][com.netflix.discovery.InstanceInfoReplicator] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+INFO  -> 2022-05-21 11:06:29.828[main][com.netflix.discovery.DiscoveryClient] - Discovery Client initialized at timestamp 1653102389825 with initial instances count: 1
+INFO  -> 2022-05-21 11:06:29.839[main][org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry] - Registering application YUNJIAN.ZK.WECHAT with eureka with status UP
+INFO  -> 2022-05-21 11:06:29.840[main][com.netflix.discovery.DiscoveryClient] - Saw local status change event StatusChangeEvent [timestamp=1653102389840, current=UP, previous=STARTING]
+INFO  -> 2022-05-21 11:06:29.859[DiscoveryClient-InstanceInfoReplicator-0][com.netflix.discovery.DiscoveryClient] - DiscoveryClient_YUNJIAN.ZK.WECHAT/192.168.0.103:yunjian.zk.wechat:9094: registering service...
+INFO  -> 2022-05-21 11:06:29.883[DiscoveryClient-InstanceInfoReplicator-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.WECHAT","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM4OTg4Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuV0VDSEFUIn0="}
+INFO  -> 2022-05-21 11:06:29.911[DiscoveryClient-InstanceInfoReplicator-0][com.netflix.discovery.DiscoveryClient] - DiscoveryClient_YUNJIAN.ZK.WECHAT/192.168.0.103:yunjian.zk.wechat:9094 - registration status: 204
+INFO  -> 2022-05-21 11:06:30.097[main][org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 9094 (http) with context path ''
+INFO  -> 2022-05-21 11:06:30.098[main][org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration] - Updating port to 9094
+INFO  -> 2022-05-21 11:06:30.103[main][com.zk.wechat.ZKWechatSpringBootMain] - Started ZKWechatSpringBootMain in 20.008 seconds (JVM running for 21.809)
+INFO  -> 2022-05-21 11:06:30.108[main][com.zk.wechat.ZKWechatSpringBootMain] - [^_^:20190628-1708-001]----------------------------------------
+INFO  -> 2022-05-21 11:06:35.819[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.WECHAT","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM5NTgxOCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuV0VDSEFUIn0="}
+INFO  -> 2022-05-21 11:06:35.819[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.WECHAT","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM5NTgxOCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuV0VDSEFUIn0="}
+INFO  -> 2022-05-21 11:06:41.840[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.WECHAT","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjQwMTg0MCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuV0VDSEFUIn0="}
+INFO  -> 2022-05-21 11:06:41.840[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.WECHAT","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjQwMTg0MCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuV0VDSEFUIn0="}
+INFO  -> 2022-05-21 11:06:47.864[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.WECHAT","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjQwNzg2Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuV0VDSEFUIn0="}
+INFO  -> 2022-05-21 11:06:47.866[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.WECHAT","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjQwNzg2Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuV0VDSEFUIn0="}

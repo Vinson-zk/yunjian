@@ -9661,3 +9661,534 @@ com.netflix.discovery.shared.transport.TransportException: Cannot execute reques
 	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1026)
 	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:945)
 INFO  -> 2022-05-21 07:47:45.704[Thread-10][com.netflix.discovery.DiscoveryClient] - Completed shut down of DiscoveryClient
+INFO  -> 2022-05-21 10:56:53.090[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]========================================
+INFO  -> 2022-05-21 10:56:53.093[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]=== zk system  启动 ... ... 
+INFO  -> 2022-05-21 10:56:53.094[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]========================================
+INFO  -> 2022-05-21 10:56:54.073[background-preinit][org.hibernate.validator.internal.util.Version] - HV000001: Hibernate Validator 6.0.14.Final
+INFO  -> 2022-05-21 10:56:57.151[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$924f6cae] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:56:58.126[main][com.zk.sys.ZKSysSpringBootMain] - No active profile set, falling back to default profiles: default
+INFO  -> 2022-05-21 10:57:01.872[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  -> 2022-05-21 10:57:01.883[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+INFO  -> 2022-05-21 10:57:02.045[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 102ms. Found 0 repository interfaces.
+INFO  -> 2022-05-21 10:57:02.118[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Multiple Spring Data modules found, entering strict repository configuration mode!
+INFO  -> 2022-05-21 10:57:02.121[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data repositories in DEFAULT mode.
+INFO  -> 2022-05-21 10:57:02.221[main][org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 37ms. Found 0 repository interfaces.
+INFO  -> 2022-05-21 10:57:03.273[main][org.springframework.cloud.context.scope.GenericScope] - BeanFactory id=69b4f31e-413a-387d-a7d5-b71ff31038d8
+INFO  -> 2022-05-21 10:57:03.842[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'com.zk.sys.configuration.ZKSysSecConfiguration' of type [com.zk.sys.configuration.ZKSysSecConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:03.851[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'zkSecStaticMethodMatcherPointcutAdvisor' of type [com.zk.security.web.support.spring.ZKSecStaticMethodMatcherPointcutAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:03.880[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$763569b1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.025[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'secCookieRememberMemanager' of type [com.zk.security.web.rememberMe.ZKSecCookieRememberMemanager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.062[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'com.zk.sys.configuration.ZKSysRedisConfiguration' of type [com.zk.sys.configuration.ZKSysRedisConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.127[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'jedisPoolConfig' of type [redis.clients.jedis.JedisPoolConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.133[main][com.zk.sys.configuration.ZKSysRedisConfiguration] - [^_^:20210809-1255-001] hosr:10.211.55.10, port:6379, password:root
+INFO  -> 2022-05-21 10:57:04.574[main][com.zk.sys.configuration.ZKSysRedisConfiguration] - [^_^:20210809-1255-001] JedisPoolConfig:{"lifo":true,"fairness":false,"maxWaitMillis":-1,"minEvictableIdleTimeMillis":60000,"softMinEvictableIdleTimeMillis":1800000,"numTestsPerEvictionRun":-1,"evictionPolicyClassName":"org.apache.commons.pool2.impl.DefaultEvictionPolicy","testOnCreate":false,"testOnBorrow":false,"testOnReturn":false,"testWhileIdle":true,"timeBetweenEvictionRunsMillis":30000,"blockWhenExhausted":true,"jmxEnabled":true,"jmxNamePrefix":"pool","jmxNameBase":null,"maxTotal":8,"maxIdle":8,"minIdle":0}
+INFO  -> 2022-05-21 10:57:04.651[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'jedisPool' of type [redis.clients.jedis.JedisPool] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.700[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'jedisOperatorByte' of type [com.zk.core.redis.ZKJedisOperatorByte] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.707[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'jedisOperatorStringKey' of type [com.zk.core.redis.ZKJedisOperatorStringKey] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.730[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'zkSecRedisTicketManager' of type [com.zk.security.ticket.support.redis.ZKSecRedisTicketManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.764[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'secRealm' of type [com.zk.sys.sec.realm.ZKSysSecRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.772[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'zkSecWebSecurityManager' of type [com.zk.security.web.mgt.ZKSecWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.818[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'com.zk.security.web.filter.authc.ZKSecLogoutFilter#2024eecf' of type [com.zk.security.web.filter.authc.ZKSecLogoutFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.829[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'com.zk.security.web.filter.authc.ZKSecAuthcUserFilter#678c07d2' of type [com.zk.security.web.filter.authc.ZKSecAuthcUserFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.839[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'com.zk.security.web.filter.authc.ZKSecUserFilter#37ae0ff7' of type [com.zk.security.web.filter.authc.ZKSecUserFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:04.891[main][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$924f6cae] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+INFO  -> 2022-05-21 10:57:06.191[main][org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 9092 (http)
+INFO  -> 2022-05-21 10:57:07.350[main][org.springframework.web.context.ContextLoader] - Root WebApplicationContext: initialization completed in 9143 ms
+INFO  -> 2022-05-21 10:57:08.888[main][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor] - Initializing ExecutorService 'applicationTaskExecutor'
+INFO  -> 2022-05-21 10:57:09.875[main][com.zk.sys.configuration.ZKSysConfiguration] - [^_^:20220521-1147-001] ====================================================
+INFO  -> 2022-05-21 10:57:09.877[main][com.zk.sys.configuration.ZKSysConfiguration] - [^_^:20220521-1147-001] === 数据库信息 =======================================
+INFO  -> 2022-05-21 10:57:09.877[main][com.zk.sys.configuration.ZKSysConfiguration] - [^_^:20220521-1147-001] ====================================================
+INFO  -> 2022-05-21 10:57:09.878[main][com.zk.sys.configuration.ZKSysConfiguration] - [^_^:20220521-1147-001] 数据库：jdbc:mysql://10.211.55.10:3306/zk-sys?useUnicode=true&characterEncoding=utf8&useTimezone=true&serverTimezone=GMT%2B8
+INFO  -> 2022-05-21 10:57:09.878[main][com.zk.sys.configuration.ZKSysConfiguration] - [^_^:20220521-1147-001] ====================================================
+WARN  -> 2022-05-21 10:57:10.926[main][org.apache.ibatis.io.ResolverUtil] - Could not examine class 'com/zk/base/mongo/repository/ZKBaseMongoRepository.class' due to a java.lang.NoClassDefFoundError with message: org/springframework/data/mongodb/repository/MongoRepository
+WARN  -> 2022-05-21 10:57:10.936[main][org.apache.ibatis.io.ResolverUtil] - Could not examine class 'com/zk/base/mongo/repository/support/ZKMongoRepositoryImpl.class' due to a java.lang.NoClassDefFoundError with message: org/springframework/data/mongodb/repository/MongoRepository
+WARN  -> 2022-05-21 10:57:13.919[main][com.netflix.config.sources.URLConfigurationSource] - No URLs will be polled as dynamic configuration sources.
+INFO  -> 2022-05-21 10:57:13.920[main][com.netflix.config.sources.URLConfigurationSource] - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+WARN  -> 2022-05-21 10:57:13.946[main][com.netflix.config.sources.URLConfigurationSource] - No URLs will be polled as dynamic configuration sources.
+INFO  -> 2022-05-21 10:57:13.946[main][com.netflix.config.sources.URLConfigurationSource] - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+TRACE -> 2022-05-21 10:57:14.224[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.a.c.ZKSysAuthCompanyController:
+	{POST /zk/sys/v1.0/auth/sysAuthCompany/setRelationByCompany/{companyId}}: setRelationByUser(String,List,HttpServletRequest)
+	{GET /zk/sys/v1.0/auth/sysAuthCompany/findAuthIdsByCompanyId}: findAuthIdsByCompanyId(String,Integer)
+	{GET /zk/sys/v1.0/auth/sysAuthCompany/sysAuthDefinedsPage}: sysAuthDefinedsPageGet(ZKSysAuthDefined,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 10:57:14.243[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.a.c.ZKSysAuthDefinedController:
+	{POST /zk/sys/v1.0/auth/sysAuthDefined/sysAuthDefined}: sysAuthDefinedPost(ZKSysAuthDefined)
+	{GET /zk/sys/v1.0/auth/sysAuthDefined/sysAuthDefined}: sysAuthDefinedGet(String)
+	{DELETE /zk/sys/v1.0/auth/sysAuthDefined/sysAuthDefined}: sysAuthDefinedDel(String[])
+	{GET /zk/sys/v1.0/auth/sysAuthDefined/sysAuthDefinedsPage}: sysAuthDefinedsPageGet(ZKSysAuthDefined,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 10:57:14.256[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.a.c.ZKSysAuthDeptController:
+	{GET /zk/sys/v1.0/auth/sysAuthDept/findAuthIdsByDeptId}: findAuthIdsByDeptId(String)
+	{POST /zk/sys/v1.0/auth/sysAuthDept/setRelationByDept/{deptId}}: setRelationByUser(String,List,HttpServletRequest)
+	{GET /zk/sys/v1.0/auth/sysAuthDept/sysAuthDefinedsPage}: sysAuthDefinedsPageGet(ZKSysAuthDefined,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 10:57:14.261[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.a.c.ZKSysAuthFuncApiController:
+	{POST /zk/sys/v1.0/auth/sysAuthFuncApi/setRelationByAuth/{authId}}: setRelationByAuth(String,List,HttpServletRequest)
+	{GET /zk/sys/v1.0/auth/sysAuthFuncApi/findApiIdsByAuthId}: findApiIdsByAuthId(String)
+TRACE -> 2022-05-21 10:57:14.264[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.a.c.ZKSysAuthMenuController:
+	{POST /zk/sys/v1.0/auth/sysAuthMenu/setRelationByAuth/{authId}}: setRelationByAuth(String,List,HttpServletRequest)
+	{GET /zk/sys/v1.0/auth/sysAuthMenu/findMenuIdsByAuthId}: findMenuIdsByAuthId(String)
+TRACE -> 2022-05-21 10:57:14.273[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.a.c.ZKSysAuthNavController:
+	{POST /zk/sys/v1.0/auth/sysAuthNav/setRelationByAuth/{authId}}: setRelationByAuth(String,List,HttpServletRequest)
+	{GET /zk/sys/v1.0/auth/sysAuthNav/findNavIdsByAuthId}: findNavIdsByAuthId(String)
+TRACE -> 2022-05-21 10:57:14.281[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.a.c.ZKSysAuthRankController:
+	{GET /zk/sys/v1.0/auth/sysAuthRank/findAuthIdsByRankId}: findAuthIdsByRankId(String)
+	{POST /zk/sys/v1.0/auth/sysAuthRank/setRelationByRank/{rankId}}: setRelationByUser(String,List,HttpServletRequest)
+	{GET /zk/sys/v1.0/auth/sysAuthRank/sysAuthDefinedsPage}: sysAuthDefinedsPageGet(ZKSysAuthDefined,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 10:57:14.286[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.a.c.ZKSysAuthRoleController:
+	{GET /zk/sys/v1.0/auth/sysAuthRole/findAuthIdsByRoleId}: findAuthIdsByRoleId(String)
+	{POST /zk/sys/v1.0/auth/sysAuthRole/setRelationByRole/{roleId}}: setRelationByUser(String,List,HttpServletRequest)
+	{GET /zk/sys/v1.0/auth/sysAuthRole/sysAuthDefinedsPage}: sysAuthDefinedsPageGet(ZKSysAuthDefined,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 10:57:14.290[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.a.c.ZKSysAuthUserController:
+	{POST /zk/sys/v1.0/auth/sysAuthUser/setRelationByUser/{userId}}: setRelationByUser(String,List,HttpServletRequest)
+	{GET /zk/sys/v1.0/auth/sysAuthUser/sysAuthDefinedsPage}: sysAuthDefinedsPageGet(ZKSysAuthDefined,HttpServletRequest,HttpServletResponse)
+	{GET /zk/sys/v1.0/auth/sysAuthUser/findAuthIdsByUserId}: findAuthIdsByUserId(String)
+TRACE -> 2022-05-21 10:57:14.292[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.a.c.ZKSysAuthUserRoleController:
+	{POST /zk/sys/v1.0/auth/sysAuthUserRole/setRelationByUser/{userId}}: setRelationByUser(String,List,HttpServletRequest)
+	{GET /zk/sys/v1.0/auth/sysAuthUserRole/findRoleIdsByUserId}: findRoleIdsByUserId(String)
+TRACE -> 2022-05-21 10:57:14.296[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.a.c.ZKSysAuthUserTypeController:
+	{GET /zk/sys/v1.0/auth/sysAuthUserType/sysAuthDefinedsPage}: sysAuthDefinedsPageGet(ZKSysAuthDefined,HttpServletRequest,HttpServletResponse)
+	{POST /zk/sys/v1.0/auth/sysAuthUserType/setRelationByUserType/{userTypeId}}: setRelationByUserType(String,List,HttpServletRequest)
+	{GET /zk/sys/v1.0/auth/sysAuthUserType/findAuthIdsByUserTypeId}: findAuthIdsByUserTypeId(String)
+TRACE -> 2022-05-21 10:57:14.299[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.c.ZKSysIndexController:
+	{ /zk/sys/v1.0/index/anon}: welcome()
+TRACE -> 2022-05-21 10:57:14.325[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.o.c.ZKSysOrgCompanyController:
+	{GET /zk/sys/v1.0/org/sysOrgCompany/sysOrgCompanyByCode}: sysOrgCompanyByCode(String)
+	{POST /zk/sys/v1.0/org/sysOrgCompany/sysOrgCompany}: sysOrgCompanyPost(ZKSysOrgCompany)
+	{GET /zk/sys/v1.0/org/sysOrgCompany/sysOrgCompany}: sysOrgCompanyGet(String)
+	{GET /zk/sys/v1.0/org/sysOrgCompany/sysOrgCompanysTree}: sysOrgCompanysTree(ZKSysOrgCompany,HttpServletRequest,HttpServletResponse)
+	{GET /zk/sys/v1.0/org/sysOrgCompany/sysOrgCompanys}: sysOrgCompanys(ZKSysOrgCompany,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/org/sysOrgCompany/sysOrgCompany}: sysOrgCompanyDel(String[])
+	{POST /zk/sys/v1.0/org/sysOrgCompany/auditCompany/{companyId}/{flag}}: auditCompany(String,int)
+TRACE -> 2022-05-21 10:57:14.334[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.o.c.ZKSysOrgDeptController:
+	{POST /zk/sys/v1.0/org/sysOrgDept/sysOrgDept/{companyId}}: sysOrgDeptPost(String,ZKSysOrgDept)
+	{GET /zk/sys/v1.0/org/sysOrgDept/sysOrgDept}: sysOrgDeptGet(String)
+	{GET /zk/sys/v1.0/org/sysOrgDept/sysOrgDeptsTree/{companyId}}: sysOrgDeptsTree(String,ZKSysOrgDept,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/org/sysOrgDept/sysOrgDept}: sysOrgDeptDel(String[])
+	{GET /zk/sys/v1.0/org/sysOrgDept/sysOrgDeptsTreeSelf}: sysOrgDeptsTreeSelf(ZKSysOrgDept,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 10:57:14.337[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.o.c.ZKSysOrgRankController:
+	{POST /zk/sys/v1.0/org/sysOrgRank/sysOrgRank}: sysOrgRankPost(ZKSysOrgRank)
+	{GET /zk/sys/v1.0/org/sysOrgRank/sysOrgRank}: sysOrgRankGet(String)
+	{GET /zk/sys/v1.0/org/sysOrgRank/sysOrgRanksPage}: sysOrgRanksPageGet(ZKSysOrgRank,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/org/sysOrgRank/sysOrgRank}: sysOrgRankDel(String[])
+TRACE -> 2022-05-21 10:57:14.342[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.o.c.ZKSysOrgRoleController:
+	{POST /zk/sys/v1.0/org/sysOrgRole/sysOrgRole}: sysOrgRolePost(ZKSysOrgRole)
+	{GET /zk/sys/v1.0/org/sysOrgRole/sysOrgRole}: sysOrgRoleGet(String)
+	{GET /zk/sys/v1.0/org/sysOrgRole/sysOrgRolesPage}: sysOrgRolesPageGet(ZKSysOrgRole,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/org/sysOrgRole/sysOrgRole}: sysOrgRoleDel(String[])
+TRACE -> 2022-05-21 10:57:14.347[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.o.c.ZKSysOrgUserController:
+	{POST /zk/sys/v1.0/org/sysOrgUser/resetPwd}: resetPwd(String,String)
+	{GET /zk/sys/v1.0/org/sysOrgUser/sysOrgUserByPhoneNum}: sysOrgUserByPhoneNum(String,String)
+	{POST /zk/sys/v1.0/org/sysOrgUser/sysOrgUser}: sysOrgUserPost(ZKSysOrgUser)
+	{GET /zk/sys/v1.0/org/sysOrgUser/sysOrgUser}: sysOrgUserGet(String)
+	{GET /zk/sys/v1.0/org/sysOrgUser/sysOrgUsersPage}: sysOrgUsersPageGet(ZKSysOrgUser,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/org/sysOrgUser/sysOrgUser}: sysOrgUserDel(String[])
+TRACE -> 2022-05-21 10:57:14.356[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.o.c.ZKSysOrgUserTypeController:
+	{POST /zk/sys/v1.0/org/sysOrgUserType/sysOrgUserType}: sysOrgUserTypePost(ZKSysOrgUserType)
+	{GET /zk/sys/v1.0/org/sysOrgUserType/sysOrgUserType}: sysOrgUserTypeGet(String)
+	{GET /zk/sys/v1.0/org/sysOrgUserType/sysOrgUserTypesPage}: sysOrgUserTypesPageGet(ZKSysOrgUserType,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/org/sysOrgUserType/sysOrgUserType}: sysOrgUserTypeDel(String[])
+TRACE -> 2022-05-21 10:57:14.360[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysMenuController:
+	{POST /zk/sys/v1.0/res/menu/sysMenu}: editSys(ZKSysMenu)
+	{DELETE /zk/sys/v1.0/res/menu/sysMenu}: deleteSysMenu(String[])
+	{GET /zk/sys/v1.0/res/menu/sysMenu}: getSysMenu(String)
+	{GET /zk/sys/v1.0/res/menu/sysMenusTree}: pageSysMenusTree(ZKSysMenu,HttpServletRequest)
+TRACE -> 2022-05-21 10:57:14.364[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysNavController:
+	{POST /zk/sys/v1.0/res/nav/sysNav}: editSysNav(ZKSysNav)
+	{DELETE /zk/sys/v1.0/res/nav/sysNav}: deleteSysNav(String[])
+	{GET /zk/sys/v1.0/res/nav/sysNav}: getSysNav(String)
+	{GET /zk/sys/v1.0/res/nav/sysNavs}: pageSysNav(ZKSysNav,HttpServletRequest)
+TRACE -> 2022-05-21 10:57:14.372[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResApplicationSystemController:
+	{POST /zk/sys/v1.0/res/sysResApplicationSystem/sysResApplicationSystem}: sysResApplicationSystemPost(ZKSysResApplicationSystem)
+	{GET /zk/sys/v1.0/res/sysResApplicationSystem/sysResApplicationSystem}: sysResApplicationSystemGet(String)
+	{GET /zk/sys/v1.0/res/sysResApplicationSystem/sysResApplicationSystemsPage}: sysResApplicationSystemsPageGet(ZKSysResApplicationSystem,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/res/sysResApplicationSystem/sysResApplicationSystem}: sysResApplicationSystemDel(String[])
+TRACE -> 2022-05-21 10:57:14.375[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResController:
+	{GET /zk/sys/v1.0/res/getNavItems}: getNavItems(ZKSysNav)
+	{GET /zk/sys/v1.0/res/getNavMenus/{navCode}}: getNavMenus(String,ZKSysMenu)
+TRACE -> 2022-05-21 10:57:14.382[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResDictController:
+	{POST /zk/sys/v1.0/res/sysResDict/sysResDict}: sysResDictPost(ZKSysResDict)
+	{GET /zk/sys/v1.0/res/sysResDict/sysResDict}: sysResDictGet(String)
+	{DELETE /zk/sys/v1.0/res/sysResDict/sysResDict}: sysResDictDel(String[])
+	{GET /zk/sys/v1.0/res/sysResDict/sysResDictsTree}: sysResDictsTree(ZKSysResDict,HttpServletRequest)
+	{GET /zk/sys/v1.0/res/sysResDict/sysResDicts}: sysResDicts(ZKSysResDict,HttpServletRequest)
+TRACE -> 2022-05-21 10:57:14.387[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResDictTypeController:
+	{POST /zk/sys/v1.0/res/sysResDictType/sysResDictType}: sysResDictTypePost(ZKSysResDictType)
+	{GET /zk/sys/v1.0/res/sysResDictType/sysResDictType}: sysResDictTypeGet(String)
+	{GET /zk/sys/v1.0/res/sysResDictType/sysResDictTypesPage}: sysResDictTypesPageGet(ZKSysResDictType,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/res/sysResDictType/sysResDictType}: sysResDictTypeDel(String[])
+	{GET /zk/sys/v1.0/res/sysResDictType/getByTypeCode}: getByTypeCode(String)
+TRACE -> 2022-05-21 10:57:14.390[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResFuncApiController:
+	{POST /zk/sys/v1.0/res/sysResFuncApi/sysResFuncApi}: sysResFuncApiPost(ZKSysResFuncApi)
+	{GET /zk/sys/v1.0/res/sysResFuncApi/sysResFuncApi}: sysResFuncApiGet(String)
+	{GET /zk/sys/v1.0/res/sysResFuncApi/sysResFuncApisPage}: sysResFuncApisPageGet(ZKSysResFuncApi,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/res/sysResFuncApi/sysResFuncApi}: sysResFuncApiDel(String[])
+TRACE -> 2022-05-21 10:57:14.396[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResFuncApiReqChannelController:
+	{GET /zk/sys/v1.0/res/sysResFuncApiReqChannel/findRelationByChannel}: findRelationByChannel(String,HttpServletRequest)
+	{GET /zk/sys/v1.0/res/sysResFuncApiReqChannel/findRelationByFuncApi}: findRelationByFuncApi(String,HttpServletRequest)
+	{POST /zk/sys/v1.0/res/sysResFuncApiReqChannel/setRelationByFuncApi/{funcApiId}}: setRelationByFuncApi(String,List,HttpServletRequest)
+	{POST /zk/sys/v1.0/res/sysResFuncApiReqChannel/setRelationByReqChannel/{reqChannelId}}: setRelationByReqChannel(String,List,HttpServletRequest)
+TRACE -> 2022-05-21 10:57:14.408[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.r.c.ZKSysResRequestChannelController:
+	{POST /zk/sys/v1.0/res/sysResRequestChannel/sysResRequestChannel}: sysResRequestChannelPost(ZKSysResRequestChannel)
+	{GET /zk/sys/v1.0/res/sysResRequestChannel/sysResRequestChannel}: sysResRequestChannelGet(String)
+	{DELETE /zk/sys/v1.0/res/sysResRequestChannel/sysResRequestChannel}: sysResRequestChannelDel(String[])
+	{GET /zk/sys/v1.0/res/sysResRequestChannel/sysResRequestChannelsPage}: sysResRequestChannelsPageGet(ZKSysResRequestChannel,HttpServletRequest,HttpServletResponse)
+TRACE -> 2022-05-21 10:57:14.428[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.s.c.ZKSysSecAuthcController:
+	{GET /zk/sys/v1.0/sec/authc/getUserAuthc}: getUserAuthc()
+TRACE -> 2022-05-21 10:57:14.431[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.s.c.ZKSysSecIndexController:
+	{POST /zk/sys/v1.0/sec/login}: login(HttpServletRequest)
+	{ /zk/sys/v1.0/sec/logout}: logout()
+	{GET /zk/sys/v1.0/sec/loginUserInfo}: sysOrgUserSelf()
+TRACE -> 2022-05-21 10:57:14.440[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.s.c.ZKSysSetCollectionController:
+	{POST /zk/sys/v1.0/settings/sysSetCollection/sysSetCollection}: sysSetCollectionPost(ZKSysSetCollection)
+	{GET /zk/sys/v1.0/settings/sysSetCollection/sysSetCollection}: sysSetCollectionGet(String)
+	{GET /zk/sys/v1.0/settings/sysSetCollection/sysSetCollectionsPage}: sysSetCollectionsPageGet(ZKSysSetCollection,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/settings/sysSetCollection/sysSetCollection}: sysSetCollectionDel(String[])
+TRACE -> 2022-05-21 10:57:14.448[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	c.z.s.s.c.ZKSysSetItemController:
+	{POST /zk/sys/v1.0/set/sysSetItem/sysSetItem}: sysSetItemPost(ZKSysSetItem)
+	{GET /zk/sys/v1.0/set/sysSetItem/sysSetItem}: sysSetItemGet(String)
+	{GET /zk/sys/v1.0/set/sysSetItem/sysSetItemsPage}: sysSetItemsPageGet(ZKSysSetItem,HttpServletRequest,HttpServletResponse)
+	{DELETE /zk/sys/v1.0/set/sysSetItem/sysSetItem}: sysSetItemDel(String[])
+TRACE -> 2022-05-21 10:57:14.462[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ /error, produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+	{ /error}: error(HttpServletRequest)
+DEBUG -> 2022-05-21 10:57:14.470[main][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - 111 mappings in 'requestMappingHandlerMapping'
+WARN  -> 2022-05-21 10:57:16.836[main][org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration] - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+INFO  -> 2022-05-21 10:57:18.017[main][org.springframework.cloud.netflix.eureka.InstanceInfoFactory] - Setting initial instance status as: STARTING
+INFO  -> 2022-05-21 10:57:18.167[main][com.netflix.discovery.DiscoveryClient] - Initializing Eureka in region us-east-1
+INFO  -> 2022-05-21 10:57:18.399[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using JSON encoding codec LegacyJacksonJson
+INFO  -> 2022-05-21 10:57:18.400[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using JSON decoding codec LegacyJacksonJson
+INFO  -> 2022-05-21 10:57:18.901[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using XML encoding codec XStreamXml
+INFO  -> 2022-05-21 10:57:18.902[main][com.netflix.discovery.provider.DiscoveryJerseyProvider] - Using XML decoding codec XStreamXml
+INFO  -> 2022-05-21 10:57:19.820[main][com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver] - Resolving eureka endpoints via configuration
+INFO  -> 2022-05-21 10:57:19.888[main][com.netflix.discovery.DiscoveryClient] - Disable delta property : false
+INFO  -> 2022-05-21 10:57:19.889[main][com.netflix.discovery.DiscoveryClient] - Single vip registry refresh property : null
+INFO  -> 2022-05-21 10:57:19.889[main][com.netflix.discovery.DiscoveryClient] - Force full registry fetch : false
+INFO  -> 2022-05-21 10:57:19.889[main][com.netflix.discovery.DiscoveryClient] - Application is null : false
+INFO  -> 2022-05-21 10:57:19.889[main][com.netflix.discovery.DiscoveryClient] - Registered Applications size is zero : true
+INFO  -> 2022-05-21 10:57:19.889[main][com.netflix.discovery.DiscoveryClient] - Application version is -1: true
+INFO  -> 2022-05-21 10:57:19.889[main][com.netflix.discovery.DiscoveryClient] - Getting all instance registry info from the eureka server
+INFO  -> 2022-05-21 10:57:19.998[main][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTgzOTk1OCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:21.128[main][com.netflix.discovery.DiscoveryClient] - The response status is 200
+INFO  -> 2022-05-21 10:57:21.133[main][com.netflix.discovery.DiscoveryClient] - Starting heartbeat executor: renew interval is: 6
+INFO  -> 2022-05-21 10:57:21.138[main][com.netflix.discovery.InstanceInfoReplicator] - InstanceInfoReplicator onDemand update allowed rate per min is 4
+INFO  -> 2022-05-21 10:57:21.151[main][com.netflix.discovery.DiscoveryClient] - Discovery Client initialized at timestamp 1653101841147 with initial instances count: 0
+INFO  -> 2022-05-21 10:57:21.158[main][org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry] - Registering application YUNJIAN.ZK.SYSTEM with eureka with status UP
+INFO  -> 2022-05-21 10:57:21.161[main][com.netflix.discovery.DiscoveryClient] - Saw local status change event StatusChangeEvent [timestamp=1653101841160, current=UP, previous=STARTING]
+INFO  -> 2022-05-21 10:57:21.164[DiscoveryClient-InstanceInfoReplicator-0][com.netflix.discovery.DiscoveryClient] - DiscoveryClient_YUNJIAN.ZK.SYSTEM/192.168.0.103:yunjian.zk.system:9092: registering service...
+INFO  -> 2022-05-21 10:57:21.173[DiscoveryClient-InstanceInfoReplicator-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg0MTE3Miwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:21.536[main][org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 9092 (http) with context path ''
+INFO  -> 2022-05-21 10:57:21.538[main][org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration] - Updating port to 9092
+INFO  -> 2022-05-21 10:57:21.542[main][com.zk.sys.ZKSysSpringBootMain] - Started ZKSysSpringBootMain in 28.126 seconds (JVM running for 45.764)
+INFO  -> 2022-05-21 10:57:21.546[main][com.zk.sys.ZKSysSpringBootMain] - [^_^:20190628-1708-001]----------------------------------------
+INFO  -> 2022-05-21 10:57:21.691[DiscoveryClient-InstanceInfoReplicator-0][com.netflix.discovery.DiscoveryClient] - DiscoveryClient_YUNJIAN.ZK.SYSTEM/192.168.0.103:yunjian.zk.system:9092 - registration status: 204
+INFO  -> 2022-05-21 10:57:27.136[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Disable delta property : false
+INFO  -> 2022-05-21 10:57:27.137[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Single vip registry refresh property : null
+INFO  -> 2022-05-21 10:57:27.137[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Force full registry fetch : false
+INFO  -> 2022-05-21 10:57:27.137[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Application is null : false
+INFO  -> 2022-05-21 10:57:27.137[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Registered Applications size is zero : true
+INFO  -> 2022-05-21 10:57:27.137[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Application version is -1: false
+INFO  -> 2022-05-21 10:57:27.138[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Getting all instance registry info from the eureka server
+INFO  -> 2022-05-21 10:57:27.138[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg0NzEzNywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:27.138[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg0NzEzOCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:27.152[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - The response status is 200
+INFO  -> 2022-05-21 10:57:33.159[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Disable delta property : false
+INFO  -> 2022-05-21 10:57:33.159[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Single vip registry refresh property : null
+INFO  -> 2022-05-21 10:57:33.160[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Force full registry fetch : false
+INFO  -> 2022-05-21 10:57:33.160[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Application is null : false
+INFO  -> 2022-05-21 10:57:33.160[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Registered Applications size is zero : true
+INFO  -> 2022-05-21 10:57:33.160[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Application version is -1: false
+INFO  -> 2022-05-21 10:57:33.160[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - Getting all instance registry info from the eureka server
+INFO  -> 2022-05-21 10:57:33.161[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg1MzE2MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:33.173[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg1MzE3Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:33.326[DiscoveryClient-CacheRefreshExecutor-0][com.netflix.discovery.DiscoveryClient] - The response status is 200
+INFO  -> 2022-05-21 10:57:39.194[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg1OTE5NCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:39.335[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg1OTMzNSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:45.221[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg2NTIyMSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:45.354[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg2NTM1NCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:51.237[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg3MTIzNywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:51.374[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg3MTM3Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:57.254[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg3NzI1Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:57:57.408[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg3NzQwNywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:03.296[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg4MzI5NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:03.429[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg4MzQyOCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:09.311[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg4OTMxMCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:09.450[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg4OTQ0OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:15.336[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg5NTMzNSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:15.469[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTg5NTQ2OCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:21.350[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkwMTM0OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:21.486[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkwMTQ4NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:27.370[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkwNzM2OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:27.505[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkwNzUwNCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:33.387[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkxMzM4Niwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:33.519[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkxMzUxOCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:39.403[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkxOTQwMiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:39.539[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkxOTUzOSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:45.428[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkyNTQyNywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:45.557[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkyNTU1Niwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:51.456[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkzMTQ1NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:51.569[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkzMTU2OCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:57.471[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkzNzQ3MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:58:57.585[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTkzNzU4NCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:03.487[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk0MzQ4Nywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:03.600[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk0MzYwMCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:09.501[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk0OTUwMCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:09.615[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk0OTYxNCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:15.517[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk1NTUxNywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:15.636[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk1NTYzNSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:21.545[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk2MTU0NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:21.662[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk2MTY2Miwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:27.563[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk2NzU2Miwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:27.677[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk2NzY3Niwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:33.574[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk3MzU3Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:33.690[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk3MzY4OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:35.122[http-nio-9092-exec-1][org.springframework.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+INFO  -> 2022-05-21 10:59:35.137[http-nio-9092-exec-1][org.springframework.web.servlet.DispatcherServlet] - Completed initialization in 15 ms
+INFO  -> 2022-05-21 10:59:35.193[http-nio-9092-exec-1][com.zk.security.ticket.support.redis.ZKSecRedisTicketManager] - [^_^:20210816-1057-001] ZKSecTicket is expired 
+INFO  -> 2022-05-21 10:59:35.869[http-nio-9092-exec-1][com.alibaba.druid.pool.DruidDataSource] - {dataSource-1} inited
+INFO  -> 2022-05-21 10:59:35.988[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 10:59:36.326[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：337 毫秒; 起始/结束时间(毫秒)：1653101975988/1653101976325；
+INFO  -> 2022-05-21 10:59:36.353[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 10:59:36.382[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：29 毫秒; 起始/结束时间(毫秒)：1653101976353/1653101976382；
+INFO  -> 2022-05-21 10:59:36.423[http-nio-9092-exec-1][com.zk.security.ticket.support.redis.ZKSecRedisTicketManager] - [^_^:20210816-1048-001] ZKCreate ZKSecTicket success -> zk_sec_TK_ID_auto_prefix_97ab4018b77f4ac1af791c10d436e34b
+INFO  -> 2022-05-21 10:59:36.447[http-nio-9092-exec-1][com.zk.security.web.rememberMe.ZKSecCookieRememberMemanager] - [^_^:20180824-1036-001] 不是记住我登录！
+TRACE -> 2022-05-21 10:59:36.497[http-nio-9092-exec-1][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.sec.controller.ZKSysSecIndexController.login(javax.servlet.http.HttpServletRequest)
+INFO  -> 2022-05-21 10:59:36.582[http-nio-9092-exec-1][com.zk.sys.sec.controller.ZKSysSecIndexController] - [^_^:20220420-1641-001] 用户[admin]登录登录成功！
+INFO  -> 2022-05-21 10:59:36.685[http-nio-9092-exec-2][com.zk.security.web.mgt.ZKSecWebSecurityManager] - [^_^:20180824-1204-001] 身份已经存在，不需要再设置！
+TRACE -> 2022-05-21 10:59:36.694[http-nio-9092-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.sec.controller.ZKSysSecIndexController.sysOrgUserSelf()
+INFO  -> 2022-05-21 10:59:36.714[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 10:59:36.759[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：45 毫秒; 起始/结束时间(毫秒)：1653101976714/1653101976759；
+INFO  -> 2022-05-21 10:59:36.764[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 10:59:36.806[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：42 毫秒; 起始/结束时间(毫秒)：1653101976764/1653101976806；
+INFO  -> 2022-05-21 10:59:36.944[http-nio-9092-exec-3][com.zk.security.web.mgt.ZKSecWebSecurityManager] - [^_^:20180824-1204-001] 身份已经存在，不需要再设置！
+TRACE -> 2022-05-21 10:59:36.966[http-nio-9092-exec-3][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2022-05-21 10:59:36.994[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 10:59:37.084[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：90 毫秒; 起始/结束时间(毫秒)：1653101976994/1653101977084；
+INFO  -> 2022-05-21 10:59:37.145[http-nio-9092-exec-4][com.zk.security.web.mgt.ZKSecWebSecurityManager] - [^_^:20180824-1204-001] 身份已经存在，不需要再设置！
+TRACE -> 2022-05-21 10:59:37.172[http-nio-9092-exec-4][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2022-05-21 10:59:37.204[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 10:59:37.639[http-nio-9092-exec-4][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：435 毫秒; 起始/结束时间(毫秒)：1653101977204/1653101977639；
+INFO  -> 2022-05-21 10:59:39.586[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk3OTU4NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:39.706[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk3OTcwNSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:45.601[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk4NTYwMSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:45.724[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk4NTcyNCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:51.618[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk5MTYxNywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:51.740[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk5MTczOSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:57.633[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk5NzYzMywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 10:59:57.756[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMTk5Nzc1NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:03.646[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAwMzY0NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:03.771[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAwMzc3MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:09.658[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAwOTY1OCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:09.785[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAwOTc4NCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:15.673[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAxNTY3MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:15.802[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAxNTgwMSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:21.690[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAyMTY4OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:21.815[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAyMTgxNCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:27.703[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAyNzcwMiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:27.827[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAyNzgyNiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:33.722[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAzMzcyMSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:33.840[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAzMzg0MCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:39.738[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAzOTczNywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:39.856[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjAzOTg1NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:45.752[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA0NTc1MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:45.870[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA0NTg2OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:51.765[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA1MTc2NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:51.883[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA1MTg4Miwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:57.777[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA1Nzc3Niwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:00:57.898[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA1Nzg5Nywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:03.792[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA2Mzc5MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:03.914[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA2MzkxMywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:09.806[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA2OTgwNSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:09.926[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA2OTkyNSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:15.821[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA3NTgyMSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:15.942[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA3NTk0MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:21.833[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA4MTgzMywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:21.964[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA4MTk2NCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:27.842[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA4Nzg0MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:27.980[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA4Nzk3OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:33.854[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA5Mzg1NCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:33.994[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA5Mzk5Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:38.321[http-nio-9092-exec-5][com.zk.security.ticket.support.redis.ZKSecRedisTicketManager] - [^_^:20210816-1057-001] ZKSecTicket is expired 
+INFO  -> 2022-05-21 11:01:38.338[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:01:38.357[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：19 毫秒; 起始/结束时间(毫秒)：1653102098338/1653102098357；
+INFO  -> 2022-05-21 11:01:38.359[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:01:38.377[http-nio-9092-exec-5][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：18 毫秒; 起始/结束时间(毫秒)：1653102098359/1653102098377；
+INFO  -> 2022-05-21 11:01:38.385[http-nio-9092-exec-5][com.zk.security.ticket.support.redis.ZKSecRedisTicketManager] - [^_^:20210816-1048-001] ZKCreate ZKSecTicket success -> zk_sec_TK_ID_auto_prefix_efc1a353796f4d959ed4a75d709cf5c6
+INFO  -> 2022-05-21 11:01:38.397[http-nio-9092-exec-5][com.zk.security.web.rememberMe.ZKSecCookieRememberMemanager] - [^_^:20180824-1036-001] 不是记住我登录！
+TRACE -> 2022-05-21 11:01:38.418[http-nio-9092-exec-5][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.sec.controller.ZKSysSecIndexController.login(javax.servlet.http.HttpServletRequest)
+INFO  -> 2022-05-21 11:01:38.426[http-nio-9092-exec-5][com.zk.sys.sec.controller.ZKSysSecIndexController] - [^_^:20220420-1641-001] 用户[admin]登录登录成功！
+INFO  -> 2022-05-21 11:01:38.521[http-nio-9092-exec-6][com.zk.security.web.mgt.ZKSecWebSecurityManager] - [^_^:20180824-1204-001] 身份已经存在，不需要再设置！
+TRACE -> 2022-05-21 11:01:38.530[http-nio-9092-exec-6][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.sec.controller.ZKSysSecIndexController.sysOrgUserSelf()
+INFO  -> 2022-05-21 11:01:38.537[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:01:38.552[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：15 毫秒; 起始/结束时间(毫秒)：1653102098537/1653102098552；
+INFO  -> 2022-05-21 11:01:38.553[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:01:38.571[http-nio-9092-exec-6][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：18 毫秒; 起始/结束时间(毫秒)：1653102098553/1653102098571；
+INFO  -> 2022-05-21 11:01:38.671[http-nio-9092-exec-7][com.zk.security.web.mgt.ZKSecWebSecurityManager] - [^_^:20180824-1204-001] 身份已经存在，不需要再设置！
+TRACE -> 2022-05-21 11:01:38.678[http-nio-9092-exec-7][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2022-05-21 11:01:38.679[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:01:38.702[http-nio-9092-exec-7][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：23 毫秒; 起始/结束时间(毫秒)：1653102098679/1653102098702；
+INFO  -> 2022-05-21 11:01:38.752[http-nio-9092-exec-8][com.zk.security.web.mgt.ZKSecWebSecurityManager] - [^_^:20180824-1204-001] 身份已经存在，不需要再设置！
+TRACE -> 2022-05-21 11:01:38.761[http-nio-9092-exec-8][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2022-05-21 11:01:38.762[http-nio-9092-exec-8][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:01:38.912[http-nio-9092-exec-8][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：150 毫秒; 起始/结束时间(毫秒)：1653102098762/1653102098912；
+INFO  -> 2022-05-21 11:01:39.870[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjA5OTg2OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:40.010[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjEwMDAwOSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:45.883[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjEwNTg4Miwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:46.025[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjEwNjAyNSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:51.897[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjExMTg5Niwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:52.039[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjExMjAzOSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:57.911[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjExNzkxMSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:01:58.050[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjExODA1MCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:03.925[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjEyMzkyNCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:04.063[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjEyNDA2Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:09.943[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjEyOTk0Miwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:10.071[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjEzMDA3MCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:15.956[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjEzNTk1NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:16.085[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjEzNjA4NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:19.907[AsyncResolver-bootstrap-executor-0][com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver] - Resolving eureka endpoints via configuration
+INFO  -> 2022-05-21 11:02:21.969[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE0MTk2OCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:22.095[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE0MjA5NCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:27.982[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE0Nzk4MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:28.109[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE0ODEwOSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:33.996[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE1Mzk5NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:34.123[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE1NDEyMywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:40.010[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE2MDAxMCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:40.136[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE2MDEzNiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:46.024[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE2NjAyNCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:46.149[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE2NjE0OCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:52.036[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE3MjAzNiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:52.161[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE3MjE2MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:58.052[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE3ODA1MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:02:58.174[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE3ODE3Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:04.062[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE4NDA2MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:04.179[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE4NDE3OCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:10.064[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE5MDA2NCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:10.184[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE5MDE4Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:16.072[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE5NjA3MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:16.191[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjE5NjE5MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:22.081[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIwMjA4MCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:22.201[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIwMjIwMSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:28.092[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIwODA5MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:28.213[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIwODIxMiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:34.104[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIxNDEwNCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:34.225[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIxNDIyNCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:40.117[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIyMDExNiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:40.236[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIyMDIzNiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:44.479[http-nio-9092-exec-9][com.zk.security.ticket.support.redis.ZKSecRedisTicketManager] - [^_^:20210816-1057-001] ZKSecTicket is expired 
+INFO  -> 2022-05-21 11:03:44.489[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:03:44.506[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：17 毫秒; 起始/结束时间(毫秒)：1653102224489/1653102224506；
+INFO  -> 2022-05-21 11:03:44.507[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:03:44.519[http-nio-9092-exec-9][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：12 毫秒; 起始/结束时间(毫秒)：1653102224507/1653102224519；
+INFO  -> 2022-05-21 11:03:44.525[http-nio-9092-exec-9][com.zk.security.ticket.support.redis.ZKSecRedisTicketManager] - [^_^:20210816-1048-001] ZKCreate ZKSecTicket success -> zk_sec_TK_ID_auto_prefix_542376fcb666423e89b7282525f747b3
+INFO  -> 2022-05-21 11:03:44.529[http-nio-9092-exec-9][com.zk.security.web.rememberMe.ZKSecCookieRememberMemanager] - [^_^:20180824-1036-001] 不是记住我登录！
+TRACE -> 2022-05-21 11:03:44.543[http-nio-9092-exec-9][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.sec.controller.ZKSysSecIndexController.login(javax.servlet.http.HttpServletRequest)
+INFO  -> 2022-05-21 11:03:44.549[http-nio-9092-exec-9][com.zk.sys.sec.controller.ZKSysSecIndexController] - [^_^:20220420-1641-001] 用户[admin]登录登录成功！
+INFO  -> 2022-05-21 11:03:44.633[http-nio-9092-exec-10][com.zk.security.web.mgt.ZKSecWebSecurityManager] - [^_^:20180824-1204-001] 身份已经存在，不需要再设置！
+TRACE -> 2022-05-21 11:03:44.639[http-nio-9092-exec-10][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.sec.controller.ZKSysSecIndexController.sysOrgUserSelf()
+INFO  -> 2022-05-21 11:03:44.654[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:03:44.672[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：18 毫秒; 起始/结束时间(毫秒)：1653102224654/1653102224672；
+INFO  -> 2022-05-21 11:03:44.673[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:03:44.697[http-nio-9092-exec-10][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：24 毫秒; 起始/结束时间(毫秒)：1653102224673/1653102224697；
+INFO  -> 2022-05-21 11:03:44.786[http-nio-9092-exec-1][com.zk.security.web.mgt.ZKSecWebSecurityManager] - [^_^:20180824-1204-001] 身份已经存在，不需要再设置！
+TRACE -> 2022-05-21 11:03:44.792[http-nio-9092-exec-1][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavItems(com.zk.sys.res.entity.ZKSysNav)
+INFO  -> 2022-05-21 11:03:44.793[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:03:44.813[http-nio-9092-exec-1][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：20 毫秒; 起始/结束时间(毫秒)：1653102224793/1653102224813；
+INFO  -> 2022-05-21 11:03:44.937[http-nio-9092-exec-2][com.zk.security.web.mgt.ZKSecWebSecurityManager] - [^_^:20180824-1204-001] 身份已经存在，不需要再设置！
+TRACE -> 2022-05-21 11:03:44.951[http-nio-9092-exec-2][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2022-05-21 11:03:44.953[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:03:45.100[http-nio-9092-exec-2][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：147 毫秒; 起始/结束时间(毫秒)：1653102224953/1653102225100；
+INFO  -> 2022-05-21 11:03:46.132[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIyNjEzMiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:46.252[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIyNjI1Miwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:52.149[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIzMjE0OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:52.264[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIzMjI2NCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:58.162[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIzODE2Miwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:03:58.276[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjIzODI3NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:04.173[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI0NDE3Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:04.287[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI0NDI4Niwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:10.185[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI1MDE4NCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:10.301[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI1MDMwMSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:16.195[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI1NjE5NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:16.315[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI1NjMxNSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:22.209[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI2MjIwOSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:22.330[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI2MjMzMCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:28.223[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI2ODIyMywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:28.343[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI2ODM0Miwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:34.237[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI3NDIzNywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:34.353[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI3NDM1Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:40.256[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI4MDI1Niwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:40.361[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI4MDM2MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:46.270[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI4NjI2OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:46.374[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI4NjM3NCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:52.285[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI5MjI4NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:52.388[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI5MjM4Nywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:58.296[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI5ODI5Niwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:04:58.397[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjI5ODM5Niwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:04.312[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMwNDMxMSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:04.410[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMwNDQxMCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:10.326[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMxMDMyNiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:10.423[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMxMDQyMiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:16.340[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMxNjMzOSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:16.437[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMxNjQzNiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:22.351[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMyMjM1MSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:22.451[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMyMjQ1MCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:28.363[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMyODM2Miwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:28.464[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMyODQ2Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:34.374[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMzNDM3Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:34.476[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjMzNDQ3NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:40.387[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM0MDM4Niwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:40.489[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM0MDQ4OCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:46.399[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM0NjM5OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:46.502[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM0NjUwMSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:52.414[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM1MjQxMywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:52.514[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM1MjUxMywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:58.298[http-nio-9092-exec-3][com.zk.security.web.mgt.ZKSecWebSecurityManager] - [^_^:20180824-1204-001] 身份已经存在，不需要再设置！
+TRACE -> 2022-05-21 11:05:58.308[http-nio-9092-exec-3][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping] - Mapped to public com.zk.core.web.ZKMsgRes com.zk.sys.res.controller.ZKSysResController.getNavMenus(java.lang.String,com.zk.sys.res.entity.ZKSysMenu)
+INFO  -> 2022-05-21 11:05:58.310[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-001] begin... ...
+INFO  -> 2022-05-21 11:05:58.455[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM1ODQ1NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:05:58.475[http-nio-9092-exec-3][com.zk.db.mybatis.plugins.ZKSqlRunCost] - [^_^:20200805-1859-002] end; run 耗时(/毫秒)：165 毫秒; 起始/结束时间(毫秒)：1653102358310/1653102358475；
+INFO  -> 2022-05-21 11:05:58.524[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM1ODUyNCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:04.477[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM2NDQ3Niwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:04.538[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM2NDUzNywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:10.491[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM3MDQ5MCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:10.549[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM3MDU0OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:16.500[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM3NjQ5OSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:16.563[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM3NjU2Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:22.513[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM4MjUxMywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:22.576[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM4MjU3NSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:28.525[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM4ODUyNSwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:28.587[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM4ODU4Nywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:34.539[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM5NDUzOCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:34.601[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjM5NDYwMCwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:40.564[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjQwMDU2Mywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:40.614[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjQwMDYxMywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:46.578[DiscoveryClient-HeartbeatExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjQwNjU3Nywic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}
+INFO  -> 2022-05-21 11:06:46.626[DiscoveryClient-CacheRefreshExecutor-0][com.zk.framwwork.serCen.eureka.ZKEurekaHttpClient] - [^_^:20200701-1048-001] 添加 zk 请求头: {"serverName":"YUNJIAN.ZK.SYSTEM","_Cipher_Signature_":"eyJkYXRlVGltZSI6MTY1MzEwMjQwNjYyNiwic2VydmVyTmFtZSI6IllVTkpJQU4uWksuU1lTVEVNIn0="}

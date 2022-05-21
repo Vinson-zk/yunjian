@@ -19,35 +19,9 @@
 		<!-- 可以从 parent 中继承 -->
 	</properties>
 	
-	<!-- <profiles>
-		<profile>
-			<id>dev</id>
-			<properties>
-				<package.env>dev</package.env>
-			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-		</profile>
-		<profile>
-			<id>zkdev</id>
-			<properties>
-				<package.env>zkdev</package.env>
-			</properties>
-		</profile>
-		<profile>
-			<id>gf</id>
-			<properties>
-				<package.env>gf</package.env>
-			</properties>
-		</profile>
-		<profile>
-			<id>gfdev</id>
-			<properties>
-				<package.env>gfdev</package.env>
-			</properties>
-		</profile>
-	</profiles> -->
+	<profiles>
+		<!-- 可以从 parent 中继承 -->	
+	</profiles>
 	
 	<dependencyManagement>
 		<dependencies>
