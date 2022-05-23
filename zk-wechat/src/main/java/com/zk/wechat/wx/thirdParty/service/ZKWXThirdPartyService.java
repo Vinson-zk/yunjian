@@ -34,6 +34,7 @@ import com.zk.wechat.thirdParty.entity.ZKThirdParty;
 import com.zk.wechat.thirdParty.service.ZKThirdPartyService;
 import com.zk.wechat.wx.officialAccounts.ZKWXOfficialAccountsConstants;
 import com.zk.wechat.wx.officialAccounts.msgBean.ZKWXAccountAuthAccessToken;
+import com.zk.wechat.wx.officialAccounts.msgBean.ZKWXJscode2session;
 import com.zk.wechat.wx.officialAccounts.msgBean.ZKWXUserAuthAccessToken;
 import com.zk.wechat.wx.officialAccounts.service.ZKWXOfficialAccountsUserService;
 import com.zk.wechat.wx.thirdParty.msgBean.ZKWXTPComponentAccessToken;
@@ -143,6 +144,9 @@ public class ZKWXThirdPartyService {
             throw new ZKCodeException("zk.wechat.010011", "目标授权方未向第三方平台授权，无法获取 AuthAccountAccessToken");
         }
 
+        // 测试时，不从缓存 取 token 从微信平台取 token
+        ZKWechatCacheUtils.clearWXAccountAuthAccessToken();
+
         /** 1、从缓存中取 目标授权方 wxAccountAuthAccessToken 并判断是否存在或过期 */
         ZKWXAccountAuthAccessToken wxAccountAuthAccessToken = ZKWechatCacheUtils.getWXAccountAuthAccessToken(
                 ZKWXAccountAuthAccessToken.makeIdentification(thirdPartyAppid, accountAppid));
@@ -217,7 +221,7 @@ public class ZKWXThirdPartyService {
             throw new ZKCodeException("zk.wechat.010018", "取用户 AccessToken 失败");
         }
         /** 3、使用用户 刷新 Token 刷新用户 userAuthAccessToken */
-        userAuthAccessToken = this.wxApiThirdPartyService.api_user_auth_refresh_token(thirdPartyAppid,
+        userAuthAccessToken = this.wxApiThirdPartyService.api_official_accounts_user_auth_refresh_token(thirdPartyAppid,
                 this.getComponentAccessToken(thirdPartyAppid).getAccessToken(), accountAppid,
                 userAuthAccessToken.getRefreshToken());
         if(userAuthAccessToken == null) {
@@ -233,14 +237,31 @@ public class ZKWXThirdPartyService {
         return userAuthAccessToken;
     }
 
-    // 根据用户授权代码取用户 accessToken 并取用户用户信息保存用户
-    public void getUserAccessTokenByAuthCode(String thirdPartyAppId, String funcKey, String code, String state,
-            String appId) {
-        ZKWXUserAuthAccessToken userAuthAccessToken = this.wxApiThirdPartyService.api_user_auth_access_token(
-                thirdPartyAppId, this.getComponentAccessToken(thirdPartyAppId).getAccessToken(), appId, code);
+    /**
+     * 根据用户授权代码取用户 accessToken 并取用户用户信息保存用户
+     *
+     * @Title: getUserAccessTokenByAuthCode
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 23, 2022 10:11:21 AM
+     * @param thirdPartyAppId
+     * @param authAppId
+     * @param funcKey
+     * @param code
+     * @param state
+     * @return
+     * @return ZKOfficialAccountsUser
+     */
+    public ZKOfficialAccountsUser getUserAccessTokenByAuthCode(String thirdPartyAppId, String authAppId, String funcKey,
+            String code,
+            String state) {
+        // 根据用户授权 code 取用户 AccessToken
+        ZKWXUserAuthAccessToken userAuthAccessToken = this.wxApiThirdPartyService
+                .api_official_accounts_user_auth_access_token(thirdPartyAppId,
+                        this.getComponentAccessToken(thirdPartyAppId).getAccessToken(), authAppId, code);
         if (userAuthAccessToken == null) {
-            log.error("[>_<_^:20220520-1104-003] 刷新 用户 Token 失败; thirdPartyAppid：{}，accountAppid：{}，code：{}",
-                    thirdPartyAppId, appId, code);
+            log.error("[>_<_^:20220520-1104-003] 刷新 用户 Token 失败; thirdPartyAppid：{}，authAppId：{}，code：{}",
+                    thirdPartyAppId, authAppId, code);
             throw new ZKCodeException("zk.wechat.010018", "取用户 AccessToken 失败");
         }
         else {
@@ -248,24 +269,75 @@ public class ZKWXThirdPartyService {
             ZKWechatCacheUtils.putWXUserAccessToken(userAuthAccessToken);
         }
 
-        // 取用户信息，并创建保存用户
-        ZKOfficialAccountsUser officialAccountsUser;
+        // 保存和修改用户，并如果用户不存在创建用户
+        ZKOfficialAccountsUser officialAccountsUser = this.officialAccountsUserService.getByOpenId(thirdPartyAppId,
+                authAppId, userAuthAccessToken.getOpenid());
+        if (officialAccountsUser == null) {
+            officialAccountsUser = new ZKOfficialAccountsUser();
+        }
+
         if(!ZKStringUtils.isEmpty(userAuthAccessToken.getScope()) && (userAuthAccessToken.getScope().indexOf(ZKWXOfficialAccountsConstants.KeyAuthUserScope.snsapi_userinfo) > -1)) {
             // 可以获取用户基本信息
-            officialAccountsUser = this.wxOfficialAccountsUserService.getUserInfo(thirdPartyAppId, appId,
-                    userAuthAccessToken.getOpenid(),
-                    userAuthAccessToken.getAccessToken());
+            officialAccountsUser = this.wxOfficialAccountsUserService.getUserBaseInfo(officialAccountsUser,
+                    thirdPartyAppId, authAppId,
+                    userAuthAccessToken.getOpenid(), userAuthAccessToken.getAccessToken());
+            // 取用户 UnionID
+            officialAccountsUser = this.wxOfficialAccountsUserService.getUserUnionID(officialAccountsUser,
+                    thirdPartyAppId, authAppId, userAuthAccessToken.getOpenid(), userAuthAccessToken.getAccessToken());
         }
         else {
-            // 取用户 UnionID
-            officialAccountsUser = this.wxOfficialAccountsUserService.getUserUnionID(thirdPartyAppId, appId,
-                    userAuthAccessToken.getOpenid(),
-                    userAuthAccessToken.getAccessToken());
+            // 普通授权，只能取用户 openId
+            officialAccountsUser.setWxOpenid(userAuthAccessToken.getOpenid());
+            this.wxOfficialAccountsUserService.putUserInfo(thirdPartyAppId, authAppId, officialAccountsUser);
         }
         officialAccountsUser.setWxChannel(ZKOfficialAccountsUser.KeyWxCannel.webAuth);
         officialAccountsUser.setWxSubscribeStatus(ZKOfficialAccountsUser.KeyWxSubscribeStatus.unknown);
         this.officialAccountsUserService.save(officialAccountsUser);
+        return officialAccountsUser;
+    }
 
+    /**
+     * 小程序登录，取 openid
+     * 
+     * 第三方平台开发者的服务器使用登录凭证（code）以及第三方平台的 component_access_token 可以代替小程序实现登录功能 获取 session_key 和 openid。
+     *
+     * @Title: getUserJscode2session
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 23, 2022 10:12:43 AM
+     * @param thirdPartyAppId
+     * @param authAppId
+     * @param jsCode
+     * @return ZKOfficialAccountsUser
+     */
+    public ZKOfficialAccountsUser getUserJscode2session(String thirdPartyAppId, String authAppId, String jsCode) {
+        // 根据用户授权 code 取用户 AccessToken
+        ZKWXJscode2session jscode2session = this.wxApiThirdPartyService.api_miniprogram_jscode2session(thirdPartyAppId,
+                this.getComponentAccessToken(thirdPartyAppId).getAccessToken(), authAppId, jsCode);
+        if (jscode2session == null) {
+            log.error("[>_<_^:20220523-1013-001] 小程序取用户，取 openid 失败; thirdPartyAppid：{}，authAppId：{}，jsCode：{}",
+                    thirdPartyAppId, authAppId, jsCode);
+            throw new ZKCodeException("zk.wechat.010019", "小程序取用户，取 openid 失败");
+        }
+        //
+
+        // 保存和修改用户，并如果用户不存在创建用户
+        ZKOfficialAccountsUser officialAccountsUser = this.officialAccountsUserService.getByOpenId(thirdPartyAppId,
+                authAppId, jscode2session.getOpenid());
+        if (officialAccountsUser == null) {
+            officialAccountsUser = new ZKOfficialAccountsUser();
+        }
+
+        officialAccountsUser.setWxOpenid(jscode2session.getOpenid());
+        officialAccountsUser.setWxSessionKey(jscode2session.getSessionKey());
+        officialAccountsUser.setWxUnionid(jscode2session.getUnionid());
+
+        this.wxOfficialAccountsUserService.putUserInfo(thirdPartyAppId, authAppId, officialAccountsUser);
+
+        officialAccountsUser.setWxChannel(ZKOfficialAccountsUser.KeyWxCannel.miniprogram);
+        officialAccountsUser.setWxSubscribeStatus(ZKOfficialAccountsUser.KeyWxSubscribeStatus.unknown);
+        this.officialAccountsUserService.save(officialAccountsUser);
+        return officialAccountsUser;
     }
 
 }

@@ -12,10 +12,13 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.zk.base.entity.ZKBaseEntity;
 import com.zk.core.commons.data.ZKJson;
 import com.zk.core.commons.data.ZKJsonArray;
+import com.zk.core.utils.ZKDateUtils;
 import com.zk.core.utils.ZKIdUtils;
 import com.zk.db.annotation.ZKColumn;
 import com.zk.db.annotation.ZKTable;
@@ -67,6 +70,11 @@ public class ZKOfficialAccountsUser extends ZKBaseEntity<String, ZKOfficialAccou
          * 用户来源渠道；2-关注公众号；
          */
         public static final int officialAccount = 2;
+
+        /**
+         * 用户来源渠道；3-小程序；
+         */
+        public static final int miniprogram = 3;
 
     }
 
@@ -211,7 +219,7 @@ public class ZKOfficialAccountsUser extends ZKBaseEntity<String, ZKOfficialAccou
 	/**
 	 * 用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空。若用户更换头像，原有头像URL将失效:  headimgurl
 	 */
-	@Length(min = 0, max = 64, message = "{zk.core.data.validation.length.max}")
+    @Length(min = 0, max = 512, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_wx_headimgurl", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
 	String wxHeadimgurl;	
 	/**
@@ -270,6 +278,16 @@ public class ZKOfficialAccountsUser extends ZKBaseEntity<String, ZKOfficialAccou
 	@ZKColumn(name = "c_wx_qr_scene_str", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
 	String wxQrSceneStr;	
 	
+    /**
+     * 小程序会话密钥
+     */
+    @Length(min = 0, max = 128, message = "{zk.core.data.validation.length.max}")
+    @ZKColumn(name = "c_wx_session_key", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
+    String wxSessionKey;
+
+    /**
+     * 网页授权时，存放的 zk 平台的 用户授权 access_token 对象
+     */
 	@ZKColumn(name = "c_wx_zk_access_token", isInsert = true, isUpdate = true, javaType = ZKJson.class, isQuery = false)
     ZKJson wxZKAccessToken;
 	
@@ -290,6 +308,8 @@ public class ZKOfficialAccountsUser extends ZKBaseEntity<String, ZKOfficialAccou
     /**
      * 关注时间
      */
+    @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
+    @JsonFormat(pattern = ZKDateUtils.DF_yyyy_MM_dd_HH_mm_ss, timezone = timezone)
     @ZKColumn(name = "c_wx_subscribe_date", isInsert = true, isUpdate = true, javaType = Date.class, isQuery = false)
     Date wxSubscribeDate;
 
@@ -690,6 +710,21 @@ public class ZKOfficialAccountsUser extends ZKBaseEntity<String, ZKOfficialAccou
      */
     public void setCompanyCode(String companyCode) {
         this.companyCode = companyCode;
+    }
+
+    /**
+     * @return wxSessionKey sa
+     */
+    public String getWxSessionKey() {
+        return wxSessionKey;
+    }
+
+    /**
+     * @param wxSessionKey
+     *            the wxSessionKey to set
+     */
+    public void setWxSessionKey(String wxSessionKey) {
+        this.wxSessionKey = wxSessionKey;
     }
 
     /**

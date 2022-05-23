@@ -39,6 +39,7 @@ import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKStringUtils;
 import com.zk.core.web.ZKMsgRes;
 import com.zk.core.web.utils.ZKWebUtils;
+import com.zk.wechat.officialAccounts.entity.ZKOfficialAccountsUser;
 import com.zk.wechat.thirdParty.entity.ZKThirdParty;
 import com.zk.wechat.thirdParty.service.ZKThirdPartyService;
 import com.zk.wechat.wx.officialAccounts.service.ZKWXOfficialAccountsNotificationService;
@@ -99,7 +100,6 @@ public class ZKWXThirdPartyController {
      *            要授权的帐号类型：1 则商户点击链接后，手机端仅展示公众号、2 表示仅展示小程序，3 表示公众号和小程序都展示。如果为未指定，则默认小程序和公众号都展示。第三方平台开发者可以使用本字段来控制授权的帐号类型
      * @param req
      * @param res
-     * @return
      * @return ZKMsgRes
      */
     @RequestMapping(value = "auth", method = RequestMethod.POST)
@@ -156,7 +156,6 @@ public class ZKWXThirdPartyController {
      * @param appId
      *            第三方平台账号
      * @param req
-     * @return
      * @return String
      */
     @RequestMapping(value = "authReceive/{thirdPartyAppId}")
@@ -204,7 +203,6 @@ public class ZKWXThirdPartyController {
      * @param appId
      *            公众号或小程序的 appId
      * @param req
-     * @return
      * @return String
      */
     @RequestMapping(value = "event/{thirdPartyAppId}/{appId}")
@@ -259,7 +257,6 @@ public class ZKWXThirdPartyController {
      * @param state
      * @param appid
      * @param req
-     * @return
      * @return String
      */
     @RequestMapping(value = "authUserReceive/{thirdPartyAppId}/{funcKey}")
@@ -271,19 +268,54 @@ public class ZKWXThirdPartyController {
 
         if (ZKStringUtils.isEmpty(code)) {
             // 用户禁止授权；需要转发到未授权的错误页面
+            log.error("[>_<:20220523-1003-001] 用户未授权；thirdPartyAppId:{}, appid:{}, funcKey:{}, state:{}, code:{}",
+                    thirdPartyAppId, appid, funcKey, state, code);
             return "redirect:" + "error/wxuser.noAuth";
         }
 
         try {
             // 取用户 accessToken
-            this.wxThirdPartyService.getUserAccessTokenByAuthCode(thirdPartyAppId, funcKey, code, state, appid);
+            this.wxThirdPartyService.getUserAccessTokenByAuthCode(thirdPartyAppId, appid, funcKey, code, state);
         }
         catch(Exception e) {
             e.printStackTrace();
             log.error("[>_<:20220519-2357-002] 接收用户授权消息失败；thirdPartyAppId:{}, appid:{}, funcKey:{} ", thirdPartyAppId,
                     appid, funcKey);
         }
-        return "success";
+        return "redirect:success";
+    }
+
+    /********************************************************/
+    /**
+     * 小程序登录取 openid
+     *
+     * @Title: authUserReceive
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 23, 2022 10:27:26 AM
+     * @param thirdPartyAppId
+     * @param authAppId
+     * @param jsCode
+     * @param req
+     * @return String
+     */
+    @RequestMapping(value = "miniprogram/jscode2session/{thirdPartyAppId}/{authAppId}", method = RequestMethod.POST)
+    @ResponseBody
+    public ZKMsgRes authUserReceive(@PathVariable("thirdPartyAppId") String thirdPartyAppId,
+            @PathVariable(value = "authAppId") String authAppId, @RequestParam(value = "jsCode") String jsCode,
+            HttpServletRequest req) {
+
+        if (ZKStringUtils.isEmpty(jsCode)) {
+            log.error(
+                    "[>_<_^:20220523-1013-002] 小程序取用户，取 openid 失败; jsCode 为空；thirdPartyAppid：{}，authAppId：{}，jsCode：{}",
+                    thirdPartyAppId, authAppId, jsCode);
+            throw new ZKCodeException("zk.wechat.010019", "小程序取用户，取 openid 失败");
+        }
+
+        // 取小程序用户的 openid sessionkey Unionid
+        ZKOfficialAccountsUser officialAccountsUser = this.wxThirdPartyService.getUserJscode2session(thirdPartyAppId,
+                authAppId, jsCode);
+        return ZKMsgRes.asOk(officialAccountsUser);
     }
 
 }

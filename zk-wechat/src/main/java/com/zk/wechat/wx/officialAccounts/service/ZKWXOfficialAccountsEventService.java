@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zk.core.exception.ZKCodeException;
 import com.zk.core.utils.ZKDateUtils;
 import com.zk.wechat.officialAccounts.entity.ZKOfficialAccountsUser;
 import com.zk.wechat.officialAccounts.service.ZKOfficialAccountsUserService;
@@ -78,18 +79,18 @@ public class ZKWXOfficialAccountsEventService {
                 // 用户取消关注(取消订阅)时的事件推送
                 this.eventUnsubscribe(thirdPartyAppId, appId, rootElement, funcGetAccessToken);
                 break;
-            case SCAN:
-                // 扫描带参数二维码事件: 用户已关注时的事件推送
-                break;
-            case LOCATION:
-                // 上报地理位置事件;用户上报地理位置事件消息，即用户上报 GPS 事件消息
-                break;
-            case VIEW:
-                // 点击菜单跳转链接时的事件推送
-                break;
-            case CLICK:
-                // 点击菜单拉取消息时的事件推送
-                break;
+//            case SCAN:
+//                // 扫描带参数二维码事件: 用户已关注时的事件推送
+//                break;
+//            case LOCATION:
+//                // 上报地理位置事件;用户上报地理位置事件消息，即用户上报 GPS 事件消息
+//                break;
+//            case VIEW:
+//                // 点击菜单跳转链接时的事件推送
+//                break;
+//            case CLICK:
+//                // 点击菜单拉取消息时的事件推送
+//                break;
             default:
                 log.error("[>_<:20220519-0101-002] 未知的公众号或小程序 上报的事件类型！thirdPartyAppId:{}, appId:{}, msgEvent: {}",
                         thirdPartyAppId, appId, msgEventStr);
@@ -111,15 +112,32 @@ public class ZKWXOfficialAccountsEventService {
 //        // 二维码的ticket，可用来换取二维码图片
 //        String ticket = rootElement.element(MsgAttr.Ticket).getStringValue();
         
-        ZKOfficialAccountsUser officialAccountsUser = this.wxOfficialAccountsUserService.getUserInfo(thirdPartyAppId,
-                appId, fromUserName, funcGetAccessToken.getZKWXAccountAuthAccessToken().getAccessToken());
-        officialAccountsUser.setWxSubscribeTimeStr(createTime);
-        officialAccountsUser.setWxSubscribeDate(ZKDateUtils.parseDate(Integer.valueOf(createTime) * 1000));
-        if (officialAccountsUser != null) {
-            officialAccountsUser.setWxChannel(ZKOfficialAccountsUser.KeyWxCannel.officialAccount);
-            officialAccountsUser.setWxSubscribeStatus(ZKOfficialAccountsUser.KeyWxSubscribeStatus.subscribe);
-            this.officialAccountsUserService.save(officialAccountsUser);
+//        ZKOfficialAccountsUser officialAccountsUser = this.wxOfficialAccountsUserService.getUserInfo(thirdPartyAppId,
+//                appId, fromUserName, funcGetAccessToken.getZKWXAccountAuthAccessToken().getAccessToken());
+
+        String accessTokenStr = funcGetAccessToken.getZKWXAccountAuthAccessToken().getAccessToken();
+        ZKOfficialAccountsUser officialAccountsUser = this.officialAccountsUserService.getByOpenId(thirdPartyAppId,
+                appId, fromUserName);
+        if (officialAccountsUser == null) {
+            officialAccountsUser = new ZKOfficialAccountsUser();
         }
+        try {
+            this.wxOfficialAccountsUserService.getUserUnionID(officialAccountsUser, thirdPartyAppId, appId,
+                    fromUserName, accessTokenStr);
+//            this.wxOfficialAccountsUserService.getUserBaseInfo(officialAccountsUser, thirdPartyAppId, appId,
+//                    fromUserName, accessTokenStr);
+        }
+        catch(ZKCodeException e) {
+            e.printStackTrace();
+            officialAccountsUser.setWxOpenid(fromUserName);
+            this.wxOfficialAccountsUserService.putUserInfo(thirdPartyAppId, appId, officialAccountsUser);
+        }
+
+        officialAccountsUser.setWxSubscribeTimeStr(createTime);
+        officialAccountsUser.setWxSubscribeDate(ZKDateUtils.parseDate(Long.valueOf(createTime) * 1000));
+        officialAccountsUser.setWxChannel(ZKOfficialAccountsUser.KeyWxCannel.officialAccount);
+        officialAccountsUser.setWxSubscribeStatus(ZKOfficialAccountsUser.KeyWxSubscribeStatus.subscribe);
+        this.officialAccountsUserService.save(officialAccountsUser);
     }
 
     // 取消关注事件

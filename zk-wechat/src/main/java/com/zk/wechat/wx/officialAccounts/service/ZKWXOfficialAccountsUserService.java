@@ -53,15 +53,22 @@ public class ZKWXOfficialAccountsUserService {
     @Autowired
     ZKWXApiOfficialAccountsService wxApiOfficialAccountsService;
 
+//    // 取用户基本信息
+//    public ZKOfficialAccountsUser getUserBaseInfo(String thirdPartyAppId, String appId, String openId,
+//            String accessToken) {
+//        ZKOfficialAccountsUser outAccountUser = this.officialAccountsUserService.getByOpenId(thirdPartyAppId, appId,
+//                openId);
+//        if (outAccountUser == null) {
+//            outAccountUser = new ZKOfficialAccountsUser();
+//        }
+//        return this.getUserBaseInfo(outAccountUser, thirdPartyAppId, appId, openId, accessToken);
+//    }
+
     // 取用户基本信息
-    public ZKOfficialAccountsUser getUserInfo(String thirdPartyAppId, String appId, String openId, String accessToken) {
-        ZKOfficialAccountsUser outAccountUser = this.officialAccountsUserService.getByOpenId(thirdPartyAppId, appId,
-                openId);
+    public ZKOfficialAccountsUser getUserBaseInfo(ZKOfficialAccountsUser outAccountUser, String thirdPartyAppId,
+            String appId, String openId, String accessToken) {
         if (outAccountUser == null) {
             outAccountUser = new ZKOfficialAccountsUser();
-        }
-        else {
-
         }
 
         wxApiOfficialAccountsService.api_user_auth_userinfo(outAccountUser, accessToken, openId,
@@ -70,16 +77,25 @@ public class ZKWXOfficialAccountsUserService {
         return outAccountUser;
     }
 
+//    // 取用户基本信息 UnionID 机制
+//    public ZKOfficialAccountsUser getUserUnionID(String thirdPartyAppId, String appId, String openId,
+//            String accessToken) {
+//        ZKOfficialAccountsUser outAccountUser = this.officialAccountsUserService.getByOpenId(thirdPartyAppId, appId,
+//                openId);
+//        if (outAccountUser == null) {
+//            outAccountUser = new ZKOfficialAccountsUser();
+//        }
+//        else {
+//
+//        }
+//        return this.getUserUnionID(outAccountUser, thirdPartyAppId, appId, openId, accessToken);
+//    }
+
     // 取用户基本信息 UnionID 机制
-    public ZKOfficialAccountsUser getUserUnionID(String thirdPartyAppId, String appId, String openId,
-            String accessToken) {
-        ZKOfficialAccountsUser outAccountUser = this.officialAccountsUserService.getByOpenId(thirdPartyAppId, appId,
-                openId);
+    public ZKOfficialAccountsUser getUserUnionID(ZKOfficialAccountsUser outAccountUser, String thirdPartyAppId,
+            String appId, String openId, String accessToken) {
         if (outAccountUser == null) {
             outAccountUser = new ZKOfficialAccountsUser();
-        }
-        else {
-
         }
         wxApiOfficialAccountsService.api_user_auth_info(outAccountUser, accessToken, openId,
                 ZKWXConstants.KeyLocale.zh_CN);
@@ -87,7 +103,18 @@ public class ZKWXOfficialAccountsUserService {
         return outAccountUser;
     }
 
-    // 设置用户其他信息
+    /**
+     * 设置用户其他信息; 公司信息，第三方平台，授权公众号等信息
+     *
+     * @Title: putUserInfo
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 23, 2022 10:21:46 AM
+     * @param thirdPartyAppId
+     * @param appId
+     * @param officialAccountUser
+     * @return void
+     */
     public void putUserInfo(String thirdPartyAppId, String appId, ZKOfficialAccountsUser officialAccountUser) {
         ZKOfficialAccounts officialAccounts = officialAccountsService.getByAccountAppid(thirdPartyAppId, appId);
         if (officialAccounts == null) {

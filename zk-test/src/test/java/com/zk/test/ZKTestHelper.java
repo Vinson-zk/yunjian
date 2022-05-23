@@ -18,6 +18,7 @@
 */
 package com.zk.test;
 
+import java.util.Date;
 import java.util.Random;
 
 import org.junit.Test;
@@ -31,6 +32,16 @@ import com.zk.core.utils.ZKDateUtils;
 * @version 1.0 
 */
 public class ZKTestHelper {
+
+    @Test
+    public void test() {
+        String timeStr = "1653218795";
+        Date d = ZKDateUtils.parseDate(Long.valueOf(timeStr) * 1000);
+
+        System.out.println("[^_^:20220522-2016-001] 1653218795 -> date : " + d.getTime());
+        System.out.println("[^_^:20220522-2016-001] 1653218795 -> date : " + ZKDateUtils.formatDate(d));
+
+    }
 
     @Test
     public void genPwd() {

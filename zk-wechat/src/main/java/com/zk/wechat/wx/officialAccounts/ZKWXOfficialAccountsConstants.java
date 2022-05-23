@@ -39,27 +39,27 @@ public interface ZKWXOfficialAccountsConstants {
         /**
          * # 请求 CODE
          */
-        public static final String api_user_auth_authorize = "zk.wechat.wx.officialAccounts.api.user.auth.authorize";
+//        public static final String api_user_auth_authorize = "zk.wechat.wx.officialAccounts.api.user.auth.authorize";
 
         /**
          * # 通过 code 换取 access_token
          */
-        public static final String api_user_auth_access_token = "zk.wechat.wx.officialAccounts.api.user.auth.access_token";
+        public static final String api_user_auth_access_token = "zk.wechat.wx.officialAccounts.api.api_user_auth_access_token";
 
         /**
          * # 刷新 access_token（如果需要）
          */
-        public static final String api_user_auth_refresh_token = "zk.wechat.wx.officialAccounts.api.user.auth.refresh_token";
+        public static final String api_user_auth_refresh_token = "zk.wechat.wx.officialAccounts.api.api_user_auth_refresh_token";
 
         /**
          * # 通过网页授权 access_token 获取用户基本信息（需授权作用域为 snsapi_userinfo）
          */
-        public static final String api_user_auth_userinfo = "zk.wechat.wx.officialAccounts.api.user.auth.userinfo";
+        public static final String api_user_auth_userinfo = "zk.wechat.wx.officialAccounts.api.api_user_auth_userinfo";
 
         /**
          * # 获取用户基本信息（包括 UnionID 机制）
          */
-        public static final String api_user_auth_info = "zk.wechat.wx.officialAccounts.api.user.auth.info";
+        public static final String api_user_auth_info = "zk.wechat.wx.officialAccounts.api.api_user_auth_info";
 
     }
 
@@ -347,7 +347,31 @@ public interface ZKWXOfficialAccountsConstants {
              */
             public static final String privilege = "privilege";
 
+        }
 
+        /**
+         * 小程序登录 第三方平台开发者的服务器使用登录凭证（code）以及第三方平台的 component_access_token 可以代替小程序实现登录功能 获取 session_key 和 openid
+         * 
+         * @ClassName: jscode2session
+         * @Description: TODO(simple description this class what to do. )
+         * @author Vinson
+         * @version 1.0
+         */
+        public static interface jscode2session {
+            /**
+             * string 用户唯一标识的 openid
+             */
+            public static final String openid = "openid";
+
+            /**
+             * string 会话密钥
+             */
+            public static final String session_key = "session_key";
+
+            /**
+             * string 用户在开放平台的唯一标识符，在满足 UnionID 下发条件的情况下会返回，详见 UnionID 机制说明。
+             */
+            public static final String unionid = "unionid";
         }
 
     }

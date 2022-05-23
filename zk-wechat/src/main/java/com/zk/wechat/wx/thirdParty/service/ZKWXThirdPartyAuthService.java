@@ -127,13 +127,13 @@ public class ZKWXThirdPartyAuthService {
 
         String authUrl = null;
         if (byeType == 0) {
-            authUrl = ZKEnvironmentUtils.getString(ConfigKey.thirdPartyAuthUrlWeb);
+            authUrl = ZKEnvironmentUtils.getString(ConfigKey.url_auth_web_componentloginpage);
             authUrl = ZKStringUtils.replaceByPoint(authUrl, thirdPartyAppid, preAuthCode.getPreAuthCode(),
                     redirectUriSB.toString(),
                     authType);
         }
         else {
-            authUrl = ZKEnvironmentUtils.getString(ConfigKey.thirdPartyAuthUrlApp);
+            authUrl = ZKEnvironmentUtils.getString(ConfigKey.url_auth_app_bindcomponent);
             authUrl = ZKStringUtils.replaceByPoint(authUrl, thirdPartyAppid, preAuthCode.getPreAuthCode(),
                     redirectUriSB.toString(),
                     authType, bizAppId);

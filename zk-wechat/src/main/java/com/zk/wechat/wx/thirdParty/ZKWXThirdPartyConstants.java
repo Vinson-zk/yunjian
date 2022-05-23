@@ -61,12 +61,12 @@ public interface ZKWXThirdPartyConstants {
         /**
          * 授权链接构建的方法；1、构建PC端授权链接的方法
          */
-        public static final String thirdPartyAuthUrlWeb = "zk.wechat.wx.thirdParty.auth.url.web";
+        public static final String url_auth_web_componentloginpage = "zk.wechat.wx.thirdParty.url.url_auth_web_componentloginpage";
 
         /**
          * 授权链接构建的方法；2、构建移动端授权链接的方法
          */
-        public static final String thirdPartyAuthUrlApp = "zk.wechat.wx.thirdParty.auth.url.app";
+        public static final String url_auth_app_bindcomponent = "zk.wechat.wx.thirdParty.url.url_auth_app_bindcomponent";
 
         /**
          * 启动ticket推送服务
@@ -100,25 +100,30 @@ public interface ZKWXThirdPartyConstants {
 
 
         // ===== # ----- 第三方平台替，微信用户授权
-        /**
-         * # 请求 CODE
-         */
-        public static final String api_user_auth_authorize = "zk.wechat.wx.thirdParty.api.user.auth.authorize";
+//        /**
+//         * # 请求 CODE，一般是在生成授权链接时使用，这里不需要配置，授权链接目前是手动制作
+//         */
+//        public static final String url_official_accounts_user_auth_authorize = "zk.wechat.wx.thirdParty.url.url_official_accounts_user_auth_authorize";
 
         /**
          * # 通过 code 换取 access_token
          */
-        public static final String api_user_auth_access_token = "zk.wechat.wx.thirdParty.api.user.auth.access_token";
+        public static final String api_official_accounts_user_auth_access_token = "zk.wechat.wx.thirdParty.api.api_official_accounts_user_auth_access_token";
 
         /**
          * # 刷新 access_token（如果需要）
          */
-        public static final String api_user_auth_refresh_token = "zk.wechat.wx.thirdParty.api.user.auth.refresh_token";
+        public static final String api_official_accounts_user_auth_refresh_token = "zk.wechat.wx.thirdParty.api.api_official_accounts_user_auth_refresh_token";
 
         /**
          * # 通过网页授权 access_token 获取用户基本信息（需授权作用域为 snsapi_userinfo）
          */
-        public static final String api_user_auth_userinfo = "zk.wechat.wx.thirdParty.api.user.auth.userinfo";
+//        public static final String api_user_auth_userinfo = "zk.wechat.wx.thirdParty.api.official.accounts.user.auth.userinfo";
+
+        /**
+         * 小程序登录, 获取 openid
+         */
+        public static final String api_miniprogram_user_jscode2session = "zk.wechat.wx.thirdParty.api.api_miniprogram_user_jscode2session";
 
     }
 

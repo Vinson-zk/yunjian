@@ -174,7 +174,7 @@ public class ZKOfficialAccounts extends ZKBaseEntity<String, ZKOfficialAccounts>
 	/**
 	 * 头像: head_img
 	 */
-	@Length(min = 0, max = 128, message = "{zk.core.data.validation.length.max}")
+    @Length(min = 0, max = 512, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_wx_head_img", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
 	String wxHeadImg;	
 	/**
@@ -211,7 +211,7 @@ public class ZKOfficialAccounts extends ZKBaseEntity<String, ZKOfficialAccounts>
 	/**
 	 * 二维码图片的 URL，开发者最好自行也进行保存：qrcode_url
 	 */
-	@Length(min = 0, max = 128, message = "{zk.core.data.validation.length.max}")
+    @Length(min = 0, max = 512, message = "{zk.core.data.validation.length.max}")
 	@ZKColumn(name = "c_wx_qrcode_url", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
 	String wxQrcodeUrl;	
 	/**
