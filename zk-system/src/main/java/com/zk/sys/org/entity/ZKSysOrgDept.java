@@ -26,6 +26,7 @@ import com.zk.db.commons.ZKSqlConvert;
 import com.zk.db.commons.ZKSqlConvertDelegating;
 import com.zk.db.mybatis.commons.ZKDBQueryConditionCol;
 import com.zk.db.mybatis.commons.ZKDBQueryConditionIfByClass;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 
 /**
  * 部门表

@@ -18,6 +18,9 @@
 */
 package com.zk.core.utils;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 /** 
 * @ClassName: ZKExceptionsUtils 
 * @Description: TODO(simple description this class what to do.) 
@@ -36,6 +39,18 @@ public class ZKExceptionsUtils {
         else {
             return new RuntimeException(e);
         }
+    }
+
+    /**
+     * 将ErrorStack转化为String.
+     */
+    public static String getStackTraceAsString(Throwable e) {
+        if (e == null) {
+            return "";
+        }
+        StringWriter stringWriter = new StringWriter();
+        e.printStackTrace(new PrintWriter(stringWriter));
+        return stringWriter.toString();
     }
 
 }

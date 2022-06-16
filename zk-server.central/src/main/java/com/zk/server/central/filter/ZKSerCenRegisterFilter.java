@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 import com.zk.core.web.ZKMsgRes;
 import com.zk.core.web.filter.ZKOncePerFilter;
 import com.zk.core.web.utils.ZKWebUtils;
-import com.zk.framwwork.serCen.ZKSerCenDecode;
+import com.zk.framework.serCen.ZKSerCenDecode;
 
 /** 
 * @ClassName: ZKSerCenRegisterFilter 

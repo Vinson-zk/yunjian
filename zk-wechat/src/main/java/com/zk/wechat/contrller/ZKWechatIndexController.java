@@ -34,7 +34,7 @@ import com.zk.core.web.ZKMsgRes;
 @RequestMapping("${zk.path.admin}/${zk.path.wechat}/${zk.wechat.version}")
 public class ZKWechatIndexController {
 
-    @RequestMapping
+    @RequestMapping({ "", "index" })
     public ZKMsgRes index() {
         return ZKMsgRes.asOk(null);
     }

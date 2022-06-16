@@ -39,7 +39,7 @@ public class ZKSecAuthcUserFilter extends ZKSecAuthenticationFilter {
     @Override
     protected ZKSecAuthenticationToken createToken(ServletRequest request, ServletResponse response) throws Exception {
 
-        String groupCode = getGroupCode(request);
+        String companyCode = getCompanyCode(request);
         long osType = getOsType(request);
         String udid = getUdid(request);
         long appType = getAppType(request);
@@ -48,7 +48,7 @@ public class ZKSecAuthcUserFilter extends ZKSecAuthenticationFilter {
         String username = ZKWebUtils.getCleanParam(request, ZKSecConstants.PARAM_NAME.Username);
         boolean rememberMe = ZKWebUtils.isTrue(request, ZKSecConstants.PARAM_NAME.RememberMe);
         String pwd = ZKWebUtils.getCleanParam(request, ZKSecConstants.PARAM_NAME.Pwd);
-        return new ZKSecDefaultAuthcUserToken(groupCode, username, pwd, rememberMe, osType, udid, appType, appId);
+        return new ZKSecDefaultAuthcUserToken(companyCode, username, pwd, rememberMe, osType, udid, appType, appId);
 
     }
 

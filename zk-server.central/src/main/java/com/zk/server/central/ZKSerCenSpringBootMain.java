@@ -47,21 +47,21 @@ import com.zk.server.central.configuration.ZKSerCenShiroConfiguration;
  */
 //@SpringCloudApplication
 @SpringBootApplication(exclude = { 
-        DataSourceAutoConfiguration.class
-        , TransactionAutoConfiguration.class
-        , HibernateJpaAutoConfiguration.class
-//        , MongoAutoConfiguration.class
-//        , WebMvcAutoConfiguration.class
+        DataSourceAutoConfiguration.class, 
+        HibernateJpaAutoConfiguration.class, 
+//        MongoAutoConfiguration.class, 
+//        WebMvcAutoConfiguration.class, 
+        TransactionAutoConfiguration.class
 })
 @EnableEurekaServer
 @EnableTransactionManagement(proxyTargetClass = true)
 //@ComponentScan(basePackages = { "com.zk.server.central.filter" })
 //@ServletComponentScan(basePackages = { "com.zk.server.central.filter" })
 @ImportAutoConfiguration(classes = { 
-        ZKSerCenConfiguration.class
-//        , ZKMongoAutoConfiguration.class
-        , ZKSerCenMvcConfiguration.class
-        , ZKSerCenShiroConfiguration.class })
+        ZKSerCenConfiguration.class,
+//      ZKMongoAutoConfiguration.class, 
+        ZKSerCenMvcConfiguration.class, 
+        ZKSerCenShiroConfiguration.class })
 @PropertySource(encoding = "UTF-8", value = { "classpath:zk.ser.cen.jdbc.properties",
         "classpath:zk.ser.cen.mongo.properties" })
 //@AutoConfigureOrder(value = Ordered.HIGHEST_PRECEDENCE)

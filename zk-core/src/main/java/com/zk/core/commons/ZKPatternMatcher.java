@@ -9,21 +9,21 @@
 * accordance with the terms of the license agreement you entered into 
 * with ZK-Vinson. 
 *
-* @Title: ZKSecPatternMatcher.java 
+* @Title: ZKPatternMatcher.java 
 * @author Vinson 
 * @Package com.zk.security.common 
 * @Description: TODO(simple description this file what to do. ) 
 * @date Jul 26, 2021 11:32:18 PM 
 * @version V1.0 
 */
-package com.zk.security.common;
+package com.zk.core.commons;
 /** 
-* @ClassName: ZKSecPatternMatcher 
+* @ClassName: ZKPatternMatcher 
 * @Description: TODO(simple description this class what to do. ) 
 * @author Vinson 
 * @version 1.0 
 */
-public interface ZKSecPatternMatcher {
+public interface ZKPatternMatcher {
 
     boolean matches(String pattern, String source);
 

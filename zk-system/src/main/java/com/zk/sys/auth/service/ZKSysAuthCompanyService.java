@@ -16,7 +16,7 @@ import com.zk.core.exception.ZKCodeException;
 import com.zk.sys.auth.dao.ZKSysAuthCompanyDao;
 import com.zk.sys.auth.entity.ZKSysAuthCompany;
 import com.zk.sys.auth.entity.ZKSysAuthDefined;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 
 /**
  * ZKSysAuthCompanyService

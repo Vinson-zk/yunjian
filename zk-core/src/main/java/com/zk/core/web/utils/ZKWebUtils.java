@@ -848,4 +848,21 @@ public class ZKWebUtils extends org.springframework.web.util.WebUtils {
 
     }
 
+    /**
+     * 获得用户远程地址
+     */
+    public static String getRemoteAddr(HttpServletRequest request) {
+        String remoteAddr = request.getHeader("X-Real-IP");
+        if (ZKStringUtils.isBlank(remoteAddr)) {
+            remoteAddr = request.getHeader("X-Forwarded-For");
+        }
+        if (ZKStringUtils.isBlank(remoteAddr)) {
+            remoteAddr = request.getHeader("Proxy-Client-IP");
+        }
+        if (ZKStringUtils.isBlank(remoteAddr)) {
+            remoteAddr = request.getHeader("WL-Proxy-Client-IP");
+        }
+        return ZKStringUtils.isNotBlank(remoteAddr) ? remoteAddr : request.getRemoteAddr();
+    }
+
 }

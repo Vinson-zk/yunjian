@@ -19,7 +19,7 @@ import com.zk.core.commons.data.ZKPage;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.web.ZKMsgRes;
 import com.zk.security.annotation.ZKSecApiCode;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.sys.org.service.ZKSysOrgCompanyOptService;
 import com.zk.sys.org.service.ZKSysOrgCompanyService;       
 

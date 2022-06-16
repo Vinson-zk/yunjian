@@ -16,7 +16,7 @@
 * @date May 12, 2022 2:35:45 PM 
 * @version V1.0 
 */
-package com.zk.sys.org.api;
+package com.zk.sys.api.org;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,13 +33,22 @@ import com.zk.sys.common.ZKSysApiConstants;
 * @version 1.0 
 */
 //@FeignClient(name = "${spring.application.name}")
-@FeignClient(name = ZKSysApiConstants.YunJian_App_Name, contextId = "com.zk.sys.org.api.ZKSysOrgCompanyApi")
+@FeignClient(name = ZKSysApiConstants.YunJian_App_Name, contextId = "com.zk.sys.api.org.ZKSysOrgCompanyApi")
 public interface ZKSysOrgCompanyApi {
 
-    // 根据公司代码查公司详情
-    @RequestMapping(method = RequestMethod.GET,
-//            headers = { "_tkID=" + ZKServerApiUtils.s },
-            path = ZKSysApiConstants.YunJian_Api_Prefix + "/org/sysOrgCompany/sysOrgCompanyByCode")
+    /**
+     * 根据公司代码查公司详情
+     *
+     * @Title: getCompanyByCode
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date May 27, 2022 3:59:43 PM
+     * @param companyCode
+     * @return
+     * @return ZKMsgRes
+     */
+    @RequestMapping(method = RequestMethod.GET, path = ZKSysApiConstants.YunJian_Api_Prefix
+            + "/org/sysOrgCompany/sysOrgCompanyByCode")
     ZKMsgRes getCompanyByCode(@RequestParam("companyCode") String companyCode);
 
 }

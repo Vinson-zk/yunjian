@@ -15,8 +15,9 @@ import { connect } from 'dva';
 import { Icon } from "antd";
 
 import locales from "../../../locales/index";
-import { zkTools, ZKCustomComponents, ZKOriginalComponents } from "zkFramework";        
-const { ZKSpin, ZKModal,
+import { zkTools, ZKCustomComponents, ZKOriginalComponents } from "zkFramework";     
+// ZKOriginalComponents
+const { ZKSpin, ZKModal,<#compress>
 <#list zkTableInfo.cols as zkCol>
 	<#if zkCol.editStrategy == "EditString" || zkCol.editStrategy == "EditIcon">
 ZKInput, <#break>
@@ -37,9 +38,9 @@ ZKSelect, <#break>
 ZKRadio, <#break>
 	</#if>
 </#list>
-} = ZKOriginalComponents;
-const { 
-	ZKEditForm, 	
+</#compress>} = ZKOriginalComponents;
+// ZKCustomComponents
+const { ZKEditForm, <#compress>
 <#list zkTableInfo.cols as zkCol>
 	<#if zkCol.editStrategy == "EditJson" >
 ZKInputJson, <#break>
@@ -55,8 +56,9 @@ ZKIcon, <#break>
 ZKDateFormatPicker, <#break>
 	</#if>
 </#list>
-} = ZKCustomComponents;
-const { zkToolsMsg, zkToolsValidates, zkToolsNavAndMenu } = zkTools;
+</#compress>} = ZKCustomComponents;
+// zkTools
+const { zkToolsMsg, zkToolsValidates, zkToolsNavAndMenu } = zkTools;  
 
 class CInit${zkTableInfo.funcName}Edit extends Component {
 
@@ -211,27 +213,34 @@ class CInit${zkTableInfo.funcName}Edit extends Component {
 					>
 		<#if zkCol.editStrategy == "EditInt">
 			<#if zkCol.attrIsUpdate == true >
-                        <ZKInputNumber precision={0} />
+                        <ZKInputNumber placeholder={zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}.placeholder')}
+                        	precision={0} />
             <#else>
-                        <ZKInputNumber precision={0} disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} />
+                        <ZKInputNumber placeholder={zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}.placeholder')}
+                        	precision={0} disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} />
             </#if>
         <#elseif zkCol.editStrategy == "EditFloat">
 			<#if zkCol.attrIsUpdate == true >
-                        <ZKInputNumber precision={2} />
+                        <ZKInputNumber placeholder={zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}.placeholder')}
+                        	precision={2} />
             <#else>
-            			<ZKInputNumber precision={2} disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} />
+            			<ZKInputNumber placeholder={zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}.placeholder')}
+            				precision={2} disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} />
             </#if>
 		<#elseif zkCol.editStrategy == "EditJson">
 			<#if zkCol.attrIsUpdate == true >
-                        <ZKInputJson styleType="compact" primaryAttr={lang} attrs={locales} />
+                        <ZKInputJson placeholder={zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}.placeholder')}
+                        	styleType="compact" primaryAttr={lang} attrs={locales} />
             <#else>
-                        <ZKInputJson styleType="compact" primaryAttr={lang} attrs={locales} disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} />
+                        <ZKInputJson placeholder={zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}.placeholder')}
+                        	styleType="compact" primaryAttr={lang} attrs={locales} disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} />
             </#if>
 		<#elseif zkCol.editStrategy == "EditSel">
 			<#if zkCol.attrIsUpdate == true >
-                        <ZKSelect>
+                        <ZKSelect placeholder={zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}.placeholder')} >
             <#else>
-                        <ZKSelect disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} >
+                        <ZKSelect placeholder={zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}.placeholder')}
+                        	disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} >
             </#if>
                             <ZKSelect.Option value={0}>{zkToolsMsg.msgFormatByIntl(intl, 'global.app.info.no')}</ZKSelect.Option>
                             <ZKSelect.Option value={1}>{zkToolsMsg.msgFormatByIntl(intl, 'global.app.info.yes')}</ZKSelect.Option>
@@ -272,9 +281,10 @@ class CInit${zkTableInfo.funcName}Edit extends Component {
             </#if>
 		<#else>
 			<#if zkCol.attrIsUpdate == true >
-                        <ZKInput />
+                        <ZKInput placeholder={zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}.placeholder')} />
             <#else>
-            			<ZKInput disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} />
+            			<ZKInput placeholder={zkToolsMsg.msgFormatByIntl(intl, '${zkModule.modulePrefixLower}.${zkModule.moduleNameUncap}<#if zkTableInfo.subModuleName??&zkTableInfo.subModuleName != "">.${zkTableInfo.subModuleName?uncap_first}</#if>.${zkTableInfo.funcName}.${zkCol.attrName?uncap_first}.placeholder')}
+            				disabled = {optEntity.<#if zkTableInfo.pkCol??>${zkTableInfo.pkCol.attrName?uncap_first}<#else>pkId</#if>?true:false} />
             </#if>
 		</#if>
                 	</ZKEditForm.Item>

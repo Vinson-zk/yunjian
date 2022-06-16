@@ -25,8 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.zk.core.utils.ZKEnvironmentUtils;
-import com.zk.framwwork.security.ZKAuthPermission;
-import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.framework.security.ZKAuthPermission;
+import com.zk.framework.security.utils.ZKUserCacheUtils;
 import com.zk.security.authz.ZKSecAuthorizationInfo;
 import com.zk.security.authz.ZKSecSimpleAuthorizationInfo;
 import com.zk.security.exception.ZKSecCodeException;

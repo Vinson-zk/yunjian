@@ -78,7 +78,7 @@ public class ZKWXApiOfficialAccountsService {
 
         // *********************************************************************
         // openid 用户的唯一标识
-        outAccountUser.setWxOpenid(resJson.getString(MsgAttr.userInfo.openid));
+        outAccountUser.setWxOpenid(openid);
         // nickname 用户昵称
         outAccountUser.setWxNickname(resJson.getString(MsgAttr.userInfo.nickname));
         // sex 用户的性别，值为1时是男性，值为2时是女性，值为0时是未知
@@ -147,10 +147,17 @@ public class ZKWXApiOfficialAccountsService {
         ZKWXUtils.checkJsonMsg(resJson);
         
         // *********************************************************************
-        // subscribe 用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。
-        outAccountUser.setWxSubscribeScene(resJson.getString(MsgAttr.userInfo.subscribe_scene));
         // openid 用户的标识，对当前公众号唯一
-        outAccountUser.setWxOpenid(resJson.getString(MsgAttr.userInfo.openid));
+        outAccountUser.setWxOpenid(openid);
+        // subscribe 用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。
+//        resJson.getInteger(MsgAttr.userInfo.subscribe_scene)
+        outAccountUser.setWxSubscribe(resJson.getInteger(MsgAttr.userInfo.subscribe));
+        if (outAccountUser.getWxSubscribe() == null || outAccountUser.getWxSubscribe().intValue() != 1) {
+            // 没有关注
+            outAccountUser.setWxSubscribe(ZKOfficialAccountsUser.KeyWxSubscribe.unsubscribe);
+            return;
+        }
+
         // 不返回值了 用户昵称
         outAccountUser.setWxNickname(resJson.getString(MsgAttr.userInfo.nickname));
         // 不返回值了 用户的性别，值为1时是男性，值为2时是女性，值为0时是未知

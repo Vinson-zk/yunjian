@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zk.core.web.ZKMsgRes;
-import com.zk.framwwork.security.ZKAuthPermission;
-import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.framework.security.ZKAuthPermission;
+import com.zk.framework.security.utils.ZKUserCacheUtils;
 import com.zk.security.authz.ZKSecAuthorizationInfo;
 import com.zk.security.utils.ZKSecSecurityUtils;
 import com.zk.sys.org.service.ZKSysOrgCompanyService;

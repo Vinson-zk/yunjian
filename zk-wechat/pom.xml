@@ -102,6 +102,11 @@
 			<artifactId>zk-system-api</artifactId>
 			<version>${version.zk.system.api}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.zk</groupId>
+			<artifactId>zk-log</artifactId>
+			<version>${version.zk.log}</version>
+		</dependency>
 		
 		<!-- ***** spring cloud begin -->
 		<dependency>
@@ -226,7 +231,7 @@
 	    </dependency> -->
 	    <!-- ##### log4j end -->
 	    
-	    <!-- ***** shiro begin -->
+	    <!-- ***** shiro begin 
 		<dependency>
 		    <groupId>org.apache.shiro</groupId>
 		    <artifactId>shiro-spring</artifactId>
@@ -246,7 +251,7 @@
 		<dependency>
 		    <groupId>org.apache.shiro</groupId>
 		    <artifactId>shiro-cas</artifactId>
-		</dependency>
+		</dependency> -->
 		<!-- ##### shiro end -->
 	    
 	    <!-- ***** fasterxml.jackson begin -->

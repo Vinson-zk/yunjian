@@ -120,6 +120,8 @@ public class ZKWXOfficialAccountsEventService {
                 appId, fromUserName);
         if (officialAccountsUser == null) {
             officialAccountsUser = new ZKOfficialAccountsUser();
+            // 设置为公众号关注时创建
+            officialAccountsUser.setWxChannel(ZKOfficialAccountsUser.KeyWxCannel.officialAccount);
         }
         try {
             this.wxOfficialAccountsUserService.getUserUnionID(officialAccountsUser, thirdPartyAppId, appId,
@@ -128,6 +130,8 @@ public class ZKWXOfficialAccountsEventService {
 //                    fromUserName, accessTokenStr);
         }
         catch(ZKCodeException e) {
+            log.error("[>_<:20220523-1428-001] 用户关注公众号事件，取用户信息失败；thirdPartyAppId：{}，appId：{}，openid:{}",
+                    thirdPartyAppId, appId, fromUserName);
             e.printStackTrace();
             officialAccountsUser.setWxOpenid(fromUserName);
             this.wxOfficialAccountsUserService.putUserInfo(thirdPartyAppId, appId, officialAccountsUser);
@@ -135,8 +139,6 @@ public class ZKWXOfficialAccountsEventService {
 
         officialAccountsUser.setWxSubscribeTimeStr(createTime);
         officialAccountsUser.setWxSubscribeDate(ZKDateUtils.parseDate(Long.valueOf(createTime) * 1000));
-        officialAccountsUser.setWxChannel(ZKOfficialAccountsUser.KeyWxCannel.officialAccount);
-        officialAccountsUser.setWxSubscribeStatus(ZKOfficialAccountsUser.KeyWxSubscribeStatus.subscribe);
         this.officialAccountsUserService.save(officialAccountsUser);
     }
 
@@ -152,7 +154,7 @@ public class ZKWXOfficialAccountsEventService {
         ZKOfficialAccountsUser officialAccountsUser = this.officialAccountsUserService.getByOpenId(thirdPartyAppId,
                 appId, fromUserName);
         if (officialAccountsUser != null) {
-            officialAccountsUser.setWxSubscribeStatus(ZKOfficialAccountsUser.KeyWxSubscribeStatus.unsubscribe);
+            officialAccountsUser.setWxSubscribe(ZKOfficialAccountsUser.KeyWxSubscribe.unsubscribe);
             this.officialAccountsUserService.save(officialAccountsUser);
         }
         else {

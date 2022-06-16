@@ -23,7 +23,8 @@ import com.zk.db.annotation.ZKTable;
 import com.zk.db.commons.ZKDBQueryType;
 import com.zk.db.commons.ZKSqlConvertDelegating;
 import com.zk.db.mybatis.commons.ZKSqlProvider;
-import com.zk.framwwork.security.userdetails.ZKUser;
+import com.zk.framework.security.userdetails.ZKUser;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 
 /**
  * 用户表

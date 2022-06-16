@@ -21,7 +21,7 @@ package com.zk.wechat.wx.thirdParty.msgBean;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.zk.sys.org.entity.ZKSysOrgCompany;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.wechat.wx.common.ZKWXConstants;
 
 /** 

@@ -36,6 +36,7 @@ import org.springframework.cloud.netflix.eureka.MutableDiscoveryClientOptionalAr
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.client.RestTemplate;
@@ -50,9 +51,10 @@ import com.zk.core.web.resolver.ZKExceptionHandlerResolver;
 import com.zk.core.web.utils.ZKWebUtils;
 import com.zk.db.dynamic.spring.dataSource.ZKDynamicDataSource;
 import com.zk.db.dynamic.spring.transaction.ZKDynamicTransactionManager;
-import com.zk.framwwork.serCen.ZKSerCenEncrypt;
-import com.zk.framwwork.serCen.eureka.ZKEurekaTransportClientFactories;
-import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
+import com.zk.framework.serCen.ZKSerCenEncrypt;
+import com.zk.framework.serCen.eureka.ZKEurekaTransportClientFactories;
+import com.zk.framework.serCen.support.ZKSerCenSampleCipher;
+import com.zk.log.interceptor.ZKLogAccessInterceptor;
 
 /** 
 * @ClassName: ZKCodeGenConfiguration 
@@ -60,12 +62,14 @@ import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
 * @author Vinson 
 * @version 1.0 
 */
+@Configuration
 @ImportResource(locations = { "classpath:xmlConfig/spring_ctx_application.xml",
         "classpath:xmlConfig/spring_ctx_devleopment_tool_application.xml", "classpath:xmlConfig/spring_ctx_mvc.xml",
         "classpath:xmlConfig/spring_ctx_dynamic_mybatis.xml" })
 //@ImportAutoConfiguration(classes = { ZKMongoAutoConfiguration.class })
 @AutoConfigureBefore(value = { 
 //        ZKMongoAutoConfiguration.class, 
+        ZKCodeGenAfterConfiguration.class,
         ZKCodeGenShiroConfiguration.class,
         EnableWebMvcConfiguration.class, 
         ServletWebServerFactoryAutoConfiguration.class
@@ -316,6 +320,21 @@ public class ZKCodeGenConfiguration {
     @Bean
     public ZKExceptionHandlerResolver zkExceptionHandlerResolver() {
         return new ZKExceptionHandlerResolver();
+    }
+
+    /**
+     * 记录日志拦截器
+     *
+     * @Title: logAccessInterceptor
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Jun 14, 2022 11:59:49 AM
+     * @return
+     * @return ZKLogAccessInterceptor
+     */
+    @Bean
+    public ZKLogAccessInterceptor logAccessInterceptor() {
+        return new ZKLogAccessInterceptor();
     }
 
 }

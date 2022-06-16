@@ -18,11 +18,11 @@ import com.zk.core.utils.ZKEncodingUtils;
 import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKMsgUtils;
 import com.zk.core.utils.ZKStringUtils;
-import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.framework.security.utils.ZKUserCacheUtils;
 import com.zk.sys.auth.service.ZKSysAuthUserRoleService;
 import com.zk.sys.auth.service.ZKSysAuthUserService;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.sys.org.dao.ZKSysOrgUserDao;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
 import com.zk.sys.org.entity.ZKSysOrgDept;
 import com.zk.sys.org.entity.ZKSysOrgUser;
 

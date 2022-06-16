@@ -9,8 +9,8 @@ import java.util.List;
 import org.junit.Test;
 
 import com.zk.base.entity.ZKBaseEntity;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.sys.helper.ZKSysTestHelper;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
 
 import junit.framework.TestCase;
 

@@ -158,8 +158,14 @@ public class ZKSecSecurityUtils {
 
     // 取当前令牌
     public static ZKSecTicket getTikcet() {
-        if (getSubject() != null) {
-            return getSubject().getTicket(false);
+        try {
+            if (getSubject() != null) {
+                return getSubject().getTicket(false);
+            }
+        }
+        catch(Exception e) {
+            log.error("[>_<:20220524-1022-001 取用户令牌失败！");
+            e.printStackTrace();
         }
         return null;
     }

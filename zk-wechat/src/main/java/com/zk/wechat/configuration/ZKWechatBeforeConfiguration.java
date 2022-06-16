@@ -25,7 +25,6 @@ import javax.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration;
@@ -35,23 +34,23 @@ import org.springframework.cloud.netflix.eureka.MutableDiscoveryClientOptionalAr
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
-import com.zk.cache.ZKCacheManager;
-import com.zk.cache.redis.ZKRedisCacheManager;
 import com.zk.core.commons.ZKValidatorMessageInterpolator;
-import com.zk.core.redis.ZKJedisOperatorStringKey;
 import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKLocaleUtils;
 import com.zk.core.web.filter.ZKCrosFilter;
 import com.zk.core.web.resolver.ZKExceptionHandlerResolver;
 import com.zk.core.web.utils.ZKWebUtils;
-import com.zk.framwwork.serCen.ZKSerCenEncrypt;
-import com.zk.framwwork.serCen.eureka.ZKEurekaTransportClientFactories;
-import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
+import com.zk.framework.serCen.ZKSerCenEncrypt;
+import com.zk.framework.serCen.eureka.ZKEurekaTransportClientFactories;
+import com.zk.framework.serCen.support.ZKSerCenSampleCipher;
+import com.zk.log.interceptor.ZKLogAccessInterceptor;
 
 /** 
 * @ClassName: ZKWechatConfiguration 
@@ -59,18 +58,24 @@ import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
 * @author Vinson 
 * @version 1.0 
 */
+@Configuration
 @AutoConfigureBefore(value = { 
+        ZKWechatJdbcConfiguration.class, 
+        ZKWechatRedisConfiguration.class, 
         ZKWechatAfterConfiguration.class,
-        ServletWebServerFactoryAutoConfiguration.class
-    })
-@AutoConfigureAfter(value = { ZKWechatRedisConfiguration.class,
-//        ZKWechatSecConfiguration.class,
-        ZKWechatJdbcConfiguration.class })
-@ImportResource(locations = { "classpath:xmlConfig/spring_ctx_application.xml",
-        "classpath:xmlConfig/spring_ctx_wechat_application.xml", "classpath:xmlConfig/spring_ctx_mvc.xml" })
-public class ZKWechatConfiguration {
-    
-    protected static Logger log = LoggerFactory.getLogger(ZKWechatConfiguration.class);
+        ServletWebServerFactoryAutoConfiguration.class })
+@ImportResource(locations = {
+        "classpath:xmlConfig/spring_ctx_application.xml",
+        "classpath:xmlConfig/spring_ctx_wechat_application.xml",
+        "classpath:xmlConfig/spring_ctx_mvc.xml" })
+@PropertySource(encoding = "UTF-8", value = { 
+        "classpath:zk.log.properties",
+        "classpath:zk.wechat.wx.officialAccounts.properties",
+        "classpath:zk.wechat.wx.thirdParty.properties", 
+        "classpath:zk.wechat.wx.pay.properties" })
+public class ZKWechatBeforeConfiguration {
+
+    protected static Logger log = LoggerFactory.getLogger(ZKWechatBeforeConfiguration.class);
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -78,13 +83,11 @@ public class ZKWechatConfiguration {
     @PostConstruct
     public void postConstruct() {
         // 方法在 @Autowired before 后执行
-//        System.out.println("[^_^:20191219-2154-001] ===== ZKSerCenConfiguration class postConstruct ");
-//        System.out.println("[^_^:20191219-2154-001] ----- ZKSerCenConfiguration class postConstruct ");
     }
 
     @Autowired
     public void before(RequestMappingHandlerAdapter requestMappingHandlerAdapter) {
-        log.info("[^_^:20200805-1808-001] ===== ZKSysConfiguration class before ");
+        log.info("[^_^:20200805-1808-001] ===== ZKWechatBeforeConfiguration class before ");
 
         ZKEnvironmentUtils.initContext(applicationContext);
 //        ZKLocaleUtils.setLocale(ZKLocaleUtils.valueOf("en_US"));
@@ -96,7 +99,7 @@ public class ZKWechatConfiguration {
         // 设置下 RequestMappingHandlerAdapter 的 ignoreDefaultModelOnRedirect=true,
         // 这样可以提高效率，避免不必要的检索。
         requestMappingHandlerAdapter.setIgnoreDefaultModelOnRedirect(true);
-        log.info("[^_^:20200805-1808-001] ----- ZKWechatConfiguration class before ");
+        log.info("[^_^:20200805-1808-001] ----- ZKWechatBeforeConfiguration class before ");
     }
 
     /******************************************************************/
@@ -204,24 +207,6 @@ public class ZKWechatConfiguration {
         return new ZKExceptionHandlerResolver();
     }
 
-    /**
-     * 项目的缓存管理
-     *
-     * @Title: zkCacheManager
-     * @Description: TODO(simple description this method what to do.)
-     * @author Vinson
-     * @date Nov 7, 2021 3:26:49 PM
-     * @param jedisOperator
-     * @return
-     * @return ZKCacheManager<String>
-     */
-    @Bean(name = "zkCacheManager")
-    public ZKCacheManager<String> zkCacheManager(ZKJedisOperatorStringKey jedisOperator) {
-        ZKRedisCacheManager zkCacheManager = new ZKRedisCacheManager();
-        zkCacheManager.setJedisOperator(jedisOperator);
-        return zkCacheManager;
-    }
-
 //    /**
 //     * 打开feign默认契约后 spring的注解就不起作用咯 要使用它自己的注解 如 RequestLine @RuequestLine("GET /api/server/list")
 //     * 
@@ -242,5 +227,20 @@ public class ZKWechatConfiguration {
 //         */
 //        return new Contract.Default();
 //    }
+
+    /**
+     * 记录日志拦截器
+     *
+     * @Title: logAccessInterceptor
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Jun 14, 2022 11:59:49 AM
+     * @return
+     * @return ZKLogAccessInterceptor
+     */
+    @Bean
+    public ZKLogAccessInterceptor logAccessInterceptor() {
+        return new ZKLogAccessInterceptor();
+    }
 
 }

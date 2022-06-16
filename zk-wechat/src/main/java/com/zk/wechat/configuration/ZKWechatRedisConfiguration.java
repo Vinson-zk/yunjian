@@ -25,6 +25,7 @@ import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 import com.zk.core.redis.ZKJedisOperatorByte;
@@ -40,11 +41,12 @@ import redis.clients.jedis.JedisPoolConfig;
 * @author Vinson 
 * @version 1.0 
 */
+@Configuration
 @AutoConfigureBefore(value = { ZKWechatAfterConfiguration.class })
 @PropertySource(encoding = "UTF-8", value = { "classpath:zk.wechat.redis.properties" })
 public class ZKWechatRedisConfiguration {
 
-    private static Logger logger = LoggerFactory.getLogger(ZKWechatRedisConfiguration.class);
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     /*** jedis 整合 配置 ***/
     @Value("${zk.wechat.cache.redis.host:127.0.0.1}")

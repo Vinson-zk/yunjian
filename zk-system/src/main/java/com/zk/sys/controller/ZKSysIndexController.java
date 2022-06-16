@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKMsgUtils;
+import com.zk.core.web.ZKMsgRes;
 import com.zk.core.web.utils.ZKWebUtils;
 
 /** 
@@ -32,14 +33,13 @@ import com.zk.core.web.utils.ZKWebUtils;
 * @version 1.0 
 */
 @RestController
-@RequestMapping("${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/index")
+@RequestMapping("${zk.path.admin}/${zk.path.sys}/${zk.sys.version}")
 public class ZKSysIndexController {
 
-    @RequestMapping("anon")
-//    @ResponseBody
-    public String welcome() {
-        return ZKMsgUtils.getMessage("zk.sys.msg.welcome", null, ZKWebUtils.getLocale())
-                + ZKEnvironmentUtils.getString("spring.application.name", "zk system");
+    @RequestMapping({ "", "index" })
+    public ZKMsgRes welcome() {
+        return ZKMsgRes.asOk(ZKMsgUtils.getMessage("zk.sys.msg.welcome", null, ZKWebUtils.getLocale())
+                + ZKEnvironmentUtils.getString("spring.application.name", "zk system"));
     }
 
 }

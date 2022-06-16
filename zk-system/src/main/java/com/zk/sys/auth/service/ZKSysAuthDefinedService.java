@@ -10,12 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Maps;
+import com.zk.base.entity.ZKBaseEntity;
 import com.zk.base.service.ZKBaseService;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.exception.ZKValidatorException;
 import com.zk.core.utils.ZKMsgUtils;
 import com.zk.core.utils.ZKStringUtils;
-import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.framework.security.utils.ZKUserCacheUtils;
 import com.zk.sys.auth.dao.ZKSysAuthDefinedDao;
 import com.zk.sys.auth.entity.ZKSysAuthDefined;
 
@@ -62,11 +63,17 @@ public class ZKSysAuthDefinedService extends ZKBaseService<String, ZKSysAuthDefi
             // 新记录，判断代码是否唯一
             ZKSysAuthDefined old = this.getByCode(authDefined.getCode());
             if (old != null) {
-                // zk.sys.020010=权限代码[{0}]已存在
-                log.error("[>_<:20220504-0917-001] 权限代码[{}]已存在；", authDefined.getCode());
-                Map<String, String> validatorMsg = Maps.newHashMap();
-                validatorMsg.put("code", ZKMsgUtils.getMessage("zk.sys.020010", authDefined.getCode()));
-                throw ZKCodeException.asDataValidator(validatorMsg);
+                if (old.getDelFlag().intValue() == ZKBaseEntity.DEL_FLAG.normal) {
+                    // zk.sys.020010=权限代码[{0}]已存在
+                    log.error("[>_<:20220504-0917-001] 权限代码[{}]已存在；", authDefined.getCode());
+                    Map<String, String> validatorMsg = Maps.newHashMap();
+                    validatorMsg.put("code", ZKMsgUtils.getMessage("zk.sys.020010", authDefined.getCode()));
+                    throw ZKCodeException.asDataValidator(validatorMsg);
+                }
+                else {
+                    authDefined.setDelFlag(ZKBaseEntity.DEL_FLAG.normal);
+                    authDefined.setPkId(old.getPkId());
+                }
             }
         }
         return super.save(authDefined);

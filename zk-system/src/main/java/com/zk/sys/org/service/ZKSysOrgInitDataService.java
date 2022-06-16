@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zk.core.commons.data.ZKJson;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.sys.org.entity.ZKSysOrgUser;
 
 /**

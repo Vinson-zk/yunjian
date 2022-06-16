@@ -24,7 +24,6 @@ import org.junit.Test;
 
 import com.zk.core.utils.ZKJsonUtils;
 import com.zk.core.utils.ZKStringUtils;
-import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
 
 import junit.framework.TestCase;
 

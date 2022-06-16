@@ -20,7 +20,7 @@ import org.apache.ibatis.mapping.FetchType;
 import com.zk.base.dao.ZKBaseTreeDao;
 import com.zk.base.myBaits.provider.ZKMyBatisTreeSqlProvider;
 import com.zk.db.annotation.ZKMyBatisDao;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 
 /**
  * ZKSysOrgCompanyDAO接口

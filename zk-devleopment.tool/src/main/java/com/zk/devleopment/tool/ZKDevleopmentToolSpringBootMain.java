@@ -22,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
@@ -35,8 +34,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.zk.devleopment.tool.gen.configuration.ZKCodeGenConfiguration;
-
 /** 
 * @ClassName: ZKDevleopmentToolSpringBootMain 
 * @Description: TODO(simple description this class what to do. ) 
@@ -44,27 +41,22 @@ import com.zk.devleopment.tool.gen.configuration.ZKCodeGenConfiguration;
 * @version 1.0 
 */
 @SpringBootApplication(exclude = { 
+//        WebMvcAutoConfiguration.class,
         DataSourceAutoConfiguration.class,
         TransactionAutoConfiguration.class,
         HibernateJpaAutoConfiguration.class,
         MongoAutoConfiguration.class
-//        , WebMvcAutoConfiguration.class
 })
 @EnableEurekaClient
 @EnableTransactionManagement(proxyTargetClass = true)
 //@ComponentScan(basePackages = { "com.zk.server.central.filter" })
 //@ServletComponentScan(basePackages = { "com.zk.server.central.filter" })
-@ImportAutoConfiguration(classes = { 
-        ZKCodeGenConfiguration.class
-//        , ZKMongoAutoConfiguration.class
-//        , ZKCodeGenMvcConfiguration.class
-//        , ZKSysShiroConfiguration.class 
-})
 @PropertySource(encoding = "UTF-8", value = { 
+        "classpath:zk.log.properties",
         "classpath:zk.devleopment.tool.jdbc.properties"
         })
 //@AutoConfigureOrder(value = Ordered.HIGHEST_PRECEDENCE)
-@ComponentScan(basePackages = { "com.zk.devleopment.tool.*" })
+@ComponentScan(basePackages = { "com.zk.devleopment.tool.*", "com.zk.log.*" })
 public class ZKDevleopmentToolSpringBootMain {
 
     protected static Logger log = LoggerFactory.getLogger(ZKDevleopmentToolSpringBootMain.class);

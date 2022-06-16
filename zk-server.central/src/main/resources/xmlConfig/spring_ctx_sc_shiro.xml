@@ -51,7 +51,6 @@
         		<!-- 放开静态资源  -->
         		
         		/eureka/** = anon
-        		
         		/static/** = anon
     			/${zk.path.admin}/${zk.path.serCen}/anon = anon
     			/${zk.path.admin}/${zk.path.serCen}/test/** = anon

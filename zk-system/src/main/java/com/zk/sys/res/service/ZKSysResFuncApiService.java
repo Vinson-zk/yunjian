@@ -13,7 +13,7 @@ import com.google.common.collect.Maps;
 import com.zk.base.service.ZKBaseService;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.utils.ZKMsgUtils;
-import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.framework.security.utils.ZKUserCacheUtils;
 import com.zk.sys.auth.service.ZKSysAuthFuncApiService;
 import com.zk.sys.res.dao.ZKSysResFuncApiDao;
 import com.zk.sys.res.entity.ZKSysResFuncApi;

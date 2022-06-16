@@ -16,7 +16,7 @@
 * @date May 17, 2022 10:29:52 AM 
 * @version V1.0 
 */
-package com.zk.sys.sec.api;
+package com.zk.sys.api.sec;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +31,7 @@ import com.zk.sys.common.ZKSysApiConstants;
 * @author Vinson 
 * @version 1.0 
 */
-@FeignClient(name = ZKSysApiConstants.YunJian_App_Name, contextId = "com.zk.sys.sec.api.ZKSysSecAuthcApi")
+@FeignClient(name = ZKSysApiConstants.YunJian_App_Name, contextId = "com.zk.sys.api.sec.ZKSysSecAuthcApi")
 public interface ZKSysSecAuthcApi {
 
     // 根据用户ID查询用户详情

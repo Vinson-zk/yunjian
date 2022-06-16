@@ -9,24 +9,24 @@
 * accordance with the terms of the license agreement you entered into 
 * with ZK-Vinson. 
 *
-* @Title: ZKSecUrlPathMatcher.java 
+* @Title: ZKUrlPathMatcher.java 
 * @author Vinson 
 * @Package com.zk.security.common 
 * @Description: TODO(simple description this file what to do. ) 
 * @date Jul 26, 2021 11:49:37 PM 
 * @version V1.0 
 */
-package com.zk.security.common;
+package com.zk.core.commons;
 
 import com.zk.core.utils.ZKStringUtils;
 
 /** 
-* @ClassName: ZKSecUrlPathMatcher 
+* @ClassName: ZKUrlPathMatcher 
 * @Description: TODO(simple description this class what to do. ) 
 * @author Vinson 
 * @version 1.0 
 */
-public class ZKSecUrlPathMatcher implements ZKSecPatternMatcher {
+public class ZKUrlPathMatcher implements ZKPatternMatcher {
 
     /**
      * Default path separator: "/"

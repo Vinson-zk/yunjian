@@ -28,6 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.zk.core.utils.ZKFileUtils;
+import com.zk.core.utils.ZKFreeMarkersUtils;
 import com.zk.devleopment.tool.gen.entity.ZKModule;
 import com.zk.devleopment.tool.gen.entity.ZKTableInfo;
 
@@ -81,7 +82,7 @@ public class ZKCodeFileUtils {
             paramsMap.put("zkTableInfo", zkTableInfo);
             /*** 生成文件内容 ***/
 //          System.out.println("[^_^:201705271521-001] " + StringUtils.trimToEmpty(templateInfo.getContent()));
-            content = ZKFreeMarkers.renderString(StringUtils.trimToEmpty(content), paramsMap);
+            content = ZKFreeMarkersUtils.renderString(StringUtils.trimToEmpty(content), paramsMap);
             /*** 生成文件【写文件】 ***/
             File f = ZKFileUtils.createFile(filePath, fileName, true);
             ZKFileUtils.writeFile(content, f, false);

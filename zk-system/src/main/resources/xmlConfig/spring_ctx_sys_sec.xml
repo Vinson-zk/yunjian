@@ -19,7 +19,7 @@
                 <entry key="logout">
                 	<bean class="com.zk.security.web.filter.authc.ZKSecLogoutFilter"></bean>
                 </entry> 
-                <!-- 登入 过虑器 -->
+                <!-- 登入 过虑器 authcUser -->
                 <entry key="login">
                 	<bean class="com.zk.security.web.filter.authc.ZKSecAuthcUserFilter"></bean> 
                 </entry>  
@@ -35,7 +35,7 @@
         		<!-- 放开静态资源  
         		/eureka/** = anon -->
         		<!-- /static/** = anon -->
-        		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/sec/login = login
+        		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/sec/login = authcUser
         		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/sec/logout = logout
         		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/org/sysOrgCompany/sysOrgCompanyByCode = serverOrUser
         		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/sec/authc/getUserAuthc = serverAndUser

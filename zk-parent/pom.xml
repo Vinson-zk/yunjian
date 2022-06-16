@@ -76,6 +76,7 @@
 		<version.zk.wechat>1.0.0-SNAPSHOT</version.zk.wechat>
 		<version.zk.test>1.0.0-SNAPSHOT</version.zk.test>
 		<version.zk.demo>1.0.0-SNAPSHOT</version.zk.demo>
+		<version.zk.log>1.0.0</version.zk.log>
 		
 		<!-- maven 插件版本 -->
 		<!-- <plugin.version.maven.clean>2.6.1</plugin.version.maven.clean>
@@ -121,6 +122,9 @@
 		<module>../zk-system</module>
 		<module>../zk-wechat</module>
 		<module>../zk-system-api</module>
+		<module>../zk-mail</module>
+		<module>../zk-log</module>
+		<module>../zk-zuul</module>
 	</modules> 
 	 
 	<dependencyManagement></dependencyManagement>

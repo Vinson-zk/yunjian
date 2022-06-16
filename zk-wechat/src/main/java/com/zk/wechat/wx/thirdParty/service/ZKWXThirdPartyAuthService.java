@@ -28,7 +28,7 @@ import com.zk.base.entity.ZKBaseEntity;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKStringUtils;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.wechat.common.ZKWechatCacheUtils;
 import com.zk.wechat.officialAccounts.entity.ZKOfficialAccounts;
 import com.zk.wechat.officialAccounts.service.ZKOfficialAccountsService;

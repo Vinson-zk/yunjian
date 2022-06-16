@@ -23,7 +23,7 @@ import java.security.SecureRandom;
 
 import com.zk.core.encrypt.ZKRSAKey;
 import com.zk.core.encrypt.utils.ZKEncryptRsaUtils;
-import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
+import com.zk.framework.serCen.support.ZKSerCenSampleCipher;
 import com.zk.server.central.commons.ZKSerCenCerCipherManager;
 
 /** 

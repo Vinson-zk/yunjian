@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; All rights reserved.
  */
-package com.zk.sys.org.entity;
+package com.zk.sys.entity.org;
 
 import java.util.Date;
 

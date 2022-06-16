@@ -25,7 +25,7 @@ import com.zk.sys.auth.entity.ZKSysAuthCompany;
 import com.zk.sys.auth.entity.ZKSysAuthDefined;
 import com.zk.sys.auth.service.ZKSysAuthCompanyService;
 import com.zk.sys.auth.service.ZKSysAuthDefinedService;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.sys.org.service.ZKSysOrgCompanyService;
 
 /**

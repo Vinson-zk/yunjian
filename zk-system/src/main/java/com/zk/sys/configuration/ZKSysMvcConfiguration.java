@@ -17,12 +17,29 @@
 * @version V1.0 
 */
 package com.zk.sys.configuration;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.zk.log.interceptor.ZKLogAccessInterceptor;
+
 /** 
 * @ClassName: ZKSysMvcConfiguration 
 * @Description: TODO(simple description this class what to do.) 
 * @author Vinson 
 * @version 1.0 
 */
-public class ZKSysMvcConfiguration {
+@Configuration
+public class ZKSysMvcConfiguration implements WebMvcConfigurer{ 
+
+    @Autowired
+    private ZKLogAccessInterceptor logAccessInterceptor;
+     
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(this.logAccessInterceptor).addPathPatterns("/**");
+    } 
 
 }

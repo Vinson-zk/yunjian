@@ -14,7 +14,7 @@ import com.zk.base.service.ZKBaseService;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.utils.ZKMsgUtils;
 import com.zk.core.utils.ZKStringUtils;
-import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.framework.security.utils.ZKUserCacheUtils;
 import com.zk.sys.sec.realm.ZKSysSecRealm;
 import com.zk.sys.settings.dao.ZKSysSetItemDao;
 import com.zk.sys.settings.entity.ZKSysSetCollection;

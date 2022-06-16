@@ -27,7 +27,7 @@ import com.zk.core.commons.data.ZKJson;
 import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKStringUtils;
 import com.zk.core.web.utils.ZKHttpApiUtils;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.wechat.officialAccounts.entity.ZKOfficialAccounts;
 import com.zk.wechat.wx.officialAccounts.ZKWXOfficialAccountsConstants;
 import com.zk.wechat.wx.officialAccounts.msgBean.ZKWXAccountAuthAccessToken;

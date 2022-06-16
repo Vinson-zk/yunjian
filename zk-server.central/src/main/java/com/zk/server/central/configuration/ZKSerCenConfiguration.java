@@ -53,10 +53,10 @@ import com.zk.core.web.filter.ZKCrosFilter;
 import com.zk.core.web.filter.ZKOncePerFilter;
 import com.zk.db.dynamic.spring.dataSource.ZKDynamicDataSource;
 import com.zk.db.dynamic.spring.transaction.ZKDynamicTransactionManager;
-import com.zk.framwwork.serCen.ZKSerCenDecode;
-import com.zk.framwwork.serCen.ZKSerCenEncrypt;
-import com.zk.framwwork.serCen.eureka.ZKEurekaTransportClientFactories;
-import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
+import com.zk.framework.serCen.ZKSerCenDecode;
+import com.zk.framework.serCen.ZKSerCenEncrypt;
+import com.zk.framework.serCen.eureka.ZKEurekaTransportClientFactories;
+import com.zk.framework.serCen.support.ZKSerCenSampleCipher;
 import com.zk.server.central.commons.ZKSerCenCerCipherManager;
 import com.zk.server.central.commons.support.ZKSerCenCerCipherManagerImpl;
 import com.zk.server.central.filter.ZKSerCenRegisterFilter;
@@ -111,6 +111,8 @@ public class ZKSerCenConfiguration extends ZKCoreConfiguration {
         System.out.println("[^_^:20191219-2154-001] ===== ZKSerCenConfiguration class postConstruct ");
         System.out.println("[^_^:20191219-2154-001] spring.mvc.view.prefix:"
                 + ZKEnvironmentUtils.getString("spring.mvc.view.prefix"));
+        System.out.println("[^_^:20191219-2154-001] spring.freemarker.prefix:"
+                + ZKEnvironmentUtils.getString("spring.freemarker.prefix"));
         System.out.println("[^_^:20191219-2154-001] ----- ZKSerCenConfiguration class postConstruct ");
     }
 

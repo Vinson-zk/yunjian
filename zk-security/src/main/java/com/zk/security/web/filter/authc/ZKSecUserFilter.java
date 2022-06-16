@@ -20,7 +20,9 @@ package com.zk.security.web.filter.authc;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
+import com.zk.core.web.utils.ZKWebUtils;
 import com.zk.security.exception.ZKSecCodeException;
 import com.zk.security.subject.ZKSecSubject;
 import com.zk.security.utils.ZKSecSecurityUtils;
@@ -46,7 +48,13 @@ public class ZKSecUserFilter extends ZKSecBaseControlFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) {
-        log.error("[>_<:20210805-1202-001] 用户未登录");
+        if (request instanceof HttpServletRequest) {
+            log.error("[>_<:20210805-1202-001] 用户未登录: {}", ZKWebUtils.toHttp(request).getServletPath());
+        }
+        else {
+            log.error("[>_<:20210805-1202-002] 用户未登录: {}", request.getServerPort());
+        }
+
         // 用户未登录，抛出用户未登录异常
         throw new ZKSecCodeException("zk.sec.000004");
     }

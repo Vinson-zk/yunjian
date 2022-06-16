@@ -20,8 +20,8 @@ package com.zk.security.web.filter;
 
 import javax.servlet.ServletRequest;
 
+import com.zk.core.commons.ZKUrlPathMatcher;
 import com.zk.core.web.utils.ZKWebUtils;
-import com.zk.security.common.ZKSecUrlPathMatcher;
 
 /**
  * 权限拦截器中设置的按路径过虑拦截
@@ -33,7 +33,7 @@ import com.zk.security.common.ZKSecUrlPathMatcher;
  */
 public abstract class ZKSecPathMatchingFilter extends ZKSecAdviceFilter {
 
-    protected ZKSecUrlPathMatcher urlPathMatcher = new ZKSecUrlPathMatcher();
+    protected ZKUrlPathMatcher urlPathMatcher = new ZKUrlPathMatcher();
 
     /**
      * 取请求路径

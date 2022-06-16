@@ -18,8 +18,8 @@ import com.zk.core.utils.ZKMsgUtils;
 import com.zk.core.utils.ZKStringUtils;
 import com.zk.security.utils.ZKSecSecurityUtils;
 import com.zk.sys.auth.service.ZKSysAuthCompanyService;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.sys.org.dao.ZKSysOrgCompanyDao;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
 
 /**
  * ZKSysOrgCompanyService

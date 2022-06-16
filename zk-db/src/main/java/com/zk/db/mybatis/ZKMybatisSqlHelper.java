@@ -71,7 +71,7 @@ import com.zk.db.dynamic.spring.dataSource.ZKDynamicDataSource;
 */
 public class ZKMybatisSqlHelper {
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    protected Logger log = LoggerFactory.getLogger(getClass());
 
     /**
      * 环境变量配置的 KEY

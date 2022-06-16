@@ -16,7 +16,7 @@
 * @date May 12, 2022 11:20:12 AM 
 * @version V1.0 
 */
-package com.zk.sys.org.api;
+package com.zk.sys.api.org;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,17 +32,17 @@ import com.zk.sys.common.ZKSysApiConstants;
  * @author Vinson
  * @version 1.0
  */
-@FeignClient(name = ZKSysApiConstants.YunJian_App_Name, contextId = "com.zk.sys.org.api.ZKSysOrgUserApi")
+@FeignClient(name = ZKSysApiConstants.YunJian_App_Name, contextId = "com.zk.sys.api.org.ZKSysOrgUserApi")
 public interface ZKSysOrgUserApi {
 
     // 根据用户ID查询用户详情
-    @RequestMapping(method = RequestMethod.GET,
-            path = ZKSysApiConstants.YunJian_Api_Prefix + "/org/sysOrgUser/sysOrgUser")
+    @RequestMapping(method = RequestMethod.GET, path = ZKSysApiConstants.YunJian_Api_Prefix
+            + "/org/sysOrgUser/sysOrgUser")
     ZKMsgRes getUserByPkId(@RequestParam("pkId") String pkId);
 
     // 根据用户公司代码和手机号友查询用户详情
-    @RequestMapping(method = RequestMethod.GET, 
-            path = ZKSysApiConstants.YunJian_Api_Prefix + "/org/sysOrgUser/sysOrgUserByPhoneNum")
+    @RequestMapping(method = RequestMethod.GET, path = ZKSysApiConstants.YunJian_Api_Prefix
+            + "/org/sysOrgUser/sysOrgUserByPhoneNum")
     ZKMsgRes getUserByPhnoeNum(@RequestParam("companyId") String companyId, @RequestParam("phoneNum") String phoneNum);
 
 }

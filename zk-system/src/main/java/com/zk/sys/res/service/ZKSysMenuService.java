@@ -29,7 +29,7 @@ import com.zk.base.service.ZKBaseTreeService;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.exception.ZKValidatorException;
 import com.zk.core.utils.ZKStringUtils;
-import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.framework.security.utils.ZKUserCacheUtils;
 import com.zk.sys.auth.service.ZKSysAuthMenuService;
 import com.zk.sys.res.dao.ZKSysMenuDao;
 import com.zk.sys.res.entity.ZKSysMenu;

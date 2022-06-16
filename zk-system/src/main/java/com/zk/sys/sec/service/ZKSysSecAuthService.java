@@ -24,10 +24,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zk.framwwork.security.ZKAuthPermission;
-import com.zk.framwwork.security.ZKSampleAuthPermission;
-import com.zk.framwwork.security.service.ZKSecAuthService;
-import com.zk.framwwork.security.userdetails.ZKUser;
+import com.zk.framework.security.ZKAuthPermission;
+import com.zk.framework.security.ZKSampleAuthPermission;
+import com.zk.framework.security.service.ZKSecAuthService;
+import com.zk.framework.security.userdetails.ZKUser;
 import com.zk.security.authz.ZKSecAuthorizationInfo;
 import com.zk.security.authz.ZKSecSimpleAuthorizationInfo;
 import com.zk.sys.auth.service.ZKSysAuthDeptService;

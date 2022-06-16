@@ -79,11 +79,11 @@ public class ZKOfficialAccountsUser extends ZKBaseEntity<String, ZKOfficialAccou
     }
 
     /**
-     * 关注状态；0-取消关注；1-已关注；2-未知；
+     * 关注状态；0-未关注；1-已关注；2-取消关注；
      */
-    public static interface KeyWxSubscribeStatus {
+    public static interface KeyWxSubscribe {
         /**
-         * 关注状态；0-取消关注；
+         * 关注状态；0-未关注；
          */
         public static final int unsubscribe = 0;
 
@@ -92,10 +92,6 @@ public class ZKOfficialAccountsUser extends ZKBaseEntity<String, ZKOfficialAccou
          */
         public static final int subscribe = 1;
 
-        /**
-         * 关注状态；2-未知；
-         */
-        public static final int unknown = 2;
     }
 	
 	/**
@@ -159,10 +155,12 @@ public class ZKOfficialAccountsUser extends ZKBaseEntity<String, ZKOfficialAccou
 
     /**
      * 用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。
+     * 
+     * 关注状态；0-未关注；1-已关注；
      */
     @Range(min = 0, max = 9, message = "{zk.core.data.validation.rang.int}")
     @ZKColumn(name = "c_wx_subscribe", isInsert = true, isUpdate = true, javaType = String.class, isQuery = false)
-    String wxSubscribe;
+    Integer wxSubscribe;
 
 	/**
 	 * 用户的标识，对当前公众号唯一: openid
@@ -299,13 +297,6 @@ public class ZKOfficialAccountsUser extends ZKBaseEntity<String, ZKOfficialAccou
     Integer wxChannel;
 
     /**
-     * 关注状态；0-取消关注；1-已关注；2-未知；
-     */
-    @Range(min = 0, max = 9, message = "{zk.core.data.validation.rang.int}")
-    @ZKColumn(name = "c_wx_subscribe_status", isInsert = true, isUpdate = true, javaType = Integer.class, isQuery = false)
-    Integer wxSubscribeStatus;
-
-    /**
      * 关注时间
      */
     @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
@@ -391,14 +382,14 @@ public class ZKOfficialAccountsUser extends ZKBaseEntity<String, ZKOfficialAccou
     /**
      * @return 用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。
      */
-    public String getWxSubscribe() {
+    public Integer getWxSubscribe() {
         return wxSubscribe;
     }
 
     /**
      * @param 用户是否订阅该公众号标识，值为0时，代表此用户没有关注该公众号，拉取不到其余信息。
      */
-    public void setWxSubscribe(String wxSubscribe) {
+    public void setWxSubscribe(Integer wxSubscribe) {
         this.wxSubscribe = wxSubscribe;
     }
 
@@ -758,26 +749,11 @@ public class ZKOfficialAccountsUser extends ZKBaseEntity<String, ZKOfficialAccou
     }
 
     /**
-     * @return wxSubscribeStatus sa
-     */
-    public Integer getWxSubscribeStatus() {
-        return wxSubscribeStatus;
-    }
-
-    /**
      * @param wxCannel
      *            the wxCannel to set
      */
     public void setWxChannel(Integer wxChannel) {
         this.wxChannel = wxChannel;
-    }
-
-    /**
-     * @param wxSubscribeStatus
-     *            the wxSubscribeStatus to set
-     */
-    public void setWxSubscribeStatus(Integer wxSubscribeStatus) {
-        this.wxSubscribeStatus = wxSubscribeStatus;
     }
 
     /**

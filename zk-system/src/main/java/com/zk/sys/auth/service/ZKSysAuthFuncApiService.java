@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zk.base.entity.ZKBaseEntity;
 import com.zk.base.service.ZKBaseService;
 import com.zk.core.exception.ZKCodeException;
-import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.framework.security.utils.ZKUserCacheUtils;
 import com.zk.sys.auth.dao.ZKSysAuthFuncApiDao;
 import com.zk.sys.auth.entity.ZKSysAuthDefined;
 import com.zk.sys.auth.entity.ZKSysAuthFuncApi;

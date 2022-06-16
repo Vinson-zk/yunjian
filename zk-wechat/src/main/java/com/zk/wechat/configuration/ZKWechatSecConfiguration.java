@@ -24,13 +24,14 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration.EnableWebMvcConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.Ordered;
 
 import com.zk.core.redis.ZKJedisOperatorStringKey;
 import com.zk.core.web.filter.ZKDelegatingFilterProxyRegistrationBean;
-import com.zk.framwwork.security.realm.ZKDistributedRealm;
+import com.zk.framework.security.realm.ZKDistributedRealm;
 import com.zk.security.ticket.ZKSecTicketManager;
 import com.zk.security.ticket.support.redis.ZKSecRedisTicketManager;
 import com.zk.security.web.mgt.ZKSecWebSecurityManager;
@@ -43,6 +44,7 @@ import com.zk.security.web.support.spring.ZKSecStaticMethodMatcherPointcutAdviso
  * @author Vinson
  * @version 1.0
  */
+@Configuration
 @AutoConfigureBefore(value = { ZKWechatAfterConfiguration.class })
 @AutoConfigureAfter(value = {
 //        ZKMongoAutoConfiguration.class,

@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
@@ -13,13 +12,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import com.zk.sys.configuration.ZKSysConfiguration;
-import com.zk.sys.configuration.ZKSysMvcConfiguration;
-import com.zk.sys.configuration.ZKSysRedisConfiguration;
-import com.zk.sys.configuration.ZKSysSecConfiguration;
 
 /** 
 * Copyright (c) 2004-2020 ZK-Vinson Technologies, Inc.
@@ -56,16 +49,8 @@ import com.zk.sys.configuration.ZKSysSecConfiguration;
 @EnableTransactionManagement(proxyTargetClass = true)
 //@ComponentScan(basePackages = { "com.zk.server.central.filter" })
 //@ServletComponentScan(basePackages = { "com.zk.server.central.filter" })
-@ImportAutoConfiguration(classes = { 
-        ZKSysConfiguration.class,
-        ZKSysMvcConfiguration.class, 
-        ZKSysSecConfiguration.class,
-//        ZKMongoAutoConfiguration.class,
-        ZKSysRedisConfiguration.class
-})
-@PropertySource(encoding = "UTF-8", value = { "classpath:zk.sys.jdbc.properties", "classpath:zk.sys.mongo.properties" })
 //@AutoConfigureOrder(value = Ordered.HIGHEST_PRECEDENCE)
-@ComponentScan(basePackages = { "com.zk.sys.*" })
+@ComponentScan(basePackages = { "com.zk.sys.*", "com.zk.log.*" })
 public class ZKSysSpringBootMain {
 
     protected static Logger log = LoggerFactory.getLogger(ZKSysSpringBootMain.class);

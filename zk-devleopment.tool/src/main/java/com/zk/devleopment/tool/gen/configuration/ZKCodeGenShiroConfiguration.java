@@ -30,6 +30,7 @@ import com.zk.core.web.filter.ZKDelegatingFilterProxyRegistrationBean;
 * @author Vinson 
 * @version 1.0 
 */
+//@Configuration
 @ImportResource(locations = { "classpath:xmlConfig/spring_ctx_shiro.xml" })
 public class ZKCodeGenShiroConfiguration {
 

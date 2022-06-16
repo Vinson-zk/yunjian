@@ -23,7 +23,7 @@ import org.junit.Test;
 import com.zk.core.utils.ZKJsonUtils;
 import com.zk.security.mgt.ZKSecSecurityManager;
 import com.zk.security.utils.ZKSecSecurityUtils;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.wechat.helper.ZKWechatTestHelper;
 import com.zk.wechat.thirdParty.entity.ZKThirdParty;
 

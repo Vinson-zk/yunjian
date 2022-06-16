@@ -39,7 +39,7 @@ public class ZKSecAuthcDevFilter extends ZKSecAuthenticationFilter {
 
     @Override
     protected ZKSecAuthenticationToken createToken(ServletRequest request, ServletResponse response) throws Exception {
-        String groupCode = getGroupCode(request);
+        String companyCode = getCompanyCode(request);
         long osType = getOsType(request);
         String udid = getUdid(request);
         long appType = getAppType(request);
@@ -49,7 +49,7 @@ public class ZKSecAuthcDevFilter extends ZKSecAuthenticationFilter {
         String secretKeyStr = ZKWebUtils.getCleanParam(request, ZKSecConstants.PARAM_NAME.SecretKey);
         char[] secretKey = ZKStringUtils.isEmpty(secretKeyStr)?null:secretKeyStr.toCharArray();
         
-        return new ZKSecDefaultAuthcDevToken(groupCode, devId, secretKey, osType, udid, appType, appId);
+        return new ZKSecDefaultAuthcDevToken(companyCode, devId, secretKey, osType, udid, appType, appId);
     }
     
     @Override

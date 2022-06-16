@@ -25,9 +25,9 @@ import javax.servlet.ServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.zk.core.commons.ZKPatternMatcher;
+import com.zk.core.commons.ZKUrlPathMatcher;
 import com.zk.core.web.utils.ZKWebUtils;
-import com.zk.security.common.ZKSecPatternMatcher;
-import com.zk.security.common.ZKSecUrlPathMatcher;
 
 /** 
 * @ClassName: ZKSecDefaultFilterChainResolver 
@@ -42,13 +42,13 @@ public class ZKSecDefaultFilterChainResolver implements ZKSecFilterChainResolver
     private ZKSecFilterChainManager filterChainManager;
 
     public ZKSecDefaultFilterChainResolver(ZKSecFilterChainManager filterChainManager) {
-        this.patternMatcher = new ZKSecUrlPathMatcher();
+        this.patternMatcher = new ZKUrlPathMatcher();
         this.filterChainManager = filterChainManager;
     }
 
-    private ZKSecPatternMatcher patternMatcher;
+    private ZKPatternMatcher patternMatcher;
 
-    public ZKSecPatternMatcher getPatternMatcher() {
+    public ZKPatternMatcher getPatternMatcher() {
         return patternMatcher;
     }
 
@@ -84,7 +84,7 @@ public class ZKSecDefaultFilterChainResolver implements ZKSecFilterChainResolver
     }
 
     protected boolean pathMatches(String pattern, String path) {
-        ZKSecPatternMatcher pathMatcher = getPatternMatcher();
+        ZKPatternMatcher pathMatcher = getPatternMatcher();
         return pathMatcher.matches(pattern, path);
     }
 

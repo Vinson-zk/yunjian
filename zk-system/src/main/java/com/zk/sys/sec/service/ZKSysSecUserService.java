@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zk.security.exception.ZKSecCodeException;
 import com.zk.security.token.ZKSecAuthcUserToken;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.sys.org.entity.ZKSysOrgUser;
 import com.zk.sys.org.service.ZKSysOrgCompanyService;
 import com.zk.sys.org.service.ZKSysOrgUserService;

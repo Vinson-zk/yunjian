@@ -51,6 +51,11 @@
 			<artifactId>zk-framework</artifactId>
 			<version>${version.zk.framework}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.zk</groupId>
+			<artifactId>zk-log</artifactId>
+			<version>${version.zk.log}</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>junit</groupId>

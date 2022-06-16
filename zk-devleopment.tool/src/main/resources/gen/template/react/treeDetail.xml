@@ -15,10 +15,52 @@ import { Icon } from "antd";
 
 import locales from "../../../locales/index";
 import { zkTools, ZKCustomComponents, ZKOriginalComponents } from "zkFramework";
-const { ZKSpin, ZKInput, ZKSelect, ZKInputNumber, ZKRadio, ZKModal } = ZKOriginalComponents;
-const { ZKDetailGrid, ZKEditForm, ZKInputJson, ZKIcon } = ZKCustomComponents;
 
-const { zkToolsMsg, zkToolsNavAndMenu } = zkTools;
+import locales from "../../../locales/index";
+import { zkTools, ZKCustomComponents, ZKOriginalComponents } from "zkFramework";
+// ZKOriginalComponents
+const { ZKSpin, ZKModal,<#compress>
+<#list zkTableInfo.cols as zkCol>
+	<#if zkCol.editStrategy == "EditString" || zkCol.editStrategy == "EditIcon">
+ZKInput, <#break>
+	</#if>
+</#list>
+<#list zkTableInfo.cols as zkCol>
+	<#if zkCol.editStrategy == "EditInt" || zkCol.editStrategy == "EditFloat">
+ZKInputNumber, <#break>
+	</#if>
+</#list>
+<#list zkTableInfo.cols as zkCol>
+	<#if zkCol.editStrategy == "EditSel" >
+ZKSelect, <#break>
+	</#if>
+</#list>
+<#list zkTableInfo.cols as zkCol>
+	<#if zkCol.editStrategy == "EditRadio" >
+ZKRadio, <#break>
+	</#if>
+</#list>
+</#compress>} = ZKOriginalComponents;
+// ZKCustomComponents
+const { ZKDetailGrid, <#compress>
+<#list zkTableInfo.cols as zkCol>
+	<#if zkCol.editStrategy == "EditJson" >
+ZKInputJson, <#break>
+	</#if>
+</#list>
+<#list zkTableInfo.cols as zkCol>
+	<#if zkCol.editStrategy == "EditIcon" >
+ZKIcon, <#break>
+	</#if>
+</#list>
+<#list zkTableInfo.cols as zkCol>
+	<#if zkCol.editStrategy == "EditDate" >
+ZKDateFormatPicker, <#break>
+	</#if>
+</#list>
+</#compress>} = ZKCustomComponents;
+// zkTools
+const { zkToolsMsg, zkToolsValidates, zkToolsNavAndMenu } = zkTools;  
 
 class CInit${zkTableInfo.funcName}Detail extends Component {
 

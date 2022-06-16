@@ -43,7 +43,7 @@ public abstract class ZKSecAuthenticationFilter extends ZKSecAccessControlFilter
     protected abstract ZKSecAuthenticationToken createToken(ServletRequest request, ServletResponse response)
             throws Exception;
 
-    protected String getGroupCode(ServletRequest request) {
+    protected String getCompanyCode(ServletRequest request) {
         return ZKWebUtils.getCleanParam(request, ZKSecConstants.PARAM_NAME.CompanyCode);
     }
 

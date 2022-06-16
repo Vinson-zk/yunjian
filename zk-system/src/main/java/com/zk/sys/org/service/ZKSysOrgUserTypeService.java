@@ -14,10 +14,10 @@ import com.zk.base.service.ZKBaseService;
 import com.zk.core.exception.ZKCodeException;
 import com.zk.core.utils.ZKMsgUtils;
 import com.zk.core.utils.ZKStringUtils;
-import com.zk.framwwork.security.utils.ZKUserCacheUtils;
+import com.zk.framework.security.utils.ZKUserCacheUtils;
 import com.zk.sys.auth.service.ZKSysAuthUserTypeService;
+import com.zk.sys.entity.org.ZKSysOrgCompany;
 import com.zk.sys.org.dao.ZKSysOrgUserTypeDao;
-import com.zk.sys.org.entity.ZKSysOrgCompany;
 import com.zk.sys.org.entity.ZKSysOrgUserType;
 
 /**

@@ -32,9 +32,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-import com.zk.framwwork.serCen.ZKSerCenEncrypt;
-import com.zk.framwwork.serCen.eureka.ZKEurekaTransportClientFactories;
-import com.zk.framwwork.serCen.support.ZKSerCenSampleCipher;
+import com.zk.framework.serCen.ZKSerCenEncrypt;
+import com.zk.framework.serCen.eureka.ZKEurekaTransportClientFactories;
+import com.zk.framework.serCen.support.ZKSerCenSampleCipher;
 
 /** 
 * @ClassName: ZKDemoSpringBootMain 
