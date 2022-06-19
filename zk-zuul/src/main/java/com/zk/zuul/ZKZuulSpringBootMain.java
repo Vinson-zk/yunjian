@@ -27,6 +27,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -44,6 +45,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //        MongoAutoConfiguration.class,
 //        WebMvcAutoConfiguration.class,
 })
+@EnableZuulProxy
 @EnableEurekaClient
 @EnableTransactionManagement(proxyTargetClass = true)
 //@AutoConfigureOrder(value = Ordered.HIGHEST_PRECEDENCE)

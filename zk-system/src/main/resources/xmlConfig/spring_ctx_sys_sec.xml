@@ -35,6 +35,9 @@
         		<!-- 放开静态资源  
         		/eureka/** = anon -->
         		<!-- /static/** = anon -->
+        		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version} = anon
+        		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/index = anon
+        		
         		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/sec/login = authcUser
         		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/sec/logout = logout
         		/${zk.path.admin}/${zk.path.sys}/${zk.sys.version}/org/sysOrgCompany/sysOrgCompanyByCode = serverOrUser

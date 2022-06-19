@@ -28,6 +28,7 @@
         		/eureka/** = anon -->
         		<!-- /static/** = anon -->
         		/${zk.path.admin}/${zk.path.wechat}/${zk.wechat.version} = anon
+        		/${zk.path.admin}/${zk.path.wechat}/${zk.wechat.version}/index = anon
         		/${zk.path.admin}/${zk.path.wechat}/${zk.wechat.version}/wx/** = anon
         		/${zk.path.admin}/${zk.path.wechat}/${zk.wechat.version}/officialAccounts/officialAccountsUser/officialAccountsUser = serverOrUser
                 /** = user

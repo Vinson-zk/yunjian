@@ -18,10 +18,15 @@
 */
 package com.zk.zuul.configuration;
 
+import javax.servlet.Filter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration.EnableWebMvcConfiguration;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.cloud.netflix.eureka.MutableDiscoveryClientOptionalArgs;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +36,11 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import com.zk.core.utils.ZKEnvironmentUtils;
 import com.zk.core.utils.ZKLocaleUtils;
+import com.zk.core.web.filter.ZKCrosFilter;
 import com.zk.core.web.utils.ZKWebUtils;
+import com.zk.framework.serCen.ZKSerCenEncrypt;
+import com.zk.framework.serCen.eureka.ZKEurekaTransportClientFactories;
+import com.zk.framework.serCen.support.ZKSerCenSampleCipher;
 import com.zk.log.interceptor.ZKLogAccessInterceptor;
 
 /** 
@@ -69,7 +78,7 @@ public class ZKZuulBeforeConfiguration {
 
     @Autowired
     public void before(RequestMappingHandlerAdapter requestMappingHandlerAdapter) {
-        System.out.println("[^_^:20220614-1940-001] ===== ZKZuulBeforeConfiguration class before ");
+        System.out.println("[^_^:20220614-1940-001] -------- configuration before begin... ... " + this.getClass());
 
         ZKEnvironmentUtils.initContext(applicationContext);
 //        ZKLocaleUtils.setLocale(ZKLocaleUtils.valueOf("en_US"));
@@ -81,7 +90,7 @@ public class ZKZuulBeforeConfiguration {
         // 设置下 RequestMappingHandlerAdapter 的 ignoreDefaultModelOnRedirect=true,
         // 这样可以提高效率，避免不必要的检索。
         requestMappingHandlerAdapter.setIgnoreDefaultModelOnRedirect(true);
-        System.out.println("[^_^:20220614-1940-001] ----- ZKZuulBeforeConfiguration class before ");
+        System.out.println("[^_^:20220614-1940-001] -------- configuration before end______ " + this.getClass());
     }
 
     /**
@@ -97,6 +106,55 @@ public class ZKZuulBeforeConfiguration {
     @Bean
     public ZKLogAccessInterceptor logAccessInterceptor() {
         return new ZKLogAccessInterceptor();
+    }
+
+    /******************************************************************/
+    /**
+     * 服务注册加解密
+     *
+     * @Title: zkSerCenSampleCipher
+     * @Description: TODO(simple description this method what to do.)
+     * @author Vinson
+     * @date Jul 6, 2020 6:07:27 PM
+     * @return
+     * @return ZKSerCenSampleCipher
+     */
+    @Bean
+    public ZKSerCenEncrypt zkSerCenEncrypt() {
+        return new ZKSerCenSampleCipher();
+    }
+
+//    @Bean
+//    public ZKSerCenDecode zkSerCenDecode() {
+//        return new ZKSerCenSampleCipher();
+//    }
+
+    @Bean
+//    @ConditionalOnBean(name = "eurekaDiscoverClientMarker")
+    @ConditionalOnClass(name = "com.sun.jersey.api.client.filter.ClientFilter")
+//    @ConditionalOnMissingBean(value = AbstractDiscoveryClientOptionalArgs.class, search = SearchStrategy.CURRENT)
+    public MutableDiscoveryClientOptionalArgs discoveryClientOptionalArgs(ZKSerCenEncrypt zkSerCenEncrypt) {
+        MutableDiscoveryClientOptionalArgs ms = new MutableDiscoveryClientOptionalArgs();
+        ms.setTransportClientFactories(new ZKEurekaTransportClientFactories(zkSerCenEncrypt));
+        return ms;
+    }
+
+    /******************************************************************/
+
+    @Bean
+    public FilterRegistrationBean<Filter> zkCrosFilterRegistrationBean() {
+        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<Filter>();
+        ZKCrosFilter zkCrosFilter = new ZKCrosFilter();
+        filterRegistrationBean.setFilter(zkCrosFilter);
+        filterRegistrationBean.addUrlPatterns("/*");
+        filterRegistrationBean.setName("zkCrosFilter");
+//        Map<String, String> zkCrosFilterInitParams = new HashMap<>();
+//        zkCrosFilterInitParams.put(ParamsName.allowOrigin, "*");
+//        zkCrosFilterInitParams.put(ParamsName.maxAge, "3600");
+//        zkCrosFilterInitParams.put(ParamsName.allowMethods, "POST,GET");
+//        zkCrosFilterInitParams.put(ParamsName.allowHeaders, "__SID,locale,Lang,X-Requested-With");
+//        filterRegistrationBean.setInitParameters(zkCrosFilterInitParams);
+        return filterRegistrationBean;
     }
 
 }

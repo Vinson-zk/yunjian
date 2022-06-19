@@ -53,7 +53,7 @@ public class ZKCoreConfiguration {
 
     @Autowired
     public void before(RequestMappingHandlerAdapter requestMappingHandlerAdapter) {
-        System.out.println("[^_^:20210210-1808-001] ===== ZKCoreConfiguration class before ");
+        System.out.println("[^_^:20210210-1808-001] -------- configuration before begin... ... " + this.getClass());
 
         ZKEnvironmentUtils.initContext(applicationContext);
 //        ZKLocaleUtils.setLocale(ZKLocaleUtils.valueOf("en_US"));
@@ -65,7 +65,7 @@ public class ZKCoreConfiguration {
         // 设置下 RequestMappingHandlerAdapter 的 ignoreDefaultModelOnRedirect=true,
         // 这样可以提高效率，避免不必要的检索。
         requestMappingHandlerAdapter.setIgnoreDefaultModelOnRedirect(true);
-        System.out.println("[^_^:20210210-1808-002] ----- ZKCoreConfiguration class before ");
+        System.out.println("[^_^:20210210-1808-002] -------- configuration before end______ " + this.getClass());
     }
 
 }

@@ -19,6 +19,7 @@
         		<!-- 放开静态资源  
         		/eureka/** = anon -->
         		<!-- /static/** = anon -->
+        		/${zk.path.admin}/${zk.path.mail}/${zk.mail.version} = anon
         		/${zk.path.admin}/${zk.path.mail}/${zk.mail.version}/index = anon
         		<!-- 
         		/${zk.path.admin}/${zk.path.mail}/${zk.mail.version}/mailSend/mailSend/* = anon 

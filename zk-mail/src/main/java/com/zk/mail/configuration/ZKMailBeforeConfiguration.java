@@ -96,7 +96,7 @@ public class ZKMailBeforeConfiguration {
 
     @Autowired
     public void before(RequestMappingHandlerAdapter requestMappingHandlerAdapter) {
-        log.info("[^_^:20200805-1808-001] ===== ZKSysConfiguration class before ");
+        log.info("[^_^:20200805-1808-001] -------- configuration before begin... ... " + this.getClass());
 
         ZKEnvironmentUtils.initContext(applicationContext);
 //        ZKLocaleUtils.setLocale(ZKLocaleUtils.valueOf("en_US"));
@@ -108,7 +108,7 @@ public class ZKMailBeforeConfiguration {
         // 设置下 RequestMappingHandlerAdapter 的 ignoreDefaultModelOnRedirect=true,
         // 这样可以提高效率，避免不必要的检索。
         requestMappingHandlerAdapter.setIgnoreDefaultModelOnRedirect(true);
-        log.info("[^_^:20200805-1808-001] ----- ZKWechatBeforeConfiguration class before ");
+        log.info("[^_^:20200805-1808-001] -------- configuration before end______ " + this.getClass());
     }
 
     /******************************************************************/

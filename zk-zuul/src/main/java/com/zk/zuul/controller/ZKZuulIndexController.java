@@ -44,4 +44,9 @@ public class ZKZuulIndexController {
                 + ZKEnvironmentUtils.getString("spring.application.name", "zk zuul"));
     }
 
+    @RequestMapping("noZuul")
+    public String noZuul() {
+        return "noZuul";
+    }
+
 }
